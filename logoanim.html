@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Logo Animé en Crochets</title>
+  <style>
+    /* Pour permettre le scroll et tester l'animation */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 200vh;
+      background: #f0f0f0;
+    }
+    /* Centre le composant sur la page */
+    animated-logo {
+      display: block;
+      margin: 150px auto;
+    }
+  </style>
+  <!-- Inclusion de GSAP et du plugin ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- Intégration du composant avec une taille personnalisable -->
+  <animated-logo size="200px"></animated-logo>
+
+  <script>
+    class AnimatedLogo extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        // Récupère la taille passée en attribut (par défaut 200px)
+        const size = this.getAttribute('size') || '200px';
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: inline-block;
+              width: ${size};
+              height: ${size};
+              position: relative;
+              /* Optionnel : définir une variable pour s'y référer dans les calculs */
+              --border-thickness: 4px;
+            }
+            .logo-container {
+              width: 100%;
+              height: 100%;
+              position: relative;
+            }
+            /* Bordures initiales du carré */
+            .border {
+              position: absolute;
+              background: black;
+            }
+            .border.top, .border.bottom {
+              height: var(--border-thickness);
+              width: 100%;
+            }
+            .border.left, .border.right {
+              width: var(--border-thickness);
+              height: 100%;
+            }
+            .border.top { top: 0; left: 0; }
+            .border.bottom { bottom: 0; left: 0; }
+            .border.left { top: 0; left: 0; }
+            .border.right { top: 0; right: 0; }
+            
+            /* Le plus central et son petit carré */
+            .plus {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 60%;
+              height: 60%;
+            }
+            .plus-vertical, .plus-horizontal {
+              position: absolute;
+              background: black;
+            }
+            .plus-vertical {
+              width: 20%;
+              height: 100%;
+              left: 40%;
+              top: 0;
+            }
+            .plus-horizontal {
+              height: 20%;
+              width: 100%;
+              top: 40%;
+              left: 0;
+            }
+            .small-square {
+              position: absolute;
+              width: 20%;
+              height: 20%;
+              background: black;
+              bottom: 0;
+              right: 0;
+            }
+            
+            /* Les crochets qui apparaîtront en fin d'anim.
+               On simule un crochet en créant un conteneur pour chaque crochet.
+               Le crochet se compose d'une barre verticale et de deux "caps" horizontaux. */
+            .bracket {
+              position: absolute;
+              opacity: 0;
+              width: 12px;  /* largeur totale du crochet */
+              height: 100%;
+            }
+            .left-bracket { left: 0; }
+            .right-bracket { right: 0; }
+            .bracket .vertical {
+              position: absolute;
+              width: 8px; /* barre verticale épaisse */
+              height: 100%;
+              background: black;
+            }
+            /* Pour le crochet gauche, la barre verticale est à droite dans son conteneur */
+            .left-bracket .vertical { right: 0; }
+            /* Pour le crochet droit, la barre verticale est à gauche */
+            .right-bracket .vertical { left: 0; }
+            /* Les "caps" horizontaux : sur le haut et le bas du crochet */
+            .bracket .cap {
+              position: absolute;
+              height: 8px; /* même épaisseur que la barre verticale */
+              background: black;
+              width: 60%;  /* longueur des caps */
+            }
+            /* Pour le crochet gauche, les caps sont placés à gauche du trait vertical */
+            .left-bracket .cap.top {
+              top: 0;
+              left: 0;
+            }
+            .left-bracket .cap.bottom {
+              bottom: 0;
+              left: 0;
+            }
+            /* Pour le crochet droit, les caps sont placés à droite */
+            .right-bracket .cap.top {
+              top: 0;
+              right: 0;
+            }
+            .right-bracket .cap.bottom {
+              bottom: 0;
+              right: 0;
+            }
+            
+            /* Texte final qui doit apparaître entre les crochets.
+               La taille est choisie pour être en harmonie avec les crochets. */
+            .logo-text {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              font-family: sans-serif;
+              font-weight: bold;
+              /* Ici on fixe la taille (à ajuster selon le rendu désiré) */
+              font-size: 1.2em;
+              opacity: 0;
+            }
+          </style>
+          <div class="logo-container">
+            <!-- Bordures initiales du carré -->
+            <div class="border top"></div>
+            <div class="border right"></div>
+            <div class="border bottom"></div>
+            <div class="border left"></div>
+            <!-- Le plus et le petit carré -->
+            <div class="plus">
+              <div class="plus-vertical"></div>
+              <div class="plus-horizontal"></div>
+              <div class="small-square"></div>
+            </div>
+            <!-- Les crochets (invisibles au départ) -->
+            <div class="bracket left-bracket">
+              <div class="vertical"></div>
+              <div class="cap top"></div>
+              <div class="cap bottom"></div>
+            </div>
+            <div class="bracket right-bracket">
+              <div class="vertical"></div>
+              <div class="cap top"></div>
+              <div class="cap bottom"></div>
+            </div>
+            <!-- Texte à faire apparaître -->
+            <div class="logo-text">no ai'die</div>
+          </div>
+        `;
+      }
+      
+      connectedCallback() {
+        this.initAnimation();
+      }
+      
+      initAnimation() {
+        const shadow = this.shadowRoot;
+        const plus = shadow.querySelector('.plus');
+        const smallSquare = shadow.querySelector('.small-square');
+        const borderTop = shadow.querySelector('.border.top');
+        const borderBottom = shadow.querySelector('.border.bottom');
+        const borderLeft = shadow.querySelector('.border.left');
+        const borderRight = shadow.querySelector('.border.right');
+        const leftBracket = shadow.querySelector('.bracket.left-bracket');
+        const rightBracket = shadow.querySelector('.bracket.right-bracket');
+        const logoText = shadow.querySelector('.logo-text');
+        
+        // Timeline GSAP synchronisée au scroll
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: this,
+            start: "top center",
+            toggleActions: "play none none none",
+          }
+        });
+        
+        // 1. Effet "pulse" sur le plus et le petit carré, puis disparition
+        tl.to(plus, {
+          duration: 0.5,
+          scale: 1.2,
+          ease: "power1.inOut"
+        })
+        .to(plus, {
+          duration: 0.5,
+          opacity: 0,
+          ease: "power1.inOut"
+        }, "+=0.1");
+        
+        tl.to(smallSquare, {
+          duration: 0.5,
+          scale: 1.2,
+          ease: "power1.inOut"
+        }, "<")
+        .to(smallSquare, {
+          duration: 0.5,
+          opacity: 0,
+          ease: "power1.inOut"
+        }, "<");
+        
+        // 2. Disparition progressive des bordures initiales (toutes les 4)
+        tl.to([borderTop, borderBottom, borderLeft, borderRight], {
+          duration: 0.3,
+          opacity: 0,
+          ease: "power1.inOut"
+        }, "+=0.1");
+        
+        // 3. Apparition des crochets avec une transition fluide
+        tl.to(leftBracket, {
+          duration: 0.8,
+          opacity: 1,
+          ease: "power2.out"
+        }, "<");
+        tl.to(rightBracket, {
+          duration: 0.8,
+          opacity: 1,
+          ease: "power2.out"
+        }, "<");
+        
+        // 4. Apparition du texte au centre, en harmonie avec la taille des crochets
+        tl.to(logoText, {
+          duration: 0.8,
+          opacity: 1,
+          ease: "power2.out"
+        }, "<");
+      }
+    }
+    
+    customElements.define('animated-logo', AnimatedLogo);
+  </script>
+</body>
+</html>
