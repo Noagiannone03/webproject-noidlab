@@ -1,0 +1,773 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ----------------------- */
+/* RÉINITIALISATION ET GLOBAUX */
+/* ----------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", serif;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background: #e1e2f7;
+  overflow-x: hidden;
+  color: #333;
+}
+
+/* ----------------------- */
+/* NAVBAR */
+/* ----------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 20px;
+}
+/* Conteneur pour les actions (Contact & Menu) à droite */
+.nav-actions {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+/* Bouton Contact et Menu */
+.contact-btn, .menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.contact-btn .icon-circle,
+.menu-btn .icon-circle {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-btn .icon-circle svg,
+.menu-btn .icon-circle svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+.btn-text {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.separator {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Zone centrale de la navbar (logo) */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-center img {
+  margin: 10px 0;
+  max-height: 60px;
+}
+
+/* ----------------------- */
+/* DROPDOWN MENU */
+/* ----------------------- */
+.dropdown {
+  position: absolute;
+  top: 85px;
+  right: 17px;
+  width: 320px;
+  background: #fff;
+  
+  border-radius: 20px;
+
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1100;
+}
+.dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+.dropdown .menu-card,
+.dropdown .newsletter-card,
+.dropdown .follow-card {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+.dropdown .newsletter-card form,
+.dropdown .follow-card .social-buttons {
+  width: 100%;
+}
+/* Card Menu – liste des liens */
+.dropdown .menu-card ul {
+  list-style: none;
+  padding: 0 5px;
+}
+.dropdown .menu-card ul li {
+  margin-bottom: 10px;
+  position: relative;
+}
+.dropdown .menu-card ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  display: block;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.dropdown .menu-card ul li a:hover {
+  background: #000;
+  color: #fff;
+}
+/* Indicateur actif sur le premier item ("À propos") */
+.dropdown .menu-card ul li:first-child a::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+}
+/* Flèche pour l'item "Contact" (dernier item) */
+.dropdown .menu-card ul li:last-child a::after {
+  content: '➔';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+/* Card Newsletter */
+.dropdown .newsletter-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #000000;
+}
+.dropdown .newsletter-card form {
+  display: flex;
+  gap: 10px;
+}
+.dropdown .newsletter-card input[type="email"] {
+  width: 88%;
+  flex: 0.8;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+.dropdown .newsletter-card button {
+  padding: 10px 20px;
+  flex: 0.2;
+  border: 1px solid #000;
+  border-radius: 12px;
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.dropdown .newsletter-card button:hover {
+  transform: scale(1.05);
+}
+/* Card Follow – inversé */
+.dropdown .follow-card {
+  padding: 20px;
+  background: #000000;
+  border: 1px solid #000;
+  border-radius: 20px;
+  color: #fff;
+}
+.dropdown .follow-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.dropdown .follow-card .social-buttons {
+  display: flex;
+  gap: 10px;
+}
+.dropdown .follow-card .social-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.dropdown .follow-card .social-buttons button:hover {
+  transform: scale(1.05);
+}
+.dropdown .follow-card .social-buttons button svg {
+  width: 24px;
+  height: 24px;
+  fill: #333;
+}
+.dropdown .follow-card .social-buttons button:hover svg {
+  fill: #000;
+}
+
+/* ----------------------- */
+/* CANVAS THREE.JS */
+/* ----------------------- */
+canvas#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+/* ----------------------- */
+/* SECTION PRINCIPALE */
+/* ----------------------- */
+#main {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
+}
+#header-container {
+  position: relative;
+  top: 50px;
+  width: 100%;
+  padding: 0 20px;
+  z-index: 2;
+}
+#decrypt-title {
+  font-size: 8rem;
+  color: black;
+  font-weight: 450;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  text-align: left;
+}
+#header-subtext {
+  font-size: 2rem;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 20px;
+}
+#header-subtext span {
+  display: block;
+  overflow: hidden;
+}
+.photo-small {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  width: 350px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.photo-small img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.05;
+  background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+}
+
+/* ----------------------- */
+/* SECTION FUSION STACKÉE & DÉTAILS */
+/* ----------------------- */
+/* ----------------------- */
+/* SECTION FUSION STACKÉE & DÉTAILS */
+/* ----------------------- */
+#stack-section {
+padding: 80px 20px;             /* Ajustez le padding selon vos besoins */
+background: transparent;
+display: flex;
+flex-direction: column;
+gap: 30px;
+min-height: auto;               /* S'adapte au contenu */
+text-align: center;
+}
+
+.stack-card.title {
+font-family: 'Montserrat', sans-serif;
+font-size: 3rem;
+text-align: left;
+margin-left: 70px;              /* Décalage à gauche pour le titre */
+margin-bottom: 40px;
+}
+
+.stack-card.title h1 span {
+color: black;
+display: inline-block;
+
+}
+
+/* Bloc pour le sous‑titre et le paragraphe : 
+Ici, on centre le contenu et on limite la largeur pour ne pas que le texte soit trop étendu */
+.stack-card.subtitle {
+max-width: 1110px;
+margin: 0 auto;
+text-align: center;
+}
+
+.stack-card.subtitle h2 {
+font-size: 2.2rem;
+margin-bottom: 15px;
+margin-left: 140px;
+margin-right: 140px;
+margin-bottom: 40px;
+color: #333;
+line-height: 1.3;
+/* Vos textes définitifs resteront ici, par exemple :
+ "NO/ID est une structure culturelle qui propose des événements récréatifs et des solutions innovantes sur la côte méditerranéenne depuis 1997." */
+}
+
+.stack-card.subtitle p {
+font-size: 1.4rem;
+line-height: 1.6;
+margin: 0 auto;
+padding: 0 10px;
+/* Le paragraphe contenant le texte définitif, y compris la partie "Depuis plus de deux décennies, NO/ID Lab soutient..." */
+}
+
+.stack-card.subtitle p .founder {
+display: block;
+text-align: right;
+font-size: 1.1rem;
+font-style: italic;
+margin-top: 20px;
+}
+
+
+/* ----------------------- */
+/* NOUVELLE SECTION – TITRE ALIGNÉ À GAUCHE */
+/* ----------------------- */
+/* Ici le titre sera affiché en haut, aligné à gauche */
+#right-title-section {
+  padding: 60px 20px;
+  background: transparent;
+  text-align: right;
+}
+#right-title-section h1 {
+  font-size: 4rem;
+  color: #333;
+}
+
+/* ----------------------- */
+/* NOUVELLE SECTION – TARIFS */
+/* ----------------------- */
+#pricing-section {
+  padding: 60px 20px;
+  background: transparent;
+  text-align: center;
+}
+#pricing-section h1 {
+  font-size: 4rem;
+  color: #333;
+  text-align: right;
+}
+#pricing-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+.pricing-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+/* Effet flat avec touche de neumorphisme subtile renforcée */
+.pricing-card {
+  background: #fff;
+  border-radius: 20px;
+  width: 300px;
+  overflow: hidden;
+  box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+.pricing-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px 20px 0 0;
+}
+.pricing-card .card-content {
+  padding: 20px;
+  flex: 1;
+  text-align: left;
+}
+.pricing-card .card-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+.pricing-card .card-text {
+  font-size: 1rem;
+  color: #333;
+}
+/* Ajout d'un petit titre supplémentaire sous chaque card */
+.pricing-card .card-small-title {
+  font-size: 0.9rem;
+  color: #555;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+.pricing-card .card-subtitle {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: right;
+  color: #333;
+}
+
+/* ----------------------- */
+/* NOUVELLE SECTION – SLIDER CARDS */
+/* ----------------------- */
+/* ----------------------- */
+/* ----------------------- */
+/* ----------------------- */
+/* NOUVELLE SECTION – SLIDER CARDS */
+/* ----------------------- */
+#slider-section {
+    padding: 60px 20px;
+    background: transparent;
+    text-align: center;
+  }
+  #slider-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  /* Petit sous-titre centré, limité à la largeur des cards */
+  #slider-section .slider-subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .slider-cards {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  
+  .slider-card {
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    width: 560px;
+    height: 360px;
+    overflow: hidden;
+    box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
+    cursor: pointer;
+  }
+  
+  /* Conteneur du slider */
+  .slider-card .slider-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .slider-card .slider-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .slider-card .slider-container img.active {
+    opacity: 1;
+  }
+  
+  /* Overlay en bas de la carte */
+  /* Le bouton sera positionné de façon absolue, toujours visible */
+  .slider-card .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 15px;
+    transition: height 0.4s ease;
+    overflow: hidden;
+    height: 80px;  /* Hauteur initiale */
+  }
+    
+  /* Texte de l'overlay */
+  .slider-card .overlay .text {
+    text-align: left;
+  }
+  .slider-card .overlay .text h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  .slider-card .overlay .text p {
+    font-size: 1rem;
+    margin: 5px 0 0;
+    max-height: 40px;  /* Texte condensé par défaut */
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  
+  /* Contenu supplémentaire caché initialement */
+  .slider-card .overlay .extra-content {
+    margin-top: 10px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+  }
+  
+  /* Au hover, l'overlay s'étend et révèle le contenu complet */
+  .slider-card:hover .overlay {
+    height: 180px;
+  }
+  .slider-card:hover .overlay .text p {
+    max-height: 80px;
+  }
+  .slider-card:hover .overlay .extra-content {
+    max-height: 100px;
+    opacity: 1;
+  }
+  
+  /* Bouton toujours visible, positionné en bas à droite de l'overlay */
+  .slider-card .overlay button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 15px;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .slider-card .overlay button:hover {
+    transform: translateY(-5px);
+    background: #fff;
+    color: #000;
+  }
+  
+
+/* ----------------------- */
+/* MODAL CONTACT */
+/* ----------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.modal {
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  position: relative;
+}
+.modal h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #333;
+}
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.modal form input,
+.modal form textarea {
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: none;
+}
+.modal form button {
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.modal form button:hover {
+  transform: scale(1.05);
+}
+.modal .close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+
+/* ----------------------- */
+/* NOUVELLE SECTION : CATÉGORIES & RÉALISATIONS */
+/* ----------------------- */
+#new-section {
+    padding: 60px 20px;
+    background: transparent;
+    text-align: center;
+  }
+  
+  /* En-tête de section */
+  .section-header {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: left;
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  .section-subtitle {
+    font-size: 1.8rem;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Pillules de catégorie */
+  .pill-container {
+    display: inline-flex;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .pill-item {
+    padding: 8px 16px;
+    border: 1px solid #000;
+    background: transparent;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .pill-item.active,
+  .pill-item:hover {
+    background: #000;
+    color: #fff;
+  }
+  
+  .horizontal-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    overflow-x: auto;
+    padding-left: 30px;/* Ajout d’un padding à gauche et à droite */
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+  }
+  
+  
+  
+  /* Wrapper pour chaque card (pour centrer le label en dessous) */
+  .card-wrapper {
+    display: inline-block;
+    text-align: center;
+    scroll-snap-align: start;
+  }
+  
+  /* Card Item avec effet neumorphisme (affiche uniquement l'image) */
+  .card-item {
+    width: 210px;
+    min-height: 200px;
+    background: #fff;
+    border-radius: 20px;
+    /* Effet flat/neumorphisme subtil */
+    box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
+    overflow: hidden;
+    margin-bottom: 5px; /* pour laisser un peu d'espace entre la card et le label */
+  }
+  .card-item img {
+    width: 100%;
+    height: fit-content;
+    display: block;
+    border-radius: 20px; /* L'image prend toute la forme de la card */
+  }
+  
+  /* Le label apparaît en dehors de la card */
+  .card-label {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  
