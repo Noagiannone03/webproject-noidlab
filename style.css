@@ -675,3 +675,99 @@ margin-top: 20px;
   cursor: pointer;
   color: #333;
 }
+
+
+/* ----------------------- */
+/* NOUVELLE SECTION : CATÉGORIES & RÉALISATIONS */
+/* ----------------------- */
+#new-section {
+    padding: 60px 20px;
+    background: transparent;
+    text-align: center;
+  }
+  
+  /* En-tête de section */
+  .section-header {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: left;
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  .section-subtitle {
+    font-size: 1.8rem;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Pillules de catégorie */
+  .pill-container {
+    display: inline-flex;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .pill-item {
+    padding: 8px 16px;
+    border: 1px solid #000;
+    background: transparent;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .pill-item.active,
+  .pill-item:hover {
+    background: #000;
+    color: #fff;
+  }
+  
+  .horizontal-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    overflow-x: auto;
+    padding-left: 30px;/* Ajout d’un padding à gauche et à droite */
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+  }
+  
+  
+  
+  /* Wrapper pour chaque card (pour centrer le label en dessous) */
+  .card-wrapper {
+    display: inline-block;
+    text-align: center;
+    scroll-snap-align: start;
+  }
+  
+  /* Card Item avec effet neumorphisme (affiche uniquement l'image) */
+  .card-item {
+    width: 210px;
+    min-height: 200px;
+    background: #fff;
+    border-radius: 20px;
+    /* Effet flat/neumorphisme subtil */
+    box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
+    overflow: hidden;
+    margin-bottom: 5px; /* pour laisser un peu d'espace entre la card et le label */
+  }
+  .card-item img {
+    width: 100%;
+    height: fit-content;
+    display: block;
+    border-radius: 20px; /* L'image prend toute la forme de la card */
+  }
+  
+  /* Le label apparaît en dehors de la card */
+  .card-label {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  
