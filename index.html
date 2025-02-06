@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>No id lab</title>
+  <title>[no ai' die]</title>
   <!-- Inclusion de GSAP et ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
@@ -11,11 +11,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <!-- Inclusion d'une police type bâton (ex : Montserrat) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
+  
   <style>
-    /* Réinitialisation et styles globaux */
+    @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+    /* ----------------------- */
+    /* RÉINITIALISATION ET GLOBAUX */
+    /* ----------------------- */
     * {
       margin: 0;
       padding: 0;
+      font-family: "Work Sans", serif;
       box-sizing: border-box;
     }
     html, body {
@@ -23,12 +29,236 @@
     }
     body {
       font-family: 'Helvetica Neue', sans-serif;
-      background: #fff;
+      background: #e1e2f7;
       overflow-x: hidden;
       color: #333;
     }
     
-    /* Canvas Three.js en arrière-plan */
+    /* ----------------------- */
+    /* NAVBAR */
+    /* ----------------------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      background-color: black;
+      justify-content: center;
+      z-index: 1000;
+      padding: 0 20px;
+    }
+    /* Conteneur pour les actions (Contact & Menu) à droite */
+    .nav-actions {
+      position: absolute;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    /* Bouton Contact et Menu */
+    .contact-btn, .menu-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .contact-btn .icon-circle,
+    .menu-btn .icon-circle {
+      width: 35px;
+      height: 35px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-btn .icon-circle svg,
+    .menu-btn .icon-circle svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+    }
+    .btn-text {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .separator {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    
+    /* Zone centrale de la navbar (logo) */
+    .nav-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-center img {
+      margin: 10px 0;
+      max-height: 60px;
+    }
+    
+    /* ----------------------- */
+    /* DROPDOWN MENU */
+    /* ----------------------- */
+    .dropdown {
+      position: absolute;
+      top: 85px;
+      right: 17px;
+      width: 320px;
+      background: #fff;
+      
+      border-radius: 20px;
+    
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-100px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 1100;
+    }
+    .dropdown.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+    .dropdown .menu-card,
+    .dropdown .newsletter-card,
+    .dropdown .follow-card {
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+    .dropdown .newsletter-card form,
+    .dropdown .follow-card .social-buttons {
+      width: 100%;
+    }
+    /* Card Menu – liste des liens */
+    .dropdown .menu-card ul {
+      list-style: none;
+      padding: 0 5px;
+    }
+    .dropdown .menu-card ul li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .dropdown .menu-card ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      display: block;
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 10px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .dropdown .menu-card ul li a:hover {
+      background: #000;
+      color: #fff;
+    }
+    /* Indicateur actif sur le premier item ("À propos") */
+    .dropdown .menu-card ul li:first-child a::after {
+      content: '';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      background: #000;
+      border-radius: 50%;
+    }
+    /* Flèche pour l'item "Contact" (dernier item) */
+    .dropdown .menu-card ul li:last-child a::after {
+      content: '➔';
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+    }
+    /* Card Newsletter */
+    .dropdown .newsletter-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #000000;
+    }
+    .dropdown .newsletter-card form {
+      display: flex;
+      gap: 10px;
+    }
+    .dropdown .newsletter-card input[type="email"] {
+      width: 88%;
+      flex: 0.8;
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+    .dropdown .newsletter-card button {
+      padding: 10px 20px;
+      flex: 0.2;
+      border: 1px solid #000;
+      border-radius: 12px;
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .dropdown .newsletter-card button:hover {
+      transform: scale(1.05);
+    }
+    /* Card Follow – inversé */
+    .dropdown .follow-card {
+      padding: 20px;
+      background: #000000;
+      border: 1px solid #000;
+      border-radius: 20px;
+      color: #fff;
+    }
+    .dropdown .follow-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+    .dropdown .follow-card .social-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .dropdown .follow-card .social-buttons button {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 12px;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .dropdown .follow-card .social-buttons button:hover {
+      transform: scale(1.05);
+    }
+    .dropdown .follow-card .social-buttons button svg {
+      width: 24px;
+      height: 24px;
+      fill: #333;
+    }
+    .dropdown .follow-card .social-buttons button:hover svg {
+      fill: #000;
+    }
+    
+    /* ----------------------- */
+    /* CANVAS THREE.JS */
+    /* ----------------------- */
     canvas#three-canvas {
       position: fixed;
       top: 0;
@@ -38,127 +268,9 @@
       height: 100%;
     }
     
-    /* Navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      background-color: white;
-      justify-content: center;
-
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
-    /* Le titre de la navbar utilise Poppins */
-    .nav-center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Poppins', sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-      opacity: 0.8;
-      transition: font-size 0.3s ease;
-    }
-    /* Conteneur englobant pour le menu */
-    .menu-wrapper {
-      position: absolute;
-      right: 20px;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    /* Bouton du menu hamburger avec label "MENU" en style neumorphique */
-    .nav-menu {
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      padding: 10px 20px;
-      border-radius: 50px;
-      background: #e0e0e0;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-top: 15%;
-      margin-bottom: 15%;
-      box-shadow:  5px 5px 10px #bebebe,
-                   -5px -5px 10px #ffffff;
-    }
-    .nav-menu:hover {
-      transform: scale(1.05);
-      box-shadow:  8px 8px 16px #bebebe,
-                   -8px -8px 16px #ffffff;
-    }
-    /* Contenu du bouton : icône + label */
-    .menu-icon {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 24px;
-      margin-right: 10px;
-    }
-    .menu-icon span {
-      display: block;
-      height: 3px;
-      background: #000;
-      border-radius: 3px;
-    }
-    .menu-label {
-      font-size: 1.2rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #333;
-      letter-spacing: 1px;
-    }
-    /* Dropdown en style neumorphique et agrandi */
-    .dropdown {
-      list-style: none;
-      position: absolute;
-      top: 110px;
-      right: 0;
-      width: 300px;
-      padding: 20px;
-      border-radius: 20px;
-      background: #e0e0e0;
-      box-shadow: 8px 8px 16px #bebebe,
-                  -8px -8px 16px #ffffff;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      z-index: 1100;
-    }
-    .dropdown.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .dropdown li {
-      margin-bottom: 10px;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-    .dropdown li:last-child {
-      margin-bottom: 0;
-    }
-    .dropdown li a {
-      text-decoration: none;
-      color: #333;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      display: block;
-      padding: 10px 15px;
-      border-radius: 10px;
-      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-    }
-    .dropdown li a:hover {
-      transform: scale(1.05);
-      background: #000000;
-      color: #fff;
-    }
-    
+    /* ----------------------- */
     /* SECTION PRINCIPALE */
+    /* ----------------------- */
     #main {
       position: relative;
       height: 100vh;
@@ -168,73 +280,55 @@
       overflow: hidden;
       background: transparent;
     }
-    /* Bulles en fond */
+    #header-container {
+      position: relative;
+      top: 50px;
+      width: 100%;
+      padding: 0 20px;
+      z-index: 2;
+    }
+    #decrypt-title {
+      font-size: 8rem;
+      color: black;
+      font-weight: 450;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    #header-subtext {
+      font-size: 2rem;
+      line-height: 1.2;
+      text-align: center;
+      margin-top: 20px;
+    }
+    #header-subtext span {
+      display: block;
+      overflow: hidden;
+    }
+    .photo-small {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      width: 350px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .photo-small img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
     .bubble {
       position: absolute;
       border-radius: 50%;
       opacity: 0.05;
       background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
     }
-    /* Titre principal avec effet de décryptage et sortie au scroll */
-    #decrypt-title {
-      position: relative;
-      font-size: 6rem;
-      letter-spacing: 0.1em;
-      z-index: 2;
-    }
-    #decrypt-title span {
-      display: inline-block;
-    }
     
-    /* SECTION "QUI SOMMES NOUS" existante */
-    #about {
-      padding: 150px 20px;
-      background: transparent;
-      text-align: center;
-    }
-    #about-title {
-      font-size: 2.5rem;
-      margin-bottom: 50px;
-      overflow: hidden;
-    }
-    #about-title span {
-      display: inline-block;
-      transform: translateY(50px);
-      opacity: 0;
-    }
-    .cards {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      padding: 0 20px;
-    }
-    .card {
-      width: 320px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      overflow: hidden;
-      transform: translateY(50px);
-      opacity: 0;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-    }
-    .card img {
-      width: 100%;
-      display: block;
-      height: 200px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 20px;
-      text-align: left;
-    }
-    
-    /* NOUVELLE SECTION STACKÉE en "empilement" */
+    /* ----------------------- */
+    /* SECTION FUSION STACKÉE & DÉTAILS */
+    /* ----------------------- */
     #stack-section {
       padding: 100px 20px;
       background: transparent;
@@ -242,335 +336,802 @@
       flex-direction: column;
       gap: 40px;
       min-height: 100vh;
+      text-align: center;
     }
-    /* Pour supprimer le fond et l'ombre des "cartes" */
-    .stack-card {
-      background: transparent;
-      padding: 0;
-      box-shadow: none;
-      border-radius: 0;
-    }
-    /* Ligne 1 : Grand titre aligné à gauche */
     .stack-card.title {
-      text-align: left;
       font-family: 'Montserrat', sans-serif;
       font-size: 3rem;
+      text-align: left;
+      margin-bottom: 20px;
     }
-    /* Ligne 2 : Sous-titre et bouton alignés à droite */
-    .stack-card.subtitle {
+    .stack-card.title h1 span {
+      color: black;
+      display: inline-block;
+    }
+    /* Sous-titre et paragraphe fusionnés */
+    .stack-card.subtitle h2 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .stack-card.subtitle p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    .stack-card.subtitle p .founder {
+      display: block;
+      text-align: right;
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-top: 10px;
+    }
+    
+    /* ----------------------- */
+    /* NOUVELLE SECTION – TITRE ALIGNÉ À GAUCHE */
+    /* ----------------------- */
+    /* Ici le titre sera affiché en haut, aligné à gauche */
+    #right-title-section {
+      padding: 60px 20px;
+      background: transparent;
       text-align: right;
     }
-    .stack-card.subtitle h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2rem;
-      margin-bottom: 10px;
+    #right-title-section h1 {
+      font-size: 4rem;
+      color: #333;
     }
-    .stack-card.subtitle button {
-      padding: 12px 24px;
-      font-size: 1.1rem;
-      border: none;
-      background: #e0e0e0;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
-      transition: all 0.2s;
+    
+    /* ----------------------- */
+    /* NOUVELLE SECTION – TARIFS */
+    /* ----------------------- */
+    #pricing-section {
+      padding: 60px 20px;
+      background: transparent;
+      text-align: center;
     }
-    .stack-card.subtitle button:active {
-      box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
+    #pricing-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #333;
     }
-    /* Ligne 3 : Carte image alignée à gauche */
-    .stack-card.image {
-      text-align: left;
-      padding: 0;
+    .pricing-cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    /* Effet flat avec touche de neumorphisme subtile renforcée */
+    .pricing-card {
+      background: #fff;
+      border-radius: 20px;
+      width: 300px;
       overflow: hidden;
+      box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
+      display: flex;
+      flex-direction: column;
+      border: none;
     }
-    .stack-card.image img {
+    .pricing-card img {
       width: 100%;
       height: auto;
-      display: block;
-      border-radius: 15px; /* si vous souhaitez conserver un léger arrondi pour l'image */
+      border-radius: 20px 20px 0 0;
+    }
+    .pricing-card .card-content {
+      padding: 20px;
+      flex: 1;
+      text-align: left;
+    }
+    .pricing-card .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .pricing-card .card-text {
+      font-size: 1rem;
+      color: #333;
+    }
+    /* Ajout d'un petit titre supplémentaire sous chaque card */
+    .pricing-card .card-small-title {
+      font-size: 0.9rem;
+      color: #555;
+      padding: 10px;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+    .pricing-card .card-subtitle {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      text-align: right;
+      color: #333;
+    }
+    
+    /* ----------------------- */
+    /* NOUVELLE SECTION – SLIDER CARDS */
+    /* ----------------------- */
+    #slider-section {
+      padding: 60px 20px;
+      background: transparent;
+      text-align: center;
+    }
+    #slider-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+      color: #333;
+    }
+    .slider-cards {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .slider-card {
+      position: relative;
+      background: #fff;
+      border-radius: 20px;
+      width: 560px;
+      height: 360px;
+      overflow: hidden;
+      box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
+    }
+    /* Conteneur du slider */
+    .slider-card .slider-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .slider-card .slider-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .slider-card .slider-container img.active {
+      opacity: 1;
+    }
+    /* Overlay sur la card avec texte et bouton */
+    .slider-card .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slider-card .overlay .text {
+      text-align: left;
+    }
+    .slider-card .overlay .text h3 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    .slider-card .overlay .text p {
+      font-size: 1rem;
+      margin: 5px 0 0;
+    }
+    .slider-card .overlay button {
+      padding: 8px 15px;
+      border: 1px solid #fff;
+      border-radius: 12px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .slider-card .overlay button:hover {
+      background: #fff;
+      color: #000;
+    }
+    
+    /* ----------------------- */
+    /* MODAL CONTACT */
+    /* ----------------------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal {
+      background: #fff;
+      border: 1px solid #000;
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+      position: relative;
+    }
+    .modal h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      text-align: center;
+      color: #333;
+    }
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .modal form input,
+    .modal form textarea {
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 12px;
+      font-size: 1rem;
+      resize: none;
+    }
+    .modal form button {
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 12px;
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .modal form button:hover {
+      transform: scale(1.05);
+    }
+    .modal .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #333;
     }
   </style>
 </head>
 <body>
   <!-- Le canvas Three.js sera injecté dynamiquement -->
+
+  <!-- Modal Contact -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <button class="close-modal" id="close-modal">&times;</button>
+      <h2>Contactez-nous</h2>
+      <form id="contact-form">
+        <input type="text" name="from_name" placeholder="Votre nom" required />
+        <input type="email" name="from_email" placeholder="Votre email" required />
+        <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>
   
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="nav-center">[ no ai' die ]</div>
-    <div class="menu-wrapper">
-      <div class="nav-menu" id="hamburger">
-        <div class="menu-icon">
-          <span></span>
-          <span></span>
-          <span></span>
+    <div class="nav-actions">
+      <!-- Bouton Contact -->
+      <div class="contact-btn" id="contact-btn">
+        <div class="icon-circle">
+          <!-- SVG bulle de message -->
+          <svg viewBox="0 0 24 24">
+            <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4C22 2.9 21.1 2 20 2z"/>
+          </svg>
         </div>
-        <div class="menu-label">MENU</div>
+        <span class="btn-text">Nous contacter</span>
       </div>
-      <ul class="dropdown" id="dropdown">
-        <li><a href="#">À propos</a></li>
-        <li><a href="#">Prestations</a></li>
-        <li><a href="#">Événements</a></li>
-        <li><a href="#">Médias</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+      <span class="separator">|</span>
+      <!-- Bouton Menu -->
+      <div class="menu-btn" id="menu-btn">
+        <span class="btn-text">Menu</span>
+        <div class="icon-circle">
+          <!-- SVG hamburger -->
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="6" width="18" height="2"/>
+            <rect x="3" y="11" width="18" height="2"/>
+            <rect x="3" y="16" width="18" height="2"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <!-- Dropdown contenant les 3 cards -->
+    <div class="dropdown" id="dropdown">
+      <!-- Card Menu -->
+      <div class="menu-card">
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Prestations</a></li>
+          <li><a href="#">Événements</a></li>
+          <li><a href="#">Nos lieux</a></li>
+          <li><a href="#">Médias</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Card Newsletter -->
+      <div class="newsletter-card">
+        <h3>Découvrez notre newsletter</h3>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="Votre email" required />
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+      <!-- Card Social Follow -->
+      <div class="follow-card">
+        <h3>Nous suivre</h3>
+        <div class="social-buttons">
+          <button>
+            <!-- Facebook SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.337v21.326C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.07h3.128V8.413c0-3.1 1.893-4.788 4.658-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.716-1.795 1.763v2.31h3.587l-.467 3.636h-3.12V24h6.116C23.4 24 24 23.4 24 22.663V1.337C24 .6 23.4 0 22.675 0z"/>
+            </svg>
+          </button>
+          <button>
+            <!-- Instagram SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.337 3.608 1.312.975.975 1.25 2.242 1.312 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.337 2.633-1.312 3.608-.975.975-2.242 1.25-3.608 1.312-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.337-3.608-1.312-.975-.975-1.25-2.242-1.312-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.337-2.633 1.312-3.608.975-.975 2.242-1.25 3.608-1.312 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.332.012 7.052.07 5.771.127 4.602.443 3.635 1.41 2.668 2.377 2.352 3.546 2.295 4.827.012 8.332 0 8.741 0 12s.012 3.668.07 4.948c.057 1.281.373 2.45 1.34 3.417.967.967 2.136 1.283 3.417 1.34 1.28.058 1.689.07 4.948.07s3.668-.012 4.948-.07c1.281-.057 2.45-.373 3.417-1.34.967-.967 1.283-2.136 1.34-3.417.058-1.28.07-1.689.07-4.948s-.012-3.668-.07-4.948c-.057-1.281-.373-2.45-1.34-3.417-.967-.967-2.136-1.283-3.417-1.34C15.668.012 15.259 0 12 0z"/>
+              <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
+              <circle cx="18.406" cy="5.594" r="1.44"/>
+            </svg>
+          </button>
+          <button>
+            <!-- TikTok SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M9 0h3v12c-1.667-.667-3.333-1-5-1 0 0 0 0 0 0C3 11 0 13 0 16c0 4 4 8 8 8s8-4 8-8V0H9z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </nav>
   
   <!-- Section principale -->
   <section id="main">
-    <!-- Titre principal avec effet de décryptage puis animation de sortie (scroll) -->
-    <h1 id="decrypt-title">No id lab</h1>
-    <!-- Bulles en fond -->
+    <div id="header-container">
+      <h1 id="decrypt-title">[no ai' die]</h1>
+      <div id="header-subtext">
+        <span>Votre inspiration,</span>
+      </div>
+      <div class="photo-small">
+        <img src="pieddepouleunique.png" alt="Petite photo" />
+      </div>
+    </div>
     <div class="bubble" style="width:100px; height:100px; top:10%; left:20%;"></div>
     <div class="bubble" style="width:80px; height:80px; top:70%; left:80%;"></div>
     <div class="bubble" style="width:120px; height:120px; top:40%; left:60%;"></div>
     <div class="bubble" style="width:60px; height:60px; top:80%; left:30%;"></div>
   </section>
   
- 
-  
-  <!-- Nouvelle section empilée -->
+  <!-- Section fusion Stackée & Détails -->
   <section id="stack-section">
-    <!-- Ligne 1 : Grand titre aligné à gauche -->
     <div class="stack-card title">
-      <h1>Notre identité, votre inspiration</h1>
+      <h1>
+        <span>A propos</span>
+      </h1>
     </div>
-    <!-- Ligne 2 : Sous-titre et bouton alignés à droite -->
+    <!-- Sous-titre et paragraphe fusionnés -->
     <div class="stack-card subtitle">
-      <h2>Sous-titre</h2>
-      <button>Action</button>
-    </div>
-    <!-- Ligne 3 : Carte image alignée à gauche -->
-    <div class="stack-card image">
-      <img src="https://via.placeholder.com/600x400" alt="Image de présentation" />
+      <h2>Notre histoire</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, urna eu tincidunt consectetur, nisi nisl lacinia mi, eu pulvinar nisi neque sit amet turpis.
+        <span class="founder">Mathieu Priol, fondateur</span>
+      </p>
     </div>
   </section>
   
-  <!-- Script Three.js pour le tracé progressif -->
-  <script>
-    // Création du renderer, de la scène et de la caméra
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  <!-- Section Titre Aligné à Gauche (pour présenter une nouvelle thématique) -->
+  <section id="right-title-section">
+    <h1>Prestations</h1>
+  </section>
+  
+  <!-- Section Tarifs -->
+  <section id="pricing-section">
+    <h2>NO/ID propose des solutions créatives adaptées aux entreprises et événements culturels.</h2>
+    <div class="pricing-cards">
+      <!-- Pricing Card 1 -->
+      <div class="pricing-card">
+        <img src="https://via.placeholder.com/300x200" alt="Offre 1" />
+        <div class="card-content">
+          <div class="card-title">Offre Basic</div>
+          <div class="card-text">Description de l'offre Basic avec des avantages essentiels.</div>
+        </div>
+        <div class="card-small-title">Plan Basic</div>
+        <div class="card-subtitle">À partir de 9€/mois</div>
+      </div>
+      <!-- Pricing Card 2 -->
+      <div class="pricing-card">
+        <img src="https://via.placeholder.com/300x200" alt="Offre 2" />
+        <div class="card-content">
+          <div class="card-title">Offre Pro</div>
+          <div class="card-text">Description de l'offre Pro avec des fonctionnalités avancées.</div>
+        </div>
+        <div class="card-small-title">Plan Pro</div>
+        <div class="card-subtitle">À partir de 19€/mois</div>
+      </div>
+      <!-- Pricing Card 3 -->
+      <div class="pricing-card">
+        <img src="https://via.placeholder.com/300x200" alt="Offre 3" />
+        <div class="card-content">
+          <div class="card-title">Offre Premium</div>
+          <div class="card-text">Description de l'offre Premium pour une expérience complète.</div>
+        </div>
+        <div class="card-small-title">Plan Premium</div>
+        <div class="card-subtitle">À partir de 29€/mois</div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Nouvelle Section : Slider Cards -->
+  <section id="slider-section">
+    <h2>Nos lieux</h2>
+    <div class="slider-cards">
+      <!-- Slider Card 1 -->
+      <div class="slider-card" id="slider-card-1">
+        <div class="slider-container">
+          <!-- Trois images pour le slider -->
+          <img src="https://provence-med.media.tourinsoft.eu/upload/2797982.jpg" alt="Projet 1 - Image 1" class="active">
+          <img src="https://www.la-seyne-tourisme.com/wp-content/uploads/2023/01/10-scaled-compressed.jpg" alt="Projet 1 - Image 2">
+          <img src="https://media-cdn.tripadvisor.com/media/photo-s/08/4d/f5/90/rade-de-toulon.jpg" alt="Projet 1 - Image 3">
+        </div>
+        <div class="overlay">
+          <div class="text">
+            <h3>FOR/NAP/</h3>
+            <p></p>
+          </div>
+          <button>Découvrir</button>
+        </div>
+      </div>
+      <!-- Slider Card 2 -->
+      <div class="slider-card" id="slider-card-2">
+        <div class="slider-container">
+          <!-- Trois images pour le slider -->
+          <img src="https://www.noidlab.com/wp-content/uploads/2020/06/Danslesmurs_1.jpg" alt="Projet 2 - Image 1" class="active">
+          <img src="https://www.noidlab.com/wp-content/uploads/2020/05/local0_1010x1920.png" alt="Projet 2 - Image 2">
+          <img src="https://www.noidlab.com/wp-content/uploads/2020/06/Danslesmurs_A24.jpg" alt="Projet 2 - Image 3">
+        </div>
+        <div class="overlay">
+          <div class="text">
+            <h3>FEAT*LAB</h3>
+            <p>Sous-titre du projet</p>
+          </div>
+          <button>Découvrir</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Script Three.js -->
+  <!-- Script Three.js et GSAP (scroll & animations) -->
+<script>
+  // --- Three.js setup ---
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.domElement.id = 'three-canvas';
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xffffff);
+
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 30);
+
+  // Création de la courbe
+  const curve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(30, 0, 0),
+    new THREE.Vector3(15, 7, 0),
+    new THREE.Vector3(0, -8, 0),
+    new THREE.Vector3(-15, -4, 0),
+    new THREE.Vector3(-24, -5, 0),
+    new THREE.Vector3(-34, -10, 0),
+    new THREE.Vector3(-35, -14, 0)
+  ]);
+  const tubularSegments = 30000;
+  const radius = 0.6;
+  const radialSegments = 20;
+  const closed = false;
+  const tubeGeometry = new THREE.TubeGeometry(curve, tubularSegments, radius, radialSegments, closed);
+  const totalIndices = tubeGeometry.index.count;
+  const minDrawFraction = 0.2;
+  const initialDrawCount = Math.floor(totalIndices * minDrawFraction);
+  tubeGeometry.setDrawRange(0, initialDrawCount);
+
+  // Couleurs le long du tube
+  const colors = [];
+  const posAttr = tubeGeometry.attributes.position;
+  const startColor = [0, 0, 0.5];
+  const endColor = [0, 0.75, 1];
+  for (let i = 0, l = posAttr.count; i < l; i++) {
+    const t = i / (l - 1);
+    const r = startColor[0]*(1-t) + endColor[0]*t;
+    const g = startColor[1]*(1-t) + endColor[1]*t;
+    const b = startColor[2]*(1-t) + endColor[2]*t;
+    colors.push(r, g, b);
+  }
+  tubeGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+  const tubeMaterial = new THREE.MeshPhysicalMaterial({
+    vertexColors: true,
+    metalness: 0.1,
+    roughness: 0.5,
+    clearcoat: 0.2,
+    clearcoatRoughness: 0.1,
+    flatShading: true
+  });
+  const tubeMesh = new THREE.Mesh(tubeGeometry, tubeMaterial);
+  scene.add(tubeMesh);
+
+  // Cap arrondi (la "boule")
+  const capGeometry = new THREE.SphereGeometry(radius, 16, 16);
+  const capMaterial = tubeMaterial.clone();
+  const capMesh = new THREE.Mesh(capGeometry, capMaterial);
+  scene.add(capMesh);
+
+  window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.domElement.id = 'three-canvas';
-    document.body.appendChild(renderer.domElement);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
+  function animateScene() {
+    requestAnimationFrame(animateScene);
+    renderer.render(scene, camera);
+  }
+  animateScene();
 
-    const camera = new THREE.PerspectiveCamera(
-      50,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    // Position initiale de la caméra
-    camera.position.set(0, 0, 30);
+  // --- Gestion du scroll pour la caméra ---
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const scrollable = document.body.scrollHeight - window.innerHeight;
+    const scrollRatio = scrollY / scrollable;
 
-    // Création d'une courbe pour tracer un tube (le "trait")
-    const curve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-30, 0, 0),
-      new THREE.Vector3(-5, 5, 0),
-      new THREE.Vector3(0, -8, 0),
-      new THREE.Vector3(8, 5, 0),
-      new THREE.Vector3(15, 0, 0)
-    ]);
-    const tubularSegments = 30000;
-    const radius = 0.6;
-    const radialSegments = 20;
-    const closed = false;
-    
-    const tubeGeometry = new THREE.TubeGeometry(curve, tubularSegments, radius, radialSegments, closed);
-    // Au départ, aucun segment n'est affiché
-    tubeGeometry.setDrawRange(0, 0);
-    
-    const tubeMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0x000000,
-      metalness: 0.1,
-      roughness: 0.5,
-      clearcoat: 0.2,
-      clearcoatRoughness: 0.1,
-      flatShading: true
-    });
-    const tubeMesh = new THREE.Mesh(tubeGeometry, tubeMaterial);
-    scene.add(tubeMesh);
-    
-    const totalIndices = tubeGeometry.index.count;
-    
-    window.addEventListener('resize', () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-    });
-    
-    function animateScene() {
-      requestAnimationFrame(animateScene);
-      renderer.render(scene, camera);
+    // Accélérer le défilement de la caméra : augmentez les multiplicateurs ici
+    const cameraFactor = 1.3; // vous pouvez augmenter cette valeur pour accélérer
+    camera.position.y = -30 * scrollRatio * cameraFactor;  // passage de 20 à 30 pour accélérer
+
+    const newCount = initialDrawCount + Math.floor((totalIndices - initialDrawCount) * scrollRatio);
+    tubeGeometry.setDrawRange(0, newCount);
+
+    let fraction = scrollRatio <= 0 ? minDrawFraction : minDrawFraction + (1 - minDrawFraction) * scrollRatio;
+    const spherePos = curve.getPointAt(fraction);
+    capMesh.position.copy(spherePos);
+  });
+
+  // GSAP pour animer la caméra avec scrollTrigger (vous pouvez aussi ajuster scrub et duration ici)
+  gsap.to(camera.position, {
+    y: -15,  // valeur cible (peut être ajustée)
+    ease: "none",
+    scrollTrigger: {
+      trigger: "body",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: true
     }
-    animateScene();
-    
-   
-    window.addEventListener('scroll', () => {
-  // Calcul du ratio de scroll
-  const scrollY = window.scrollY;
-  const scrollable = document.body.scrollHeight - window.innerHeight;
-  const scrollRatio = scrollY / scrollable;
-  const newCount = Math.floor(totalIndices * scrollRatio);
-  tubeGeometry.setDrawRange(0, newCount);
-  // Appliquer un facteur de réduction pour la caméra
-  const cameraFactor = 0.9; // Plus ce nombre est petit, plus la caméra bouge lentement
-  camera.position.y = -15 * scrollRatio * cameraFactor;
-});
+  });
+</script>
 
-    
-    // Animation de la caméra : elle descend de 0 à -15 (déplacement plus rapide qu'avant)
-    gsap.to(camera.position, {
-      y: -15,
-      ease: "none",
+<!-- Script GSAP pour animations et gestion du formulaire, avec déclenchement au scroll -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const FORM_ENDPOINT = "https://formspree.io/f/xeoezqea";
+
+    // Animation décryptage pour le titre principal (exécuté dès que #decrypt-title est visible)
+    gsap.from("#decrypt-title span", {
+      y: -50,
+      opacity: 0,
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true
+        trigger: "#decrypt-title",
+        start: "top 90%",  // commence quand le titre est presque visible
+        toggleActions: "play none none reverse"
       }
     });
-  </script>
-  
-  <!-- Script GSAP pour les animations de la page -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      /* --- Animation du titre principal (effet décryptage initial puis sortie au scroll) --- */
-      const title = document.getElementById('decrypt-title');
-      const finalText = title.textContent;
-      title.textContent = '';
-      // Encapsulation de chaque lettre dans un span pour animation individuelle
-      finalText.split('').forEach(letter => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        title.appendChild(span);
-      });
-      
-      // Effet décryptage initial (4 secondes)
-      let iterations = 0;
-      const chars = '!<>-_\\/[]{}—=+*^?#________';
-      const totalIterations = finalText.length * 3;
-      const interval = 4000 / totalIterations;
-      const timer = setInterval(() => {
-        title.querySelectorAll('span').forEach((span, index) => {
-          if(index < iterations) {
-            span.textContent = finalText[index];
-          } else {
-            span.textContent = chars[Math.floor(Math.random() * chars.length)];
-          }
-        });
-        iterations++;
-        if(iterations > finalText.length) {
-          clearInterval(timer);
-          title.textContent = finalText;
-          // On réencapsule pour l'animation de scroll
-          title.innerHTML = '';
-          finalText.split('').forEach(letter => {
-            const span = document.createElement('span');
-            span.textContent = letter;
-            title.appendChild(span);
-          });
-        }
-      }, interval);
-      
-      // Animation scroll : chaque lettre du titre se déplace vers le haut et disparaît
-      gsap.to("#decrypt-title span", {
-        y: -50,
-        opacity: 0,
-        ease: "none",
+
+    // Exemple d'animation pour les bulles (ces animations se déclenchent dès qu'elles entrent dans la zone de vue)
+    gsap.utils.toArray(".bubble").forEach(bubble => {
+      gsap.to(bubble, {
+        x: "random(-50, 50)",
+        y: "random(-50, 50)",
+        duration: "random(20, 40)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
         scrollTrigger: {
-          trigger: "#main",
-          start: "top top",
-          end: "bottom top",
-          scrub: true
-        }
-      });
-      
-      // Animation de la barre de la navbar
-      gsap.to(".nav-line", {
-        width: "100%",
-        boxShadow: "0 0 20px rgba(0,0,0,0.5)",
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "body",
-          start: "top top",
-          end: "top+=100",
+          trigger: bubble,
+          start: "top 95%",
           toggleActions: "play none none reverse"
         }
       });
-      
-      // Animation des bulles en fond
-      gsap.utils.toArray(".bubble").forEach(bubble => {
-        gsap.to(bubble, {
-          x: "random(-50, 50)",
-          y: "random(-50, 50)",
-          duration: "random(20, 40)",
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut"
-        });
-      });
-      
-      // Animation du titre "Qui sommes nous" : apparition lettre par lettre
-      const aboutTitle = document.getElementById('about-title');
-      const text = aboutTitle.textContent;
-      aboutTitle.textContent = '';
-      text.split('').forEach(letter => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        aboutTitle.appendChild(span);
-      });
-      gsap.to("#about-title span", {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: "#about",
-          start: "top 80%"
-        }
-      });
-      
-      // Animation des cartes de la section "Qui sommes nous"
-      gsap.to(".card", {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        stagger: 0.3,
-        scrollTrigger: {
-          trigger: ".cards",
-          start: "top 80%"
-        }
-      });
     });
-  </script>
 
-  
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const hamburger = document.getElementById('hamburger');
+    // Animation pour la section fusion Stackée & Détails (titre et sous-titre)
+    gsap.from(".stack-card.title h1", {
+      y: 100,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".stack-card.title",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
+    });
+    gsap.from(".stack-card.subtitle h2", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: ".stack-card.subtitle h2",
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      }
+    });
+    gsap.from(".stack-card.subtitle p", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      delay: 0.5,
+      scrollTrigger: {
+        trigger: ".stack-card.subtitle p",
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    // Animation pour la section "Prestations" (titre aligné à gauche)
+    gsap.from("#right-title-section h1", {
+      x: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#right-title-section",
+        start: "top 90%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    // Animation pour la section Tarifs
+    gsap.from("#pricing-section h2", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#pricing-section h2",
+        start: "top 90%",
+        toggleActions: "play none none reverse"
+      }
+    });
+    gsap.from(".pricing-card", {
+      y: 50,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power2.out",
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".pricing-card",
+        start: "top 95%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    // Gestion du modal et dropdown (reste inchangée)
+    const contactBtn = document.getElementById('contact-btn');
+    const menuBtn = document.getElementById('menu-btn');
     const dropdown = document.getElementById('dropdown');
-    
-    // Toggle le dropdown lors du clic sur le bouton hamburger
-    hamburger.addEventListener('click', function(e) {
-      e.stopPropagation();
+    const modalOverlay = document.getElementById('modal-overlay');
+    const closeModal = document.getElementById('close-modal');
+
+    contactBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modalOverlay.classList.add('active');
+    });
+
+    menuBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       dropdown.classList.toggle('active');
     });
-    
-    // Ferme le dropdown si l'utilisateur clique en dehors
-    document.addEventListener('click', function(e) {
-      if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+
+    document.addEventListener('click', (e) => {
+      if (!contactBtn.contains(e.target) && !modalOverlay.contains(e.target) && !menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
         dropdown.classList.remove('active');
       }
     });
+
+    closeModal.addEventListener('click', () => {
+      modalOverlay.classList.remove('active');
+    });
+
+    // Envoi du formulaire via Formspree
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          alert("Message envoyé avec succès !");
+          contactForm.reset();
+          modalOverlay.classList.remove('active');
+        } else {
+          alert("Une erreur est survenue, veuillez réessayer.");
+        }
+      }).catch(error => {
+        alert("Une erreur est survenue, veuillez réessayer.");
+        console.error(error);
+      });
+    });
+
+    // Slider Cards : Changement d'image toutes les 6 secondes
+    function initSlider(sliderId) {
+      const slider = document.getElementById(sliderId);
+      const images = slider.querySelectorAll('img');
+      let current = 0;
+      images.forEach((img, index) => {
+        img.style.opacity = (index === 0) ? 1 : 0;
+      });
+      setInterval(() => {
+        gsap.to(images[current], { opacity: 0, duration: 1 });
+        current = (current + 1) % images.length;
+        gsap.to(images[current], { opacity: 1, duration: 1 });
+      }, 6000);
+    }
+    initSlider('slider-card-1');
+    initSlider('slider-card-2');
+
+    // Animation pour la section Slider Cards
+    gsap.from("#slider-section h2", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#slider-section h2",
+        start: "top 90%",
+        toggleActions: "play none none reverse"
+      }
+    });
+    gsap.from(".slider-card", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      stagger: 0.3,
+      scrollTrigger: {
+        trigger: ".slider-card",
+        start: "top 90%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
   });
 </script>
+
 </body>
 </html>
