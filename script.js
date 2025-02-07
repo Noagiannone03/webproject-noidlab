@@ -313,3 +313,34 @@ document.querySelectorAll('.pill-item').forEach(item => {
     this.classList.add('active');
   });
 });
+
+
+window.onload = function() {
+    const horizontalCards = document.querySelector('.horizontal-cards');
+    if (horizontalCards) {
+      let autoScrollInterval;
+  
+      function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+          // Si on atteint la fin, on réinitialise scrollLeft à 0
+          if (horizontalCards.scrollLeft + horizontalCards.clientWidth >= horizontalCards.scrollWidth) {
+            horizontalCards.scrollLeft = 0;
+          } else {
+            horizontalCards.scrollLeft += 1; // incrément de 1px (ajustable)
+          }
+        }, 30); // toutes les 30ms (ajustable pour la vitesse)
+      }
+  
+      function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+      }
+  
+      // Démarrage du défilement automatique
+      startAutoScroll();
+  
+      // Arrêter le défilement lorsque la souris est dans le conteneur, et le reprendre lorsque la souris quitte
+      horizontalCards.addEventListener('mouseenter', stopAutoScroll);
+      horizontalCards.addEventListener('mouseleave', startAutoScroll);
+    }
+  };
+  

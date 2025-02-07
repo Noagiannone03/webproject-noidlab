@@ -678,97 +678,224 @@ margin-top: 20px;
 
 
 /* ----------------------- */
-/* NOUVELLE SECTION : CATÉGORIES & RÉALISATIONS */
+/* EVENT SECTION : CATÉGORIES & RÉALISATIONS */
 /* ----------------------- */
-#new-section {
-    padding: 60px 20px;
-    background: transparent;
-    text-align: center;
-  }
-  
-  /* En-tête de section */
-  .section-header {
-    max-width: 800px;
-    margin: 0 auto 40px;
-    text-align: left;
-  }
-  .section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 10px;
-  }
-  .section-subtitle {
-    font-size: 1.8rem;
-    color: #333;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  /* Pillules de catégorie */
-  .pill-container {
-    display: inline-flex;
-    gap: 10px;
-    margin-bottom: 40px;
-  }
-  .pill-item {
-    padding: 8px 16px;
-    border: 1px solid #000;
-    background: transparent;
-    border-radius: 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  .pill-item.active,
-  .pill-item:hover {
-    background: #000;
-    color: #fff;
-  }
-  
-  .horizontal-cards {
-    margin-left: 5px;
-    margin-right: 5px;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    overflow-x: auto;
-/* Ajout d’un padding à gauche et à droite */
-    padding-bottom: 10px;
-    scroll-snap-type: x mandatory;
-  }
-  
-  
-  
-  /* Wrapper pour chaque card (pour centrer le label en dessous) */
-  .card-wrapper {
-    display: inline-block;
-    text-align: center;
-    scroll-snap-align: start;
-  }
-  
-  /* Card Item avec effet neumorphisme (affiche uniquement l'image) */
-  .card-item {
-    width: 215px;
-    min-height: 205px;
-    background: #fff;
-    border-radius: 20px;
-    /* Effet flat/neumorphisme subtil */
-    overflow: hidden;
-    margin-bottom: 5px; /* pour laisser un peu d'espace entre la card et le label */
-  }
-  .card-item img {
-    width: 100%;
-    height: fit-content;
-    display: block;
-    border-radius: 20px; /* L'image prend toute la forme de la card */
-  }
-  
-  /* Le label apparaît en dehors de la card */
-  .card-label {
-    font-size: 1rem;
-    color: #333;
-    text-align: center;
-    margin-top: 0;
-  }
-  
-  
+#event-section {
+  padding: 60px 20px;
+  background: transparent;
+  text-align: center;
+}
+
+/* En-tête de section */
+.section-header {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.section-subtitle {
+  font-size: 1.8rem;
+  color: #333;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Pillules de catégorie */
+.pill-container {
+  display: inline-flex;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.pill-item {
+  padding: 8px 16px;
+  border: 1px solid #000;
+  background: transparent;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.pill-item.active,
+.pill-item:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Zone horizontale pour les cards (centrée avec padding pour éviter de couper le premier élément) */
+.horizontal-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 0 20px 10px; /* Ajout d'un padding à gauche et à droite */
+  scroll-snap-type: x mandatory;
+}
+
+/* Wrapper pour chaque card (pour centrer le label en dessous) */
+.card-wrapper {
+  display: inline-block;
+  text-align: center;
+  scroll-snap-align: start;
+}
+
+/* Card Item avec effet flat/neumorphisme */
+.card-item {
+  width: 215px;
+  min-height: 205px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.card-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Label en dessous de la card */
+.card-label {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  margin-top: 0;
+}
+
+
+
+
+
+
+
+ /* =============================== */
+    /* Section Header (pour toutes les sections) */
+    /* =============================== */
+    #gallery-media {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: #0e0e0e;
+      background-color: #eceae5;
+      padding: 60px 20px;
+      background: transparent;
+      text-align: center;
+    }
+    .section-header {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .section-subtitle {
+      font-size: 1.8rem;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+     /* =============================== */
+    /* SECTION GALLERIE MEDIA */
+    /* =============================== */
+    #gallery-media {
+      padding: 60px 20px;
+      background: transparent;
+      text-align: center;
+    }
+    .section-header {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .section-subtitle {
+      font-size: 1.8rem;
+      color: #333;
+      max-width: 750px;
+      margin: 20px 130px;
+    }
+    
+    /* Conteneur pour le bouton "Vois plus" */
+    .more-button-container {
+      max-width: 600px;
+      margin: 10px auto 10px;
+      text-align: right;
+    }
+    .more-btn {
+      padding: 8px 16px;
+      border: 1px solid #000;
+      background: transparent;
+      color: #000;
+      font-size: 1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 30px; /* Bouton arrondi en flat design */
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    .more-btn:hover {
+      background: #000;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    
+    /* =============================== */
+    /* CONTAINER POUR LE SLIDER (pour éviter que les slides débordent et déplacent le layout) */
+    /* =============================== */
+    .slider-wrapper-container {
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    /* =============================== */
+    /* STYLES DU SLIDER SWIPER */
+    /* =============================== */
+    .swiper-container.mySwiper {
+      width: 100%;
+      padding-bottom: 40px;  /* Pour afficher les parties latérales */
+      overflow: visible;     /* Permet de voir les slides partiellement visibles */
+      margin: 0 auto;
+    }
+    .swiper-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    /* Chaque slide a une largeur fixe */
+    .swiper-slide {
+      width: 300px;
+      margin-right: 20px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .swiper-slide img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+    /* Effet sur les slides non actives : gris, flou et réduction d'échelle */
+    .swiper-slide:not(.swiper-slide-active) {
+      filter: grayscale(70%) ;
+      transform: scale(0.7);
+    }
+    /* Slide active affichée normalement */
+    .swiper-slide.swiper-slide-active {
+      filter: none;
+      transform: scale(1);
+    }
