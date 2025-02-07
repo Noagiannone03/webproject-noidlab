@@ -31,8 +31,23 @@
     </div>
   </div>
   
+  <div id="backToTop">
+    <!-- Vous pouvez conserver l'image de base -->
+    <img src="assets/pieddepouleunique.png" alt="Back to Top">
+    <!-- SVG de flèche -->
+    <div class="arrow">
+      <svg class="arrow-icon" viewBox="0 0 24 24">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </div>
+  </div>
   <!-- Navbar -->
   <nav class="navbar">
+
+    <div class="nav-center">
+      <img src="assets/LOGONOIDsimpleBlanc.png"/>
+    </div>
     <div class="nav-actions">
       <!-- Bouton Contact -->
       <div class="contact-btn" id="contact-btn">
@@ -115,9 +130,7 @@
       <div id="header-subtext">
         <span>Votre inspiration,</span>
       </div>
-      <div class="photo-small">
-        <img src="assets/pieddepouleunique.png" alt="Petite photo" />
-      </div>
+     
     </div>
     <div class="bubble" style="width:100px; height:100px; top:10%; left:20%;"></div>
     <div class="bubble" style="width:80px; height:80px; top:70%; left:80%;"></div>
@@ -387,6 +400,89 @@
 </section>
 
 
+
+
+<footer>
+  <div class="footer-container">
+    <!-- Colonne gauche -->
+    <div class="footer-column left">
+      <h2 class="footer-title">À propos</h2>
+      <p class="footer-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod urna eu tincidunt consectetur, nisi nisl lacinia mi, eu pulvinar nisi neque sit amet turpis.
+      </p>
+    </div>
+    
+    <!-- Colonne centrale -->
+    <div class="footer-column center">
+      <h2 class="footer-title">Nos lieux d'exploitations</h2>
+      <div class="footer-info">
+        <h3 class="footer-subtitle">FEATlab</h3>
+        <p class="footer-details">
+          13 Rue d'Antrechaus<br>
+          83000 Toulon<br>
+          04 94 62 24 77<br>
+          info@noidlab.com | www.noidlab.com
+        </p>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-info footer-repeat">
+        <h3 class="footer-subtitle">Fort Napoleon</h3>
+        <p class="footer-details">
+          56 montée charles Barnier<br>
+          83500 La Seyne sur Mer<br>
+          04 94 62 24 77<br>
+          info@fornap.com | www.fornap.org
+        </p>
+      </div>
+      <div class="footer-image">
+        <img  src="assets/pieddepouleunique.png" alt="Image Footer">
+      </div>
+    </div>
+    
+    <!-- Colonne droite -->
+    <div class="footer-column right">
+      <h2 class="footer-title">Keep in touch</h2>
+      <div class="newsletter-cardbottom">
+        <h3>Découvrez notre newsletter</h3>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="Votre email" required />
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+      <!-- Card Social Follow -->
+      <div class="follow-cardbottom">
+        <h3>Nous suivre</h3>
+        <div class="social-buttons">
+          <button>
+            <!-- Facebook SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.337v21.326C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.07h3.128V8.413c0-3.1 1.893-4.788 4.658-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.716-1.795 1.763v2.31h3.587l-.467 3.636h-3.12V24h6.116C23.4 24 24 23.4 24 22.663V1.337C24 .6 23.4 0 22.675 0z"/>
+            </svg>
+          </button>
+          <button>
+            <!-- Instagram SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.337 3.608 1.312.975.975 1.25 2.242 1.312 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.337 2.633-1.312 3.608-.975.975-2.242 1.25-3.608 1.312-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.337-3.608-1.312-.975-.975-1.25-2.242-1.312-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.337-2.633 1.312-3.608.975-.975 2.242-1.25 3.608-1.312 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.332.012 7.052.07 5.771.127 4.602.443 3.635 1.41 2.668 2.377 2.352 3.546 2.295 4.827.012 8.332 0 8.741 0 12s.012 3.668.07 4.948c.057 1.281.373 2.45 1.34 3.417.967.967 2.136 1.283 3.417 1.34 1.28.058 1.689.07 4.948.07s3.668-.012 4.948-.07c1.281-.057 2.45-.373 3.417-1.34.967-.967 1.283-2.136 1.34-3.417.058-1.28.07-1.689.07-4.948s-.012-3.668-.07-4.948c-.057-1.281-.373-2.45-1.34-3.417-.967-.967-2.136-1.283-3.417-1.34C15.668.012 15.259 0 12 0z"/>
+              <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
+              <circle cx="18.406" cy="5.594" r="1.44"/>
+            </svg>
+          </button>
+          <button>
+            <!-- TikTok SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M9 0h3v12c-1.667-.667-3.333-1-5-1 0 0 0 0 0 0C3 11 0 13 0 16c0 4 4 8 8 8s8-4 8-8V0H9z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+  <!-- Bandeau noir en bas -->
+  <div class="footer-bottom">
+    &copy; 2025 noidlab. Tous droits réservés.
+  </div>
   
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
@@ -395,7 +491,7 @@
 </script>
 <script>
 
-  var gallerySlider = new Swiper(".mySwiper", {
+var gallerySlider = new Swiper(".mySwiper", {
     slidesPerView: 3,
     centeredSlides: true,
     spaceBetween: 20,
@@ -406,8 +502,16 @@
       pauseOnMouseEnter: true,
     },
     speed: 600,
-    slideToClickedSlide: true
-  });
+    slideToClickedSlide: true,
+    on: {
+      click: function () {
+        setTimeout(() => {
+          this.update(); // Forcer la mise à jour après un clic
+        }, 100);
+      },
+    }
+});
+
   
   // Ajoute un event listener sur chaque image du slider pour déclencher une fonction au clic
   document.querySelectorAll('.swiper-slide img').forEach(function(img) {
