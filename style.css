@@ -891,11 +891,134 @@ margin-top: 20px;
     }
     /* Effet sur les slides non actives : gris, flou et réduction d'échelle */
     .swiper-slide:not(.swiper-slide-active) {
-      filter: grayscale(70%) ;
+      filter:blur(1px) ;
       transform: scale(0.7);
     }
     /* Slide active affichée normalement */
     .swiper-slide.swiper-slide-active {
       filter: none;
       transform: scale(1);
+    }
+
+
+
+
+    #contact-section {
+      padding: 60px 20px;
+      background: transparent;
+      text-align: center;
+    }
+    
+    /* Header de section */
+    .section-header {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .section-subtitle {
+      font-size: 1.8rem;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Conteneur de formulaire centré */
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    /* Formulaire de contact */
+    #contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    #contact-form input,
+    #contact-form textarea {
+      padding: 12px;
+      border: 1px solid #000;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 1rem;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    #contact-form input:focus,
+    #contact-form input:focus,
+#contact-form textarea:focus {
+  outline: none;
+  transform: scale(1.01); /* L'élément grossit légèrement */
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    /* Bouton d'envoi */
+    #contact-form button {
+      padding: 12px;
+      border: 1px solid #000;
+      border-radius: 8px;
+      background: #000;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    #contact-form button:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+
+
+
+
+     /* ----------------------- */
+    /* SECTION MAP : "OÙ NOUS TROUVER" */
+    /* ----------------------- */
+    #map-section {
+      padding: 60px 20px;
+      background: transparent;
+      text-align: center;
+    }
+    /* Header de la section */
+    #map-section .section-header {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+    #map-section .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    #map-section .section-subtitle {
+      font-size: 1.8rem;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    /* Conteneur de la carte */
+    #map-container {
+      max-width: 600px;
+      margin: 0 auto;
+      border: 2px solid #000;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    #map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      display: block;
     }
