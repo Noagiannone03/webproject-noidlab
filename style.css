@@ -726,11 +726,13 @@ margin-top: 20px;
   }
   
   .horizontal-cards {
+    margin-left: 5px;
+    margin-right: 5px;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 5px;
     overflow-x: auto;
-    padding-left: 30px;/* Ajout d’un padding à gauche et à droite */
+/* Ajout d’un padding à gauche et à droite */
     padding-bottom: 10px;
     scroll-snap-type: x mandatory;
   }
@@ -746,12 +748,11 @@ margin-top: 20px;
   
   /* Card Item avec effet neumorphisme (affiche uniquement l'image) */
   .card-item {
-    width: 210px;
-    min-height: 200px;
+    width: 215px;
+    min-height: 205px;
     background: #fff;
     border-radius: 20px;
     /* Effet flat/neumorphisme subtil */
-    box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
     overflow: hidden;
     margin-bottom: 5px; /* pour laisser un peu d'espace entre la card et le label */
   }
