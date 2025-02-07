@@ -343,4 +343,30 @@ window.onload = function() {
       horizontalCards.addEventListener('mouseleave', startAutoScroll);
     }
   };
+
+
+
+ 
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(contactForm);
+    fetch(FORM_ENDPOINT, {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("Message envoyé avec succès !");
+        contactForm.reset();
+      } else {
+        alert("Une erreur est survenue, veuillez réessayer.");
+      }
+    })
+    .catch(error => {
+      alert("Une erreur est survenue, veuillez réessayer.");
+      console.error(error);
+    });
+  });
   
