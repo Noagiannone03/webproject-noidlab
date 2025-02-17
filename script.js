@@ -306,43 +306,38 @@
   });
 
 
-  // Gestion de la sélection unique des pillules
-document.querySelectorAll('.pill-item').forEach(item => {
-  item.addEventListener('click', function() {
+// Gestion du filtrage et de l'animation lors du clic sur une pillule
+document.querySelectorAll('.pill-item').forEach(pill => {
+  pill.addEventListener('click', function() {
+    const selectedCategory = this.getAttribute('data-category');
+    const isAlreadyActive = this.classList.contains('active');
+
+    // Réinitialise les classes sur toutes les pills
     document.querySelectorAll('.pill-item').forEach(el => el.classList.remove('active'));
-    this.classList.add('active');
+    
+    // Si la pill était déjà active, on enlève le filtre (affichage complet)
+    if (isAlreadyActive) {
+      document.querySelectorAll('.card-wrapper').forEach(card => {
+        card.classList.remove('filtered', 'emphasized');
+      });
+    } else {
+      // Active la pill cliquée
+      this.classList.add('active');
+      // Pour chaque card, on teste sa catégorie
+      document.querySelectorAll('.card-wrapper').forEach(card => {
+        if (card.getAttribute('data-category') === selectedCategory) {
+          card.classList.remove('filtered');
+          card.classList.add('emphasized');
+        } else {
+          card.classList.remove('emphasized');
+          card.classList.add('filtered');
+        }
+      });
+    }
   });
 });
 
 
-window.onload = function() {
-    const horizontalCards = document.querySelector('.horizontal-cards');
-    if (horizontalCards) {
-      let autoScrollInterval;
-  
-      function startAutoScroll() {
-        autoScrollInterval = setInterval(() => {
-          // Si on atteint la fin, on réinitialise scrollLeft à 0
-          if (horizontalCards.scrollLeft + horizontalCards.clientWidth >= horizontalCards.scrollWidth) {
-            horizontalCards.scrollLeft = 0;
-          } else {
-            horizontalCards.scrollLeft += 1; // incrément de 1px (ajustable)
-          }
-        }, 30); // toutes les 30ms (ajustable pour la vitesse)
-      }
-  
-      function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-      }
-  
-      // Démarrage du défilement automatique
-      startAutoScroll();
-  
-      // Arrêter le défilement lorsque la souris est dans le conteneur, et le reprendre lorsque la souris quitte
-      horizontalCards.addEventListener('mouseenter', stopAutoScroll);
-      horizontalCards.addEventListener('mouseleave', startAutoScroll);
-    }
-  };
 
 
 

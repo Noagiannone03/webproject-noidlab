@@ -709,7 +709,6 @@ margin-top: 20px;
   color: #333;
 }
 
-
 /* ----------------------- */
 /* EVENT SECTION : CATÉGORIES & RÉALISATIONS */
 /* ----------------------- */
@@ -752,27 +751,54 @@ margin-top: 20px;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
 }
-.pill-item.active,
+.pill-item.active {
+  background: #000;
+  color: #fff;
+}
 .pill-item:hover {
   background: #000;
   color: #fff;
 }
 
-/* Zone horizontale pour les cards (centrée avec padding pour éviter de couper le premier élément) */
+/* Zone horizontale pour les cards */
 .horizontal-cards {
+  overflow-y: visible;
+align-items: center;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
   overflow-x: auto;
-  padding: 0 20px 10px; /* Ajout d'un padding à gauche et à droite */
-  scroll-snap-type: x mandatory;
+ 
 }
 
-/* Wrapper pour chaque card (pour centrer le label en dessous) */
+/* Wrapper pour chaque card */
 .card-wrapper {
-  display: inline-block;
+
   text-align: center;
-  scroll-snap-align: start;
+
+  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Par défaut, toutes les cards sont en pleine couleur et à leur taille */
+.card-wrapper:not(.filtered):not(.emphasized) {
+  transform: scale(1);
+  opacity: 1;
+  filter: none;
+}
+
+/* Lors du filtrage :
+   - Les items correspondant à la catégorie auront une légère mise en avant (plus grand)
+   - Les autres seront grisées, légèrement réduites et moins opaques */
+.card-wrapper.emphasized {
+ 
+  opacity: 1;
+  filter: none;
+}
+.card-wrapper.filtered {
+  transform: scale(0.9);
+  opacity: 0.5;
+  filter: grayscale(100%);
 }
 
 /* Card Item avec effet flat/neumorphisme */
@@ -798,10 +824,6 @@ margin-top: 20px;
   text-align: center;
   margin-top: 0;
 }
-
-
-
-
 
 
 

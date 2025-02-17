@@ -269,54 +269,61 @@
     <p class="section-subtitle">Le sous titre de ce bloc Lorem ipsum dolor sit, amet consectetur</p>
   </div>
 
-
+  <!-- Zone des catégories (pillules) -->
+  <div class="pill-container">
+    <!-- Chaque bouton porte un data-category correspondant -->
+    <button class="pill-item active" data-category="1">Catégorie 1</button>
+    <button class="pill-item" data-category="2">Catégorie 2</button>
+    <button class="pill-item" data-category="3">Catégorie 3</button>
+    <button class="pill-item" data-category="4">Catégorie 4</button>
+  </div>
 
   <!-- Zone des cards horizontales (Recycler view centrée) -->
   <div class="horizontal-cards">
-    <!-- Chaque card est enveloppée dans un wrapper pour centrer le label -->
-    <div class="card-wrapper">
+    <!-- Chaque card a un attribut data-category pour le filtrage -->
+    <div class="card-wrapper" data-category="1">
       <div class="card-item">
         <img src="http://www.noidlab.com/wp-content/uploads/2020/05/YES_imagecle.png" alt="Item 1">
       </div>
       <p class="card-label">Titre Item 1</p>
     </div>
-    <div class="card-wrapper">
+    <div class="card-wrapper" data-category="2">
       <div class="card-item">
         <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Item 2">
       </div>
       <p class="card-label">Titre Item 2</p>
     </div>
-    <div class="card-wrapper">
+    <div class="card-wrapper" data-category="3">
       <div class="card-item">
         <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 3">
       </div>
       <p class="card-label">Titre Item 3</p>
     </div>
-    <div class="card-wrapper">
+    <div class="card-wrapper" data-category="4">
       <div class="card-item">
         <img src="http://www.noidlab.com/wp-content/uploads/2020/05/WOW_imagecle.png" alt="Item 4">
       </div>
       <p class="card-label">Titre Item 4</p>
     </div>
-    <div class="card-wrapper">
+    <div class="card-wrapper" data-category="1">
       <div class="card-item">
         <img src="http://www.noidlab.com/wp-content/uploads/2020/05/LFCN_imagecle.png" alt="Item 5">
       </div>
       <p class="card-label">Titre Item 5</p>
     </div>
-    <div class="card-wrapper">
+    <div class="card-wrapper" data-category="2">
       <div class="card-item">
         <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Item 6">
       </div>
       <p class="card-label">Titre Item 6</p>
     </div>
-    <div class="card-wrapper">
+    <div class="card-wrapper" data-category="3">
       <div class="card-item">
         <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 7">
       </div>
       <p class="card-label">Titre Item 7</p>
     </div>
-    <div class="card-wrapper">
+    <div class="card-wrapper" data-category="4">
       <div class="card-item">
         <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 8">
       </div>
@@ -324,6 +331,7 @@
     </div>
   </div>
 </section>
+
 
 
 
