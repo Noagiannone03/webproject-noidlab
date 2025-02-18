@@ -19,6 +19,7 @@ body {
   color: #333;
 }
 
+
 /* ----------------------- */
 /* NAVBAR */
 /* ----------------------- */
@@ -286,64 +287,180 @@ canvas#three-canvas {
   height: 100%;
 }
 
-/* ----------------------- */
-/* SECTION PRINCIPALE */
-/* ----------------------- */
-#main {
-  height: 750px;
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: transparent;
-}
-#header-container {
-  position: relative;
-  top: 50px;
-  width: 100%;
-  padding: 0 20px;
-  z-index: 2;
-}
-#decrypt-title {
-  font-size: 8rem;
-  color: black;
-  font-weight: 450;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
-  text-align: left;
-}
-#header-subtext {
-  font-size: 2rem;
-  line-height: 1.2;
-  text-align: center;
-  margin-top: 20px;
-}
-#header-subtext span {
-  display: block;
-  overflow: hidden;
-}
-.photo-small {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-  width: 200px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.photo-small img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
-.bubble {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.05;
-  background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
-}
+
+
+  /* ==========================================================================
+       SECTION PRINCIPALE & STATS
+       ========================================================================== */
+       #main {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: transparent;
+        text-align: center;
+        padding: 0 20px;
+        margin-top: 27px;
+        box-sizing: border-box;
+      }
+      
+      .stats-container {
+        font-family: Helvetica, sans-serif;
+        font-weight: bold;
+        /* espace avant le bandeau Flash News */
+      }
+      
+      .stats-title,
+      .stats-footer {
+        font-size: 2.5rem;
+        color: #fe4949; /* teinte rosée */
+        margin: 0.5em 0;
+      }
+      
+      .stat-item {
+        margin: 1em 0;
+      }
+      
+      /* Les compteurs */
+      .stat-number {
+        display: inline-block; /* pour limiter la largeur au texte */
+        font-size: 4rem;
+        margin-bottom: 0.2em;
+        position: relative;
+        color: black;
+        transition: color 0.5s ease;
+      }
+      
+      /* Pseudo-élément pour le surlignage (ne couvre que le texte) */
+      .stat-number::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background: black;
+        z-index: -1;
+        transition: width 1s ease;
+      }
+      
+      .stat-number.highlight::after {
+        width: 100%;
+      }
+      .stat-number.highlight {
+        color: white;
+      }
+      
+      .stat-label {
+        display: block;
+        font-size: 1.5rem;
+        color: black;
+      }
+      
+      /* Animation slide-in pour les éléments */
+      .slide-in {
+        opacity: 0;
+        transform: translateX(-100%);
+        animation: slideIn 0.6s forwards;
+      }
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      /* Bulles décoratives */
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.05;
+        background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+      }
+      
+      
+      /* ==========================================================================
+         FLASH NEWS BANNER
+         ========================================================================== */
+      .flash-news-banner {
+        background: #000;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+        margin-top: 2em;
+      }
+      
+      
+      
+      .flash-news-slider {
+        display: flex;
+        transition: transform 0.5s ease;
+        /* Compense le padding du conteneur */
+        width: calc(100% + 30px);
+        margin: 0 -15px;
+      }
+      
+      
+      .news-item {
+        flex: 0 0 100%;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+      }
+      
+      .news-item img {
+        width: 65px;
+        height: 65px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-left: 20px;
+      }
+      
+      .news-content {
+        margin-left: 20px;
+        text-align: left;
+        color: #fff;
+      }
+      
+      .news-title {
+        font-size: 1.2rem;
+        margin: 0 0 10px;
+      }
+      
+      .news-text {
+        font-size: 0.9rem;
+        margin: 0;
+      }
+      
+      /* Points de navigation du slider */
+      .slider-dots {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+      }
+      
+      .slider-dots .dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: #fff;
+        border-radius: 50%;
+        margin-left: 5px;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.3s;
+      }
+      
+      .slider-dots .dot.active {
+        opacity: 1;
+      }
 
 /* ----------------------- */
 /* SECTION FUSION STACKÉE & DÉTAILS */
@@ -359,16 +476,10 @@ flex-direction: column;
 gap: 30px;
 min-height: auto;               /* S'adapte au contenu */
 text-align: center;
-height: 750px;
+height: 760px;
 }
 
-.stack-card.title {
-font-family: 'Montserrat', sans-serif;
-font-size: 3rem;
-text-align: left;
-margin-left: 70px;              /* Décalage à gauche pour le titre */
-margin-bottom: 40px;
-}
+
 
 .stack-card.title h1 span {
 color: black;
@@ -386,11 +497,11 @@ text-align: center;
 }
 
 .stack-card.subtitle h2 {
-font-size: 2.2rem;
-margin-bottom: 15px;
+font-size: 1.4rem;
+
 margin-left: 140px;
 margin-right: 140px;
-margin-bottom: 40px;
+margin-bottom: 25px;
 color: #333;
 line-height: 1.3;
 /* Vos textes définitifs resteront ici, par exemple :
@@ -398,7 +509,7 @@ line-height: 1.3;
 }
 
 .stack-card.subtitle p {
-font-size: 1.4rem;
+font-size: 1.1rem;
 line-height: 1.6;
 margin: 0 auto;
 padding: 0 10px;
@@ -432,16 +543,13 @@ margin-top: 20px;
 /* NOUVELLE SECTION – TARIFS */
 /* ----------------------- */
 #pricing-section {
+  margin-top: 30px;
   padding: 60px 20px;
   background: transparent;
   text-align: center;
   height: 750px;
 }
-#pricing-section h1 {
-  font-size: 4rem;
-  color: #333;
-  text-align: left;
-}
+
 #pricing-section h2 {
   font-size: 2.5rem;
   margin-bottom: 40px;
@@ -875,6 +983,7 @@ margin-top: 20px;
       font-family: 'Montserrat', sans-serif;
       font-size: 3rem;
       margin-bottom: 30px;
+      margin-left: 75px;
       text-align: left;
       color: #333;
     }
@@ -1374,16 +1483,17 @@ margin-top: 20px;
 .unique-modal-text {
   flex: 1;
   position: relative;
-  text-align: left;
+  text-align: center;
   display: flex;
   margin-left: 4%;
-  margin-top: 2%;
+
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
 .unique-modal-title {
   font-size: 1.8rem;
+  text-align: center;
   margin: 0 0 10px 0;
 }
 .unique-modal-subtitle {
