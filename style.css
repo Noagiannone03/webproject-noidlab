@@ -387,11 +387,12 @@ canvas#three-canvas {
          FLASH NEWS BANNER
          ========================================================================== */
       .flash-news-banner {
+        align-self: self-start;
         background: #000;
         border-radius: 10px;
         overflow: hidden;
         position: relative;
-        width: 100%;
+        width: 90%;
         padding: 15px;
         box-sizing: border-box;
         margin-top: 2em;
