@@ -11,6 +11,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <!-- Inclusion d'une police type bâton (ex : Montserrat) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <link rel="stylesheet" href="style.css">
  
 </head>
@@ -30,6 +32,9 @@
       </form>
     </div>
   </div>
+
+
+
   
   <div id="backToTop">
     <!-- Vous pouvez conserver l'image de base -->
@@ -165,10 +170,10 @@
   <!-- Section Tarifs -->
   <section id="pricing-section">
 
-    <h1>Prestations</h1>
-    <h2>Des solutions créatives sur mesure 
+    <h1 class="section-title">Prestations</h1>
+    <p class="section-subtitle">Des solutions créatives sur mesure 
       pour des projets d’envergures
-      </h2>
+    </p>
     <div class="pricing-cards">
       <!-- Pricing Card 1 -->
       <div class="pricing-card">
@@ -206,8 +211,8 @@
   <!-- Nouvelle Section : Slider Cards -->
   <!-- Nouvelle Section : Slider Cards -->
 <section id="slider-section">
-  <h2>Nos lieux</h2>
-  <p class="slider-subtitle">Un tiers lieux culturel qui domine la rade 
+  <h1 class="section-title">Nos lieux</h1>
+  <p class="section-subtitle">Un tiers lieux culturel qui domine la rade 
     ou un laboratoire de création en plein cœur de la capitale varoise ? 
     Plus de 2500 M2 d’espaces de travail répartis
      entre la Seyne sur mer et Toulon.
@@ -269,61 +274,116 @@
     <p class="section-subtitle">Le sous titre de ce bloc Lorem ipsum dolor sit, amet consectetur</p>
   </div>
 
-
+  <!-- Zone des catégories (pillules) -->
+  <div class="pill-container">
+    <!-- Chaque bouton porte un data-category correspondant -->
+    <button class="pill-item active" data-category="1">Catégorie 1</button>
+    <button class="pill-item" data-category="2">Catégorie 2</button>
+    <button class="pill-item" data-category="3">Catégorie 3</button>
+    <button class="pill-item" data-category="4">Catégorie 4</button>
+  </div>
 
   <!-- Zone des cards horizontales (Recycler view centrée) -->
   <div class="horizontal-cards">
-    <!-- Chaque card est enveloppée dans un wrapper pour centrer le label -->
-    <div class="card-wrapper">
-      <div class="card-item">
-        <img src="http://www.noidlab.com/wp-content/uploads/2020/05/YES_imagecle.png" alt="Item 1">
-      </div>
-      <p class="card-label">Titre Item 1</p>
-    </div>
-    <div class="card-wrapper">
-      <div class="card-item">
-        <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Item 2">
-      </div>
-      <p class="card-label">Titre Item 2</p>
-    </div>
-    <div class="card-wrapper">
-      <div class="card-item">
-        <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 3">
-      </div>
-      <p class="card-label">Titre Item 3</p>
-    </div>
-    <div class="card-wrapper">
-      <div class="card-item">
-        <img src="http://www.noidlab.com/wp-content/uploads/2020/05/WOW_imagecle.png" alt="Item 4">
-      </div>
-      <p class="card-label">Titre Item 4</p>
-    </div>
-    <div class="card-wrapper">
-      <div class="card-item">
-        <img src="http://www.noidlab.com/wp-content/uploads/2020/05/LFCN_imagecle.png" alt="Item 5">
-      </div>
-      <p class="card-label">Titre Item 5</p>
-    </div>
-    <div class="card-wrapper">
-      <div class="card-item">
-        <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Item 6">
-      </div>
-      <p class="card-label">Titre Item 6</p>
-    </div>
-    <div class="card-wrapper">
-      <div class="card-item">
-        <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 7">
-      </div>
-      <p class="card-label">Titre Item 7</p>
-    </div>
-    <div class="card-wrapper">
-      <div class="card-item">
-        <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 8">
-      </div>
-      <p class="card-label">Titre Item 8</p>
-    </div>
+   <!-- Card 1 -->
+<div class="card-wrapper" data-category="1"
+data-modal-title="Titre Item 1"
+data-modal-subtitle="Sous-titre pour Item 1"
+data-modal-description="Description détaillée pour Item 1."
+data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/YES_imagecle.png">
+<div class="card-item">
+<img src="http://www.noidlab.com/wp-content/uploads/2020/05/YES_imagecle.png" alt="Item 1">
+</div>
+<p class="card-label">Titre Item 1</p>
+</div>
+
+<!-- Card 2 -->
+<div class="card-wrapper" data-category="2"
+data-modal-title="Titre Item 2"
+data-modal-subtitle="Sous-titre pour Item 2"
+data-modal-description="Description détaillée pour Item 2."
+data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png">
+<div class="card-item">
+<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Item 2">
+</div>
+<p class="card-label">Titre Item 2</p>
+</div>
+
+<!-- Card 3 -->
+<div class="card-wrapper" data-category="3"
+data-modal-title="Titre Item 3"
+data-modal-subtitle="Sous-titre pour Item 3"
+data-modal-description="Description détaillée pour Item 3."
+data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png">
+<div class="card-item">
+<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 3">
+</div>
+<p class="card-label">Titre Item 3</p>
+</div>
+
+<!-- Card 4 -->
+<div class="card-wrapper" data-category="4"
+data-modal-title="Titre Item 4"
+data-modal-subtitle="Sous-titre pour Item 4"
+data-modal-description="Description détaillée pour Item 4."
+data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/WOW_imagecle.png">
+<div class="card-item">
+<img src="http://www.noidlab.com/wp-content/uploads/2020/05/WOW_imagecle.png" alt="Item 4">
+</div>
+<p class="card-label">Titre Item 4</p>
+</div>
+
+<!-- Card 5 -->
+<div class="card-wrapper" data-category="1"
+data-modal-title="Titre Item 5"
+data-modal-subtitle="Sous-titre pour Item 5"
+data-modal-description="Description détaillée pour Item 5."
+data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/LFCN_imagecle.png">
+<div class="card-item">
+<img src="http://www.noidlab.com/wp-content/uploads/2020/05/LFCN_imagecle.png" alt="Item 5">
+</div>
+<p class="card-label">Titre Item 5</p>
+</div>
+
+<!-- Card 6 -->
+<div class="card-wrapper" data-category="2"
+data-modal-title="Titre Item 6"
+data-modal-subtitle="Sous-titre pour Item 6"
+data-modal-description="Description détaillée pour Item 6."
+data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png">
+<div class="card-item">
+<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Item 6">
+</div>
+<p class="card-label">Titre Item 6</p>
+</div>
+
+<!-- Card 7 -->
+<div class="card-wrapper" data-category="3"
+data-modal-title="Titre Item 7"
+data-modal-subtitle="Sous-titre pour Item 7"
+data-modal-description="Description détaillée pour Item 7."
+data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png">
+<div class="card-item">
+<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 7">
+</div>
+<p class="card-label">Titre Item 7</p>
+</div>
+
+<!-- Card 8 -->
+<div class="card-wrapper" data-category="4"
+data-modal-title="Titre Item 8"
+data-modal-subtitle="Sous-titre pour Item 8"
+data-modal-description="Description détaillée pour Item 8."
+data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png">
+<div class="card-item">
+<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 8">
+</div>
+<p class="card-label">Titre Item 8</p>
+</div>
+
   </div>
 </section>
+
 
 
 
@@ -487,6 +547,42 @@
   <div class="footer-bottom">
     &copy; 2025 noidlab. Tous droits réservés.
   </div>
+
+
+  <!-- Modal Overlay -->
+<div id="unique-modal-overlay" class="unique-modal-overlay hidden">
+  <!-- Flèches de navigation (hors du container modal) -->
+  <button class="unique-modal-nav unique-modal-prev">&larr;</button>
+  <button class="unique-modal-nav unique-modal-next">&rarr;</button>
+  
+  <div class="unique-modal-container">
+    <!-- Bouton de fermeture -->
+    <button class="unique-modal-close">&times;</button>
+    
+    <div class="unique-modal-content">
+      <!-- Zone image à gauche -->
+      <div class="unique-modal-image">
+        <img src="" alt="Modal Image">
+      </div>
+      <!-- Zone texte à droite -->
+      <div class="unique-modal-text">
+        <h2 class="unique-modal-title"></h2>
+        <h4 class="unique-modal-subtitle"></h4>
+        <p class="unique-modal-description"></p>
+        <!-- Petit titre en bas à gauche -->
+        <p class="unique-modal-footer-text">Petit titre</p>
+        <!-- Boutons réseaux sociaux en bas à droite -->
+        <div class="unique-social-buttons">
+          <button class="unique-social-btn"><i class="fab fa-facebook-f"></i></button>
+          <button class="unique-social-btn"><i class="fab fa-twitter"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
   
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
@@ -524,7 +620,130 @@ var gallerySlider = new Swiper(".mySwiper", {
       console.log("Image cliquée :", this.alt);
       // Exemple : handleImageClick(this);
     });
-  });</script>
+  });
+  
+  
+  
+  
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM entièrement chargé.');
+
+  // Sélectionnez toutes vos cards
+  const cards = document.querySelectorAll('.card-wrapper');
+  console.log(`Nombre de cards trouvées : ${cards.length}`);
+
+  // Sélection des éléments du modal
+  const modalOverlay = document.getElementById('custom-modal');
+  const modalContainer = modalOverlay.querySelector('.modal-container');
+  const modalImage = modalOverlay.querySelector('.modal-image img');
+  const modalTitle = modalOverlay.querySelector('.modal-title');
+  const modalSubtitle = modalOverlay.querySelector('.modal-subtitle');
+  const modalDescription = modalOverlay.querySelector('.modal-description');
+  const closeModalBtn = modalOverlay.querySelector('.modal-close');
+  const prevBtn = modalOverlay.querySelector('.modal-prev');
+  const nextBtn = modalOverlay.querySelector('.modal-next');
+
+  // Tableau pour stocker les données de chaque modal récupérées depuis les cards
+  let modalData = [];
+
+  // Index du modal actuellement affiché
+  let currentModalIndex = 0;
+
+  // Parcourir les cards pour récupérer les données et ajouter un écouteur de clic
+  cards.forEach((card, index) => {
+    const imageAttr = card.getAttribute('data-modal-image') || (card.querySelector('img') ? card.querySelector('img').src : '');
+    const titleAttr = card.getAttribute('data-modal-title') || (card.querySelector('.card-label') ? card.querySelector('.card-label').innerText : '');
+    const subtitleAttr = card.getAttribute('data-modal-subtitle') || '';
+    const descriptionAttr = card.getAttribute('data-modal-description') || '';
+
+    modalData.push({
+      image: imageAttr,
+      title: titleAttr,
+      subtitle: subtitleAttr,
+      description: descriptionAttr
+    });
+    
+    console.log(`Card ${index + 1} :`, {
+      image: imageAttr,
+      title: titleAttr,
+      subtitle: subtitleAttr,
+      description: descriptionAttr
+    });
+    
+    // Au clic sur la card, ouvrir le modal avec le contenu correspondant
+    card.addEventListener('click', () => {
+      currentModalIndex = index;
+      console.log(`Card ${index + 1} cliquée. Ouverture du modal...`);
+      openModal(modalData[currentModalIndex]);
+    });
+  });
+
+  // Fonction pour ouvrir le modal avec une animation (optionnelle)
+  function openModal(data, animationClass = '') {
+    console.log('openModal() appelé avec les données :', data);
+
+    // Mettre à jour le contenu du modal
+    modalImage.src = data.image;
+    modalTitle.innerText = data.title;
+    modalSubtitle.innerText = data.subtitle;
+    modalDescription.innerText = data.description;
+
+    // Réinitialiser les classes d'animation si elles existent
+    modalContainer.classList.remove('slide-left', 'slide-right');
+    if (animationClass) {
+      modalContainer.classList.add(animationClass);
+      console.log(`Animation ${animationClass} ajoutée au modalContainer.`);
+    }
+    
+    // Afficher le modal
+    modalOverlay.classList.add('active');
+    console.log('Modal affiché.');
+  }
+
+  // Fonction pour fermer le modal
+  function closeModal() {
+    console.log('Fermeture du modal.');
+    modalOverlay.classList.remove('active');
+  }
+
+  // Événement sur le bouton de fermeture
+  closeModalBtn.addEventListener('click', closeModal);
+
+  // Navigation vers la carte précédente
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (currentModalIndex > 0) {
+      currentModalIndex--;
+      console.log(`Navigation vers la card précédente. Index actuel : ${currentModalIndex}`);
+      openModal(modalData[currentModalIndex], 'slide-right');
+    } else {
+      console.log('Déjà la première card, navigation précédente impossible.');
+    }
+  });
+
+  // Navigation vers la carte suivante
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (currentModalIndex < modalData.length - 1) {
+      currentModalIndex++;
+      console.log(`Navigation vers la card suivante. Index actuel : ${currentModalIndex}`);
+      openModal(modalData[currentModalIndex], 'slide-left');
+    } else {
+      console.log('Déjà la dernière card, navigation suivante impossible.');
+    }
+  });
+
+  // Optionnel : fermer le modal si on clique à l'extérieur de la boîte (sur l'overlay)
+  modalOverlay.addEventListener('click', (e) => {
+    if(e.target === modalOverlay) {
+      console.log('Clic sur l\'overlay, fermeture du modal.');
+      closeModal();
+    }
+  });
+});
+
+  </script>
 
 </body>
 </html>
