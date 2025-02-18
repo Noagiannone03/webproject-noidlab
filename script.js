@@ -12,7 +12,7 @@
 
   // Création de la courbe
   const curve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(30, 0, 0),
+    new THREE.Vector3(40, 0, 0),
     new THREE.Vector3(15, 7, 0),
     new THREE.Vector3(0, -8, 0),
     new THREE.Vector3(-15, -4, 0),
@@ -483,4 +483,70 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       }
     });
   });
+
   
+
+  document.addEventListener("DOMContentLoaded", () => {
+    /* -------------------------------
+       Animation des compteurs (stats)
+    ------------------------------- */
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach((stat, index) => {
+      const target = +stat.getAttribute('data-target');
+      let count = 0;
+      const duration = 3000; // Durée totale du comptage (ms)
+      const frameRate = 60;
+      const totalFrames = Math.round(duration / (1000 / frameRate));
+      const increment = target / totalFrames;
+      let highlightTriggered = false;
+      
+      const updateCount = () => {
+        count += increment;
+        if (!highlightTriggered && count >= target / 2) {
+          setTimeout(() => {
+            stat.classList.add('highlight');
+          }, index * 300);
+          highlightTriggered = true;
+        }
+        if(count < target) {
+          stat.textContent = Math.floor(count);
+          requestAnimationFrame(updateCount);
+        } else {
+          stat.textContent = target;
+          if (!highlightTriggered) {
+            stat.classList.add('highlight');
+          }
+        }
+      };
+      updateCount();
+    });
+    
+    /* -------------------------------
+       Slider Flash News
+    ------------------------------- */
+    const slider = document.querySelector('.flash-news-slider');
+    const dots = document.querySelectorAll('.slider-dots .dot');
+    const newsItems = document.querySelectorAll('.flash-news-slider .news-item');
+    const totalItems = newsItems.length;
+    let currentIndex = 0;
+    
+    function goToSlide(index) {
+      slider.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+      currentIndex = index;
+    }
+    
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index'));
+        goToSlide(index);
+      });
+    });
+    
+    // Optionnel : auto-slide toutes les 5 secondes
+    setInterval(() => {
+      let nextIndex = (currentIndex + 1) % totalItems;
+      goToSlide(nextIndex);
+    }, 5000);
+  });
