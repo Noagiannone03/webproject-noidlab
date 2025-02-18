@@ -307,23 +307,29 @@
 
 
 // Gestion du filtrage et de l'animation lors du clic sur une pillule
+const horizontalCardsContainer = document.querySelector('.horizontal-cards');
+
 document.querySelectorAll('.pill-item').forEach(pill => {
   pill.addEventListener('click', function() {
     const selectedCategory = this.getAttribute('data-category');
     const isAlreadyActive = this.classList.contains('active');
 
-    // Réinitialise les classes sur toutes les pills
+    // Réinitialiser l'état de toutes les pillules
     document.querySelectorAll('.pill-item').forEach(el => el.classList.remove('active'));
-    
-    // Si la pill était déjà active, on enlève le filtre (affichage complet)
+
     if (isAlreadyActive) {
+      // Désactivation du filtre : réinitialisation de toutes les cards et du conteneur
       document.querySelectorAll('.card-wrapper').forEach(card => {
         card.classList.remove('filtered', 'emphasized');
       });
+      horizontalCardsContainer.classList.remove('filter-active');
+      // Optionnel : on peut aussi réinitialiser le scroll du container
+      horizontalCardsContainer.scrollTo({ left: 0, behavior: "smooth" });
     } else {
-      // Active la pill cliquée
+      // Active la pillule sélectionnée
       this.classList.add('active');
-      // Pour chaque card, on teste sa catégorie
+
+      // Appliquer le filtre sur les cards
       document.querySelectorAll('.card-wrapper').forEach(card => {
         if (card.getAttribute('data-category') === selectedCategory) {
           card.classList.remove('filtered');
@@ -333,10 +339,23 @@ document.querySelectorAll('.pill-item').forEach(pill => {
           card.classList.add('filtered');
         }
       });
+
+      // Modifier l'alignement du conteneur pour que les éléments filtrés soient à gauche
+      horizontalCardsContainer.classList.add('filter-active');
+
+      // Récupérer le premier élément filtré (mis en avant)
+      const firstEmphasized = document.querySelector('.card-wrapper.emphasized');
+      if (firstEmphasized) {
+        // Calcul de la position relative de l'élément par rapport au conteneur
+        const containerRect = horizontalCardsContainer.getBoundingClientRect();
+        const cardRect = firstEmphasized.getBoundingClientRect();
+        // Calcul de la nouvelle position de scroll souhaitée
+        const offset = cardRect.left - containerRect.left;
+        horizontalCardsContainer.scrollTo({ left: horizontalCardsContainer.scrollLeft + offset, behavior: "smooth" });
+      }
     }
   });
 });
-
 
 
 
@@ -369,5 +388,99 @@ document.querySelectorAll('.pill-item').forEach(pill => {
 
   document.getElementById('backToTop').addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  
+
+
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM entièrement chargé.');
+  
+    // Sélection des cards
+    const cards = document.querySelectorAll('.card-wrapper');
+    console.log(`Nombre de cards trouvées : ${cards.length}`);
+  
+    // Sélection des éléments du modal
+    const modalOverlay = document.getElementById('unique-modal-overlay');
+    const modalContainer = modalOverlay.querySelector('.unique-modal-container');
+    const modalImage = modalOverlay.querySelector('.unique-modal-image img');
+    const modalTitle = modalOverlay.querySelector('.unique-modal-title');
+    const modalSubtitle = modalOverlay.querySelector('.unique-modal-subtitle');
+    const modalDescription = modalOverlay.querySelector('.unique-modal-description');
+    const closeModalBtn = modalOverlay.querySelector('.unique-modal-close');
+    const prevBtn = modalOverlay.querySelector('.unique-modal-prev');
+    const nextBtn = modalOverlay.querySelector('.unique-modal-next');
+  
+    let modalData = [];
+    let currentModalIndex = 0;
+  
+    cards.forEach((card, index) => {
+      modalData.push({
+        image: card.getAttribute('data-modal-image') || (card.querySelector('img') ? card.querySelector('img').src : ''),
+        title: card.getAttribute('data-modal-title') || (card.querySelector('.card-label') ? card.querySelector('.card-label').innerText : ''),
+        subtitle: card.getAttribute('data-modal-subtitle') || '',
+        description: card.getAttribute('data-modal-description') || ''
+      });
+      console.log(`Card ${index + 1} :`, modalData[index]);
+  
+      card.addEventListener('click', () => {
+        currentModalIndex = index;
+        console.log(`Card ${index + 1} cliquée. Ouverture du modal...`);
+        openModal(modalData[currentModalIndex]);
+      });
+    });
+  
+    function openModal(data, animationClass = '') {
+      console.log('openModal() appelé avec les données :', data);
+  
+      modalImage.src = data.image;
+      modalTitle.innerText = data.title;
+      modalSubtitle.innerText = data.subtitle;
+      modalDescription.innerText = data.description;
+  
+      modalContainer.classList.remove('slide-left', 'slide-right');
+      if (animationClass) {
+        modalContainer.classList.add(animationClass);
+        console.log(`Animation ${animationClass} ajoutée.`);
+      }
+  
+      modalOverlay.classList.remove('hidden');
+      modalOverlay.classList.add('active');
+      console.log('Modal affiché.');
+    }
+  
+    function closeModal() {
+      console.log('Fermeture du modal.');
+      modalOverlay.classList.remove('active');
+    }
+  
+    closeModalBtn.addEventListener('click', closeModal);
+  
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentModalIndex > 0) {
+        currentModalIndex--;
+        console.log(`Navigation vers la card précédente, index : ${currentModalIndex}`);
+        openModal(modalData[currentModalIndex], 'slide-right');
+      }
+    });
+  
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentModalIndex < modalData.length - 1) {
+        currentModalIndex++;
+        console.log(`Navigation vers la card suivante, index : ${currentModalIndex}`);
+        openModal(modalData[currentModalIndex], 'slide-left');
+      }
+    });
+  
+    modalOverlay.addEventListener('click', (e) => {
+      if(e.target === modalOverlay) {
+        console.log('Clic sur l\'overlay, fermeture du modal.');
+        closeModal();
+      }
+    });
   });
   
