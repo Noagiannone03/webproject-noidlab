@@ -81,16 +81,18 @@
     <!-- Dropdown contenant les 3 cards -->
     <div class="dropdown" id="dropdown">
       <!-- Card Menu -->
-      <div class="menu-card">
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Prestations</a></li>
-          <li><a href="#">Événements</a></li>
-          <li><a href="#">Nos lieux</a></li>
-          <li><a href="#">Médias</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
+      <!-- Dans votre dropdown, par exemple : -->
+<div class="menu-card">
+  <ul>
+    <li><a href="#stack-section">À propos</a></li>
+    <li><a href="#pricing-section">Prestations</a></li>
+    <li><a href="#slider-section">Nos lieux</a></li>
+    <li><a href="#event-section">Nos Références</a></li>
+    <li><a href="#gallery-media">Médias</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+  </ul>
+</div>
+
       <!-- Card Newsletter -->
       <div class="newsletter-card">
         <h3>Découvrez notre newsletter</h3>
@@ -129,25 +131,32 @@
   
   <!-- SECTION PRINCIPALE -->
   <section id="main">
-    <div class="stats-container">
-      <p class="stats-title slide-in" style="animation-delay: 0.2s;">LES STATS</p>
-      
-      <div class="stat-item slide-in" style="animation-delay: 0.4s;">
-        <span class="stat-number" data-target="534">0</span>
-        <span class="stat-label">évènements programmés</span>
+    <!-- Bloc central avec vidéo de fond -->
+    <div class="text-block-container">
+      <video autoplay muted loop class="bg-video">
+        <source src="assets/videos/toulon-street-art.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+      <div class="stats-container">
+        <p class="stats-title slide-in" style="animation-delay: 0.2s;">LES STATS</p>
+        
+        <div class="stat-item slide-in" style="animation-delay: 0.4s;">
+          <span class="stat-number" data-target="534">0</span>
+          <span class="stat-label">évènements programmés</span>
+        </div>
+        
+        <div class="stat-item slide-in" style="animation-delay: 0.6s;">
+          <span class="stat-number" data-target="1283">0</span>
+          <span class="stat-label">artistes et créateurs présentés</span>
+        </div>
+        
+        <div class="stat-item slide-in" style="animation-delay: 0.8s;">
+          <span class="stat-number" data-target="579000">0</span>
+          <span class="stat-label">spectacles réunis</span>
+        </div>
+        
+        <p class="stats-footer slide-in" style="animation-delay: 1s;">sur les 20 dernières années</p>
       </div>
-      
-      <div class="stat-item slide-in" style="animation-delay: 0.6s;">
-        <span class="stat-number" data-target="1283">0</span>
-        <span class="stat-label">artistes et créateurs présentés</span>
-      </div>
-      
-      <div class="stat-item slide-in" style="animation-delay: 0.8s;">
-        <span class="stat-number" data-target="579000">0</span>
-        <span class="stat-label">spectacles réunis</span>
-      </div>
-      
-      <p class="stats-footer slide-in" style="animation-delay: 1s;">sur les 20 dernières années</p>
     </div>
     
     <!-- Bulles décoratives -->
@@ -158,7 +167,6 @@
     
     <!-- FLASH NEWS BANNER -->
     <div class="flash-news-banner slide-in" style="animation-delay: 1.2s;">
-     
       <div class="flash-news-slider">
         <div class="news-item">
           <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="News 1">
@@ -189,7 +197,6 @@
       </div>
     </div>
   </section>
-  
   
   <!-- Section fusion Stackée & Détails -->
   <section id="stack-section">
