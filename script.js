@@ -107,34 +107,7 @@
   document.addEventListener("DOMContentLoaded", function() {
     const FORM_ENDPOINT = "https://formspree.io/f/xeoezqea";
 
-    // Animation décryptage pour le titre principal (exécuté dès que #decrypt-title est visible)
-    gsap.from("#decrypt-title span", {
-      y: -50,
-      opacity: 0,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#decrypt-title",
-        start: "top 90%",  // commence quand le titre est presque visible
-        toggleActions: "play none none reverse"
-      }
-    });
-
-    // Exemple d'animation pour les bulles (ces animations se déclenchent dès qu'elles entrent dans la zone de vue)
-    gsap.utils.toArray(".bubble").forEach(bubble => {
-      gsap.to(bubble, {
-        x: "random(-50, 50)",
-        y: "random(-50, 50)",
-        duration: "random(20, 40)",
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: bubble,
-          start: "top 95%",
-          toggleActions: "play none none reverse"
-        }
-      });
-    });
+  
 
     // Animation pour la section fusion Stackée & Détails (titre et sous-titre)
     gsap.from(".stack-card.title h1", {
@@ -237,6 +210,51 @@
     closeModal.addEventListener('click', () => {
       modalOverlay.classList.remove('active');
     });
+
+
+
+    // Smooth scroll sur clic sur un lien du menu
+document.querySelectorAll('.dropdown .menu-card ul li a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Récupère l'ID de la section cible depuis l'attribut href (ex: "#about")
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Ferme le dropdown après clic (si désiré)
+    dropdown.classList.remove('active');
+  });
+});
+
+// Mise à jour de l'item actif en fonction de la section visible
+// Assurez-vous que vos sections ont des IDs correspondant aux hrefs
+const sections = document.querySelectorAll('section');
+const options = { threshold: 0.5 };
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      document.querySelectorAll('.dropdown .menu-card ul li a').forEach(link => {
+        if (link.getAttribute('href') === '#' + id) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  });
+}, options);
+
+sections.forEach(section => {
+  observer.observe(section);
+});
+
+
+
+
 
     // Envoi du formulaire via Formspree
     const contactForm = document.getElementById('contact-form');
@@ -487,9 +505,7 @@ document.querySelectorAll('.pill-item').forEach(pill => {
   
 
   document.addEventListener("DOMContentLoaded", () => {
-    /* -------------------------------
-       Animation des compteurs (stats)
-    ------------------------------- */
+    /* Animation des compteurs (stats) */
     const statNumbers = document.querySelectorAll('.stat-number');
     statNumbers.forEach((stat, index) => {
       const target = +stat.getAttribute('data-target');
@@ -499,9 +515,13 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       const totalFrames = Math.round(duration / (1000 / frameRate));
       const increment = target / totalFrames;
       let highlightTriggered = false;
-      
+    
       const updateCount = () => {
         count += increment;
+        // Affichage formaté avec espace pour séparer les milliers
+        let formatted = Math.floor(count).toLocaleString('fr-FR');
+        stat.textContent = formatted;
+    
         if (!highlightTriggered && count >= target / 2) {
           setTimeout(() => {
             stat.classList.add('highlight');
@@ -509,10 +529,9 @@ document.querySelectorAll('.pill-item').forEach(pill => {
           highlightTriggered = true;
         }
         if(count < target) {
-          stat.textContent = Math.floor(count);
           requestAnimationFrame(updateCount);
         } else {
-          stat.textContent = target;
+          stat.textContent = target.toLocaleString('fr-FR');
           if (!highlightTriggered) {
             stat.classList.add('highlight');
           }
@@ -521,9 +540,7 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       updateCount();
     });
     
-    /* -------------------------------
-       Slider Flash News
-    ------------------------------- */
+    /* Slider Flash News */
     const slider = document.querySelector('.flash-news-slider');
     const dots = document.querySelectorAll('.slider-dots .dot');
     const newsItems = document.querySelectorAll('.flash-news-slider .news-item');
@@ -544,7 +561,7 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       });
     });
     
-    // Optionnel : auto-slide toutes les 5 secondes
+    // Auto-slide toutes les 5 secondes
     setInterval(() => {
       let nextIndex = (currentIndex + 1) % totalItems;
       goToSlide(nextIndex);
