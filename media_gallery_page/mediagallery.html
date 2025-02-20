@@ -6,15 +6,19 @@
   <title>Media Gallery</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <!-- GSAP et ScrollTrigger pour animations (optionnel) -->
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <!-- GSAP (optionnel) -->
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js" defer></script>
   <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
   <style>
     /* ---------- RESET & BASE ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; background: #f0f0f0; color: #333; }
+    body { font-family: 'Montserrat', sans-serif; background: #fff; color: #333; }
     a { text-decoration: none; color: inherit; }
-    
+
     /* ---------- NAVBAR ---------- */
     .navbar {
       position: fixed;
@@ -84,39 +88,83 @@
       transition: background 0.2s ease;
     }
     .dropdown ul li a:hover { background: #f0f0f0; }
-    
-    /* ---------- MAIN ---------- */
+
+    /* ---------- MAIN & SEPARATORS ---------- */
     main { padding-top: 90px; }
-    section { padding: 60px 20px; margin-bottom: 60px; }
+    section { padding: 60px 20px; }
+    .section-separator {
+      border: none;
+      border-top: 2px solid #ddd;
+      margin: 40px auto;
+      width: 80%;
+    }
     h2.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 30px; }
-    
+
     /* ---------- SECTION "À LA UNE" ---------- */
     #featured { background: #fff; }
     .featured-carousel {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
       gap: 15px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 0 20px;
+      padding: 20px;
+      align-items: center;
     }
-    .featured-carousel::-webkit-scrollbar { display: none; }
+    /* Left group: two small images vertically */
+    .featured-left {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 15px;
+    }
+    /* Right group: idem */
+    .featured-right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 15px;
+    }
     .featured-card {
-      flex: 0 0 auto;
-      width: 320px; height: 180px;
       border-radius: 15px;
       overflow: hidden;
-      scroll-snap-align: center;
       cursor: pointer;
       transition: transform 0.3s;
     }
     .featured-card:hover { transform: scale(1.03); }
     .featured-card img { width: 100%; height: 100%; object-fit: cover; }
-    
+    /* Grand central item */
+    .featured-center {
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .featured-center:hover { transform: scale(1.03); }
+    .featured-center img { width: 100%; height: 100%; object-fit: cover; }
+    /* Slider for audio covers below */
+    .audio-slider {
+      margin-top: 30px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 0 20px;
+      scroll-snap-type: x mandatory;
+    }
+    .audio-slider::-webkit-scrollbar { display: none; }
+    .audio-cover {
+      flex: 0 0 auto;
+      width: 80px; height: 80px;
+      border-radius: 10px;
+      overflow: hidden;
+      scroll-snap-align: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .audio-cover:hover { transform: scale(1.05); }
+    .audio-cover img { width: 100%; height: 100%; object-fit: cover; }
+
     /* ---------- GRID SECTIONS (Photos, Vidéos, Audio) ---------- */
     .media-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
+      gap: 10px;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -124,10 +172,15 @@
       border-radius: 15px;
       overflow: hidden;
       cursor: pointer;
+      background: #ccc;
       transition: transform 0.3s;
     }
     .media-card:hover { transform: scale(1.02); }
-    .media-card img { width: 100%; height: 100%; object-fit: cover; }
+    .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Tous les items de photos et vidéos en format carré */
+    .photos-grid .media-card,
+    .videos-grid .media-card { aspect-ratio: 1/1; }
+
     .see-more { text-align: center; margin-top: 20px; }
     .see-more button {
       padding: 10px 20px;
@@ -140,7 +193,22 @@
       transition: background 0.3s;
     }
     .see-more button:hover { background: #333; }
-    
+
+    /* ---------- SECTION AUDIO (Grid: items carrés) ---------- */
+    .audio-grid .media-card { aspect-ratio: 1/1; position: relative; }
+    /* Overlay pour audio, pour indiquer lecture */
+    .audio-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s;
+    }
+    .audio-overlay.hidden { opacity: 0; }
+
     /* ---------- STICKY MUSIC PLAYER ---------- */
     .music-player {
       position: fixed;
@@ -153,6 +221,7 @@
       padding: 10px 20px;
       z-index: 1000;
       box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+      transition: height 0.4s ease;
     }
     .player-container {
       display: flex;
@@ -162,10 +231,26 @@
       margin: 0 auto;
       gap: 20px;
     }
-    .album-art {
-      width: 60px; height: 60px;
-      flex-shrink: 0;
+    .discover-sounds {
+      margin-right: auto;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
+    .discover-sounds.hide {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    .discover-sounds button {
+      padding: 10px 20px;
+      border: none;
+      background: #1db954;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .album-art { width: 60px; height: 60px; flex-shrink: 0; }
     .album-art img {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -184,21 +269,13 @@
       align-items: center;
       gap: 15px;
     }
-    .player-controls button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    /* Volume Control */
+    .player-controls button { background: none; border: none; cursor: pointer; }
     .volume-control {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .volume-control input[type="range"] {
-      width: 100px;
-    }
-    /* Barre de progression */
+    .volume-control input[type="range"] { width: 100px; }
     .progress-container {
       position: relative;
       width: 100%;
@@ -210,32 +287,12 @@
     }
     .progress-bar {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       height: 100%;
       background: #1db954;
       width: 0%;
     }
-    
-    /* Bouton "Découvrez nos sons" */
-    .discover-sounds {
-      position: fixed;
-      bottom: 80px;
-      left: 20px;
-      z-index: 1100;
-    }
-    .discover-sounds button {
-      padding: 10px 20px;
-      border: none;
-      background: #1db954;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-    
+
     /* ---------- MODAL MEDIA ---------- */
     .media-modal {
       position: fixed;
@@ -286,10 +343,10 @@
     }
     .modal-prev { left: 10px; }
     .modal-next { right: 10px; }
-    
+
     /* ---------- Responsive ---------- */
     @media (max-width: 768px) {
-      .featured-card { width: 250px; height: 140px; }
+      .featured-carousel { grid-template-columns: 1fr; }
       .player-container { flex-direction: column; gap: 10px; }
       .player-controls { margin-top: 10px; }
       .volume-control input[type="range"] { width: 80px; }
@@ -298,14 +355,16 @@
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar">
+  <nav class="navbar" data-aos="fade-down">
     <div class="nav-center">
       <img src="../assets/images/Danslesmurs_A27.jpg" alt="Logo">
     </div>
     <div class="nav-actions">
       <div class="btn contact-btn" id="contact-btn">
         <div class="icon-circle">
-          <svg viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4C22 2.9 21.1 2 20 2z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4C22 2.9 21.1 2 20 2z"/>
+          </svg>
         </div>
         <span>Contact</span>
       </div>
@@ -335,30 +394,63 @@
   <!-- Main Content -->
   <main>
     <!-- Featured Section -->
-    <section id="featured">
+    <section id="featured" data-aos="fade-up">
       <h2 class="section-title">À la une</h2>
       <div class="featured-carousel">
-        <div class="featured-card">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured 1">
+        <!-- Groupe gauche: deux petites images empilées -->
+        <div class="featured-left" data-aos="fade-right">
+          <div class="featured-card">
+            <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Left 1">
+          </div>
+          <div class="featured-card">
+            <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Left 2">
+          </div>
         </div>
-        <div class="featured-card">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured 2">
+        <!-- Grand item central -->
+        <div class="featured-center" data-aos="zoom-in">
+          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Center">
         </div>
-        <div class="featured-card">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured 3">
+        <!-- Groupe droit: deux petites images empilées -->
+        <div class="featured-right" data-aos="fade-left">
+          <div class="featured-card">
+            <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Right 1">
+          </div>
+          <div class="featured-card">
+            <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Right 2">
+          </div>
         </div>
       </div>
+      <!-- Slider audio covers sous la section à la une -->
+      <div class="audio-slider" data-aos="fade-up">
+        <div class="audio-cover">
+          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 1">
+        </div>
+        <div class="audio-cover">
+          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 2">
+        </div>
+        <div class="audio-cover">
+          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 3">
+        </div>
+        <div class="audio-cover">
+          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 4">
+        </div>
+        <div class="audio-cover">
+          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 5">
+        </div>
+      </div>
+      <hr class="section-separator">
     </section>
     
     <!-- Photos Section -->
-    <section id="photos">
+    <section id="photos" data-aos="fade-up">
       <h2 class="section-title">Photos</h2>
-      <div class="filter-buttons">
+      <div class="filter-buttons" style="text-align:center; margin-bottom:20px;" data-aos="fade-up">
         <button data-filter="all" class="active">Toutes</button>
         <button data-filter="interieur">Dans les murs</button>
         <button data-filter="exterieur">Hors les murs</button>
       </div>
-      <div class="media-grid photos-grid">
+      <div class="media-grid photos-grid" data-aos="fade-up">
+        <!-- Tous les items en carré -->
         <div class="media-card" data-category="interieur">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Photo">
         </div>
@@ -378,15 +470,16 @@
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Photo">
         </div>
       </div>
-      <div class="see-more">
+      <div class="see-more" data-aos="fade-up">
         <button>Voir plus <span class="arrow">➔</span></button>
       </div>
+      <hr class="section-separator">
     </section>
     
     <!-- Videos Section -->
-    <section id="videos">
+    <section id="videos" data-aos="fade-up">
       <h2 class="section-title">Vidéos</h2>
-      <div class="media-grid videos-grid">
+      <div class="media-grid videos-grid" data-aos="fade-up">
         <div class="media-card" data-type="video">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Vidéo">
         </div>
@@ -397,40 +490,56 @@
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Vidéo">
         </div>
       </div>
-      <div class="see-more">
+      <div class="see-more" data-aos="fade-up">
         <button>Voir plus <span class="arrow">➔</span></button>
       </div>
+      <hr class="section-separator">
     </section>
     
     <!-- Audio Section -->
-    <section id="audio">
+    <section id="audio" data-aos="fade-up">
       <h2 class="section-title">Audio</h2>
-      <div class="media-grid audio-grid">
+      <div class="media-grid audio-grid" data-aos="fade-up">
+        <!-- Chaque card audio contient un attribut data-audio -->
         <div class="media-card" data-audio="../assets/audio/sample.mp3">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
+          <div class="audio-overlay">
+            <svg viewBox="0 0 24 24" width="36" height="36">
+              <polygon points="6,4 20,12 6,20" fill="#fff"/>
+            </svg>
+          </div>
         </div>
         <div class="media-card" data-audio="../assets/audio/sample.mp3">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
+          <div class="audio-overlay">
+            <svg viewBox="0 0 24 24" width="36" height="36">
+              <polygon points="6,4 20,12 6,20" fill="#fff"/>
+            </svg>
+          </div>
         </div>
         <div class="media-card" data-audio="../assets/audio/sample.mp3">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
+          <div class="audio-overlay">
+            <svg viewBox="0 0 24 24" width="36" height="36">
+              <polygon points="6,4 20,12 6,20" fill="#fff"/>
+            </svg>
+          </div>
         </div>
       </div>
-      <div class="see-more">
+      <div class="see-more" data-aos="fade-up">
         <button>Voir plus <span class="arrow">➔</span></button>
       </div>
+      <hr class="section-separator">
     </section>
   </main>
   
-  <!-- Bouton Découvrir nos sons (affiché tant qu'aucun son n'est joué) -->
-  <div class="discover-sounds" id="discover-sounds">
-    <button>Découvrez nos sons</button>
-  </div>
-  
   <!-- Sticky Music Player -->
   <footer>
-    <div class="music-player">
+    <div class="music-player" data-aos="fade-up">
       <div class="player-container">
+        <div class="discover-sounds" id="discover-sounds">
+          <button>Découvrez nos sons</button>
+        </div>
         <div class="album-art">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Album Art">
         </div>
@@ -451,7 +560,7 @@
             <svg id="play-icon" viewBox="0 0 24 24" width="24" height="24">
               <polygon points="6,4 20,12 6,20" fill="#fff"/>
             </svg>
-            <svg id="pause-icon" viewBox="0 0 24 24" width="24" height="24" style="display: none;">
+            <svg id="pause-icon" viewBox="0 0 24 24" width="24" height="24" style="display:none;">
               <rect x="6" y="4" width="4" height="16" fill="#fff"/>
               <rect x="14" y="4" width="4" height="16" fill="#fff"/>
             </svg>
@@ -465,7 +574,7 @@
         <div class="volume-control">
           <div class="volume-icon">
             <svg id="volume-icon" viewBox="0 0 24 24" width="24" height="24">
-              <path d="M3 10v4h4l5 5V5l-5 5H3z" fill="#fff"/>
+              <path d="M3 10v4h4l5 5V5l-5 5z" fill="#fff"/>
             </svg>
           </div>
           <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
@@ -488,12 +597,12 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      AOS.init({ duration: 800 });
+      
       /* --- Navbar Dropdown --- */
       const menuBtn = document.getElementById("menu-btn");
       const dropdown = document.getElementById("dropdown");
-      menuBtn.addEventListener("click", () => {
-        dropdown.classList.toggle("active");
-      });
+      menuBtn.addEventListener("click", () => { dropdown.classList.toggle("active"); });
       
       /* --- Filter Photos --- */
       const filterButtons = document.querySelectorAll(".filter-buttons button");
@@ -524,6 +633,8 @@
       
       const mediaCards = document.querySelectorAll(".media-grid .media-card");
       mediaCards.forEach((card, index) => {
+        // Pour photos et vidéos, ouvrir le modal ; pour audio, on lance directement le son
+        if(card.closest("#audio")) return;
         card.addEventListener("click", () => { openModal(index); });
       });
       
@@ -585,12 +696,19 @@
       
       loadTrack(currentTrackIndex);
       
+      function startAudio() {
+        audioPlayer.play();
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+        discoverSounds.classList.add("hide");
+        setTimeout(() => { discoverSounds.style.display = "none"; }, 400);
+        // Pour les cards audio, on masque l'overlay
+        document.querySelectorAll("#audio .audio-overlay").forEach(el => el.classList.add("hidden"));
+      }
+      
       playPauseBtn.addEventListener("click", () => {
         if (audioPlayer.paused) {
-          audioPlayer.play();
-          playIcon.style.display = "none";
-          pauseIcon.style.display = "block";
-          if(discoverSounds) discoverSounds.style.display = "none";
+          startAudio();
         } else {
           audioPlayer.pause();
           playIcon.style.display = "block";
@@ -601,19 +719,13 @@
       prevTrackBtn.addEventListener("click", () => {
         currentTrackIndex = (currentTrackIndex - 1 + audioPlaylist.length) % audioPlaylist.length;
         loadTrack(currentTrackIndex);
-        audioPlayer.play();
-        playIcon.style.display = "none";
-        pauseIcon.style.display = "block";
-        if(discoverSounds) discoverSounds.style.display = "none";
+        startAudio();
       });
       
       nextTrackBtn.addEventListener("click", () => {
         currentTrackIndex = (currentTrackIndex + 1) % audioPlaylist.length;
         loadTrack(currentTrackIndex);
-        audioPlayer.play();
-        playIcon.style.display = "none";
-        pauseIcon.style.display = "block";
-        if(discoverSounds) discoverSounds.style.display = "none";
+        startAudio();
       });
       
       audioPlayer.addEventListener("timeupdate", () => {
@@ -625,7 +737,7 @@
         audioPlayer.volume = volumeSlider.value;
       });
       
-      // Lors du clic sur une card audio, lancer directement la piste sans afficher d'image
+      // Lors du clic sur une card audio, lancer directement la piste
       const audioCards = document.querySelectorAll("#audio .media-card");
       audioCards.forEach(card => {
         card.addEventListener("click", () => {
@@ -633,31 +745,17 @@
           currentTrackIndex = 0;
           audioPlaylist[0].src = audioSrc;
           loadTrack(currentTrackIndex);
-          audioPlayer.play();
-          playIcon.style.display = "none";
-          pauseIcon.style.display = "block";
-          if(discoverSounds) discoverSounds.style.display = "none";
+          startAudio();
         });
       });
       
-      /* --- Discover Sounds Button --- */
-      const discoverBtn = document.querySelector("#discover-sounds button");
-      if(discoverBtn){
-        discoverBtn.addEventListener("click", () => {
-          document.getElementById("discover-sounds").style.display = "none";
-        });
-      }
-      
-      /* --- GSAP Featured Animation --- */
+      /* --- GSAP Featured Animation (optionnel) --- */
       gsap.from("#featured .featured-carousel", {
         y: 20,
         opacity: 0,
         duration: 1,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#featured",
-          start: "top 80%"
-        }
+        scrollTrigger: { trigger: "#featured", start: "top 80%" }
       });
     });
   </script>
