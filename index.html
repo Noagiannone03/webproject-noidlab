@@ -37,9 +37,7 @@
 
   
   <div id="backToTop">
-    <!-- Vous pouvez conserver l'image de base -->
     <img src="assets/pieddepouleunique.png" alt="Back to Top">
-    <!-- SVG de flèche -->
     <div class="arrow">
       <svg class="arrow-icon" viewBox="0 0 24 24">
         <line x1="12" y1="19" x2="12" y2="5"></line>
@@ -47,6 +45,7 @@
       </svg>
     </div>
   </div>
+  
   <!-- Navbar -->
   <nav class="navbar">
 
@@ -85,7 +84,7 @@
 <div class="menu-card">
   <ul>
     <li><a href="#stack-section">À propos</a></li>
-    <li><a href="#pricing-section">Prestations</a></li>
+    <li><a href="#pricing-section-custom">Prestations</a></li>
     <li><a href="#slider-section">Nos lieux</a></li>
     <li><a href="#event-section">Nos Références</a></li>
     <li><a href="#gallery-media">Médias</a></li>
@@ -224,45 +223,115 @@
  
   
   <!-- Section Tarifs -->
-  <section id="pricing-section">
 
-    <h1 class="section-title">Prestations</h1>
-    <p class="sections">Des solutions créatives sur mesure 
-      pour des projets d’envergures
-    </p>
-    <div class="pricing-cards">
-      <!-- Pricing Card 1 -->
-      <div class="pricing-card">
-        <img src="https://via.placeholder.com/300x200" alt="Offre 1" />
-        <div class="card-content">
-          <div class="card-title">Offre Basic</div>
-          <div class="card-text">Description de l'offre Basic avec des avantages essentiels.</div>
+<section id="pricing-section-custom">
+  <h1 class="section-title">Prestations</h1>
+  <p class="section-subtitle">
+    Des solutions créatives sur mesure pour des projets d’envergures
+  </p>
+
+  <!-- Carousel avec cartes flip -->
+  <div class="carousel-container-custom">
+    <div class="carousel-custom">
+      <!-- Carte 1 -->
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://www.bivea.fr/5104-home_default/baume-de-soin-des-pyrenees.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 1</h2>
+            <p>Sous-titre 1</p>
+          </div>
         </div>
-        <div class="card-small-title">Plan Basic</div>
-        <div class="card-subtitle">À partir de 9€/mois</div>
       </div>
-      <!-- Pricing Card 2 -->
-      <div class="pricing-card">
-        <img src="https://via.placeholder.com/300x200" alt="Offre 2" />
-        <div class="card-content">
-          <div class="card-title">Offre Pro</div>
-          <div class="card-text">Description de l'offre Pro avec des fonctionnalités avancées.</div>
+      <!-- Carte 2 -->
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
         </div>
-        <div class="card-small-title">Plan Pro</div>
-        <div class="card-subtitle">À partir de 19€/mois</div>
       </div>
-      <!-- Pricing Card 3 -->
-      <div class="pricing-card">
-        <img src="https://via.placeholder.com/300x200" alt="Offre 3" />
-        <div class="card-content">
-          <div class="card-title">Offre Premium</div>
-          <div class="card-text">Description de l'offre Premium pour une expérience complète.</div>
+      <!-- ... Autres cartes ... -->
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
         </div>
-        <div class="card-small-title">Plan Premium</div>
-        <div class="card-subtitle">À partir de 29€/mois</div>
+      </div>
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-custom" onclick="flipCard(this)">
+        <div class="card-inner-custom">
+          <div class="card-front-custom" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back-custom">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+    <button class="prev-custom" onclick="moveCarousel(-1)">&#10094;</button>
+    <button class="next-custom" onclick="moveCarousel(1)">&#10095;</button>
+  </div>
+</section>
+
   
   <!-- Nouvelle Section : Slider Cards -->
   <!-- Nouvelle Section : Slider Cards -->
@@ -460,28 +529,24 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
   
   <!-- Conteneur qui masque le débordement horizontal -->
   <div class="slider-wrapper-container">
-    <!-- Slider Swiper -->
-    <div class="swiper-container mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="https://images.pexels.com/photos/10669815/pexels-photo-10669815.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 1">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://images.pexels.com/photos/10675618/pexels-photo-10675618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 2">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://images.pexels.com/photos/10669824/pexels-photo-10669824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 3">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://images.pexels.com/photos/10675614/pexels-photo-10675614.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 4">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://images.pexels.com/photos/10669823/pexels-photo-10669823.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 5">
-        </div>
+    <!-- Grille de 2 lignes x 5 colonnes -->
+    <div class="gallery-grid">
+      <div class="gallery-card"><img src="assets/images/danslesmurs_5.jpg" alt="Image 1"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_2.jpg" alt="Image 2"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_4.jpg" alt="Image 3"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_3.jpg" alt="Image 4"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A15.jpg" alt="Image 2"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A27.jpg" alt="Image 5"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A23.jpg" alt="Image 1"></div>
+       <div class="gallery-card"><img src="assets/images/Danslesmurs_A18.jpg" alt="Image 3"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A35.jpg" alt="Image 4"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A30.jpg" alt="Image 5"></div>
+   
+    
       </div>
-    </div>
   </div>
 </section>
+
 
 
 <section id="contact-section">
@@ -597,12 +662,12 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
       </div>
     </div>
   </div>
-
-</footer>
-  <!-- Bandeau noir en bas -->
-  <div class="footer-bottom">
+ <div class="footer-bottom">
     &copy; 2025 noidlab. Tous droits réservés.
   </div>
+</footer>
+  <!-- Bandeau noir en bas -->
+ 
 
 
   <!-- Modal Overlay -->
@@ -646,6 +711,73 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js">
 </script>
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Déclaration globale pour les fonctions utilisées en inline
+  window.index = 0;
+  
+  // Récupérer les cartes et calculer leur nombre réel
+  const cardElements = document.querySelectorAll(".card-custom");
+  window.totalCards = cardElements.length;
+  
+  const carousel = document.querySelector(".carousel-custom");
+  const angleIncrement = 360 / window.totalCards;
+  const distance = 350;
+  
+  // Positionner chaque carte dans l'espace 3D
+  cardElements.forEach((card, i) => {
+    card.style.transform = `rotateY(${i * angleIncrement}deg) translateZ(${distance}px)`;
+  });
+  
+  // Fonction pour déplacer le carousel
+  window.moveCarousel = function(direction) {
+    window.index += direction;
+    if (window.index < 0) window.index = window.totalCards - 1;
+    if (window.index >= window.totalCards) window.index = 0;
+    updateCarousel();
+  };
+  
+  function updateCarousel() {
+    const angle = -window.index * angleIncrement;
+    carousel.style.transform = `rotateY(${angle}deg)`;
+  }
+  
+  // Fonction pour l'effet flip sur une carte
+  window.flipCard = function(cardElement) {
+    cardElement.classList.toggle('flipped-custom');
+  };
+  
+  // Animation du texte en SVG
+  const textElement = document.getElementById("animatedText-custom");
+  
+  function restartAnimation() {
+    textElement.style.transition = "none";
+    textElement.style.strokeDashoffset = "0";
+    setTimeout(() => {
+      textElement.style.transition = "stroke-dashoffset 3s ease";
+      textElement.style.strokeDashoffset = "1000";
+    }, 50);
+  }
+  
+  restartAnimation();
+  setInterval(restartAnimation, 10000);
+  
+  // Fonctions lightbox (si besoin)
+  window.openLightbox = function(imageSrc) {
+    const lightbox = document.getElementById("lightbox-custom");
+    const lightboxImage = document.getElementById("lightbox-img-custom");
+    lightboxImage.src = imageSrc;
+    lightbox.style.display = "flex";
+  };
+  
+  window.closeLightbox = function() {
+    const lightbox = document.getElementById("lightbox-custom");
+    lightbox.style.display = "none";
+  };
+});
+
+
+
+
 
 var gallerySlider = new Swiper(".mySwiper", {
     slidesPerView: 3,

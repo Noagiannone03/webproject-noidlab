@@ -3,412 +3,408 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galerie en Modal - Design Flat</title>
+  <title>Carousel avec effet Flip</title>
+  <link href="https://fonts.cdnfonts.com/css/graffiti-font" rel="stylesheet" />
   <style>
-    /* ===============================
-       RÉGLAGES DE BASE
-       =============================== */
+    /* Réglages de base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      font-family: "Montserrat", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-      background: #000;
-      color: #fff;
-    }
-    button {
-      cursor: pointer;
-      border: none;
-      background: #444;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-    
-    /* ===============================
-       MODAL (Design Flat Apple-like)
-       =============================== */
-    .modal {
-      display: none; /* caché par défaut */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3); /* fond semi-transparent pour focus */
-      z-index: 1000;
-      overflow: auto;
-    }
-    .modal-content {
-      background: #fff;
-      margin: 5% auto;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 1200px;
-      position: relative;
-      /* Ombre flat subtile */
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding-bottom: 20px;
-    }
-    .modal-header {
+      font-family: Arial, sans-serif;
+      background-color: #2c2b2b;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 20px;
-      border-bottom: 1px solid #eee;
-    }
-    .modal-header h2 {
-      font-size: 1.8rem;
-      color: #333;
-      margin: 0;
-    }
-    .modal-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    .modal-buttons button {
-      padding: 8px 12px;
-      background: #f7f7f7;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      color: #333;
-      font-size: 0.9rem;
-      transition: background 0.3s;
-    }
-    .modal-buttons button:hover {
-      background: #eaeaea;
-    }
-    .close-modal {
-      background: transparent;
-      font-size: 1.5rem;
-      line-height: 1;
-      border: none;
-      color: #999;
-      transition: color 0.3s;
-    }
-    .close-modal:hover {
-      color: #666;
-    }
-    .modal-body {
-      position: relative;
-      padding: 10px;
-    }
-    
-    /* ===============================
-       GALLERY (Code fourni)
-       =============================== */
-    .bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      height: 100vh;
       overflow: hidden;
-      z-index: -1;
-      filter: blur(3px);
-      opacity: 0.2;
     }
-    .bg::after {
-      content: "";
+
+    /* SVG et texte animé */
+    svg {
+      position: absolute;
+      top: 3%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: auto;
+    }
+
+    text {
+      fill: url(#imagePattern);
+      font-family: "Graffiti font", sans-serif;
+      font-weight: bold;
+      font-size: 45px;
+      letter-spacing: 5px;
+      stroke: rgb(130, 217, 252);
+      stroke-width: 1px;
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      filter: url(#glowFilter);
+    }
+
+    /* Carousel et cartes */
+    .carousel-container {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: radial-gradient(black, transparent);
-      width: 100vw;
-      height: 100vh;
+      width: 850px;
+      height: 400px;
+      perspective: 1500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .bg::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      height: 300%;
-      width: 300%;
-      background: repeating-linear-gradient(
-              #000 0% 4%,
-              #fff 4% 98%,
-              #fff 98% 100%
-            ),
-            repeating-linear-gradient(90deg, #000 0% 4%, #fff 4% 98%, #fff 98% 100%);
-      background-size: 100px 100px;
-      background-blend-mode: difference;
-      transform-style: preserve-3d;
-    }
-    .gallery {
+
+    .carousel {
       position: relative;
-      column-count: 4;
-      column-gap: 0;
       width: 100%;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .box {
-      position: relative;
+      height: 100%;
       transform-style: preserve-3d;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      margin: 20px 10px;
-      break-inside: avoid;
-      perspective: 512px;
-      transition: 0.3s ease-out;
+      transition: transform 1s ease;
+      transform: rotateY(0deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .box img {
-      width: calc(100% + 50px);
-      height: calc(100% + 50px);
-      pointer-events: none;
-      transition: 0.3s ease-out;
-    }
-    .box:hover img {
-      transform: scale(1.1);
-    }
-    .box > *:not(img) {
+
+    .card {
+      width: 200px;
+      height: 300px;
       position: absolute;
-      left: 50%;
-      transform-style: preserve-3d;
-      transform: translate3d(-50%, -50%, 0);
-      text-align: center;
+      background-size: cover;
+      background-position: center;
       color: white;
-      z-index: 10;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 1s ease;
+      /* Nécessaire pour l'effet flip */
+      perspective: 1000px;
+    }
+
+    /* Structure interne pour l'effet flip */
+    .card-inner {
+      position: relative;
       width: 100%;
-      opacity: 0;
-      font-size: 14px;
-      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
     }
-    .box:hover > *:not(img) {
-      opacity: 1;
-      transform: translate3d(-50%, -50%, 50px);
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
     }
-    .box h1 {
-      font-size: 1.5em;
-      top: 20%;
-      transition-delay: 0.1s;
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
     }
-    .box p {
+
+    .card-front {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-back {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .content {
+      border-radius: 5px;
+    }
+
+    /* Boutons de navigation */
+    button {
+      position: absolute;
       top: 50%;
-      width: 70%;
-      transition-delay: 0.25s;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 10;
     }
-    .box a {
-      text-decoration: none;
-      top: 80%;
-      width: initial;
-      padding: 7px 14px;
-      background: linear-gradient(currentColor 0 0) var(--p, 50%) 100% /
-          var(--d, 10%) 2px no-repeat;
-      transition: 0.3s, background-position 0.3s 0.3s,
-          opacity 0.5s 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-          transform 0.5s 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+    button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: limegreen;
     }
-    .box a:hover {
-      --d: 100%;
-      --p: 0%;
-      transition: 0.3s, background-size 0.3s 0.3s;
+
+    .prev {
+      left: 0;
+      color: red;
     }
-    @media (max-width: 781px) {
-      .gallery {
-        column-count: 3;
+
+    .next {
+      right: 0;
+      color: red;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Réglages responsive */
+    @media screen and (min-width: 600px) and (max-width: 1000px) {
+      .carousel-container {
+        width: 700px;
+        height: 300px;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+
+      .card {
+        width: 160px;
+        height: 240px;
+        font-size: 20px;
+      }
+
+      .carousel {
+        gap: 15px;
       }
     }
-    @media (max-width: 735px) {
-      .box > *:not(img) {
-        font-size: 12px;
+
+    @media screen and (max-width: 600px) {
+      svg {
+        top: 20%;
+        left: 70%;
       }
-    }
-    @media (max-width: 482px) {
-      .gallery {
-        column-count: 2;
+
+      .carousel-container {
+        width: 100%;
+        height: 200px;
+        transform: translate(-50%, -50%) scale(0.6);
       }
-    }
-    @media (max-width: 385px) {
-      .gallery {
-        column-count: 1;
+
+      .carousel {
+        gap: 0px;
       }
-      .box > *:not(img) {
-        font-size: 14px;
-      }
-      .box h1 {
-        font-size: 2em;
-      }
-    }
-    
-    /* ===============================
-       Bouton d'ouverture
-       =============================== */
-    #openModal {
-      margin: 20px;
     }
   </style>
 </head>
 <body>
-  <!-- Bouton pour ouvrir le modal -->
-  <button id="openModal">Ouvrir la Galerie</button>
-  
-  <!-- Modal -->
-  <div id="galleryModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Galerie Photo</h2>
-        <div class="modal-buttons">
-          <button id="btnPrev">Précédent</button>
-          <button id="btnNext">Suivant</button>
+  <!-- SVG pour le texte animé -->
+  <svg viewBox="0 0 900 200">
+    <defs>
+      <pattern id="imagePattern" patternUnits="userSpaceOnUse" width="400" height="400">
+        <image href="https://cornello.eu/graffiti.jpg" x="0" y="0" width="400" height="400" />
+      </pattern>
+      <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blurred" />
+        <feOffset in="blurred" dx="0" dy="0" result="offsetBlurred" />
+        <feFlood flood-color="cyan" result="glowColor" />
+        <feComposite in="glowColor" in2="offsetBlurred" operator="in" />
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <text id="animatedText" x="50" y="150"></text>
+  </svg>
+
+  <!-- Carousel avec cartes flip -->
+  <div class="carousel-container">
+    <div class="carousel">
+      <!-- Chaque carte comporte désormais une structure avec .card-inner, .card-front et .card-back -->
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://www.bivea.fr/5104-home_default/baume-de-soin-des-pyrenees.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 1</h2>
+            <p>Sous-titre 1</p>
+          </div>
         </div>
-        <button class="close-modal" id="closeModal">&times;</button>
       </div>
-      <div class="modal-body">
-        <!-- Insertion de la galerie -->
-        <div class="bg"></div>
-        <div class="gallery">
-          <div class="box">
-            <img src="https://shu-vro.github.io/Parallax-Image-Gallery/resources/img/1.jpeg" alt="" />
-            <h1>Project Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sit, quasi?
-            </p>
-            <a href="#">Learn More</a>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/2.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 2</h2>
+            <p>Sous-titre 2</p>
           </div>
-          <div class="box">
-            <img src="https://shu-vro.github.io/Parallax-Image-Gallery/resources/img/2.jpg" alt="" />
-            <h1>Project Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sit, quasi?
-            </p>
-            <a href="#">Learn More</a>
+        </div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/3.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 3</h2>
+            <p>Sous-titre 3</p>
           </div>
-          <div class="box">
-            <img src="https://shu-vro.github.io/Parallax-Image-Gallery/resources/img/3.jpg" alt="" />
-            <h1>Project Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sit, quasi?
-            </p>
-            <a href="#">Learn More</a>
+        </div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/4.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 4</h2>
+            <p>Sous-titre 4</p>
           </div>
-          <div class="box">
-            <img src="https://shu-vro.github.io/Parallax-Image-Gallery/resources/img/4.jpeg" alt="" />
-            <h1>Project Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sit, quasi?
-            </p>
-            <a href="#">Learn More</a>
+        </div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/5.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 5</h2>
+            <p>Sous-titre 5</p>
           </div>
-          <div class="box">
-            <img src="https://shu-vro.github.io/Parallax-Image-Gallery/resources/img/5.jpeg" alt="" />
-            <h1>Project Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sit, quasi?
-            </p>
-            <a href="#">Learn More</a>
+        </div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/6.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 6</h2>
+            <p>Sous-titre 6</p>
           </div>
-          <div class="box">
-            <img src="https://shu-vro.github.io/Parallax-Image-Gallery/resources/img/6.jpeg" alt="" />
-            <h1>Project Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sit, quasi?
-            </p>
-            <a href="#">Learn More</a>
+        </div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/7.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 7</h2>
+            <p>Sous-titre 7</p>
           </div>
-          <div class="box">
-            <img src="https://shu-vro.github.io/Parallax-Image-Gallery/resources/img/7.jpeg" alt="" />
-            <h1>Project Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sit, quasi?
-            </p>
-            <a href="#">Learn More</a>
+        </div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/8.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 8</h2>
+            <p>Sous-titre 8</p>
           </div>
-          <div class="box">
-            <img src="https://shu-vro.github.io/Parallax-Image-Gallery/resources/img/8.jpeg" alt="" />
-            <h1>Project Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Sit, quasi?
-            </p>
-            <a href="#">Learn More</a>
+        </div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/9.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 9</h2>
+            <p>Sous-titre 9</p>
+          </div>
+        </div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://cornello.eu/10.jpg');"></div>
+          <div class="card-back">
+            <h2>Titre 10</h2>
+            <p>Sous-titre 10</p>
           </div>
         </div>
       </div>
     </div>
+    <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
+    <button class="next" onclick="moveCarousel(1)">&#10095;</button>
   </div>
-  
+
+  <!-- Lightbox (conserve le code existant, utilisable si nécessaire) -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Large view" />
+  </div>
+
   <script>
-    /* ===============================
-       Modal JS
-       =============================== */
-    const openModalBtn = document.getElementById("openModal");
-    const closeModalBtn = document.getElementById("closeModal");
-    const galleryModal = document.getElementById("galleryModal");
-    
-    openModalBtn.addEventListener("click", () => {
-      galleryModal.style.display = "block";
+    // Animation du texte en SVG
+    const textElement = document.getElementById("animatedText");
+
+    function restartAnimation() {
+      textElement.style.transition = "none";
+      textElement.style.strokeDashoffset = "0";
+      setTimeout(() => {
+        textElement.style.transition = "stroke-dashoffset 3s ease";
+        textElement.style.strokeDashoffset = "1000";
+      }, 50);
+    }
+
+    restartAnimation();
+    setInterval(restartAnimation, 10000);
+
+    // Carousel et positionnement 3D
+    let index = 0;
+    const totalCards = 10;
+    const carousel = document.querySelector(".carousel");
+    const angleIncrement = 360 / totalCards;
+    const distance = 350;
+
+    // Positionne chaque carte dans l'espace 3D
+    document.querySelectorAll(".card").forEach((card, i) => {
+      card.style.transform = `rotateY(${i * angleIncrement}deg) translateZ(${distance}px)`;
     });
-    
-    closeModalBtn.addEventListener("click", () => {
-      galleryModal.style.display = "none";
-    });
-    
-    window.addEventListener("click", (e) => {
-      if (e.target === galleryModal) {
-        galleryModal.style.display = "none";
-      }
-    });
-    
-    /* ===============================
-       Gallery Hover Effect
-       =============================== */
-    let boxes = document.querySelectorAll(".box");
-    
-    boxes.forEach((box) => {
-      box.addEventListener("mousemove", (e) => {
-        let halfWidth = box.clientWidth / 2,
-          halfHeight = box.clientHeight / 2,
-          mouseX = halfWidth + box.offsetLeft - e.pageX,
-          mouseY = halfHeight + box.offsetTop - e.pageY,
-          maxDeg = 5,
-          image = box.querySelector("img");
-    
-        let degX = (mouseY / halfHeight) * -maxDeg + "deg";
-        let degY = (mouseX / halfWidth) * maxDeg + "deg";
-        box.setAttribute(
-          "style",
-          `transform: perspective(512px) rotateX(${degX}) rotateY(${degY});`
-        );
-    
-        image.setAttribute(
-          "style",
-          `object-position: ${
-            (box.offsetLeft + box.clientWidth - e.pageX) / -8 + 20
-          }px ${(box.offsetTop + box.clientHeight - e.pageY) / -8 + 20}px`
-        );
-      });
-    
-      box.addEventListener("mouseout", () => {
-        box.removeAttribute("style");
-        box.querySelector("img").removeAttribute("style");
-      });
-    });
-    
-    /* ===============================
-       Boutons du header du modal
-       =============================== */
-    document.getElementById("btnPrev").addEventListener("click", () => {
-      // Personnalisez le comportement pour le bouton "Précédent"
-      alert("Bouton Précédent cliqué !");
-    });
-    document.getElementById("btnNext").addEventListener("click", () => {
-      // Personnalisez le comportement pour le bouton "Suivant"
-      alert("Bouton Suivant cliqué !");
-    });
+
+    function moveCarousel(direction) {
+      index += direction;
+      if (index < 0) index = totalCards - 1;
+      if (index >= totalCards) index = 0;
+      updateCarousel();
+    }
+
+    function updateCarousel() {
+      const angle = -index * angleIncrement;
+      carousel.style.transform = `rotateY(${angle}deg)`;
+    }
+
+    // Fonction pour l'effet flip sur une carte
+    function flipCard(cardElement) {
+      cardElement.classList.toggle('flipped');
+    }
+
+    // Fonctions lightbox (si besoin)
+    function openLightbox(imageSrc) {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-img");
+      lightboxImage.src = imageSrc;
+      lightbox.style.display = "flex";
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById("lightbox");
+      lightbox.style.display = "none";
+    }
   </script>
 </body>
 </html>
