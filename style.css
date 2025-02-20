@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
   box-sizing: border-box;
 }
 html, body {
@@ -39,7 +40,7 @@ body {
 /* Conteneur pour les actions (Contact & Menu) à droite */
 .nav-actions {
   position: absolute;
-  right: 20px;
+  right: 50px;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -95,8 +96,8 @@ body {
 /* ----------------------- */
 .dropdown {
   position: absolute;
-  top: 85px;
-  right: 17px;
+  top: 104px;
+  right: 50px;
   max-width: 300px;
   width: 24vw;
   height: 70vh; 
@@ -126,7 +127,7 @@ body {
   flex: 2.5 1 0;
   padding: 1.5vh 1vw;
   background: #fff;
-  border: 0.2vh solid #000;
+  border: 0.4vh solid #000;
   border-radius: 2vh;
   margin-bottom: 0.5vh;
   box-sizing: border-box;
@@ -135,7 +136,7 @@ body {
   flex: 1 0.9 0;
   padding: 1.5vh 1.5vw;
   background: #fff;
-  border: 0.2vh solid #000;
+  border: 0.4vh solid #000;
   border-radius: 2vh;
   margin-bottom: 0.5vh;
   box-sizing: border-box;
@@ -147,7 +148,7 @@ body {
   flex: 1.1 1 0;
   padding: 1.5vh;
   background: #000;
-  border: 0.2vh solid #000;
+  border: 1vh solid #000;
   border-radius: 2vh;
   color: #fff;
   box-sizing: border-box;
@@ -174,7 +175,10 @@ body {
 .dropdown .menu-card ul li a {
   text-decoration: none;
   color: #333;
-  font-size: 1rem;
+  font-size: 1.1em;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
   text-transform: uppercase;
   display: block;
   padding: 1vh 1vw;
@@ -209,9 +213,10 @@ body {
   width: 95%;
   flex: 1;
   padding: 1vh;
-  border: 0.2vh solid #000;
+  border: 0.4vh solid #000;
   border-radius: 1vh;
   font-size: 0.9rem;
+  color: black;
 }
 .dropdown .newsletter-card button {
   padding: 1vh 1vw;
@@ -325,7 +330,6 @@ canvas#three-canvas {
       box-sizing: border-box;
     }
     .bg-video {
-      border-radius: 10px;
       position: absolute;
       top: 0;
       left: 0;
@@ -348,7 +352,6 @@ canvas#three-canvas {
       overflow: hidden;
       background: transparent;
       text-align: center;
-      padding: 0 50px;
       margin-top: 27px;
       box-sizing: border-box;
       width: 100%;
@@ -443,7 +446,9 @@ canvas#three-canvas {
       border-radius: 10px;
       overflow: hidden;
       position: relative;
-      width: 100%;
+      width: 90%;
+      margin-left: 50px;
+      margin-right: 50px;
       padding: 15px;
       box-sizing: border-box;
       margin-top: 2%;
@@ -588,73 +593,176 @@ margin-top: 20px;
   font-size: 4rem;
   color: #333;
 }
-
 /* ----------------------- */
 /* NOUVELLE SECTION – TARIFS */
 /* ----------------------- */
-#pricing-section {
+#pricing-section-custom {
   margin-top: 30px;
   padding: 60px 20px;
   background: transparent;
   text-align: center;
   height: 750px;
+  position: relative;
 }
 
-#pricing-section h2 {
+/* Titre et sous-titre */
+.section-title-custom {
   font-size: 2.5rem;
-  margin-bottom: 40px;
-  color: #333;
+  color: #000000;
 }
-.pricing-cards {
+
+.sections-custom {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Carousel et cartes */
+.carousel-container-custom {
+  position: relative;
+  margin: 5% auto;
+  width: 900px;
+  height: 400px;
+ 
+  perspective: 1500px;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  align-items: center;
 }
-/* Effet flat avec touche de neumorphisme subtile renforcée */
-.pricing-card {
-  background: #fff;
-  border-radius: 20px;
-  width: 300px;
-  overflow: hidden;
-  box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
+
+.carousel-custom {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  transform: rotateY(0deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles des cartes */
+.card-custom {
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 1s ease;
+  perspective: 1000px; /* Nécessaire pour l'effet flip */
+}
+
+.card-inner-custom {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Pour l'effet flip, on utilise la classe "flipped-custom" */
+.card-custom.flipped-custom .card-inner-custom {
+  transform: rotateY(180deg);
+}
+
+.card-front-custom,
+.card-back-custom {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+}
+
+.card-front-custom {
+  background-size: cover;
+  background-position: center;
+}
+
+.card-back-custom {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
-  border: none;
-}
-.pricing-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px 20px 0 0;
-}
-.pricing-card .card-content {
-  padding: 20px;
-  flex: 1;
-  text-align: left;
-}
-.pricing-card .card-title {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333;
-}
-.pricing-card .card-text {
-  font-size: 1rem;
-  color: #333;
-}
-/* Ajout d'un petit titre supplémentaire sous chaque card */
-.pricing-card .card-small-title {
-  font-size: 0.9rem;
-  color: #555;
-  padding: 10px;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  border-top: 1px solid #eee;
+  padding: 10px;
 }
-.pricing-card .card-subtitle {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  text-align: right;
-  color: #333;
+
+/* Boutons de navigation */
+.prev-custom,
+.next-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #cccccc;
+  color: white;
+  border: none;
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10;
 }
+
+.prev-custom:hover,
+.next-custom:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.prev-custom {
+  left: 0;
+  color: black;
+}
+
+.next-custom {
+  right: 0;
+  color: black;
+}
+
+/* Réglages responsive */
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .carousel-container-custom {
+    width: 700px;
+    height: 300px;
+    transform: scale(0.8);
+  }
+
+  .card-custom {
+    width: 160px;
+    height: 240px;
+    font-size: 20px;
+  }
+
+  .carousel-custom {
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .carousel-container-custom {
+    width: 100%;
+    height: 200px;
+    transform: scale(0.6);
+  }
+
+  .carousel-custom {
+    gap: 0;
+  }
+}
+
 
 /* ----------------------- */
 /* NOUVELLE SECTION – SLIDER CARDS */
@@ -918,7 +1026,7 @@ margin-top: 20px;
 .horizontal-cards {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 5px;
   overflow-x: auto;
   padding: 0 20px 10px; /* Ajustez si besoin */
   scroll-snap-type: x mandatory;
@@ -1015,105 +1123,144 @@ margin-top: 20px;
   
    
     
-     /* =============================== */
-    /* SECTION GALLERIE MEDIA */
-    /* =============================== */
-    #gallery-media {
-      padding: 60px 20px;
-      background: transparent;
-      text-align: center;
-      height: 750px;
-    }
-    .section-header {
-      max-width: 800px;
-      margin: 0 auto 40px;
-      text-align: left;
-    }
-    .section-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 30px;
-      margin-left: 75px;
-      text-align: left;
-      color: #333;
-    }
-    .section-subtitle {
-      font-size: 1.8rem;
-      color: #333;
-      max-width: 800px; /* Limite la largeur */
-      margin: 0 auto;   /* Centre l'élément */
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    
-    /* Conteneur pour le bouton "Vois plus" */
-    .more-button-container {
-      max-width: 600px;
-      margin: 10px auto 10px;
-      text-align: right;
-    }
-    .more-btn {
-      padding: 8px 16px;
-      border: 1px solid #000;
-      background: transparent;
-      color: #000;
-      font-size: 1rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      border-radius: 30px; /* Bouton arrondi en flat design */
-      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    }
-    .more-btn:hover {
-      background: #000;
-      color: #fff;
-      transform: translateY(-2px);
-    }
-    
-    /* =============================== */
-    /* CONTAINER POUR LE SLIDER (pour éviter que les slides débordent et déplacent le layout) */
-    /* =============================== */
-    .slider-wrapper-container {
-      width: 100%;
-      overflow: hidden;
-    }
-    
-    /* =============================== */
-    /* STYLES DU SLIDER SWIPER */
-    /* =============================== */
-    .swiper-container.mySwiper {
-      width: 100%;
-      padding-bottom: 40px;  /* Pour afficher les parties latérales */
-      overflow: visible;     /* Permet de voir les slides partiellement visibles */
-      margin: 0 auto;
-    }
-    .swiper-wrapper {
-      display: flex;
-      align-items: center;
-    }
-    /* Chaque slide a une largeur fixe */
-    .swiper-slide {
-      width: 300px;
-      flex-shrink: 0;
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    .swiper-slide img {
-      width: 100%;
-      display: block;
-      border-radius: 10px;
-    }
-    /* Effet sur les slides non actives : gris, flou et réduction d'échelle */
-    .swiper-slide:not(.swiper-slide-active) {
-      filter:blur(1px) ;
-      transform: scale(0.7);
-    }
-    /* Slide active affichée normalement */
-    .swiper-slide.swiper-slide-active {
-      filter: none;
-      transform: scale(1);
-    }
+/* =============================== */
+/* SECTION GALLERIE MEDIA */
+/* =============================== */
+#gallery-media {
+  padding: 60px 20px;
+  background: transparent;
+  text-align: center;
+  /* Plutôt que de fixer la hauteur, utilisons min-height ou laissons auto */
+  min-height: 750px;
+  transition: opacity 1s ease;
+}
+#gallery-media.animate {
+  opacity: 1;
+}
+
+.section-header {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  margin-left: 75px;
+  text-align: left;
+  color: #333;
+}
+
+.section-subtitle {
+  font-size: 1.8rem;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.more-button-container {
+  max-width: 600px;
+  margin: 10px auto;
+  text-align: right;
+}
+
+.more-btn {
+  padding: 8px 16px;
+  border: 1px solid #000;
+  background: transparent;
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 30px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.more-btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Conteneur qui masque seulement le débordement horizontal */
+.slider-wrapper-container {
+  width: 100%;
+  
+ /* Permet à la grille de s'afficher entièrement verticalement */
+}
+
+/* Grille en 2 lignes x 5 colonnes */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  max-width: 900px;
+  margin: 0 auto;
+  transform: translateY(20px);
+}
+.gallery-grid.animate {
+  animation: fadeInUp 1s ease forwards;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------- */
+/* Styles des cartes avec flat design */
+/* ----------------------------- */
+.gallery-card {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet hover */
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Pour forcer un aspect carré */
+.gallery-card::before {
+  content: "";
+  display: block;
+  padding-top: 100%; /* 1:1 ratio */
+}
+
+/* Positionner l'image en absolu */
+.gallery-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Effets de fade pour le remplacement d'image */
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+.fade-in {
+  animation: fadeIn 0.5s forwards;
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
 
 
@@ -1149,8 +1296,11 @@ margin-top: 20px;
     }
     #contact-form input,
     #contact-form textarea {
+      font-family: "Montserrat", serif;
+      font-optical-sizing: auto;
+  font-weight: bold;
       padding: 12px;
-      border: 1px solid #000;
+      border: 0.4vh solid #000;
       border-radius: 8px;
       background: #fff;
       font-size: 1rem;
@@ -1220,9 +1370,9 @@ margin-top: 20px;
 
 
     footer {
-      background: #f8f8f8;
+      background: #000000;
       padding: 40px 20px 0;
-      color: #333;
+      color: #ffffff;
     }
     .footer-container {
       display: flex;
@@ -1392,15 +1542,16 @@ margin-top: 20px;
 
     /* Footer Bottom Bar */
     .footer-bottom {
-      background: #000;
+      background-image: url("http://www.noidlab.com/wp-content/uploads/2020/05/Groupe-75.png");
+      background-size: cover; /* L'image couvre tout le conteneur sans déformation */
+      background-position: center; /* Centre l'image */
+      background-repeat: no-repeat; /* Empêche la répétition de l'image */
       color: #fff;
       text-align: center;
       padding: 10px;
-
       font-size: 0.9rem;
-    }
-
-
+  }
+  
 
 
 
@@ -1409,26 +1560,31 @@ margin-top: 20px;
 
     #backToTop {
       position: fixed;
-      bottom: 30px;
-      right: 25px;
-      width: 95px;
-      height: 95px;
+      bottom: 25px;
+      right: 0px;
+      width: 50px;
+      height: 75px;
+      background-color: #ccc; /* gris clair */
       cursor: pointer;
-      border-radius: 50%;
+      /* Arrondi uniquement en haut à gauche et en bas à droite */
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+      /* Les autres coins restent carrés */
       overflow: hidden;
       z-index: 1000;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    /* Image par défaut dans le bouton */
+    
     #backToTop img {
-      padding: 5px;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-      display: block;
+      width: 46px; /* Image réduite pour être discrète */
+      height: auto;
+      transition: opacity 0.3s ease;
+      z-index: 1;
     }
-    /* Le SVG (flèche) est positionné au centre et reste caché initialement */
+    
     #backToTop .arrow {
       position: absolute;
       top: 50%;
@@ -1439,6 +1595,7 @@ margin-top: 20px;
       pointer-events: none;
       z-index: 2;
     }
+    
     .arrow-icon {
       width: 28px;
       height: 28px;
@@ -1448,17 +1605,21 @@ margin-top: 20px;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    /* Au survol, le conteneur change de fond, l'image s'agrandit et la flèche apparaît */
+    
+    /* Effets au survol */
     #backToTop:hover {
-      background-color: #000;
+      transform: scale(1.05);
+      background-color: #aaa; /* gris plus foncé */
     }
+    
     #backToTop:hover img {
-      transform: scale(2);  /* L'image grossit de 1.5 fois */
+      opacity: 0;
     }
+    
     #backToTop:hover .arrow {
       opacity: 1;
     }
-
+    
 
 /* ---------- Overlay du Modal ---------- */
 .unique-modal-overlay {
