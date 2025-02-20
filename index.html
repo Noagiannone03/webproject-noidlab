@@ -511,23 +511,16 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
 
 
 
-
 <!-- Section Gallerie Media -->
 <section id="gallery-media">
   <div class="section-header">
     <h1 class="section-title">Gallerie Media</h1>
     <p class="section-subtitle">
-      Découvrez nos images inspirantes. La diapositive centrale est en pleine couleur, tandis que les côtés sont atténuées.
+      Découvrez nos images inspirantes. La diapositive centrale est en pleine couleur, tandis que les côtés sont atténués.
     </p>
-    <div class="more-button-container">
-      <button class="more-btn">
-        <span>Voir plus</span>
-        <span>+</span>
-      </button>
-    </div>
   </div>
   
-  <!-- Conteneur qui masque le débordement horizontal -->
+  <!-- Conteneur qui masque le débordement horizontal et applique une marge latérale -->
   <div class="slider-wrapper-container">
     <!-- Grille de 2 lignes x 5 colonnes -->
     <div class="gallery-grid">
@@ -535,15 +528,21 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
       <div class="gallery-card"><img src="assets/images/Danslesmurs_2.jpg" alt="Image 2"></div>
       <div class="gallery-card"><img src="assets/images/Danslesmurs_4.jpg" alt="Image 3"></div>
       <div class="gallery-card"><img src="assets/images/Danslesmurs_3.jpg" alt="Image 4"></div>
-      <div class="gallery-card"><img src="assets/images/Danslesmurs_A15.jpg" alt="Image 2"></div>
-      <div class="gallery-card"><img src="assets/images/Danslesmurs_A27.jpg" alt="Image 5"></div>
-      <div class="gallery-card"><img src="assets/images/Danslesmurs_A23.jpg" alt="Image 1"></div>
-       <div class="gallery-card"><img src="assets/images/Danslesmurs_A18.jpg" alt="Image 3"></div>
-      <div class="gallery-card"><img src="assets/images/Danslesmurs_A35.jpg" alt="Image 4"></div>
-      <div class="gallery-card"><img src="assets/images/Danslesmurs_A30.jpg" alt="Image 5"></div>
-   
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A15.jpg" alt="Image 5"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A27.jpg" alt="Image 6"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A23.jpg" alt="Image 7"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A18.jpg" alt="Image 8"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A35.jpg" alt="Image 9"></div>
+      <div class="gallery-card"><img src="assets/images/Danslesmurs_A30.jpg" alt="Image 10"></div>
+    </div>
     
-      </div>
+    <!-- Bouton "Voir plus" centré en dessous de la grille -->
+    <div class="more-button-container">
+      <button class="more-btn">
+        <span>Voir plus</span>
+        <span>+</span>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -707,7 +706,52 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
   
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
+   
 <script src="script.js"></script>
+<script>document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM fully loaded and parsed");
+  
+  // Vérifie qu'il y a bien des images dans la grille
+  const initialImages = document.querySelectorAll('.gallery-card img');
+  console.log("Found images:", initialImages.length);
+  
+  // Remplacement aléatoire d'une image toutes les 3 secondes
+  setInterval(() => {
+    console.log("setInterval tick");
+    const images = document.querySelectorAll('.gallery-card img');
+    if (images.length > 0) {
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const imgElement = images[randomIndex];
+      
+      // Tableau des chemins d'images locales disponibles
+      const assetImages = [
+        "assets/images/Danslesmurs_A31.jpg",
+        "assets/images/Danslesmurs_A21.jpg",
+        "assets/images/Danslesmurs_A39.jpg",
+        "assets/images/Danslesmurs_A22.jpg",
+        "assets/images/Danslesmurs_A33.jpg"
+      ];
+      const randomAssetIndex = Math.floor(Math.random() * assetImages.length);
+      const newImageSrc = assetImages[randomAssetIndex];
+  
+      // Message de débogage pour vérifier le changement
+      console.log("Changement de l'image:", imgElement.src, "->", newImageSrc);
+  
+      imgElement.classList.add('fade-out');
+      setTimeout(() => {
+        imgElement.src = newImageSrc;
+        imgElement.classList.remove('fade-out');
+        imgElement.classList.add('fade-in');
+        setTimeout(() => {
+          imgElement.classList.remove('fade-in');
+        }, 500);
+      }, 500);
+    } else {
+      console.log("Aucune image trouvée dans .gallery-card img");
+    }
+  }, 3000);
+});
+</script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js">
 </script>
 <script>
@@ -746,21 +790,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cardElement.classList.toggle('flipped-custom');
   };
   
-  // Animation du texte en SVG
-  const textElement = document.getElementById("animatedText-custom");
+
   
-  function restartAnimation() {
-    textElement.style.transition = "none";
-    textElement.style.strokeDashoffset = "0";
-    setTimeout(() => {
-      textElement.style.transition = "stroke-dashoffset 3s ease";
-      textElement.style.strokeDashoffset = "1000";
-    }, 50);
-  }
-  
-  restartAnimation();
-  setInterval(restartAnimation, 10000);
-  
+ 
   // Fonctions lightbox (si besoin)
   window.openLightbox = function(imageSrc) {
     const lightbox = document.getElementById("lightbox-custom");
@@ -823,7 +855,6 @@ var gallerySlider = new Swiper(".mySwiper", {
 
   // Sélection des éléments du modal
   const modalOverlay = document.getElementById('custom-modal');
-  const modalContainer = modalOverlay.querySelector('.modal-container');
   const modalImage = modalOverlay.querySelector('.modal-image img');
   const modalTitle = modalOverlay.querySelector('.modal-title');
   const modalSubtitle = modalOverlay.querySelector('.modal-subtitle');
@@ -877,12 +908,7 @@ var gallerySlider = new Swiper(".mySwiper", {
     modalSubtitle.innerText = data.subtitle;
     modalDescription.innerText = data.description;
 
-    // Réinitialiser les classes d'animation si elles existent
-    modalContainer.classList.remove('slide-left', 'slide-right');
-    if (animationClass) {
-      modalContainer.classList.add(animationClass);
-      console.log(`Animation ${animationClass} ajoutée au modalContainer.`);
-    }
+  
     
     // Afficher le modal
     modalOverlay.classList.add('active');

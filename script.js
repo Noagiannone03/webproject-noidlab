@@ -572,17 +572,7 @@ document.querySelectorAll('.pill-item').forEach(pill => {
  // Déclare index dès le début pour éviter le problème de temporal dead zone
 let index = 0;
 
-// Animation du texte en SVG
-const textElement = document.getElementById("animatedText-custom");
 
-function restartAnimation() {
-  textElement.style.transition = "none";
-  textElement.style.strokeDashoffset = "0";
-  setTimeout(() => {
-    textElement.style.transition = "stroke-dashoffset 3s ease";
-    textElement.style.strokeDashoffset = "1000";
-  }, 50);
-}
 
 restartAnimation();
 setInterval(restartAnimation, 10000);
@@ -631,50 +621,3 @@ function closeLightbox() {
 
 
 
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  const gallerySection = document.getElementById("gallery-media");
-  const galleryGrid = document.querySelector(".gallery-grid");
-
-  // Fallback si IntersectionObserver n'est pas supporté
-  if (!('IntersectionObserver' in window)) {
-    gallerySection.classList.add('animate');
-    galleryGrid.classList.add('animate');
-  } else {
-    // Création de l'observer avec un rootMargin pour déclencher l'animation dès qu'une partie est visible
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        console.log("Intersection entry:", entry);
-        if (entry.isIntersecting) {
-          gallerySection.classList.add('animate');
-          galleryGrid.classList.add('animate');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: "0px 0px -100px 0px" });
-    observer.observe(gallerySection);
-  }
-
-  // Remplacement aléatoire d'une image toutes les 3 secondes
-  setInterval(() => {
-    const images = document.querySelectorAll('.gallery-card img');
-    if (images.length > 0) {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      const imgElement = images[randomIndex];
-      const newSeed = Math.floor(Math.random() * 1000);
-      
-      imgElement.classList.add('fade-out');
-      setTimeout(() => {
-        imgElement.src = `https://picsum.photos/seed/${newSeed}/300/300`;
-        imgElement.classList.remove('fade-out');
-        imgElement.classList.add('fade-in');
-        setTimeout(() => {
-          imgElement.classList.remove('fade-in');
-        }, 500);
-      }, 500);
-    }
-  }, 3000);
-});
