@@ -6,19 +6,18 @@
   <title>Media Gallery</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <!-- AOS Library -->
+  <!-- AOS Library pour les animations on-scroll -->
   <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
   <!-- GSAP (optionnel) -->
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js" defer></script>
   <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js" defer></script>
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
   <style>
     /* ---------- RESET & BASE ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Montserrat', sans-serif; background: #fff; color: #333; }
     a { text-decoration: none; color: inherit; }
-
+    
     /* ---------- NAVBAR ---------- */
     .navbar {
       position: fixed;
@@ -88,78 +87,92 @@
       transition: background 0.2s ease;
     }
     .dropdown ul li a:hover { background: #f0f0f0; }
-
-    /* ---------- MAIN & SEPARATORS ---------- */
-    main { padding-top: 90px; }
-    section { padding: 60px 20px; }
+    
+    /* ---------- SEPARATEUR ---------- */
     .section-separator {
       border: none;
       border-top: 2px solid #ddd;
       margin: 40px auto;
       width: 80%;
     }
+    
+    /* ---------- MAIN ---------- */
+    main { padding-top: 70px; }
+    section { padding: 30px 20px; }
     h2.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 30px; }
+    
+   /* Section "À la une" en mode fullscreen */
+#featured {
+  position: relative;
+  height: 95vh; /* occupe toute la hauteur de l'écran */
+  overflow: hidden;
+}
 
-    /* ---------- SECTION "À LA UNE" ---------- */
-    #featured { background: #fff; }
-    .featured-carousel {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      gap: 15px;
-      padding: 20px;
-      align-items: center;
-    }
-    /* Left group: two small images vertically */
-    .featured-left {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      gap: 15px;
-    }
-    /* Right group: idem */
-    .featured-right {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      gap: 15px;
-    }
-    .featured-card {
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .featured-card:hover { transform: scale(1.03); }
-    .featured-card img { width: 100%; height: 100%; object-fit: cover; }
-    /* Grand central item */
-    .featured-center {
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .featured-center:hover { transform: scale(1.03); }
-    .featured-center img { width: 100%; height: 100%; object-fit: cover; }
-    /* Slider for audio covers below */
-    .audio-slider {
-      margin-top: 30px;
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 0 20px;
-      scroll-snap-type: x mandatory;
-    }
-    .audio-slider::-webkit-scrollbar { display: none; }
-    .audio-cover {
-      flex: 0 0 auto;
-      width: 80px; height: 80px;
-      border-radius: 10px;
-      overflow: hidden;
-      scroll-snap-align: center;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .audio-cover:hover { transform: scale(1.05); }
-    .audio-cover img { width: 100%; height: 100%; object-fit: cover; }
+/* L'image de fond couvre toute la section */
+.featured-background img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Animation douce de zoom pour dynamiser le fond */
+  animation: zoomIn 20s infinite alternate;
+}
 
+/* Overlay pour le contenu par-dessus l'image */
+.featured-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+/* Titre en haut à gauche */
+.featured-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #fff;
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+/* Flèches de défilement en bas, centrées horizontalement */
+.scroll-indicator {
+  position: absolute;
+
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.8;
+  animation: bounce 2s infinite;
+}
+.scroll-indicator .arrow {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}
+
+/* Animation de rebond pour les flèches */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Animation de zoom du fond */
+@keyframes zoomIn {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+    
     /* ---------- GRID SECTIONS (Photos, Vidéos, Audio) ---------- */
     .media-grid {
       display: grid;
@@ -172,15 +185,19 @@
       border-radius: 15px;
       overflow: hidden;
       cursor: pointer;
-      background: #ccc;
       transition: transform 0.3s;
+      background: #ccc;
     }
     .media-card:hover { transform: scale(1.02); }
     .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    /* Tous les items de photos et vidéos en format carré */
+    
+    /* Pour Photos et Vidéos : forcer des carrés */
     .photos-grid .media-card,
-    .videos-grid .media-card { aspect-ratio: 1/1; }
-
+    .videos-grid .media-card,
+    .audio-grid .media-card {
+      aspect-ratio: 1 / 1;
+    }
+    
     .see-more { text-align: center; margin-top: 20px; }
     .see-more button {
       padding: 10px 20px;
@@ -193,21 +210,27 @@
       transition: background 0.3s;
     }
     .see-more button:hover { background: #333; }
+    
+    .filter-buttons button {
+  padding: 8px 16px;
+  border: 2px solid #000;
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #000;
+}
 
-    /* ---------- SECTION AUDIO (Grid: items carrés) ---------- */
-    .audio-grid .media-card { aspect-ratio: 1/1; position: relative; }
-    /* Overlay pour audio, pour indiquer lecture */
-    .audio-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.3s;
-    }
-    .audio-overlay.hidden { opacity: 0; }
+.filter-buttons button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.filter-buttons button.active {
+  background-color: #000;
+  color: #fff;
+}
+
 
     /* ---------- STICKY MUSIC PLAYER ---------- */
     .music-player {
@@ -231,6 +254,7 @@
       margin: 0 auto;
       gap: 20px;
     }
+    /* Bouton Discover Sounds à gauche */
     .discover-sounds {
       margin-right: auto;
       transition: opacity 0.4s ease, transform 0.4s ease;
@@ -292,7 +316,7 @@
       background: #1db954;
       width: 0%;
     }
-
+    
     /* ---------- MODAL MEDIA ---------- */
     .media-modal {
       position: fixed;
@@ -343,7 +367,7 @@
     }
     .modal-prev { left: 10px; }
     .modal-next { right: 10px; }
-
+    
     /* ---------- Responsive ---------- */
     @media (max-width: 768px) {
       .featured-carousel { grid-template-columns: 1fr; }
@@ -357,14 +381,12 @@
   <!-- Navbar -->
   <nav class="navbar" data-aos="fade-down">
     <div class="nav-center">
-      <img src="../assets/images/Danslesmurs_A27.jpg" alt="Logo">
+      <img src="../assets/LOGONOIDsimpleBlanc.png" alt="Logo">
     </div>
     <div class="nav-actions">
       <div class="btn contact-btn" id="contact-btn">
         <div class="icon-circle">
-          <svg viewBox="0 0 24 24">
-            <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4C22 2.9 21.1 2 20 2z"/>
-          </svg>
+          <svg viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4C22 2.9 21.1 2 20 2z"/></svg>
         </div>
         <span>Contact</span>
       </div>
@@ -393,53 +415,26 @@
   
   <!-- Main Content -->
   <main>
-    <!-- Featured Section -->
-    <section id="featured" data-aos="fade-up">
-      <h2 class="section-title">À la une</h2>
-      <div class="featured-carousel">
-        <!-- Groupe gauche: deux petites images empilées -->
-        <div class="featured-left" data-aos="fade-right">
-          <div class="featured-card">
-            <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Left 1">
-          </div>
-          <div class="featured-card">
-            <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Left 2">
-          </div>
-        </div>
-        <!-- Grand item central -->
-        <div class="featured-center" data-aos="zoom-in">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Center">
-        </div>
-        <!-- Groupe droit: deux petites images empilées -->
-        <div class="featured-right" data-aos="fade-left">
-          <div class="featured-card">
-            <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Right 1">
-          </div>
-          <div class="featured-card">
-            <img src="../assets/images/Danslesmurs_A27.jpg" alt="Featured Right 2">
-          </div>
-        </div>
-      </div>
-      <!-- Slider audio covers sous la section à la une -->
-      <div class="audio-slider" data-aos="fade-up">
-        <div class="audio-cover">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 1">
-        </div>
-        <div class="audio-cover">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 2">
-        </div>
-        <div class="audio-cover">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 3">
-        </div>
-        <div class="audio-cover">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 4">
-        </div>
-        <div class="audio-cover">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio Cover 5">
-        </div>
-      </div>
-      <hr class="section-separator">
-    </section>
+ <!-- Section "À la une" - Fullscreen Hero -->
+<section id="featured" data-aos="fade-up">
+  <div class="featured-background">
+   <!-- Votre élément image qui affichera l'image aléatoire -->
+<img id="randomImage" src="" alt="Image aléatoire">
+
+  </div>
+  <div class="featured-overlay">
+    <h1 class="featured-title">La Galerie Media</h1>
+    <div class="scroll-indicator">
+      <svg class="arrow" viewBox="0 0 20 20">
+        <path d="M12 16l-6-6h12z"/>
+      </svg>
+      <svg class="arrow" viewBox="0 0 20 20">
+        <path d="M12 20l-6-6h12z"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
     
     <!-- Photos Section -->
     <section id="photos" data-aos="fade-up">
@@ -450,24 +445,29 @@
         <button data-filter="exterieur">Hors les murs</button>
       </div>
       <div class="media-grid photos-grid" data-aos="fade-up">
-        <!-- Tous les items en carré -->
         <div class="media-card" data-category="interieur">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Photo">
+          <img src="../assets/images/Danslesmurs_A22.jpg" alt="Photo">
         </div>
         <div class="media-card" data-category="exterieur">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Photo">
+          <img src="../assets/images/Danslesmurs_A21.jpg" alt="Photo">
         </div>
         <div class="media-card" data-category="interieur">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Photo">
+          <img src="../assets/images/Danslesmurs_A29.jpg" alt="Photo">
         </div>
         <div class="media-card" data-category="exterieur">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Photo">
+          <img src="../assets/images/Danslesmurs_A31.jpg" alt="Photo">
         </div>
         <div class="media-card" data-category="interieur">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Photo">
+          <img src="../assets/images/Danslesmurs_A37.jpg" alt="Photo">
         </div>
         <div class="media-card" data-category="exterieur">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Photo">
+          <img src="../assets/images/Danslesmurs_A33.jpg" alt="Photo">
+        </div>
+        <div class="media-card" data-category="interieur">
+          <img src="../assets/images/Danslesmurs_A39.jpg" alt="Photo">
+        </div>
+        <div class="media-card" data-category="exterieur">
+          <img src="../assets/images/Danslesmurs_A21.jpg" alt="Photo">
         </div>
       </div>
       <div class="see-more" data-aos="fade-up">
@@ -480,6 +480,9 @@
     <section id="videos" data-aos="fade-up">
       <h2 class="section-title">Vidéos</h2>
       <div class="media-grid videos-grid" data-aos="fade-up">
+        <div class="media-card" data-type="video">
+          <img src="https://www.noidlab.com/wp-content/uploads/2020/06/Annotation-2020-06-10-144104-300x164.png" alt="Vidéo">
+        </div>
         <div class="media-card" data-type="video">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Vidéo">
         </div>
@@ -500,10 +503,11 @@
     <section id="audio" data-aos="fade-up">
       <h2 class="section-title">Audio</h2>
       <div class="media-grid audio-grid" data-aos="fade-up">
-        <!-- Chaque card audio contient un attribut data-audio -->
+        <!-- Chaque card audio possède un attribut data-audio -->
         <div class="media-card" data-audio="../assets/audio/sample.mp3">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
-          <div class="audio-overlay">
+          <!-- Overlay pour indiquer lecture -->
+          <div class="audio-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3); transition: opacity 0.3s;">
             <svg viewBox="0 0 24 24" width="36" height="36">
               <polygon points="6,4 20,12 6,20" fill="#fff"/>
             </svg>
@@ -511,7 +515,7 @@
         </div>
         <div class="media-card" data-audio="../assets/audio/sample.mp3">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
-          <div class="audio-overlay">
+          <div class="audio-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3); transition: opacity 0.3s;">
             <svg viewBox="0 0 24 24" width="36" height="36">
               <polygon points="6,4 20,12 6,20" fill="#fff"/>
             </svg>
@@ -519,7 +523,7 @@
         </div>
         <div class="media-card" data-audio="../assets/audio/sample.mp3">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
-          <div class="audio-overlay">
+          <div class="audio-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3); transition: opacity 0.3s;">
             <svg viewBox="0 0 24 24" width="36" height="36">
               <polygon points="6,4 20,12 6,20" fill="#fff"/>
             </svg>
@@ -588,9 +592,7 @@
     <div class="modal-content">
       <button class="modal-close" id="modal-close">✖</button>
       <button class="modal-prev" id="modal-prev">⟨</button>
-      <div class="modal-media" id="modal-media">
-        <!-- Content loaded dynamically -->
-      </div>
+      <div class="modal-media" id="modal-media"></div>
       <button class="modal-next" id="modal-next">⟩</button>
     </div>
   </div>
@@ -633,7 +635,7 @@
       
       const mediaCards = document.querySelectorAll(".media-grid .media-card");
       mediaCards.forEach((card, index) => {
-        // Pour photos et vidéos, ouvrir le modal ; pour audio, on lance directement le son
+        // Pour photos et vidéos, ouvrir le modal ; pour audio, lancer le son directement
         if(card.closest("#audio")) return;
         card.addEventListener("click", () => { openModal(index); });
       });
@@ -700,10 +702,11 @@
         audioPlayer.play();
         playIcon.style.display = "none";
         pauseIcon.style.display = "block";
+        // Animer la disparition du bouton Discover
         discoverSounds.classList.add("hide");
         setTimeout(() => { discoverSounds.style.display = "none"; }, 400);
-        // Pour les cards audio, on masque l'overlay
-        document.querySelectorAll("#audio .audio-overlay").forEach(el => el.classList.add("hidden"));
+        // Dans les cards audio, masquer l'overlay
+        document.querySelectorAll("#audio .audio-overlay").forEach(el => el.style.opacity = "0");
       }
       
       playPauseBtn.addEventListener("click", () => {
@@ -737,7 +740,7 @@
         audioPlayer.volume = volumeSlider.value;
       });
       
-      // Lors du clic sur une card audio, lancer directement la piste
+      // Au clic sur une card audio, lancer le son directement (sans modal) et ne pas afficher l'image
       const audioCards = document.querySelectorAll("#audio .media-card");
       audioCards.forEach(card => {
         card.addEventListener("click", () => {
@@ -758,6 +761,26 @@
         scrollTrigger: { trigger: "#featured", start: "top 80%" }
       });
     });
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+  // Liste des images disponibles (à adapter selon vos fichiers)
+  const images = [
+    "44-event-noid.jpg",
+    "18-event-noid.jpg",
+    "28-event-noid.jpg",
+    "39-event-noid.jpg"
+  ];
+  // Choisir une image aléatoire
+  const randomIndex = Math.floor(Math.random() * images.length);
+  const chosenImage = images[randomIndex];
+  // Mettre à jour la source de l'image
+  // Par exemple, si vos images sont dans "../assets/images/"
+  document.getElementById("randomImage").src = "../assets/images/" + chosenImage;
+});
+
   </script>
 </body>
 </html>
