@@ -12,386 +12,32 @@
   <!-- GSAP (optionnel) -->
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js" defer></script>
   <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js" defer></script>
-  <style>
-    /* ---------- RESET & BASE ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; background: #fff; color: #333; }
-    a { text-decoration: none; color: inherit; }
-    
-    /* ---------- NAVBAR ---------- */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 75px;
-      background: #000;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 1000;
-    }
-    .nav-center { margin: 0 auto; }
-    .nav-center img { max-height: 60px; }
-    .nav-actions {
-      position: absolute;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .nav-actions .btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      color: #fff;
-      font-weight: bold;
-    }
-    .icon-circle {
-      width: 35px; height: 35px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .icon-circle svg { width: 20px; height: 20px; fill: #fff; }
-    /* Dropdown */
-    .dropdown {
-      position: absolute;
-      top: 104px;
-      right: 20px;
-      width: 300px;
-      max-height: 70vh;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      overflow-y: auto;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateX(20px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      z-index: 1100;
-    }
-    .dropdown.active {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateX(0);
-    }
-    .dropdown ul { list-style: none; padding: 15px; }
-    .dropdown ul li { margin-bottom: 10px; }
-    .dropdown ul li a {
-      text-transform: uppercase;
-      font-weight: bold;
-      padding: 8px;
-      border-radius: 8px;
-      transition: background 0.2s ease;
-    }
-    .dropdown ul li a:hover { background: #f0f0f0; }
-    
-    /* ---------- SEPARATEUR ---------- */
-    .section-separator {
-      border: none;
-      border-top: 2px solid #ddd;
-      margin: 40px auto;
-      width: 80%;
-    }
-    
-    /* ---------- MAIN ---------- */
-    main { padding-top: 70px; }
-    section { padding: 30px 20px; }
-    h2.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 30px; }
-    
-   /* Section "À la une" en mode fullscreen */
-#featured {
-  position: relative;
-  height: 95vh; /* occupe toute la hauteur de l'écran */
-  overflow: hidden;
-}
-
-/* L'image de fond couvre toute la section */
-.featured-background img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Animation douce de zoom pour dynamiser le fond */
-  animation: zoomIn 20s infinite alternate;
-}
-
-/* Overlay pour le contenu par-dessus l'image */
-.featured-overlay {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-}
-
-/* Titre en haut à gauche */
-.featured-title {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: #fff;
-  font-size: 3rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  margin: 0;
-}
-
-/* Flèches de défilement en bas, centrées horizontalement */
-.scroll-indicator {
-  position: absolute;
-
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  opacity: 0.8;
-  animation: bounce 2s infinite;
-}
-.scroll-indicator .arrow {
-  width: 30px;
-  height: 30px;
-  fill: #fff;
-}
-
-/* Animation de rebond pour les flèches */
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-  40% { transform: translateX(-50%) translateY(-10px); }
-  60% { transform: translateX(-50%) translateY(-5px); }
-}
-
-/* Animation de zoom du fond */
-@keyframes zoomIn {
-  from { transform: scale(1); }
-  to { transform: scale(1.05); }
-}
-
-    
-    /* ---------- GRID SECTIONS (Photos, Vidéos, Audio) ---------- */
-    .media-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 10px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .media-card {
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s;
-      background: #ccc;
-    }
-    .media-card:hover { transform: scale(1.02); }
-    .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    
-    /* Pour Photos et Vidéos : forcer des carrés */
-    .photos-grid .media-card,
-    .videos-grid .media-card,
-    .audio-grid .media-card {
-      aspect-ratio: 1 / 1;
-    }
-    
-    .see-more { text-align: center; margin-top: 20px; }
-    .see-more button {
-      padding: 10px 20px;
-      border: none;
-      background: #000;
-      color: #fff;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s;
-    }
-    .see-more button:hover { background: #333; }
-    
-    .filter-buttons button {
-  padding: 8px 16px;
-  border: 2px solid #000;
-  background: transparent;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  color: #000;
-}
-
-.filter-buttons button:hover {
-  background-color: #000;
-  color: #fff;
-}
-
-.filter-buttons button.active {
-  background-color: #000;
-  color: #fff;
-}
-
-
-    /* ---------- STICKY MUSIC PLAYER ---------- */
-    .iframe-container {
-      position: fixed;
-      bottom: 0; left: 0;
-      width: 100%;
-      background: #25292c;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-      transition: height 0.4s ease;
-    }
-    .player-container {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      gap: 20px;
-    }
-    /* Bouton Discover Sounds à gauche */
-    .discover-sounds {
-      margin-right: auto;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-    .discover-sounds.hide {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    .discover-sounds button {
-      padding: 10px 20px;
-      border: none;
-      background: #1db954;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-    .album-art { width: 60px; height: 60px; flex-shrink: 0; }
-    .album-art img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-    .track-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .track-info h4 { font-size: 1rem; margin-bottom: 5px; }
-    .track-info p { font-size: 0.9rem; opacity: 0.8; }
-    .player-controls {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .player-controls button { background: none; border: none; cursor: pointer; }
-    .volume-control {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .volume-control input[type="range"] { width: 100px; }
-    .progress-container {
-      position: relative;
-      width: 100%;
-      height: 5px;
-      background: #404040;
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 5px;
-    }
-    .progress-bar {
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%;
-      background: #1db954;
-      width: 0%;
-    }
-    
-    /* ---------- MODAL MEDIA ---------- */
-    .media-modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1200;
-    }
-    .media-modal.active { display: flex; }
-    .modal-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 15px;
-      overflow: hidden;
-      background: #000;
-    }
-    .modal-content img,
-    .modal-content video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-    .modal-close {
-      position: absolute;
-      top: 10px; right: 10px;
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1300;
-    }
-    .modal-prev, .modal-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-      z-index: 1300;
-    }
-    .modal-prev { left: 10px; }
-    .modal-next { right: 10px; }
-    
-    /* ---------- Responsive ---------- */
-    @media (max-width: 768px) {
-      .featured-carousel { grid-template-columns: 1fr; }
-      .player-container { flex-direction: column; gap: 10px; }
-      .player-controls { margin-top: 10px; }
-      .volume-control input[type="range"] { width: 80px; }
-    }
-  </style>
+  <link href="style_media_gallery.css" rel="stylesheet"/>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar" data-aos="fade-down">
+  <nav class="navbar">
+
     <div class="nav-center">
-      <img src="../assets/LOGONOIDsimpleBlanc.png" alt="Logo">
+      <img src="../assets/LOGONOIDsimpleBlanc.png"/>
     </div>
     <div class="nav-actions">
-      <div class="btn contact-btn" id="contact-btn">
+      <!-- Bouton Contact -->
+      <div class="contact-btn" id="contact-btn">
         <div class="icon-circle">
-          <svg viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4C22 2.9 21.1 2 20 2z"/></svg>
+          <!-- SVG bulle de message -->
+          <svg viewBox="0 0 24 24">
+            <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4C22 2.9 21.1 2 20 2z"/>
+          </svg>
         </div>
-        <span>Contact</span>
+        <span class="btn-text">Nous contacter</span>
       </div>
-      <div class="btn menu-btn" id="menu-btn">
-        <span>Menu</span>
+      <span class="separator">|</span>
+      <!-- Bouton Menu -->
+      <div class="menu-btn" id="menu-btn">
+        <span class="btn-text">Menu</span>
         <div class="icon-circle">
+          <!-- SVG hamburger -->
           <svg viewBox="0 0 24 24">
             <rect x="3" y="6" width="18" height="2"/>
             <rect x="3" y="11" width="18" height="2"/>
@@ -400,15 +46,54 @@
         </div>
       </div>
     </div>
-    <!-- Dropdown -->
+    <!-- Dropdown contenant les 3 cards -->
     <div class="dropdown" id="dropdown">
-      <ul>
-        <li><a href="#featured">À la une</a></li>
-        <li><a href="#photos">Photos</a></li>
-        <li><a href="#videos">Vidéos</a></li>
-        <li><a href="#audio">Audio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <!-- Card Menu -->
+      <!-- Dans votre dropdown, par exemple : -->
+<div class="menu-card">
+  <ul>
+    <li><a href="#stack-section">À propos</a></li>
+    <li><a href="#pricing-section-custom">Prestations</a></li>
+    <li><a href="#slider-section">Nos lieux</a></li>
+    <li><a href="#event-section">Nos Références</a></li>
+    <li><a href="#gallery-media">Médias</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+  </ul>
+</div>
+
+      <!-- Card Newsletter -->
+      <div class="newsletter-card">
+        <h3>Découvrez notre newsletter</h3>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="Votre email" required />
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+      <!-- Card Social Follow -->
+      <div class="follow-card">
+        <h3>Nous suivre</h3>
+        <div class="social-buttons">
+          <!-- Facebook -->
+          <button>
+            <img class="logo logo-black" src="../assets/logo/facebook noir et blanc.png" alt="Facebook">
+            <img class="logo logo-color" src="../assets/logo/facebook couleur.png" alt="Facebook">
+          </button>
+          <!-- Instagram -->
+          <button>
+            <img class="logo logo-black" src="../assets/logo/insta noir et blanc.png" alt="Instagram">
+            <img class="logo logo-color" src="../assets/logo/instagram couleur.png" alt="Instagram">
+          </button>
+          <!-- TikTok -->
+          <button>
+            <img class="logo logo-black" src="../assets/logo/tiktok noir et blanc.png" alt="TikTok">
+            <img class="logo logo-color" src="../assets/logo/tiktok couleur.png" alt="TikTok">
+          </button>
+          <button>
+            <img class="logo logo-black" src="../assets/logo/whatsapp noir et blanc.png" alt="Whatsapp">
+            <img class="logo logo-color" src="../assets/logo/whatsapp couleur.png" alt="Whatsapp">
+          </button>
+        </div>
+      </div>
     </div>
   </nav>
   
@@ -435,45 +120,50 @@
 </section>
 
     
-    <!-- Photos Section -->
-    <section id="photos" data-aos="fade-up">
-      <h2 class="section-title">Photos</h2>
-      <div class="filter-buttons" style="text-align:center; margin-bottom:20px;" data-aos="fade-up">
-        <button data-filter="all" class="active">Toutes</button>
-        <button data-filter="interieur">Dans les murs</button>
-        <button data-filter="exterieur">Hors les murs</button>
-      </div>
-      <div class="media-grid photos-grid" data-aos="fade-up">
-        <div class="media-card" data-category="interieur">
-          <img src="../assets/images/Danslesmurs_A22.jpg" alt="Photo">
-        </div>
-        <div class="media-card" data-category="exterieur">
-          <img src="../assets/images/Danslesmurs_A21.jpg" alt="Photo">
-        </div>
-        <div class="media-card" data-category="interieur">
-          <img src="../assets/images/Danslesmurs_A29.jpg" alt="Photo">
-        </div>
-        <div class="media-card" data-category="exterieur">
-          <img src="../assets/images/Danslesmurs_A31.jpg" alt="Photo">
-        </div>
-        <div class="media-card" data-category="interieur">
-          <img src="../assets/images/Danslesmurs_A37.jpg" alt="Photo">
-        </div>
-        <div class="media-card" data-category="exterieur">
-          <img src="../assets/images/Danslesmurs_A33.jpg" alt="Photo">
-        </div>
-        <div class="media-card" data-category="interieur">
-          <img src="../assets/images/Danslesmurs_A39.jpg" alt="Photo">
-        </div>
-        <div class="media-card" data-category="exterieur">
-          <img src="../assets/images/Danslesmurs_A21.jpg" alt="Photo">
-        </div>
-      </div>
-      <div class="see-more" data-aos="fade-up">
-        <button>Voir plus <span class="arrow">➔</span></button>
-      </div>
-      <hr class="section-separator">
-    </section>
+  <!-- Photos Section -->
+<section id="photos" data-aos="fade-up">
+  <div class="photos-header" data-aos="fade-up">
+    <h2 class="section-title" style="margin-left: -15px;">Photos</h2>
+    <div class="filter-buttons">
+      <button data-filter="all" class="active">Toutes</button>
+      <button data-filter="interieur">Dans les murs</button>
+      <button data-filter="exterieur">Hors les murs</button>
+    </div>
+  </div>
+  <!-- Ajoutez l'attribut data-initial-count pour indiquer le nombre d'items initiaux -->
+  <div class="media-grid photos-grid" data-aos="fade-up" data-initial-count="8">
+    <!-- Items initiaux (8 items) -->
+    <div class="media-card" data-category="interieur">
+      <img src="../assets/images/Danslesmurs_A22.jpg" alt="Photo">
+    </div>
+    <div class="media-card" data-category="exterieur">
+      <img src="../assets/images/Danslesmurs_A21.jpg" alt="Photo">
+    </div>
+    <div class="media-card" data-category="interieur">
+      <img src="../assets/images/Danslesmurs_A29.jpg" alt="Photo">
+    </div>
+    <div class="media-card" data-category="exterieur">
+      <img src="../assets/images/Danslesmurs_A31.jpg" alt="Photo">
+    </div>
+    <div class="media-card" data-category="interieur">
+      <img src="../assets/images/Danslesmurs_A37.jpg" alt="Photo">
+    </div>
+    <div class="media-card" data-category="exterieur">
+      <img src="../assets/images/Danslesmurs_A33.jpg" alt="Photo">
+    </div>
+    <div class="media-card" data-category="interieur">
+      <img src="../assets/images/Danslesmurs_A39.jpg" alt="Photo">
+    </div>
+    <div class="media-card" data-category="exterieur">
+      <img src="../assets/images/Danslesmurs_A21.jpg" alt="Photo">
+    </div>
+  </div>
+  <div class="see-more" data-aos="fade-up">
+    <button>Voir plus <span class="arrow">➔</span></button>
+  </div>
+  <hr class="section-separator">
+</section>
+
     
     <!-- Videos Section -->
     <section id="videos" data-aos="fade-up">
@@ -520,7 +210,7 @@
             </svg>
           </div>
         </div>
-        <div class="media-card" data-audio="../assets/audio/sample.mp3">
+        <div class="media-card" data-audio="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-podcast-024-life-recorder-extendplay-marseille-underlab_toulon-200418%2F"">
           <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
           <div class="audio-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3); transition: opacity 0.3s;">
             <svg viewBox="0 0 24 24" width="36" height="36">
@@ -536,13 +226,93 @@
     </section>
   </main>
   
+<footer>
+  <div class="footer-container">
+    <!-- Colonne gauche -->
+    <div class="footer-column left">
+      <h2 class="footer-title">À propos</h2>
+      <p class="footer-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod urna eu tincidunt consectetur, nisi nisl lacinia mi, eu pulvinar nisi neque sit amet turpis.
+      </p>
+    </div>
+    
+    <!-- Colonne centrale -->
+    <div class="footer-column center">
+      <h2 class="footer-title">Nos lieux d'exploitations</h2>
+      <div class="footer-info">
+        <h3 class="footer-subtitle">FEATlab</h3>
+        <p class="footer-details">
+          13 Rue d'Antrechaus<br>
+          83000 Toulon<br>
+          04 94 62 24 77<br>
+          info@noidlab.com | www.noidlab.com
+        </p>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-info footer-repeat">
+        <h3 class="footer-subtitle">Fort Napoleon</h3>
+        <p class="footer-details">
+          56 montée charles Barnier<br>
+          83500 La Seyne sur Mer<br>
+          04 94 62 24 77<br>
+          info@fornap.com | www.fornap.org
+        </p>
+      </div>
+      <div class="footer-image">
+        <img  src="../assets/pieddepouleunique.png" alt="Image Footer">
+      </div>
+    </div>
+    
+    <!-- Colonne droite -->
+    <div class="footer-column right">
+      <h2 class="footer-title">Keep in touch</h2>
+      <div class="newsletter-cardbottom">
+        <h3>Découvrez notre newsletter</h3>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="Votre email" required />
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+      <!-- Card Social Follow -->
+      <div class="follow-cardbottom">
+        <h3>Nous suivre</h3>
+        <div class="social-buttons">
+          <button>
+            <!-- Facebook SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.337v21.326C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.07h3.128V8.413c0-3.1 1.893-4.788 4.658-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.716-1.795 1.763v2.31h3.587l-.467 3.636h-3.12V24h6.116C23.4 24 24 23.4 24 22.663V1.337C24 .6 23.4 0 22.675 0z"/>
+            </svg>
+          </button>
+          <button>
+            <!-- Instagram SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.337 3.608 1.312.975.975 1.25 2.242 1.312 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.337 2.633-1.312 3.608-.975.975-2.242 1.25-3.608 1.312-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.337-3.608-1.312-.975-.975-1.25-2.242-1.312-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.337-2.633 1.312-3.608.975-.975 2.242-1.25 3.608-1.312 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.332.012 7.052.07 5.771.127 4.602.443 3.635 1.41 2.668 2.377 2.352 3.546 2.295 4.827.012 8.332 0 8.741 0 12s.012 3.668.07 4.948c.057 1.281.373 2.45 1.34 3.417.967.967 2.136 1.283 3.417 1.34 1.28.058 1.689.07 4.948.07s3.668-.012 4.948-.07c1.281-.057 2.45-.373 3.417-1.34.967-.967 1.283-2.136 1.34-3.417.058-1.28.07-1.689.07-4.948s-.012-3.668-.07-4.948c-.057-1.281-.373-2.45-1.34-3.417-.967-.967-2.136-1.283-3.417-1.34C15.668.012 15.259 0 12 0z"/>
+              <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
+              <circle cx="18.406" cy="5.594" r="1.44"/>
+            </svg>
+          </button>
+          <button>
+            <!-- TikTok SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M9 0h3v12c-1.667-.667-3.333-1-5-1 0 0 0 0 0 0C3 11 0 13 0 16c0 4 4 8 8 8s8-4 8-8V0H9z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <div class="footer-bottom">
+    &copy; 2025 noidlab. Tous droits réservés.
+  </div>
+</footer>
   <!-- Sticky Music Player -->
   <footer>
-   <div class="iframe-container">
-  <iframe class="iframplayer" width="100%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-030-session-red-room-deniamoro-afrobeat-world%2F" frameborder="0"></iframe>
-</div>
-
+    <div class="iframe-container">
+      <!-- L'iframe initiale peut être vide ou avoir un src par défaut -->
+      <iframe class="iframplayer" width="100%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-030-session-red-room-deniamoro-afrobeat-world%2F" frameborder="0"></iframe>
+    </div>
   </footer>
+  
   
   <!-- Modal for Media -->
   <div class="media-modal" id="media-modal">
@@ -554,197 +324,7 @@
     </div>
   </div>
   
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      AOS.init({ duration: 800 });
-      
-      /* --- Navbar Dropdown --- */
-      const menuBtn = document.getElementById("menu-btn");
-      const dropdown = document.getElementById("dropdown");
-      menuBtn.addEventListener("click", () => { dropdown.classList.toggle("active"); });
-      
-      /* --- Filter Photos --- */
-      const filterButtons = document.querySelectorAll(".filter-buttons button");
-      const photoCards = document.querySelectorAll(".photos-grid .media-card");
-      filterButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          filterButtons.forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          const filter = btn.getAttribute("data-filter");
-          photoCards.forEach(card => {
-            if (filter === "all" || card.getAttribute("data-category") === filter) {
-              card.style.display = "block";
-            } else {
-              card.style.display = "none";
-            }
-          });
-        });
-      });
-      
-      /* --- Modal for Media --- */
-      const mediaModal = document.getElementById("media-modal");
-      const modalMedia = document.getElementById("modal-media");
-      const modalClose = document.getElementById("modal-close");
-      const modalPrev = document.getElementById("modal-prev");
-      const modalNext = document.getElementById("modal-next");
-      let currentMediaIndex = 0;
-      let currentMediaList = [];
-      
-      const mediaCards = document.querySelectorAll(".media-grid .media-card");
-      mediaCards.forEach((card, index) => {
-        // Pour photos et vidéos, ouvrir le modal ; pour audio, lancer le son directement
-        if(card.closest("#audio")) return;
-        card.addEventListener("click", () => { openModal(index); });
-      });
-      
-      function openModal(index) {
-        currentMediaIndex = index;
-        currentMediaList = Array.from(document.querySelectorAll(".media-grid .media-card"));
-        loadModalMedia(currentMediaList[currentMediaIndex]);
-        mediaModal.classList.add("active");
-      }
-      
-      function loadModalMedia(card) {
-        const img = card.querySelector("img");
-        modalMedia.innerHTML = "";
-        if (img) {
-          const clone = img.cloneNode();
-          clone.style.maxWidth = "100%";
-          clone.style.maxHeight = "100%";
-          modalMedia.appendChild(clone);
-        }
-      }
-      
-      modalClose.addEventListener("click", () => { mediaModal.classList.remove("active"); });
-      modalPrev.addEventListener("click", () => {
-        currentMediaIndex = (currentMediaIndex - 1 + currentMediaList.length) % currentMediaList.length;
-        loadModalMedia(currentMediaList[currentMediaIndex]);
-      });
-      modalNext.addEventListener("click", () => {
-        currentMediaIndex = (currentMediaIndex + 1) % currentMediaList.length;
-        loadModalMedia(currentMediaList[currentMediaIndex]);
-      });
-      
-      /* --- Audio Player --- */
-      const playPauseBtn = document.getElementById("play-pause");
-      const playIcon = document.getElementById("play-icon");
-      const pauseIcon = document.getElementById("pause-icon");
-      const prevTrackBtn = document.getElementById("prev-track");
-      const nextTrackBtn = document.getElementById("next-track");
-      const trackTitle = document.getElementById("track-title");
-      const trackArtist = document.getElementById("track-artist");
-      const albumArt = document.querySelector(".album-art img");
-      const volumeSlider = document.getElementById("volume-slider");
-      const discoverSounds = document.getElementById("discover-sounds");
-      
-     
-      
-      function startAudio() {
-        audioPlayer.play();
-        playIcon.style.display = "none";
-        pauseIcon.style.display = "block";
-        // Animer la disparition du bouton Discover
-        discoverSounds.classList.add("hide");
-        setTimeout(() => { discoverSounds.style.display = "none"; }, 400);
-        // Dans les cards audio, masquer l'overlay
-        document.querySelectorAll("#audio .audio-overlay").forEach(el => el.style.opacity = "0");
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-  const audioCards = document.querySelectorAll("#audio .media-card");
-  console.log("Audio cards found:", audioCards.length);
-  
-  audioCards.forEach(card => {
-    card.addEventListener("click", () => {
-      const newSrc = card.getAttribute("data-audio");
-      console.log("Audio card clicked, newSrc:", newSrc);
-      const container = document.querySelector(".iframe-container");
-      if (!container) {
-        console.error("No iframe container found!");
-        return;
-      }
-      // Supprime l'iframe existant s'il y en a un
-      const oldIframe = container.querySelector("iframe");
-      if (oldIframe) {
-        oldIframe.remove();
-      }
-      // Crée un nouvel iframe avec le nouveau lien
-      const iframe = document.createElement("iframe");
-      iframe.className = "iframplayer";
-      iframe.width = "100%";
-      iframe.height = "60";
-      iframe.setAttribute("frameborder", "0");
-      iframe.src = newSrc;
-      container.appendChild(iframe);
-      console.log("Nouvel iframe inséré:", iframe);
-    });
-  });
-});
-
-
-      
-      playPauseBtn.addEventListener("click", () => {
-        if (audioPlayer.paused) {
-          startAudio();
-        } else {
-          audioPlayer.pause();
-          playIcon.style.display = "block";
-          pauseIcon.style.display = "none";
-        }
-      });
-      
-      prevTrackBtn.addEventListener("click", () => {
-        currentTrackIndex = (currentTrackIndex - 1 + audioPlaylist.length) % audioPlaylist.length;
-        loadTrack(currentTrackIndex);
-        startAudio();
-      });
-      
-      nextTrackBtn.addEventListener("click", () => {
-        currentTrackIndex = (currentTrackIndex + 1) % audioPlaylist.length;
-        loadTrack(currentTrackIndex);
-        startAudio();
-      });
-      
-      audioPlayer.addEventListener("timeupdate", () => {
-        const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-        document.getElementById("progress-bar").style.width = progressPercent + "%";
-      });
-      
-      volumeSlider.addEventListener("input", () => {
-        audioPlayer.volume = volumeSlider.value;
-      });
-      
-
-      
-      /* --- GSAP Featured Animation (optionnel) --- */
-      gsap.from("#featured .featured-carousel", {
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: { trigger: "#featured", start: "top 80%" }
-      });
-    });
-
-
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-  // Liste des images disponibles (à adapter selon vos fichiers)
-  const images = [
-    "44-event-noid.jpg",
-    "18-event-noid.jpg",
-    "28-event-noid.jpg",
-    "39-event-noid.jpg"
-  ];
-  // Choisir une image aléatoire
-  const randomIndex = Math.floor(Math.random() * images.length);
-  const chosenImage = images[randomIndex];
-  // Mettre à jour la source de l'image
-  // Par exemple, si vos images sont dans "../assets/images/"
-  document.getElementById("randomImage").src = "../assets/images/" + chosenImage;
-});
-
+  <script src="script_media_gallery.js">
   </script>
 </body>
 </html>

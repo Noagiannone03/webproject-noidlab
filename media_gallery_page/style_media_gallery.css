@@ -1,545 +1,809 @@
-/* --- Reset et base --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Montserrat', sans-serif;
-    background: #f2f2f2;
-    color: #333;
-  }
-  
-  /* ----------------------- */
-  /* NAVBAR */
-  /* ----------------------- */
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 75px;
-    display: flex;
-    align-items: center;
-    background-color: black;
-    justify-content: center;
-    z-index: 1000;
-    padding: 0 20px;
-  }
-  .nav-actions {
-    position: absolute;
-    right: 50px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  .contact-btn, .menu-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-  }
-  .contact-btn .icon-circle,
-  .menu-btn .icon-circle {
-    width: 35px;
-    height: 35px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .contact-btn .icon-circle svg,
-  .menu-btn .icon-circle svg {
-    width: 20px;
-    height: 20px;
-    fill: #fff;
-  }
-  .btn-text {
-    color: #fff;
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  .separator {
-    color: #fff;
-    font-weight: bold;
-    font-size: 1rem;
-  }
-  .nav-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .nav-center img {
-    max-height: 60px;
-    margin: 10px 0;
-  }
-  
-  /* ----------------------- */
-  /* DROPDOWN MENU */
-  /* ----------------------- */
-  .dropdown {
-    position: absolute;
-    top: 104px;
-    right: 50px;
-    max-width: 300px;
-    width: 24vw;
-    height: 70vh;
-    max-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    gap: 1vh;
-    border-radius: 2vh;
-    overflow-y: auto;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateX(-3vh);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    z-index: 1100;
-  }
-  .dropdown.active {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(0);
-  }
-  .dropdown .menu-card {
-    flex: 2.5 1 0;
-    padding: 1.5vh 1vw;
-    background: #fff;
-    border: 0.4vh solid #000;
-    border-radius: 2vh;
-    margin-bottom: 0.5vh;
-    box-sizing: border-box;
-  }
-  .dropdown .newsletter-card {
-    flex: 1 0.9 0;
-    padding: 1.5vh 1.5vw;
-    background: #fff;
-    border: 0.4vh solid #000;
-    border-radius: 2vh;
-    margin-bottom: 0.5vh;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .dropdown .follow-card {
-    flex: 1.1 1 0;
-    padding: 1.5vh;
-    background: #000;
-    border: 1vh solid #000;
-    border-radius: 2vh;
-    color: #fff;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .dropdown .menu-card ul {
-    list-style: none;
-    padding: 0 0.5vw;
-  }
-  .dropdown .menu-card ul li {
-    margin-bottom: 1vh;
-    position: relative;
-  }
-  .dropdown .menu-card ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1em;
-    font-weight: bold;
-    text-transform: uppercase;
-    display: block;
-    padding: 1vh 1vw;
-    border-radius: 1vh;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  .dropdown .menu-card ul li a:hover {
-    background: #dee0df;
-  }
-  .dropdown .menu-card ul li:last-child a::after {
-    content: '➔';
-    position: absolute;
-    right: 1vh;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.1rem;
-  }
-  .dropdown .newsletter-card h3,
-  .dropdown .follow-card h3 {
-    margin-bottom: 1vh;
-    font-size: 1rem;
-    color: #000;
-  }
-  .dropdown .newsletter-card form,
-  .dropdown .follow-card .social-buttons {
-    width: 100%;
-  }
-  .dropdown .newsletter-card form {
-    display: flex;
-    gap: 1vh;
-  }
-  .dropdown .newsletter-card input[type="email"] {
-    width: 95%;
-    flex: 1;
-    padding: 1vh;
-    border: 0.4vh solid #000;
-    border-radius: 1vh;
-    font-size: 0.9rem;
-    color: black;
-  }
-  .dropdown .newsletter-card button {
-    padding: 1vh 1vw;
-    flex: 0.2;
-    border: 0.2vh solid #000;
-    border-radius: 1vh;
-    background: #000;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  .dropdown .newsletter-card button:hover {
-    transform: scale(1.05);
-  }
-  .dropdown .follow-card .social-buttons {
-    display: flex;
-    gap: 2vh;
-  }
-  .dropdown .follow-card .social-buttons button {
-    flex: 0.8;
-    padding: 1vh;
-    border: 0.2vh solid #000;
-    border-radius: 1vh;
-    background: #fff;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s ease;
-  }
-  .dropdown .follow-card .social-buttons button .logo {
-    display: block;
-    width: 100%;
-    height: auto;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-  .dropdown .follow-card .social-buttons button .logo-color {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: auto;
-    padding: 0.5vh;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-  }
-  .dropdown .follow-card .social-buttons button:hover .logo-black {
-    opacity: 0;
-    transform: scale(1);
-  }
-  .dropdown .follow-card .social-buttons button:hover .logo-color {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.02);
-  }
-  .dropdown .menu-card ul li a.active::after {
-    content: '';
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    background: #000;
-    border-radius: 50%;
-  }
-  
-  /* ----------------------- */
-  /* Section Featured (À la une) */
-  #featured {
-    padding: 100px 20px 60px;
-    background: #f9f9f9;
-    text-align: center;
-  }
-  #featured h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  .featured-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  .featured-card {
-    width: 300px;
-    background: #fff;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-  }
-  .featured-card:hover {
-    transform: translateY(-5px);
-  }
-  .featured-card img {
-    width: 100%;
-    display: block;
-  }
-  .featured-card p {
-    padding: 10px;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  /* ----------------------- */
-  /* Section Photos */
-  #photos {
-    padding: 80px 20px;
-    background: #fff;
-    text-align: center;
-  }
-  #photos h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  .filter-buttons {
-    display: inline-flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .filter-buttons button {
-    padding: 8px 16px;
-    border: 1px solid #000;
-    background: transparent;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  .filter-buttons button.active,
-  .filter-buttons button:hover {
-    background: #000;
-    color: #fff;
-  }
-  .media-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin: 0 auto;
-    max-width: 1200px;
-  }
-  .media-card {
-    background: #fff;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .media-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  }
-  .media-card img {
-    width: 100%;
-    display: block;
-  }
-  .see-more {
-    margin-top: 20px;
-    text-align: center;
-  }
-  .see-more button {
-    padding: 10px 20px;
-    border: 1px solid #000;
-    background: transparent;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  .see-more button:hover {
-    background: #000;
-    color: #fff;
-  }
-  
-  /* ----------------------- */
-  /* Section Vidéos */
-  #videos {
-    padding: 80px 20px;
-    background: #f9f9f9;
-    text-align: center;
-  }
-  #videos h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  .videos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin: 0 auto;
-    max-width: 1200px;
-  }
-  
-  /* ----------------------- */
-  /* Section Audio */
-  #audio {
-    padding: 80px 20px;
-    background: #fff;
-    text-align: center;
-  }
-  #audio h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  .audio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin: 0 auto;
-    max-width: 1200px;
-  }
-  
-  /* ----------------------- */
-  /* Sticky Music Player */
-  .music-player {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #111;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    z-index: 1000;
-    box-shadow: 0 -2px 6px rgba(0,0,0,0.3);
-  }
-  .player-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(17,17,17,0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1100;
-  }
-  .player-overlay button {
-    padding: 12px 24px;
-    border: none;
-    background: #000;
-    color: #fff;
-    border-radius: 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    opacity: 0.9;
-  }
-  .player-controls {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .album-art img {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-  }
-  .track-info {
-    flex: 1;
-    text-align: left;
-  }
-  .track-info h4 {
-    font-size: 1rem;
-    margin-bottom: 5px;
-  }
-  .track-info p {
-    font-size: 0.9rem;
-  }
-  .controls button {
-    padding: 8px 12px;
-    border: none;
-    background: #000;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 1rem;
-  }
-  .progress-container {
-    width: 100%;
-    height: 5px;
-    background: #333;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  .progress-bar {
-    width: 0;
-    height: 100%;
-    background: #fff;
-    transition: width 0.3s ease;
-  }
-  
-  /* ----------------------- */
-  /* Modal pour media */
-  .media-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 1200;
-  }
-  .media-modal.active {
-    display: flex;
-  }
-  .modal-content {
-    position: relative;
-    background: #000;
-    border-radius: 20px;
-    padding: 20px;
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  .modal-prev,
-  .modal-next {
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 2rem;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .modal-prev {
-    left: 10px;
-  }
-  .modal-next {
-    right: 10px;
-  }
-  .modal-media {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+ 
+ /* ---------- RESET & BASE ---------- */
+ * { margin: 0; padding: 0; box-sizing: border-box;  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto; }
+ body { font-family: 'Montserrat', sans-serif; background: #fff; color: #333; }
+ a { text-decoration: none; color: inherit; }
+ 
+ /* ---------- NAVBAR ---------- */
+ /* ----------------------- */
+/* NAVBAR */
+/* ----------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 20px;
+}
+/* Conteneur pour les actions (Contact & Menu) à droite */
+.nav-actions {
+  position: absolute;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+/* Bouton Contact et Menu */
+.contact-btn, .menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.contact-btn .icon-circle,
+.menu-btn .icon-circle {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-btn .icon-circle svg,
+.menu-btn .icon-circle svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+.btn-text {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.separator {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Zone centrale de la navbar (logo) */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-center img {
+  margin: 10px 0;
+  max-height: 60px;
+}
+
+/* ----------------------- */
+/* DROPDOWN MENU */
+/* ----------------------- */
+.dropdown {
+  position: absolute;
+  top: 104px;
+  right: 50px;
+  max-width: 300px;
+  width: 24vw;
+  height: 70vh; 
+  max-height: 70vh;                   /* Dropdown occupe 70% de la hauteur du viewport */
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;                       /* Petit espace entre les blocs */
+  border-radius: 2vh;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;           /* Empêche l'interaction quand non actif */
+  transform: translateX(-3vh);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1100;
+}
+.dropdown.active {
+  opacity: 1;
+  pointer-events: auto;           /* Rétablit les interactions */
+  transform: translateX(0);
+}
+
+/* Répartition du poids des blocs :
+   - Menu : 2 parts
+   - Newsletter : 1 part
+   - Réseaux (follow) : 1.5 part */
+.dropdown .menu-card {
+  flex: 2.5 1 0;
+  padding: 1.5vh 1vw;
+  background: #fff;
+  border: 0.4vh solid #000;
+  border-radius: 2vh;
+  margin-bottom: 0.5vh;
+  box-sizing: border-box;
+}
+.dropdown .newsletter-card {
+  flex: 1 0.9 0;
+  padding: 1.5vh 1.5vw;
+  background: #fff;
+  border: 0.4vh solid #000;
+  border-radius: 2vh;
+  margin-bottom: 0.5vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre verticalement le contenu */
+}
+.dropdown .follow-card {
+  flex: 1.1 1 0;
+  padding: 1.5vh;
+  background: #000;
+  border: 1vh solid #000;
+  border-radius: 2vh;
+  color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centre verticalement le contenu */
+}
+
+/* Reste du contenu interne */
+.dropdown .newsletter-card form,
+.dropdown .follow-card .social-buttons {
+  width: 100%;
+}
+
+/* --- Card Menu – liste des liens --- */
+.dropdown .menu-card ul {
+  list-style: none;
+  padding: 0 0.5vw;
+}
+.dropdown .menu-card ul li {
+  margin-bottom: 1vh;
+  position: relative;
+}
+.dropdown .menu-card ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1em;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+  padding: 1vh 1vw;
+  border-radius: 1vh;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.dropdown .menu-card ul li a:hover {
+  background: #dee0df;
+}
+
+/* Flèche pour l'item "Contact" (dernier item) */
+.dropdown .menu-card ul li:last-child a::after {
+  content: '➔';
+  position: absolute;
+  right: 1vh;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+}
+
+/* --- Card Newsletter --- */
+.dropdown .newsletter-card h3 {
+  margin-bottom: 1vh;
+  font-size: 1rem;
+  color: #000;
+}
+.dropdown .newsletter-card form {
+  display: flex;
+  gap: 1vh;
+}
+.dropdown .newsletter-card input[type="email"] {
+  width: 95%;
+  flex: 1;
+  padding: 1vh;
+  border: 0.4vh solid #000;
+  border-radius: 1vh;
+  font-size: 0.9rem;
+  color: black;
+}
+.dropdown .newsletter-card button {
+  padding: 1vh 1vw;
+  flex: 0.2;
+  border: 0.2vh solid #000;
+  border-radius: 1vh;
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.dropdown .newsletter-card button:hover {
+  transform: scale(1.05);
+}
+
+/* --- Carte Follow (Réseaux) --- */
+.dropdown .follow-card h3 {
+  margin-bottom: 1vh;
+  font-size: 1rem;
+  color: #fff;
+}
+.dropdown .follow-card .social-buttons {
+  display: flex;
+  gap: 2vh;
+}
+.dropdown .follow-card .social-buttons button {
+  flex: 0.8;
+  padding: 1vh;
+  border: 0.2vh solid #000;
+  border-radius: 1vh;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.dropdown .follow-card .social-buttons button .logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.dropdown .follow-card .social-buttons button .logo-color {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  padding: 0.5vh;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.dropdown .follow-card .social-buttons button:hover .logo-black {
+  opacity: 0;
+  transform: scale(1);
+}
+.dropdown .follow-card .social-buttons button:hover .logo-color {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.02);
+}
+.dropdown .menu-card ul li a.active::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+}
+
+
+ /* ---------- SEPARATEUR ---------- */
+ .section-separator {
+ 
+   border: none;
+   border-radius: 90px;
+   border-top: 3px solid #000000;
+   margin: 40px auto;
+   max-width: 1200px;
+   width: 100%;
+ }
+ 
+ /* ---------- MAIN ---------- */
+ main { padding-top: 70px; }
+ section { padding: 30px 50px; }
+ h2.section-title { font-size: 2.5rem; text-align: left; margin-bottom: 30px; }
+ 
+/* Section "À la une" en mode fullscreen */
+#featured {
+position: relative;
+height: 95vh; /* occupe toute la hauteur de l'écran */
+overflow: hidden;
+}
+
+/* L'image de fond couvre toute la section */
+.featured-background img {
+position: absolute;
+top: 0; left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+/* Animation douce de zoom pour dynamiser le fond */
+animation: zoomIn 20s infinite alternate;
+}
+
+/* Overlay pour le contenu par-dessus l'image */
+.featured-overlay {
+position: relative;
+z-index: 2;
+width: 100%;
+height: 100%;
+padding: 20px;
+}
+
+/* Titre en haut à gauche */
+.featured-title {
+position: absolute;
+top: 20px;
+left: 20px;
+color: #fff;
+font-size: 3rem;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+margin: 0;
+}
+
+/* Flèches de défilement en bas, centrées horizontalement */
+.scroll-indicator {
+position: absolute;
+
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 5px;
+opacity: 0.8;
+animation: bounce 2s infinite;
+}
+.scroll-indicator .arrow {
+width: 30px;
+height: 30px;
+fill: #fff;
+}
+
+/* Animation de rebond pour les flèches */
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+40% { transform: translateX(-50%) translateY(-10px); }
+60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Animation de zoom du fond */
+@keyframes zoomIn {
+from { transform: scale(1); }
+to { transform: scale(1.05); }
+}
+
+ 
+ /* ---------- GRID SECTIONS (Photos, Vidéos, Audio) ---------- */
+ .media-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 10px;
+   padding: 0 20px;
+   max-width: 1200px;
+   margin: 0 auto;
+ }
+ .media-card {
+   border-radius: 15px;
+   overflow: hidden;
+   cursor: pointer;
+   transition: transform 0.3s;
+   background: #ccc;
+ }
+ .media-card:hover { transform: scale(1.02); }
+ .media-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+ 
+ /* Pour Photos et Vidéos : forcer des carrés */
+ .photos-grid .media-card,
+ .videos-grid .media-card,
+ .audio-grid .media-card {
+   aspect-ratio: 1 / 1;
+ }
+ 
+ .see-more { text-align: center; margin-top: 20px; }
+ .see-more button {
+   padding: 10px 20px;
+   border: none;
+   background: #000;
+   color: #fff;
+   border-radius: 20px;
+   cursor: pointer;
+   font-size: 1rem;
+   transition: background 0.3s;
+ }
+ .see-more button:hover { background: #333; }
+ 
+ .filter-buttons button {
+padding: 8px 16px;
+border: 2px solid #000;
+background: transparent;
+border-radius: 20px;
+cursor: pointer;
+transition: background-color 0.3s ease, color 0.3s ease;
+color: #000;
+}
+
+.filter-buttons button:hover {
+background-color: #000;
+color: #fff;
+}
+
+.filter-buttons button.active {
+background-color: #000;
+color: #fff;
+}
+
+
+.photos-header {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+}
+.photos-header .section-title {
+  margin-left: -15px;
+}
+
+
+/* Gardez le style existant pour les boutons de filtrage */
+.filter-buttons button {
+  padding: 8px 16px;
+  border: 2px solid #000;
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #000;
+}
+
+.filter-buttons button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.filter-buttons button.active {
+  background-color: #000;
+  color: #fff;
+}
+
+
+ /* ---------- STICKY MUSIC PLAYER ---------- */
+/* Style du conteneur du player (iframe) */
+.iframe-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #25292c;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateY(100%); /* Masqué vers le bas */
+  opacity: 0;
+}
+
+/* Quand la section audio est visible, le conteneur devient visible */
+.iframe-container.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+ .player-container {
+   display: flex;
+   align-items: center;
+   width: 100%;
+   max-width: 900px;
+   height: auto;
+   gap: 20px;
+ }
+ /* Bouton Discover Sounds à gauche */
+ .discover-sounds {
+   margin-right: auto;
+   transition: opacity 0.4s ease, transform 0.4s ease;
+ }
+ .discover-sounds.hide {
+   opacity: 0;
+   transform: translateX(-50px);
+ }
+ .discover-sounds button {
+   padding: 10px 20px;
+   border: none;
+   background: #1db954;
+   color: #fff;
+   font-weight: bold;
+   border-radius: 30px;
+   cursor: pointer;
+   font-size: 1rem;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+ }
+ .album-art { width: 60px; height: 60px; flex-shrink: 0; }
+ .album-art img {
+   width: 100%; height: 100%;
+   object-fit: cover;
+   border-radius: 5px;
+ }
+ .track-info {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
+ .track-info h4 { font-size: 1rem; margin-bottom: 5px; }
+ .track-info p { font-size: 0.9rem; opacity: 0.8; }
+ .player-controls {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+ }
+ .player-controls button { background: none; border: none; cursor: pointer; }
+ .volume-control {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+ }
+ .volume-control input[type="range"] { width: 100px; }
+ .progress-container {
+   position: relative;
+   width: 100%;
+   height: 5px;
+   background: #404040;
+   border-radius: 3px;
+   overflow: hidden;
+   margin-top: 5px;
+ }
+ .progress-bar {
+   position: absolute;
+   top: 0; left: 0;
+   height: 100%;
+   background: #1db954;
+   width: 0%;
+ }
+ 
+ /* ---------- MODAL MEDIA ---------- */
+ .media-modal {
+   position: fixed;
+   top: 0; left: 0;
+   width: 100%; height: 100%;
+   background: rgba(0,0,0,0.9);
+   display: none;
+   align-items: center;
+   justify-content: center;
+   z-index: 1200;
+ }
+ .media-modal.active { display: flex; }
+ .modal-content {
+   position: relative;
+   max-width: 90%;
+   max-height: 90%;
+   border-radius: 15px;
+   overflow: hidden;
+   background: #000;
+ }
+ .modal-content img,
+ .modal-content video {
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+   display: block;
+ }
+ .modal-close {
+   position: absolute;
+   top: 10px; right: 10px;
+   background: transparent;
+   border: none;
+   color: #fff;
+   font-size: 1.5rem;
+   cursor: pointer;
+   z-index: 1300;
+ }
+ .modal-prev, .modal-next {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background: transparent;
+   border: none;
+   color: #fff;
+   font-size: 2rem;
+   cursor: pointer;
+   z-index: 1300;
+ }
+ .modal-prev { left: 10px; }
+ .modal-next { right: 10px; }
+ 
+ /* ---------- Responsive ---------- */
+ @media (max-width: 768px) {
+   .featured-carousel { grid-template-columns: 1fr; }
+   .player-container { flex-direction: column; gap: 10px; }
+   .player-controls { margin-top: 10px; }
+   .volume-control input[type="range"] { width: 80px; }
+ }
+
+
+
+footer {
+  background: #000000;
+  padding: 15px 20px 0;
+  color: #ffffff;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  padding-top: 40px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+.footer-column {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Colonne gauche */
+.footer-column.left {
+  text-align: left;
+}
+.footer-column.left .footer-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.footer-column.left .footer-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Colonne centrale */
+.footer-column.center {
+  text-align: center;
+}
+.footer-column.center .footer-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.footer-column.center .footer-info {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+.footer-column.center .footer-info p {
+  margin: 5px 0;
+}
+.footer-column.center .footer-divider {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 20px auto;
+  width: 80%;
+}
+.footer-column.center .footer-repeat {
+  margin-top: 15px;
+}
+.footer-column.center .footer-image {
+  margin-top: 20px;
+}
+.footer-column.center .footer-image img {
+  max-width: 20%;
+  border-radius: 10px;
+}
+
+/* Colonne droite */
+.footer-column.right {
+ 
+  text-align: right;
+}
+.footer-column.right .footer-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* Card Newsletter */
+.newsletter-cardbottom h3 {
+margin-bottom: 10px;
+font-size: 1.2rem;
+color: #000000;
+}
+.newsletter-cardbottom form {
+display: flex;
+gap: 10px;
+}
+.newsletter-cardbottom input[type="email"] {
+width: 88%;
+flex: 0.8;
+padding: 10px;
+border: 1px solid #000;
+border-radius: 12px;
+font-size: 1rem;
+}
+.newsletter-cardbottom button {
+padding: 10px 20px;
+flex: 0.2;
+border: 1px solid #000;
+border-radius: 12px;
+background: #000;
+color: #fff;
+font-weight: bold;
+cursor: pointer;
+transition: transform 0.2s ease;
+}
+.newsletter-cardbottom button:hover {
+transform: scale(1.05);
+}
+/* Card Follow – inversé */
+.follow-cardbottom {
+padding: 20px;
+background: #000000;
+border: 1px solid #000;
+border-radius: 20px;
+color: #fff;
+}
+.follow-cardbottom h3 {
+margin-bottom: 10px;
+font-size: 1.2rem;
+color: #fff;
+}
+.follow-cardbottom .social-buttons {
+display: flex;
+gap: 10px;
+}
+.follow-cardbottom .social-buttons button {
+flex: 1;
+padding: 10px;
+border: 1px solid #000;
+border-radius: 12px;
+background: #fff;
+cursor: pointer;
+transition: transform 0.2s ease;
+}
+.follow-cardbottom .social-buttons button:hover {
+transform: scale(1.05);
+}
+.follow-cardbottom .social-buttons button svg {
+width: 24px;
+height: 24px;
+fill: #333;
+}
+.follow-cardbottom .social-buttons button:hover svg {
+fill: #000;
+}
+
+
+
+
+.newsletter-cardbottom,
+.follow-cardbottom {
+margin-left: 48px;
+padding: 15px;
+background: #fff;
+border: 1px solid #000;
+border-radius: 20px;
+margin-bottom: 15px;
+}
+.newsletter-cardbottom form,
+.follow-cardbottom .social-buttons {
+width: 100%;
+}
+/* Card Menu – liste des liens */
+
+
+
+/* Footer Bottom Bar */
+.footer-bottom {
+  background-image: url("http://www.noidlab.com/wp-content/uploads/2020/05/Groupe-75.png");
+  background-size: cover; /* L'image couvre tout le conteneur sans déformation */
+  background-position: center; /* Centre l'image */
+  background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+
+
+
+
