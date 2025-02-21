@@ -276,8 +276,8 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   const additionalVideos = [
     { src: "../assets/images/Danslesmurs_A27.jpg" },
-    { src: "../assets/images/Danslesmurs_A27.jpg" },
-    { src: "../assets/images/Danslesmurs_A27.jpg" }
+    { src: "../assets/images/Danslesmurs_A28.jpg" },
+    { src: "../assets/images/Danslesmurs_A33.jpg" }
   ];
   const additionalAudios = [
     { src: "../assets/audio/sample.mp3" },
@@ -301,3 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: { trigger: "#featured", start: "top 80%" }
   });
 });
+
+
+
