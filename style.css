@@ -79,9 +79,10 @@ body {
   justify-content: center;
 }
 .contact-btn .icon-circle svg,
+.contact-btn .icon-circle img,
 .menu-btn .icon-circle svg {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   fill: #fff;
 }
 .btn-text {
@@ -365,7 +366,7 @@ body {
        Bloc central des stats (au-dessus de la vidéo)
     --------------------------------------------------------- */
     .stats-container {
-      font-family: Helvetica, sans-serif;
+      font-family: 'extra-bold-montserrat', sans-serif;
       font-weight: bold;
       position: relative;
       z-index: 2;
@@ -373,18 +374,21 @@ body {
     
     .stats-title,
     .stats-footer {
+      font-family: 'extra-bold-montserrat', sans-serif;
       font-size: 2.5rem;
       color: #fe4949; /* teinte rosée */
       margin: 0.5em 0;
     }
     
     .stat-item {
+      font-family: 'extra-bold-montserrat', sans-serif;
       margin: 1em 0;
     }
     
     /* Les compteurs */
     .stat-number {
       display: inline-block; /* largeur limitée au texte */
+      font-family: 'extra-bold-montserrat', sans-serif;
       font-size: 4rem;
       margin-bottom: 0.2em;
       position: relative;
@@ -410,10 +414,12 @@ body {
       width: calc(100% + 10px);
     }
     .stat-number.highlight {
+      font-family: 'extra-bold-montserrat', sans-serif;
       color: white;
     }
     
     .stat-label {
+      font-family: 'extra-bold-montserrat', sans-serif;
       display: block;
       font-size: 1.5rem;
       color: black;
@@ -580,6 +586,7 @@ body {
 
 /* Sous-titre et paragraphe fusionnés */
 .stack-card.subtitle {
+  font-family: 'bold-montserrat', sans-serif;
   max-width: 1110px;
   margin: 0 auto;
   font-size: 0.5em;
@@ -588,6 +595,7 @@ body {
 
 /* Sous-titre h2 */
 .stack-card.subtitle h2 {
+  font-family: 'bold-montserrat', sans-serif;
   font-size: 1.6rem;
   margin: 0 0 25px;
   color: #333;
@@ -944,7 +952,7 @@ box-shadow: inset 0 0 0 3px black;
     margin-top: 50px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
   }
   
@@ -955,7 +963,7 @@ box-shadow: inset 0 0 0 3px black;
     width: 510px;
     height: 350px;
     overflow: hidden;
-    box-shadow: 8px 8px 16px rgba(0,0,0,0.15), -8px -8px 16px rgba(255,255,255,0.9);
+    box-shadow:  0 0 0 3px black;
     cursor: pointer;
   }
   
@@ -1303,6 +1311,7 @@ padding: 40px 0;
 }
 
 .section-subtitle {
+  font-family: 'bold-montserrat', sans-serif;
   font-size: 1.7rem;
   color: #333;
   max-width: 900px;
@@ -1322,7 +1331,7 @@ padding: 40px 0;
   /* Ici, chaque carte aura au minimum 150px de large et pourra s'étendre jusqu'à 1fr.
      La grille s'adaptera au nombre d'éléments par ligne en fonction de la taille du conteneur. */
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px; /* Vous pouvez ajuster l'espacement entre les cartes */
+  gap: 15px; /* Vous pouvez ajuster l'espacement entre les cartes */
   width: 100%;
   margin: 0 auto;
   opacity: 0;
@@ -1344,12 +1353,12 @@ padding: 40px 0;
   border-radius: 10px;
   
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow:  0 0 0 3px black;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .gallery-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow:  0 0 0 3px black;
 }
 
 /* Forcer un aspect carré */
@@ -1520,6 +1529,8 @@ padding: 40px 0;
   padding: 0;
   margin-top: 30px;
   overflow: hidden;
+  background-color: black;
+  padding-top: 12px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 0; /* Pleine largeur sans arrondi */
 }
@@ -1585,18 +1596,16 @@ padding: 40px 0;
 
 
 #new-section {
-  padding: 50px 20px;
+  padding: 50px 60px;
   text-align: center;
 }
 
-.section-title {
-  font-size: 2.5rem;
-  
-}
 
-.separator {
+
+.separatored {
   border: none;
   border-top: 3px solid #000;
+  padding: 0 40px;
   margin: 20px 0;
   width: 100%;
 }
