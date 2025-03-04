@@ -1,0 +1,472 @@
+ /* Base Reset & Styles */
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body { font-family: 'Montserrat', sans-serif; line-height: 1.6; }
+ main { margin-top: 75px; } /* Pour éviter la superposition avec la navbar */
+ .section { min-height: 750px; display: flex; align-items: center; justify-content: center; }
+
+ /* ----------------------- */
+ /* NAVBAR (code fourni) */
+ /* ----------------------- */
+ .navbar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 75px;
+   display: flex;
+   align-items: center;
+   background-color: black;
+   justify-content: center;
+   z-index: 1000;
+   padding: 0 20px;
+ }
+ .nav-actions {
+   position: absolute;
+   right: 50px;
+   display: flex;
+   align-items: center;
+   gap: 15px;
+ }
+ .contact-btn, .menu-btn {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   cursor: pointer;
+ }
+ .contact-btn .icon-circle,
+ .menu-btn .icon-circle {
+   width: 35px;
+   height: 35px;
+   border: 2px solid #fff;
+   border-radius: 50%;
+   background: #000;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ .contact-btn .icon-circle svg,
+ .menu-btn .icon-circle svg {
+   width: 20px;
+   height: 20px;
+   fill: #fff;
+ }
+ .btn-text {
+   color: #fff;
+   font-weight: bold;
+   font-size: 1rem;
+ }
+ .separator {
+   color: #fff;
+   font-weight: bold;
+   font-size: 1rem;
+ }
+ .nav-center {
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+ }
+ .nav-center img {
+   margin: 10px 0;
+   max-height: 60px;
+ }
+ /* ----------------------- */
+ /* DROPDOWN MENU (code fourni) */
+ /* ----------------------- */
+ .dropdown {
+   position: absolute;
+   top: 104px;
+   right: 50px;
+   max-width: 300px;
+   width: 24vw;
+   height: 70vh; 
+   max-height: 70vh;
+   display: flex;
+   flex-direction: column;
+   gap: 1vh;
+   border-radius: 2vh;
+   overflow-y: auto;
+   opacity: 0;
+   pointer-events: none;
+   transform: translateX(-3vh);
+   transition: opacity 0.4s ease, transform 0.4s ease;
+   z-index: 1100;
+ }
+ .dropdown.active {
+   opacity: 1;
+   pointer-events: auto;
+   transform: translateX(0);
+ }
+ .dropdown .menu-card {
+   flex: 2.5 1 0;
+   padding: 1.5vh 1vw;
+   background: #fff;
+   border: 0.4vh solid #000;
+   border-radius: 2vh;
+   margin-bottom: 0.5vh;
+   box-sizing: border-box;
+ }
+ .dropdown .newsletter-card {
+   flex: 1 0.9 0;
+   padding: 1.5vh 1.5vw;
+   background: #fff;
+   border: 0.4vh solid #000;
+   border-radius: 2vh;
+   margin-bottom: 0.5vh;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
+ .dropdown .follow-card {
+   flex: 1.1 1 0;
+   padding: 1.5vh;
+   background: #000;
+   border: 1vh solid #000;
+   border-radius: 2vh;
+   color: #fff;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
+ .dropdown .newsletter-card form,
+ .dropdown .follow-card .social-buttons {
+   width: 100%;
+ }
+ .dropdown .menu-card ul {
+   list-style: none;
+   padding: 0 0.5vw;
+ }
+ .dropdown .menu-card ul li {
+   margin-bottom: 1vh;
+   position: relative;
+ }
+ .dropdown .menu-card ul li a {
+   text-decoration: none;
+   color: #333;
+   font-size: 1.1em;
+   font-family: "Montserrat", serif;
+   font-optical-sizing: auto;
+   font-weight: bold;
+   text-transform: uppercase;
+   display: block;
+   padding: 1vh 1vw;
+   border-radius: 1vh;
+   transition: background 0.2s ease, color 0.2s ease;
+ }
+ .dropdown .menu-card ul li a:hover {
+   background: #dee0df;
+ }
+ .dropdown .menu-card ul li:last-child a::after {
+   content: '➔';
+   position: absolute;
+   right: 1vh;
+   top: 50%;
+   transform: translateY(-50%);
+   font-size: 1.1rem;
+ }
+ .dropdown .newsletter-card h3 {
+   margin-bottom: 1vh;
+   font-size: 1rem;
+   color: #000;
+ }
+ .dropdown .newsletter-card form {
+   display: flex;
+   gap: 1vh;
+ }
+ .dropdown .newsletter-card input[type="email"] {
+   width: 95%;
+   flex: 1;
+   padding: 1vh;
+   border: 0.4vh solid #000;
+   border-radius: 30px;
+   font-size: 0.9rem;
+   color: black;
+ }
+ .dropdown .newsletter-card button {
+   padding: 1vh 1vw;
+   flex: 0.2;
+   border: 0.2vh solid #000;
+   border-radius: 30px;
+   background: #000;
+   color: #fff;
+   font-weight: bold;
+   cursor: pointer;
+   transition: transform 0.2s ease;
+ }
+ .dropdown .newsletter-card button:hover {
+   transform: scale(1.05);
+ }
+ .dropdown .follow-card h3 {
+   margin-bottom: 1vh;
+   font-size: 1rem;
+   color: #fff;
+ }
+ .dropdown .follow-card .social-buttons {
+   display: flex;
+   gap: 2vh;
+ }
+ .dropdown .follow-card .social-buttons button {
+   flex: 0.8;
+   padding: 1vh;
+   border: 0.2vh solid #000;
+   border-radius: 1vh;
+   background: #fff;
+   cursor: pointer;
+   position: relative;
+   overflow: hidden;
+   transition: transform 0.2s ease;
+ }
+ .dropdown .follow-card .social-buttons button .logo {
+   display: block;
+   width: 100%;
+   height: auto;
+   transition: opacity 0.2s ease, transform 0.2s ease;
+ }
+ .dropdown .follow-card .social-buttons button .logo-color {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 100%;
+   height: auto;
+   padding: 0.5vh;
+   transform: translate(-50%, -50%);
+   opacity: 0;
+ }
+ .dropdown .follow-card .social-buttons button:hover .logo-black {
+   opacity: 0;
+   transform: scale(1);
+ }
+ .dropdown .follow-card .social-buttons button:hover .logo-color {
+   opacity: 1;
+   transform: translate(-50%, -50%) scale(1.02);
+ }
+ .dropdown .menu-card ul li a.active::after {
+   content: '';
+   position: absolute;
+   right: 10px;
+   top: 50%;
+   transform: translateY(-50%);
+   width: 10px;
+   height: 10px;
+   background: #000;
+   border-radius: 50%;
+ }
+ 
+ /* ----------------------- */
+ /* STYLES DES SECTIONS */
+ /* ----------------------- */
+ /* Section 1 : Main Section */
+ .banner {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 50px;
+ }
+ .banner h1 {
+   font-size: 2.5rem;
+ }
+ .banner .italic { font-style: italic; }
+ .full-image img { width: 100%; display: block; }
+ .centered-image { text-align: center; margin-top: 20px; }
+ .centered-image img { max-width: 50%; }
+ 
+ /* Section 2 : Texte */
+ .text-content h2.subtitle { font-size: 2rem; line-height: 1.3; }
+ .text-content p.paragraph { font-size: 1rem; margin-top: 20px; }
+ 
+ /* Section 3 : Caractéristiques */
+ #section3 .text-content { text-align: left; margin: 50px; }
+ 
+ /* Section 4 : Tarif */
+ #section4 .text-content { text-align: left; margin: 50px; }
+ 
+ /* Section 5 : Contact */
+ .contact-header { display: flex; justify-content: space-between; align-items: center; margin: 50px; width: 100%; }
+ .contact-header h2 { font-size: 2rem; }
+ .phone-box { border: 1px solid #000; border-radius: 15px; padding: 10px; font-size: 1.2rem; }
+ .contact-subtitle { text-align: center; margin: 0 50px; }
+ .contact-subtitle h3 { font-size: 1.5rem; margin: 20px 0; }
+ 
+ /* Formulaire (code fourni) */
+ .form-container {
+   width: 460px;
+   max-width: 600px;
+   margin: 0 auto;
+   text-align: center;
+ }
+ #contact-form {
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+ }
+ #contact-form input,
+ #contact-form textarea {
+   font-family: "Montserrat", serif;
+   font-weight: bold;
+   padding: 12px;
+   border: 0.4vh solid #000;
+   border-radius: 20px;
+   background: #fff;
+   font-size: 1rem;
+   box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+   transition: box-shadow 0.3s ease;
+ }
+ #contact-form input:focus,
+ #contact-form textarea:focus {
+   outline: none;
+   transform: scale(1.01);
+   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+ #contact-form button {
+   align-self: center;
+   width: fit-content;
+   padding: 12px;
+   border: 1px solid #000;
+   border-radius: 20px;
+   background: #000;
+   color: #fff;
+   font-size: 1rem;
+   font-weight: bold;
+   cursor: pointer;
+   transition: background 0.3s ease, transform 0.3s ease;
+ }
+ #contact-form button:hover {
+   background: #333;
+   transform: translateY(-2px);
+ }
+ 
+ /* Section 6 : Bandeau complet */
+ #banner { background: #f2f2f2; padding: 50px 0; }
+ #banner p { font-size: 1.5rem; text-align: center; }
+ 
+ /* Section 7 : Google Maps */
+ /* (L'iframe occupe toute la largeur et a une hauteur fixe) */
+ 
+ /* ----------------------- */
+ /* FOOTER (code fourni) */
+ /* ----------------------- */
+ footer {
+   background: #000000;
+   padding: 40px 20px 0;
+   color: #ffffff;
+ }
+ .footer-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   gap: 40px;
+   max-width: 1200px;
+   margin: 0 auto;
+   padding-bottom: 20px;
+ }
+ .footer-column { flex: 1; min-width: 250px; }
+ .footer-column.left { text-align: left; }
+ .footer-column.left .footer-title {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 1.6rem;
+   margin-bottom: 10px;
+   text-transform: uppercase;
+ }
+ .footer-column.left .footer-text { font-size: 0.95rem; line-height: 1.5; }
+ .footer-column.center { text-align: center; }
+ .footer-column.center .footer-title {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 1.6rem;
+   margin-bottom: 10px;
+   text-transform: uppercase;
+ }
+ .footer-column.center .footer-info { font-size: 0.95rem; line-height: 1.4; margin-bottom: 15px; }
+ .footer-column.center .footer-info p { margin: 5px 0; }
+ .footer-column.center .footer-divider {
+   border: none;
+   border-top: 1px solid #000;
+   margin: 20px auto;
+   width: 80%;
+ }
+ .footer-column.center .footer-repeat { margin-top: 15px; }
+ .footer-column.center .footer-image { margin-top: 20px; }
+ .footer-column.center .footer-image img {
+   max-width: 20%;
+   border-radius: 10px;
+ }
+ .footer-column.right { text-align: right; }
+ .footer-column.right .footer-title {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 1.6rem;
+   margin-bottom: 10px;
+   text-transform: uppercase;
+ }
+ .newsletter-cardbottom h3 {
+   margin-bottom: 10px;
+   font-size: 1.2rem;
+   color: #000000;
+ }
+ .newsletter-cardbottom form { display: flex; gap: 10px; }
+ .newsletter-cardbottom input[type="email"] {
+   width: 88%;
+   flex: 0.8;
+   padding: 10px;
+   border: 1px solid #000;
+   border-radius: 12px;
+   font-size: 1rem;
+ }
+ .newsletter-cardbottom button {
+   padding: 10px 20px;
+   flex: 0.2;
+   border: 1px solid #000;
+   border-radius: 12px;
+   background: #000;
+   color: #fff;
+   font-weight: bold;
+   cursor: pointer;
+   transition: transform 0.2s ease;
+ }
+ .newsletter-cardbottom button:hover { transform: scale(1.05); }
+ .follow-cardbottom {
+   padding: 20px;
+   background: #000000;
+   border: 1px solid #000;
+   border-radius: 20px;
+   color: #fff;
+ }
+ .follow-cardbottom h3 { margin-bottom: 10px; font-size: 1.2rem; color: #fff; }
+ .follow-cardbottom .social-buttons { display: flex; gap: 10px; }
+ .follow-cardbottom .social-buttons button {
+   flex: 1;
+   padding: 10px;
+   border: 1px solid #000;
+   border-radius: 12px;
+   background: #fff;
+   cursor: pointer;
+   transition: transform 0.2s ease;
+ }
+ .follow-cardbottom .social-buttons button:hover { transform: scale(1.05); }
+ .follow-cardbottom .social-buttons button svg {
+   width: 24px;
+   height: 24px;
+   fill: #333;
+ }
+ .follow-cardbottom .social-buttons button:hover svg { fill: #000; }
+ .newsletter-cardbottom,
+ .follow-cardbottom {
+   margin-left: 48px;
+   padding: 15px;
+   background: #fff;
+   border: 1px solid #000;
+   border-radius: 20px;
+   margin-bottom: 15px;
+ }
+ .newsletter-cardbottom form,
+ .follow-cardbottom .social-buttons { width: 100%; }
+ .footer-bottom {
+   background-image: url("http://www.noidlab.com/wp-content/uploads/2020/05/Groupe-75.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: #fff;
+   text-align: center;
+   padding: 10px;
+   font-size: 0.9rem;
+ }
