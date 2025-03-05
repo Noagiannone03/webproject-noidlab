@@ -3,6 +3,40 @@
 
   
 
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+      console.log("DOM entièrement chargé");
+      const sections = document.querySelectorAll('section');
+      console.log("Nombre de sections détectées :", sections.length);
+    
+      // Utilisez un seuil plus bas pour tester (0.1) afin de faciliter la détection
+      const options = { threshold: 0.1 };
+    
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          console.log("Section :", entry.target.id, "isIntersecting :", entry.isIntersecting);
+          const circle = entry.target.querySelector('.circle');
+          if (!circle) {
+            console.log("Aucun élément .circle trouvé dans", entry.target.id);
+            return;
+          }
+          if (entry.isIntersecting) {
+            circle.classList.add('active');
+            console.log("Ajout de .active sur", entry.target.id);
+          } else {
+            circle.classList.remove('active');
+            console.log("Retrait de .active sur", entry.target.id);
+          }
+        });
+      }, options);
+    
+      sections.forEach(section => observer.observe(section));
+    });
+    
+    
+
+
     // Animation pour la section fusion Stackée & Détails (titre et sous-titre)
     gsap.from(".stack-card.title h1", {
       y: 100,
@@ -514,4 +548,9 @@ function closeLightbox() {
 }
 
 
+
+
+
+
+// partie pour l'animation des cercles//
 

@@ -1,0 +1,120 @@
+
+/* ----------------------- */
+/* EVENT SECTION : CATÉGORIES & RÉALISATIONS */
+/* ----------------------- */
+#event-section {
+    margin-top: 10px;
+    padding: 50px 60px;
+    text-align: center;
+    height: 760px;
+  }
+  .colored-container-event {
+  padding: 40px 0;
+  
+    background-color: #ffdbb0;
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: inset 0 0 0 3px black;
+  }
+  
+  /* En-tête de section */
+  .section-header {
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Pillules de catégorie */
+  .pill-container {
+    display: inline-flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .pill-item {
+    padding: 8px 16px;
+    border: 2px solid #000;
+    background: transparent;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .pill-item.active {
+    background: #000;
+    color: #fff;
+  }
+  .pill-item:hover {
+    background: #000;
+    color: #fff;
+  }
+  
+  /* Zone horizontale pour les cards */
+  .horizontal-cards {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    margin: 0 80px;
+    /* Pour le scroll snap avec décalage */
+    transition: padding 0.3s ease;
+    /* Masquer la scrollbar pour Firefox et IE */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  /* Masquer la scrollbar pour Chrome, Safari, Opera */
+  .horizontal-cards::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Wrapper pour chaque card */
+  .card-wrapper {
+    text-align: center;
+    /* Pour le scroll snap */
+    scroll-snap-align: start;
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+  }
+  
+  /* Par défaut, toutes les cards sont en pleine couleur et à leur taille */
+  .card-wrapper:not(.filtered):not(.emphasized) {
+    transform: scale(1);
+    opacity: 1;
+    filter: none;
+  }
+  
+  /* Lors du filtrage : */
+  .card-wrapper.emphasized {
+    opacity: 1;
+    filter: none;
+  }
+  .card-wrapper.filtered {
+    transform: scale(0.9);
+    opacity: 0.5;
+    filter: grayscale(100%);
+  }
+  
+  /* Card Item avec effet flat/neumorphisme */
+  .card-item {
+    width: 212px;
+    min-height: 205px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 5px;
+  }
+  .card-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+  }
+  
+  /* Label en dessous de la card */
+  .card-label {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  
+  
+    
