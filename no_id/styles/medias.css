@@ -1,6 +1,41 @@
  
 
  
+@font-face {
+  font-family: 'extra-bold-montserrat';
+  src: url('../../assets/fonts/Montserrat-ExtraBold.ttf') format('truetype');
+  
+}
+
+@font-face {
+  font-family: 'medium-montserrat';
+  src: url('../../assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  
+}
+
+
+
+@font-face {
+  font-family: 'medium-italic-montserrat';
+  src: url('../../assets/fonts/Montserrat-MediumItalic.ttf') format('truetype');
+  
+}
+
+@font-face {
+  font-family: 'bold-italic-montserrat';
+  src: url('../../assets/fonts/Montserrat-BoldItalic.ttf.ttf') format('truetype');
+  
+}
+
+@font-face {
+  font-family: 'bold-montserrat';
+  src: url('../../assets/fonts/Montserrat-Bold.ttf') format('truetype');
+  
+}
+
+
+
+
  /* =============================== */
 /* SECTION GALLERIE MEDIA */
 /* =============================== */
@@ -233,7 +268,5 @@
     border-radius: 30px;
     transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
   }
-  
-  
   
   
