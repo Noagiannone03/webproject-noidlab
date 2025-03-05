@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="no_id/styles/style.css">
+ 
  
 </head>
 <body>
@@ -104,22 +105,22 @@
         <div class="social-buttons">
           <!-- Facebook -->
           <button>
-            <img class="logo logo-black" src="assets/logo/facebook noir et blanc.png" alt="Facebook">
-            <img class="logo logo-color" src="assets/logo/facebook couleur.png" alt="Facebook">
+            <img class="logo logo-black" src="assets/pictos/facebook_noir_et_blanc.png" alt="Facebook">
+            <img class="logo logo-color" src="assets/pictos/facebook_couleur.png" alt="Facebook">
           </button>
           <!-- Instagram -->
           <button>
-            <img class="logo logo-black" src="assets/logo/insta noir et blanc.png" alt="Instagram">
-            <img class="logo logo-color" src="assets/logo/instagram couleur.png" alt="Instagram">
+            <img class="logo logo-black" src="assets/pictos/insta_noir_et_blanc.png" alt="Instagram">
+            <img class="logo logo-color" src="assets/pictos/insta_couleur.png" alt="Instagram">
           </button>
           <!-- TikTok -->
           <button>
-            <img class="logo logo-black" src="assets/logo/tiktok noir et blanc.png" alt="TikTok">
-            <img class="logo logo-color" src="assets/logo/tiktok couleur.png" alt="TikTok">
+            <img class="logo logo-black" src="assets/pictos/tik tok_noir_et_blanc.png" alt="TikTok">
+            <img class="logo logo-color" src="assets/pictos/tiktok_couleur.png" alt="TikTok">
           </button>
           <button>
-            <img class="logo logo-black" src="assets/logo/whatsapp noir et blanc.png" alt="Whatsapp">
-            <img class="logo logo-color" src="assets/logo/whatsapp couleur.png" alt="Whatsapp">
+            <img class="logo logo-black" src="assets/pictos/x_noir_et_blanc.png" alt="Whatsapp">
+            <img class="logo logo-color" src="assets/pictos/x_couleur.png" alt="Whatsapp">
           </button>
         </div>
       </div>
@@ -197,17 +198,19 @@
   </section>
   
 <!-- Section fusion Stackée & Détails -->
-<section id="stack-section">
+<section id="stack-section" class="observed-section">
   <div class="interieur">
     <div class="stack-card title">
       <div class="title-container">
         <h1 class="section-title">A PROPOS</h1>
-        <div class="circle"></div>
+        <div class="circle" data-icon="assets/pictos/à\ propos.png"></div>
       </div>
     </div>
     <!-- Sous-titre et paragraphe fusionnés -->
     <div class="stack-card subtitle">
-      <h2>NO/ID est une structure culturelle qui propose<br> des événements récréatifs et des solutions innovantes<br> sur la côte méditerranéenne depuis 1997.</h2>
+      <h2>NO/ID est une structure culturelle qui propose<br> 
+        des événements récréatifs et des solutions innovantes<br> 
+        sur la côte méditerranéenne depuis 1997.</h2>
       
       <!-- Nouveau texte surligné -->
       <p class="highlighted-text">EXPERIENCES ET SAVOIR-FAIRE</p>
@@ -231,18 +234,57 @@
   </div>
 </section>
 
+
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+  const sections = document.querySelectorAll('.observed-section');
+  const options = { threshold: 0.5 };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const circle = entry.target.querySelector('.circle');
+      if (!circle) return;
+      
+      if (entry.isIntersecting) {
+        // Lors de l'entrée, on récupère l'URL de l'image et on lance l'animation d'entrée.
+        const iconUrl = circle.getAttribute('data-icon');
+        circle.style.backgroundImage = `url('${iconUrl}')`;
+        // Si l'élément avait déjà une classe bounce-out, on la retire.
+        circle.classList.remove('bounce-out');
+        circle.classList.add('active');
+      } else {
+        // Lors de la sortie, on retire la classe active et on ajoute bounce-out.
+        if (circle.classList.contains('active')) {
+          circle.classList.remove('active');
+          circle.classList.add('bounce-out');
+          // Au terme de l'animation, on réinitialise le background et on retire bounce-out.
+          circle.addEventListener('animationend', function handler() {
+            circle.style.backgroundImage = '';
+            circle.classList.remove('bounce-out');
+            circle.removeEventListener('animationend', handler);
+          });
+        }
+      }
+    });
+  }, options);
+
+  sections.forEach(section => observer.observe(section));
+});
+
+
+  </script>
   
   <!-- Section Titre Aligné à Gauche (pour présenter une nouvelle thématique) -->
  
   
   <!-- Section Tarifs -->
 
-<section  id="pricing-section-custom" >
+<section  id="pricing-section-custom" class="observed-section" >
   <div class="colored-container-princing">
  
   <div class="title-container">
     <h1 class="section-title">PRESTATIONS</h1>
-    <div class="circle"></div>
+    <div class="circle" data-icon="assets/pictos/prestation.png"></div>
    </div>
  
   <p class="section-subtitle">
@@ -357,11 +399,11 @@
   
   <!-- Nouvelle Section : Slider Cards -->
   <!-- Nouvelle Section : Slider Cards -->
-<section  id="slider-section">
+<section  id="slider-section" class="observed-section">
   <div class="colored-container-slider">
   <div class="title-container">
     <h1 class="section-title">NOS LIEUX</h1>
-    <div class="circle"></div>
+    <div class="circle" data-icon="assets/pictos/lieux.png"></div>
    </div>
  
   <p class="section-subtitle">Un tiers lieux culturel qui domine la rade 
@@ -420,13 +462,13 @@
 
 <!-- Nouvelle Section : Catégories & Réalisations -->
 <!-- Nouvelle Section : Event Section -->
-<section id="event-section">
+<section id="event-section" class="observed-section">
   <!-- En-tête de section -->
    <div class="colored-container-event">
   <div class="section-header">
     <div class="title-container">
        <h1 class="section-title">NOS REFERENCES</h1>
-       <div class="circle"></div>
+       <div class="circle" data-icon="assets/pictos/références.png"></div>
       </div>
    
     <p class="section-subtitle">Une empreinte faconnéee avec le temps, la marque de fabrique d'un chemin constitué d'événements majeurs et de projets parallèles.</p>
@@ -550,12 +592,12 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
 
 
 <!-- Section Gallerie Media -->
-<section  id="gallery-media">
+<section  id="gallery-media" class="observed-section">
   <div class="colored-container-media">
   <div class="section-header">
     <div class="title-container">
       <h1 class="section-title">MEDIAS</h1>
-      <div class="circle"></div>
+      <div class="circle" data-icon="assets/pictos/média.png"></div>
      </div>
     <p class="section-subtitle">
      Photos, vidéos, mix...<br>
@@ -593,12 +635,12 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
 
 
 
-<section  id="contact-section">
+<section  id="contact-section" class="observed-section">
   <div class="colored-container-contact">
   <div class="section-header">
     <div class="title-container">
       <h1 class="section-title">CONTACTEZ-NOUS</h1>
-      <div class="circle"></div>
+      <div class="circle" data-icon="assets/pictos/contactez\ nous.png"></div>
      </div>
     <p class="section-subtitle">Prenons contact si vous êtes intéréssé par notre démarche, nous reviendrons vers vous afin de vous renseigner dès que possible ;)</p>
   </div>
@@ -647,6 +689,7 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
       <p>
         <strong>FEATlab</strong><br>
         18 rue d'antrechaus<br>
+        83000 Toulon<br>
         04 94 62 24 77<br>
         info@noidlab.com<br>
         www.noidlab.com
@@ -665,6 +708,7 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
       <p>
         <strong>Fort NAPOLEON</strong><br>
         56 montée charles Barnier<br>
+        83500 La Seyne sur Mer<br>
         04 94 62 24 77<br>
         info@fornap.org<br>
         www.fornap.org
@@ -684,21 +728,21 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
 </div>
 
 
-
-
 <footer>
   <div class="footer-container">
     <!-- Colonne gauche -->
     <div class="footer-column left">
-      <h2 class="footer-title">À propos</h2>
+      <h2 class="footer-title">We are NO/ID</h2>
       <p class="footer-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod urna eu tincidunt consectetur, nisi nisl lacinia mi, eu pulvinar nisi neque sit amet turpis.
+        NO/ID est une structure culturelle qui propose des événements (ré)créatifs et des solutions innovantes sur la côte méditerranéenne depuis 1997.<br>
+        Nous axons nos projets sur le développement de solutions innovantes multi-formats. Notre expertise couvre la création, la production, la diffusion et l'organisation de projets culturels de grandes envergures.<br>
+        Nous pouvons intervenir sur les différentes étapes qui permettent de créer une identité, d'incuber une idée jusqu'à sa réalisation ou d'élargir le vecteur de diffusion entre un projet et son public.
       </p>
     </div>
     
     <!-- Colonne centrale -->
     <div class="footer-column center">
-      <h2 class="footer-title">Nos lieux d'exploitations</h2>
+      <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
       <div class="footer-info">
         <h3 class="footer-subtitle">FEATlab</h3>
         <p class="footer-details">
@@ -708,7 +752,8 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
           info@noidlab.com | www.noidlab.com
         </p>
       </div>
-      <hr class="footer-divider">
+      <!-- Divider personnalisé -->
+      <div class="center-divider"></div>
       <div class="footer-info footer-repeat">
         <h3 class="footer-subtitle">Fort Napoleon</h3>
         <p class="footer-details">
@@ -719,52 +764,40 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
         </p>
       </div>
       <div class="footer-image">
-        <img  src="assets/pieddepouleunique.png" alt="Image Footer">
+        <p>tout droit réservé</p>
       </div>
     </div>
     
     <!-- Colonne droite -->
     <div class="footer-column right">
-      <h2 class="footer-title">Keep in touch</h2>
-      <div class="newsletter-cardbottom">
-        <h3>Découvrez notre newsletter</h3>
-        <form onsubmit="return false;">
-          <input type="email" placeholder="Votre email" required />
-          <button type="submit">Envoyer</button>
-        </form>
-      </div>
-      <!-- Card Social Follow -->
-      <div class="follow-cardbottom">
-        <h3>Nous suivre</h3>
-        <div class="social-buttons">
-          <button>
-            <!-- Facebook SVG -->
-            <svg viewBox="0 0 24 24">
-              <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.337v21.326C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.07h3.128V8.413c0-3.1 1.893-4.788 4.658-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.716-1.795 1.763v2.31h3.587l-.467 3.636h-3.12V24h6.116C23.4 24 24 23.4 24 22.663V1.337C24 .6 23.4 0 22.675 0z"/>
-            </svg>
-          </button>
-          <button>
-            <!-- Instagram SVG -->
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.337 3.608 1.312.975.975 1.25 2.242 1.312 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.337 2.633-1.312 3.608-.975.975-2.242 1.25-3.608 1.312-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.337-3.608-1.312-.975-.975-1.25-2.242-1.312-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.337-2.633 1.312-3.608.975-.975 2.242-1.25 3.608-1.312 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.332.012 7.052.07 5.771.127 4.602.443 3.635 1.41 2.668 2.377 2.352 3.546 2.295 4.827.012 8.332 0 8.741 0 12s.012 3.668.07 4.948c.057 1.281.373 2.45 1.34 3.417.967.967 2.136 1.283 3.417 1.34 1.28.058 1.689.07 4.948.07s3.668-.012 4.948-.07c1.281-.057 2.45-.373 3.417-1.34.967-.967 1.283-2.136 1.34-3.417.058-1.28.07-1.689.07-4.948s-.012-3.668-.07-4.948c-.057-1.281-.373-2.45-1.34-3.417-.967-.967-2.136-1.283-3.417-1.34C15.668.012 15.259 0 12 0z"/>
-              <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
-              <circle cx="18.406" cy="5.594" r="1.44"/>
-            </svg>
-          </button>
-          <button>
-            <!-- TikTok SVG -->
-            <svg viewBox="0 0 24 24">
-              <path d="M9 0h3v12c-1.667-.667-3.333-1-5-1 0 0 0 0 0 0C3 11 0 13 0 16c0 4 4 8 8 8s8-4 8-8V0H9z"/>
-            </svg>
-          </button>
+      <h2 class="footer-title">WE KEEP IN TOUCH</h2>
+      <div class="connect-block">
+        <h2 class="connect-title">Pour rester connecté :</h2>
+        <div class="connect-inputs">
+          <div class="input-group">
+            <input type="email" placeholder="Votre email" required>
+            <button type="submit">Envoyer</button>
+          </div>
+          <div class="input-group">
+            <input type="text" placeholder="Votre numéro" required>
+            <button type="submit">Envoyer</button>
+          </div>
+        </div>
+        <h3 class="follow-title">Nous suivre</h3>
+        <div class="follow-icons">
+          <div class="follow-icon">Icon 1</div>
+          <div class="follow-icon">Icon 2</div>
+          <div class="follow-icon">Icon 3</div>
+          <div class="follow-icon">Icon 4</div>
         </div>
       </div>
     </div>
   </div>
- <div class="footer-bottom">
-    &copy; 2025 noidlab. Tous droits réservés.
+  <div class="footer-bottom">
+
   </div>
 </footer>
+
   <!-- Bandeau noir en bas -->
  
 

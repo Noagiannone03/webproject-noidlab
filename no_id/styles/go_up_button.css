@@ -1,0 +1,62 @@
+
+#backToTop {
+    position: fixed;
+    bottom: 25px;
+    right: 0px;
+    width: 50px;
+    height: 75px;
+    background-color: #ccc; /* gris clair */
+    cursor: pointer;
+    /* Arrondi uniquement en haut à gauche et en bas à droite */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    /* Les autres coins restent carrés */
+    overflow: hidden;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #backToTop img {
+    width: 46px; /* Image réduite pour être discrète */
+    height: auto;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+  
+  #backToTop .arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .arrow-icon {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  
+  /* Effets au survol */
+  #backToTop:hover {
+    transform: scale(1.05);
+    background-color: #aaa; /* gris plus foncé */
+  }
+  
+  #backToTop:hover img {
+    opacity: 0;
+  }
+  
+  #backToTop:hover .arrow {
+    opacity: 1;
+  }

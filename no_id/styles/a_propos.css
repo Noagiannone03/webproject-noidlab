@@ -1,0 +1,113 @@
+
+
+
+/* ----------------------- */
+/* SECTION FUSION STACKÉE & DÉTAILS */
+/* ----------------------- */
+/* ----------------------- */
+/* SECTION FUSION STACKÉE & DÉTAILS */
+/* ----------------------- */
+#stack-section {
+    padding: 50px 60px;             /* Ajustez le padding selon vos besoins */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 20px;
+    background-clip: content-box;
+    min-height: auto;               /* S'adapte au contenu */
+    text-align: center;
+    height: 780px;
+  }
+  
+  .interieur {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding: 40px 0;
+    background-color: #FFDEED;
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: inset 0 0 0 3px black;
+  }
+  
+  /* Titre */
+  .section-title {
+    font-family: 'extra-bold-montserrat', sans-serif;
+    font-size: 3rem;
+    text-align: left;
+    color: #131313;
+  }
+  
+  
+  
+  /* Conteneur du titre */
+  .title-container {
+    margin: 0 50px; 
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Sous-titre et paragraphe fusionnés */
+  .stack-card.subtitle {
+    font-family: 'bold-montserrat', sans-serif;
+    max-width: 1110px;
+    margin: 0 auto;
+    font-size: 0.5em;
+    text-align: center;
+  }
+  
+  /* Sous-titre h2 */
+  .stack-card.subtitle h2 {
+    font-family: 'bold-montserrat', sans-serif;
+    font-size: 1.6rem;
+    margin: 0 0 25px;
+    color: #0f0f0f;
+    line-height: 1.3;
+  }
+  
+  /* Paragraphe descriptif justifié */
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 30px;
+    padding: 0 10px;
+    text-align: justify;
+  }
+  
+  /* Nouveau texte surligné */
+  .highlighted-text {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  /* Texte de mission entre doubles crochets et centré */
+  .mission-text {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'bold-montserrat', sans-serif;
+    font-style: italic;
+    line-height: 1.6;
+    margin-left:  90px;
+    margin-right: 90px;
+    font-size: 1.1rem;
+  }
+  
+  /* Informations sur le fondateur alignées à droite */
+  .founder {
+    display: block;
+    text-align: right;
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-top: 20px;
+    margin-right: 50px;
+  }
+  

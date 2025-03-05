@@ -1,0 +1,239 @@
+ 
+
+ 
+ /* =============================== */
+/* SECTION GALLERIE MEDIA */
+/* =============================== */
+#gallery-media {
+    margin-top: 10px;
+    padding: 50px 60px;
+    text-align: center;
+    min-height: 760px;
+    /* La section est visible dès le départ */
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+  .colored-container-media {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-color: #a6d7ff;
+    padding: 30px 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: inset 0 0 0 3px black;
+  }
+  
+  .section-header {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    text-align: left;
+  }
+  
+  .section-title {
+    font-family: 'extra-bold-montserrat', sans-serif;
+    font-size: 3rem;
+    text-align: left;
+    color: #131313;
+  }
+  
+
+  
+  
+  
+  /* Par défaut, aucun background-image n’est appliqué.
+     Vous pouvez aussi définir d’autres styles pour l’état actif si besoin. */
+  
+  
+  
+  
+  
+  
+  .title-container {
+    margin: 0 50px; 
+     margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Permet aux enfants de prendre toute la hauteur */
+  }
+  
+  .section-subtitle {
+    font-family: 'bold-montserrat', sans-serif;
+    font-size: 1.7rem;
+    color: #121212;
+    max-width: 900px;
+    margin: 0 auto 0;
+    text-align: center;
+  }
+  
+  /* Conteneur avec marge latérale de 50px */
+  .slider-wrapper-container {
+    width: 100%;
+    padding: 0 80px;
+  }
+  
+  /* Grille en 2 lignes x 5 colonnes */
+  .gallery-grid {
+    display: grid;
+    /* Ici, chaque carte aura au minimum 150px de large et pourra s'étendre jusqu'à 1fr.
+       La grille s'adaptera au nombre d'éléments par ligne en fonction de la taille du conteneur. */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px; /* Vous pouvez ajuster l'espacement entre les cartes */
+    width: 100%;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ----------------------------- */
+  /* Styles des cartes (flat design) */
+  /* ----------------------------- */
+  .gallery-card {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    
+    overflow: hidden;
+    box-shadow:  0 0 0 3px black;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow:  0 0 0 3px black;
+  }
+  
+  /* Forcer un aspect carré */
+  .gallery-card::before {
+    content: "";
+    display: block;
+    padding-top: 100%;  /* Ratio 1:1 */
+  }
+  
+  /* Image en absolu */
+  .gallery-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Bouton centré */
+  .more-button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .more-btn {
+    padding: 8px 16px;
+    border: 2px solid #000;
+    background: transparent;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 30px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+  .more-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  
+  /* Effets de fade pour le remplacement d'image */
+  .fade-out {
+    animation: fadeOut 0.5s forwards;
+  }
+  .fade-in {
+    animation: fadeIn 0.5s forwards;
+  }
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+
+
+  
+/* Animation d'apparition */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+    width: 100%;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Cartes de la galerie */
+  .gallery-card {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .gallery-card::before {
+    content: "";
+    display: block;
+    padding-top: 100%;  /* Ratio 1:1 */
+  }
+  .gallery-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Bouton centré */
+  .more-button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .more-btn {
+    padding: 8px 16px;
+    border: 1px solid #000;
+    background: transparent;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 30px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+  
+  
+  
+  

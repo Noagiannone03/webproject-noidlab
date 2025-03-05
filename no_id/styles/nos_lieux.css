@@ -1,0 +1,153 @@
+
+/* ----------------------- */
+/* NOUVELLE SECTION – SLIDER CARDS */
+/* ----------------------- */
+/* ----------------------- */
+/* ----------------------- */
+/* ----------------------- */
+/* NOUVELLE SECTION – SLIDER CARDS */
+/* ----------------------- */
+#slider-section {
+    padding: 50px 60px;
+    text-align: center;
+    margin-top: 10px;
+    height: 760px;
+  }
+  .colored-container-slider{
+    display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  background-color: #feffb0;
+  height: 100%;
+  width: 100%;
+  border-radius: 30px;
+box-shadow: inset 0 0 0 3px black;
+  }
+  #slider-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  /* Petit sous-titre centré, limité à la largeur des cards */
+  #slider-section .slider-subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .slider-cards {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .slider-card {
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    width: 510px;
+    height: 350px;
+    overflow: hidden;
+    box-shadow:  0 0 0 3px black;
+    cursor: pointer;
+  }
+  
+  /* Conteneur du slider */
+  .slider-card .slider-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .slider-card .slider-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .slider-card .slider-container img.active {
+    opacity: 1;
+  }
+  
+  /* Overlay en bas de la carte */
+  /* Le bouton sera positionné de façon absolue, toujours visible */
+  .slider-card .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 15px;
+    transition: height 0.4s ease;
+    overflow: hidden;
+    height: 80px;  /* Hauteur initiale */
+  }
+    
+  /* Texte de l'overlay */
+  .slider-card .overlay .text {
+    text-align: left;
+  }
+  .slider-card .overlay .text h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  .slider-card .overlay .text p {
+    font-size: 1rem;
+    margin: 5px 0 0;
+    max-height: 40px;  /* Texte condensé par défaut */
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  
+  /* Contenu supplémentaire caché initialement */
+  .slider-card .overlay .extra-content {
+    margin-top: 10px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+  }
+  
+  /* Au hover, l'overlay s'étend et révèle le contenu complet */
+  .slider-card:hover .overlay {
+    height: 180px;
+  }
+  .slider-card:hover .overlay .text p {
+    max-height: 80px;
+  }
+  .slider-card:hover .overlay .extra-content {
+    max-height: 100px;
+    opacity: 1;
+  }
+  
+  /* Bouton toujours visible, positionné en bas à droite de l'overlay */
+  .slider-card .overlay button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 15px;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .slider-card .overlay button:hover {
+    transform: translateY(-5px);
+    background: #fff;
+    color: #000;
+  }
+  

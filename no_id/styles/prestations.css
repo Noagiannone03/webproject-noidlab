@@ -1,0 +1,196 @@
+
+/* ----------------------- */
+/* NOUVELLE SECTION – TITRE ALIGNÉ À GAUCHE */
+/* ----------------------- */
+/* Ici le titre sera affiché en haut, aligné à gauche */
+#right-title-section {
+    padding: 60px 20px;
+    background: transparent;
+    text-align: right;
+  }
+  #right-title-section h1 {
+    font-size: 4rem;
+    color: #333;
+  }
+  /* ----------------------- */
+  /* NOUVELLE SECTION – TARIFS */
+  /* ----------------------- */
+  #pricing-section-custom {
+    margin-top: 10px;
+    padding: 50px 60px;
+  
+    text-align: center;
+    height: 760px;
+    position: relative;
+  }
+  
+  .colored-container-princing {
+  
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-color: #ddfff1;
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+  box-shadow: inset 0 0 0 3px black;
+  }
+  
+  /* Titre et sous-titre */
+  .section-title-custom {
+    font-size: 2.5rem;
+    color: #000000;
+  }
+  
+  .sections-custom {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Carousel et cartes */
+  .carousel-container-custom {
+    position: relative;
+    margin: 5% auto;
+    width: 900px;
+    height: 300px;
+   
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-custom {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    transform: rotateY(0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Styles des cartes */
+  .card-custom {
+    width: 180px;
+    height: 250px;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 1s ease;
+    perspective: 1000px; /* Nécessaire pour l'effet flip */
+  }
+  
+  .card-inner-custom {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Pour l'effet flip, on utilise la classe "flipped-custom" */
+  .card-custom.flipped-custom .card-inner-custom {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front-custom,
+  .card-back-custom {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+  }
+  
+  .card-front-custom {
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .card-back-custom {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  /* Boutons de navigation */
+  .prev-custom,
+  .next-custom {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #cccccc;
+    color: white;
+    border: none;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+  }
+  
+  .prev-custom:hover,
+  .next-custom:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+  }
+  
+  .prev-custom {
+    left: 0;
+    color: black;
+  }
+  
+  .next-custom {
+    right: 0;
+    color: black;
+  }
+  
+  /* Réglages responsive */
+  @media screen and (min-width: 600px) and (max-width: 1000px) {
+    .carousel-container-custom {
+      width: 700px;
+      height: 300px;
+      transform: scale(0.8);
+    }
+  
+    .card-custom {
+      width: 160px;
+      height: 240px;
+      font-size: 20px;
+    }
+  
+    .carousel-custom {
+      gap: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .carousel-container-custom {
+      width: 100%;
+      height: 200px;
+      transform: scale(0.6);
+    }
+  
+    .carousel-custom {
+      gap: 0;
+    }
+  }
