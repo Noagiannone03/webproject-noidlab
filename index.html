@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[no ai' die]</title>
+  <title>NO/ID* LAB</title>
   <!-- Inclusion de GSAP et ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
@@ -62,7 +62,10 @@
   <nav class="navbar">
 
     <div class="nav-center">
-      <img src="assets/logo/LOGONOIDsimpleBlanc.png"/>
+      <a href="index.html">
+        <img src="assets/logo/LOGONOIDsimpleBlanc.png"/>
+      </a>
+      
     </div>
     <div class="nav-actions">
       <!-- Bouton Contact -->
@@ -147,7 +150,7 @@
         Votre navigateur ne supporte pas la vidéo.
       </video>
       <div class="stats-container">
-        <p class="stats-title slide-in" style="animation-delay: 0.2s;">LES STATS</p>
+        <p class="stats-title slide-in" style="animation-delay: 0.2s;">LES STATISTIQUES</p>
         
         <div class="stat-item slide-in" style="animation-delay: 0.4s;">
           <span class="stat-number" data-target="534">0</span>
@@ -441,7 +444,7 @@
               <p>Plongez dans l'univers FEAT*LAB, où l'art et la technologie se conjuguent pour créer des expériences immersives et innovantes.</p>
             </div>
           </div>
-          <button class="toggle-btn">Découvrir</button>
+          <button type="button" onclick="window.location.href='pages_lieux/featlab/index-feat-lab.html'" class="toggle-btn">Découvrir</button>
         </div>
       </div>
     <!-- Slider Card 1 -->
@@ -457,10 +460,12 @@
           <h3>FOR/NAP/</h3>
           <p>Lieu atypique</p>
           <div class="extra-content">
-            <p>Découvrez l'espace FOR/NAP/, un lieu unique où se mêlent créativité et convivialité. Plongez dans une ambiance chaleureuse et inspirante.</p>
+            <p>Découvrez l'espace FOR/NAP, un lieu unique où se mêlent créativité et convivialité. Plongez dans une ambiance chaleureuse et inspirante.</p>
           </div>
         </div>
-        <button class="toggle-btn">Découvrir</button>
+        <button type="button" onclick="window.location.href='pages_lieux/featlab/index-fornap.html'" class="toggle-btn">Découvrir</button>
+
+
       </div>
     </div>
   
@@ -774,9 +779,7 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
           info@fornap.com | www.fornap.org
         </p>
       </div>
-      <div class="footer-image">
-        <p>tout droit réservé</p>
-      </div>
+      
     </div>
     
     <!-- Colonne droite -->
@@ -796,18 +799,31 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
         </div>
         <h3 class="follow-title">Nous suivre</h3>
         <div class="follow-icons">
-          <div class="follow-icon">Icon 1</div>
-          <div class="follow-icon">Icon 2</div>
-          <div class="follow-icon">Icon 3</div>
-          <div class="follow-icon">Icon 4</div>
+          <button>
+            <img class="logo logo-black" src="assets/pictos/facebook_noir_et_blanc.png" alt="Facebook">
+            <img class="logo logo-color" src="assets/pictos/facebook_couleur.png" alt="Facebook">
+          </button>
+          <button>
+            <img class="logo logo-black" src="assets/pictos/insta_noir_et_blanc.png" alt="Instagram">
+            <img class="logo logo-color" src="assets/pictos/insta_couleur.png" alt="Instagram">
+          </button>
+          <button>
+            <img class="logo logo-black" src="assets/pictos/tik tok_noir_et_blanc.png" alt="TikTok">
+            <img class="logo logo-color" src="assets/pictos/tiktok_couleur.png" alt="TikTok">
+          </button>
+          <button>
+            <img class="logo logo-black" src="assets/pictos/x_noir_et_blanc.png" alt="Whatsapp">
+            <img class="logo logo-color" src="assets/pictos/x_couleur.png" alt="Whatsapp">
+          </button>
         </div>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-
+    
   </div>
 </footer>
+
 
   <!-- Bandeau noir en bas -->
  
