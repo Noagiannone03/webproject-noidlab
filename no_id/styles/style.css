@@ -55,222 +55,229 @@ body {
 
 
 
+/* ========================================================================== 
+   SECTION PRINCIPALE & STATS 
+   ========================================================================== */
 
+/* ---------------------------------------------------------
+   Vidéo de fond dans le conteneur de texte
+--------------------------------------------------------- */
+.text-block-container {
+  position: relative;
+  width: 100%;
+  margin-top: 6%;
+  height: 71%; /* Hauteur du bloc central, ajustable */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
 
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.3; /* Pour adoucir l'arrière-plan */
+}
 
-  /* ==========================================================================
-       SECTION PRINCIPALE & STATS
-       ========================================================================== */
-        /* ---------------------------------------------------------
-       Vidéo de fond dans le conteneur de texte
-    --------------------------------------------------------- */
-    .text-block-container {
-      position: relative;
-      width: 100%;
-      margin-top: 6%;
-      height: 71%; /* Hauteur du bloc central, ajustable */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
-    .bg-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-      opacity: 0.3; /* Pour adoucir l'arrière-plan */
-    }
-    
-    /* ---------------------------------------------------------
-       SECTION PRINCIPALE
-    --------------------------------------------------------- */
-    #main {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      overflow: hidden;
-      text-align: center;
-      margin-top: 27px;
-      box-sizing: border-box;
-      width: 100%;
-    }
-    
-    /* ---------------------------------------------------------
-       Bloc central des stats (au-dessus de la vidéo)
-    --------------------------------------------------------- */
-    .stats-container {
-      font-family: 'extra-bold-montserrat', sans-serif;
-      font-weight: bold;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .stats-title,
-    .stats-footer {
-      font-family: 'extra-bold-montserrat', sans-serif;
-      font-size: 2.5rem;
-      color: #fe4949; /* teinte rosée */
-      margin: 0.5em 0;
-    }
-    
-    .stat-item {
-      font-family: 'extra-bold-montserrat', sans-serif;
-      margin: 1em 0;
-    }
-    
-    /* Les compteurs */
-    .stat-number {
-      display: inline-block; /* largeur limitée au texte */
-      font-family: 'extra-bold-montserrat', sans-serif;
-      font-size: 4rem;
-      margin-bottom: 0.2em;
-      position: relative;
-      color: black;
-      transition: color 0.5s ease;
-    }
-    
-    /* Pseudo-élément pour le surlignage avec débordement */
-    .stat-number::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -5px;  /* déborde légèrement à gauche */
-      height: 100%;
-      width: 0;
-      background: black;
-      z-index: -1;
-      transition: width 1s ease;
-    }
-    
-    /* Lorsque la classe .highlight est ajoutée, le surlignage dépasse de 5px de chaque côté */
-    .stat-number.highlight::after {
-      width: calc(100% + 10px);
-    }
-    .stat-number.highlight {
-      font-family: 'extra-bold-montserrat', sans-serif;
-      color: white;
-    }
-    
-    .stat-label {
-      font-family: 'extra-bold-montserrat', sans-serif;
-      display: block;
-      font-size: 1.5rem;
-      color: black;
-    }
-    
-    /* Animation slide-in pour les éléments */
-    .slide-in {
-      opacity: 0;
-      transform: translateX(-100%);
-      animation: slideIn 0.6s forwards;
-    }
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    /* Bulles décoratives */
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.05;
-      background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
-    }
-    
-    
-    /* ---------------------------------------------------------
-       FLASH NEWS BANNER
-    --------------------------------------------------------- */
-    .flash-news-banner {
-      align-self: flex-start;
-      background: #000;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-      width: 91%;
-      margin-left: 50px;
-      margin-right: 50px;
-      padding: 15px;
-      box-sizing: border-box;
-      margin-top: 2%;
-      z-index: 2;
-    }
-    
-    .flash-news-slider {
-      display: flex;
-      transition: transform 0.5s ease;
-      /* Compense le padding horizontal */
-      width: calc(100% + 30px);
-      margin: 0 -15px;
-    }
-    
-    .news-item {
-      flex: 0 0 100%;
-      display: flex;
-      align-items: center;
-      box-sizing: border-box;
-    }
-    
-    .news-item img {
-      width: 65px;
-      height: 65px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-left: 20px;
-    }
-    
-    .news-content {
-      margin-left: 20px;
-      text-align: left;
-      color: #fff;
-    }
-    
-    .news-title {
-      font-size: 1.2rem;
-      margin: 0 0 10px;
-    }
-    /* Optionnel : style lorsque l'utilisateur fait glisser */
+/* ---------------------------------------------------------
+   SECTION PRINCIPALE
+--------------------------------------------------------- */
+#main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  text-align: center;
+  margin-top: 27px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ---------------------------------------------------------
+   Bloc central des stats (au-dessus de la vidéo)
+--------------------------------------------------------- */
+.stats-container {
+  font-family: 'extra-bold-montserrat', sans-serif;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+
+.stats-title,
+.stats-footer {
+  font-family: 'extra-bold-montserrat', sans-serif;
+  font-size: 2.5rem;
+  color: #fe4949; /* teinte rosée */
+  margin: 0.5em 0;
+}
+
+.stat-item {
+  font-family: 'extra-bold-montserrat', sans-serif;
+  margin: 1em 0;
+}
+
+/* ---------------------------------------------------------
+   Les compteurs
+--------------------------------------------------------- */
+.stat-number {
+  display: inline-block; /* largeur limitée au texte */
+  font-family: 'extra-bold-montserrat', sans-serif;
+  font-size: 4rem;
+  margin-bottom: 0.2em;
+  position: relative;
+  color: black;
+  transition: color 0.5s ease;
+}
+
+/* Pseudo-élément pour le surlignage avec débordement */
+.stat-number::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5px;  /* déborde légèrement à gauche */
+  height: 100%;
+  width: 0;
+  background: black;
+  z-index: -1;
+  transition: width 1s ease;
+}
+
+/* Lorsque la classe .highlight est ajoutée, le surlignage dépasse de 5px de chaque côté */
+.stat-number.highlight::after {
+  width: calc(100% + 10px);
+}
+.stat-number.highlight {
+  font-family: 'extra-bold-montserrat', sans-serif;
+  color: white;
+}
+
+.stat-label {
+  font-family: 'extra-bold-montserrat', sans-serif;
+  display: block;
+  font-size: 1.5rem;
+  color: black;
+}
+
+/* ---------------------------------------------------------
+   Animation slide-in pour les éléments
+--------------------------------------------------------- */
+.slide-in {
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: slideIn 0.6s forwards;
+}
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---------------------------------------------------------
+   Bulles décoratives
+--------------------------------------------------------- */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.05;
+  background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+}
+
+/* ---------------------------------------------------------
+   FLASH NEWS BANNER
+--------------------------------------------------------- */
+.flash-news-banner {
+  align-self: flex-start;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 91%;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-top: 2%;
+  z-index: 2;
+}
+
+.flash-news-slider {
+  display: flex;
+  transition: transform 0.5s ease;
+  /* Compense le padding horizontal */
+  width: calc(100% + 30px);
+  margin: 0 -15px;
+}
+
+.news-item {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.news-item img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
+.news-content {
+  margin-left: 20px;
+  text-align: left;
+  color: #fff;
+}
+
+.news-title {
+  font-size: 1.2rem;
+  margin: 0 0 10px;
+}
+
+/* Optionnel : style lorsque l'utilisateur fait glisser */
 .flash-news-slider.grabbing {
   cursor: grabbing;
   transition: none;
 }
-    
-    .news-text {
-      font-size: 0.9rem;
-      margin: 0;
-    }
-    
-    /* Points de navigation du slider */
-    .slider-dots {
-      position: absolute;
-      bottom: 10px;
-      right: 20px;
-    }
-    
-    .slider-dots .dot {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      background: #fff;
-      border-radius: 50%;
-      margin-left: 5px;
-      cursor: pointer;
-      opacity: 0.5;
-      transition: opacity 0.3s;
-    }
-    
-    .slider-dots .dot.active {
-      opacity: 1;
-    }
+
+.news-text {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Points de navigation du slider */
+.slider-dots {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.slider-dots .dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 5px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.slider-dots .dot.active {
+  opacity: 1;
+}
+
+
 
 .section-header {
   max-width: 800px;
