@@ -2,22 +2,18 @@
   font-family: 'extra-bold-montserrat';
   src: url('../../assets/fonts/Montserrat-ExtraBold.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'medium-montserrat';
   src: url('../../assets/fonts/Montserrat-Medium.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'medium-italic-montserrat';
   src: url('../../assets/fonts/Montserrat-MediumItalic.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'bold-italic-montserrat';
   src: url('../../assets/fonts/Montserrat-BoldItalic.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'bold-montserrat';
   src: url('../../assets/fonts/Montserrat-Bold.ttf') format('truetype');
@@ -33,7 +29,8 @@ footer {
 
 .footer-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* On force la même hauteur pour les colonnes sur grand écran */
+  align-items: stretch;
   justify-content: space-between;
   gap: 40px;
   max-width: 1200px;
@@ -62,7 +59,7 @@ footer {
   text-align: justify;
 }
 
-/* Colonne centrale - légèrement plus large */
+/* Colonne centrale */
 .footer-column.center {
   flex: 1.2;
   text-align: center;
@@ -90,12 +87,13 @@ footer {
 }
 .footer-column.center .footer-image {
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 .footer-column.center .footer-image p {
   margin: 0;
 }
 
-/* Colonne droite - Bloc connecté repensé */
+/* Colonne droite */
 .footer-column.right {
   flex: 0.9;
   text-align: right;
@@ -114,59 +112,49 @@ footer {
 .connect-title {
   font-family: 'medium-montserrat', sans-serif;
   text-align: left;
-  font-size: 0.9rem; /* Plus petit */
+  font-size: 0.9rem;
   margin-bottom: 10px;
-
 }
 .connect-inputs {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Espace vertical entre les groupes */
+  gap: 15px;
   width: 100%;
 }
-
 .input-group {
-
   display: flex;
   width: 100%;
-  gap: 10px; /* Espace horizontal entre l'input et le bouton */
+  gap: 10px;
 }
-
 .input-group input {
+  width: 100%;
   flex: 3;
-  height: 5%;
-  width: 100%;            /* L'input occupe toute la largeur restante */
   padding: 10px;
   border: 3px solid #000;
-  border-radius: 20px;  /* Bordures légèrement arrondies */
+  border-radius: 20px;
   font-size: 0.9rem;
 }
-
 .input-group button {
   flex: 0.3;
   padding: 5px 10px;
   border: 3px solid #000;
-  border-radius: 20px;  /* Bouton aux bords arrondis */
+  border-radius: 20px;
   background-color: #000;
   color: #fff;
   font-size: 0.8rem;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s;
 }
-
 .input-group button:hover {
   background-color: #333;
   transform: scale(1.05);
 }
-
-
 .follow-title {
   font-family: 'medium-montserrat', sans-serif;
   text-align: left;
   margin-top: 3%;
-  font-size: 0.9rem; /* Plus petit */
+  font-size: 0.9rem;
   margin-bottom: 10px;
- 
 }
 .follow-icons {
   display: flex;
@@ -200,8 +188,48 @@ footer {
 .follow-icons button:hover .logo-black {
   opacity: 0;
 }
+.footer-extra {
+  margin-top: 20px;
+  text-align: center;
+}
 
-/* Footer Bottom Bar */
+/* Le trait blanc */
+.footer-extra-line {
+  border: 0;
+  border-top: 1px solid #fff;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Mise en forme des liens et du texte en ligne */
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* espace entre le texte et les liens */
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.footer-links .rights-text {
+  font-family: 'bold-montserrat',  sans-serif;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.footer-links a {
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+
+/* Footer Bottom Bar (bandeau noir avec image de fond) */
 .footer-bottom {
   background-image: url("http://www.noidlab.com/wp-content/uploads/2020/05/Groupe-75.png");
   background-size: cover;
@@ -212,5 +240,5 @@ footer {
   height: 60px;
   padding: 10px;
   font-size: 0.9rem;
-  margin-bottom: 7px;
+  margin-bottom: 20px;
 }

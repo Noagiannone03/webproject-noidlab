@@ -196,7 +196,7 @@ body {
       border-radius: 10px;
       overflow: hidden;
       position: relative;
-      width: 90%;
+      width: 91%;
       margin-left: 50px;
       margin-right: 50px;
       padding: 15px;
@@ -238,6 +238,11 @@ body {
       font-size: 1.2rem;
       margin: 0 0 10px;
     }
+    /* Optionnel : style lorsque l'utilisateur fait glisser */
+.flash-news-slider.grabbing {
+  cursor: grabbing;
+  transition: none;
+}
     
     .news-text {
       font-size: 0.9rem;
