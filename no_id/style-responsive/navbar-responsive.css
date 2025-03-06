@@ -1,0 +1,102 @@
+/* ============================================================= */
+/*                    RESPONSIVE (TABLETTE & MOBILE)           */
+/* ============================================================= */
+
+
+
+
+/* À partir de 768px et moins : on masque "Nous contacter" et le texte "Menu" */
+@media screen and (max-width: 768px) {
+
+
+.dropdown-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+  /* Masquer l'item contact */
+  .nav-actions .contact-btn {
+    display: none;
+  }
+  /* Ne garder que l'icône pour le menu */
+  .menu-btn .btn-text {
+    display: none;
+  }
+  /* Positionner le logo à gauche avec une marge */
+  .nav-center {
+    left: 20px;
+    transform: none;
+  }
+  .dropdown .follow-card {
+    background-color: white;
+    color: black;
+    
+
+  }
+  .dropdown .follow-card h3 {
+    background-color: white;
+    color: black;
+  }
+  /* Pour le dropdown sur tablette portrait et mobiles, on le passe en mode modal */
+  .dropdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    max-width: 400px;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+   
+    z-index: 2000; /* Utilisez une valeur très élevée */
+    /* Assurez-vous d'avoir un fond défini ou transparent selon vos besoins */
+   
+  }
+  .dropdown.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+  }
+  /* Création d'un overlay pour le dropdown */
+  .dropdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .dropdown-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* Bouton de fermeture dans le dropdown */
+  .dropdown .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1300;
+  }
+
+  .dropdown .follow-card .social-buttons button{
+    border: 3px solid #000;
+    
+  }
+ 
+
+
+}

@@ -1,0 +1,189 @@
+
+/* ========================================================================== 
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* -------------------------------
+   Grands écrans (18 pouces et plus)
+   (min-width: 1920px)
+----------------------------------- */
+@media screen and (min-width: 1920px) {
+    #stack-section {
+      padding: 60px 80px;
+      gap: 40px;
+      height: auto;
+    }
+    .interieur {
+      padding: 50px 30px; /* Légère augmentation de la marge intérieure */
+      border-radius: 35px;
+    }
+    .section-title {
+      /* Réduction légère pour éviter que le texte ne déborde */
+      font-size: 3.2rem;
+    }
+    .title-container {
+      margin: 0 60px;
+      margin-bottom: 35px;
+    }
+    .stack-card.subtitle h2 {
+      font-size: 1.7rem;
+      margin-bottom: 30px;
+    }
+    .description {
+      font-size: 1.1rem;
+      margin: 0 40px;
+    }
+    .highlighted-text {
+      font-size: 1.2rem;
+      padding: 6px 12px;
+    }
+    .mission-text {
+      margin-left: 100px;
+      margin-right: 100px;
+      font-size: 1.1rem;
+    }
+    .founder {
+      font-size: 1.1rem;
+      margin-right: 60px;
+    }
+  }
+  
+  /* -------------------------------
+     Tablettes en mode portrait
+     (Largeur entre 768px et 1024px)
+  ----------------------------------- */
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+    #stack-section {
+      padding: 20 auto;
+      gap: 25px;
+      height:auto;
+    }
+    .interieur {
+      padding: 5px 15px;
+      border-radius: 25px;
+    }
+    .section-title {
+      font-size: 2.5rem;
+    }
+    .title-container {
+      margin: 0 30px;
+      margin-bottom: 25px;
+    }
+    /* Réduction du max-width pour forcer le contenu à rester dans le bloc */
+    .stack-card.subtitle {
+      max-width: 90%;
+      overflow-wrap: break-word;
+    }
+    .stack-card.subtitle h2 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    .description {
+      font-size: 1rem;
+      margin: 0 10px;
+      overflow-wrap: break-word;
+    }
+    .highlighted-text {
+      font-size: 1.1rem;
+      padding: 4px 8px;
+    }
+    .mission-text {
+      margin-left: 30px;
+      margin-right: 30px;
+      font-size: 1rem;
+      overflow-wrap: break-word;
+    }
+    .founder {
+      font-size: 1rem;
+      margin-right: 20px;
+      overflow-wrap: break-word;
+    }
+  }
+  
+  /* -------------------------------
+     Téléphones en mode paysage
+     (Largeur entre 481px et 767px)
+  ----------------------------------- */
+  @media screen and (max-width: 767px) and (min-width: 481px) {
+    #stack-section {
+      padding: 40px 20px;
+      gap: 20px;
+      height: auto;
+    }
+    .interieur {
+      padding: 20px 10px;
+      border-radius: 20px;
+    }
+    .section-title {
+      font-size: 2.2rem;
+    }
+    .title-container {
+      margin: 0 20px;
+      margin-bottom: 20px;
+    }
+    .stack-card.subtitle h2 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    .description {
+      font-size: 0.9rem;
+      margin: 0 15px;
+    }
+    .highlighted-text {
+      font-size: 1rem;
+      padding: 3px 6px;
+    }
+    .mission-text {
+      margin-left: 30px;
+      margin-right: 30px;
+      font-size: 0.9rem;
+    }
+    .founder {
+      font-size: 0.9rem;
+      margin-right: 20px;
+    }
+  }
+  
+  /* -------------------------------
+     Téléphones en mode portrait
+     (Largeur jusqu'à 480px)
+  ----------------------------------- */
+  @media screen and (max-width: 480px) {
+    #stack-section {
+      padding: 20px 10px;
+      gap: 15px;
+      height: auto;
+    }
+    .interieur {
+      padding: 15px 10px;
+      border-radius: 15px;
+    }
+    .section-title {
+      font-size: 2rem;
+    }
+    .title-container {
+      margin: 0 10px;
+      margin-bottom: 15px;
+    }
+    .stack-card.subtitle h2 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .description {
+      font-size: 0.85rem;
+      margin: 0 10px;
+    }
+    .highlighted-text {
+      font-size: 0.9rem;
+      padding: 3px 6px;
+    }
+    .mission-text {
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 0.85rem;
+    }
+    .founder {
+      font-size: 0.85rem;
+      margin-right: 10px;
+    }
+  }

@@ -1,0 +1,130 @@
+/* ============================================================= */
+/*                         RESPONSIVE                          */
+/* ============================================================= */
+
+/* ------ Grands écrans (min-width: 1920px) ------ */
+@media screen and (min-width: 1920px) {
+    #contact-section {
+      padding: 60px 80px;
+      height: 760px;
+    }
+    .colored-container-contact {
+      border-radius: 35px;
+      padding: 40px 80px;
+    }
+    .section-title {
+      font-size: 3.5rem;
+    }
+    .section-subtitle {
+      font-size: 1.8rem;
+    }
+    .form-container {
+      width: 500px;
+    }
+    #contact-form input,
+    #contact-form textarea {
+      font-size: 1.1rem;
+      padding: 14px;
+    }
+    #contact-form button {
+      font-size: 1.1rem;
+      padding: 14px;
+    }
+  }
+  
+  /* ------ Tablettes (768px - 1024px) ------ */
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+    #contact-section {
+      padding: 40px 40px;
+      height: auto;
+    }
+    .colored-container-contact {
+      border-radius: 25px;
+      padding: 30px 20px;
+    }
+    .section-title {
+      font-size: 2.8rem;
+    }
+    .section-subtitle {
+      font-size: 1.5rem;
+    }
+    .form-container {
+      width: 90%;
+      max-width: 500px;
+    }
+    #contact-form input,
+    #contact-form textarea {
+      font-size: 1rem;
+      padding: 12px;
+    }
+    #contact-form button {
+      font-size: 1rem;
+      padding: 12px;
+    }
+  }
+  
+  /* ------ Téléphones en mode paysage (481px - 767px) ------ */
+  @media screen and (max-width: 767px) and (min-width: 481px) {
+    #contact-section {
+      padding: 30px 20px;
+      height: auto;
+    }
+    .colored-container-contact {
+      border-radius: 20px;
+      padding: 30px 15px;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+    }
+    .section-subtitle {
+      font-size: 1.3rem;
+      text-align: center;
+    }
+    .form-container {
+      width: 90%;
+      max-width: 400px;
+    }
+    #contact-form input,
+    #contact-form textarea {
+      font-size: 0.95rem;
+      padding: 10px;
+    }
+    #contact-form button {
+      font-size: 0.95rem;
+      padding: 10px;
+    }
+  }
+  
+  /* ------ Téléphones en mode portrait (max-width: 480px) ------ */
+  @media screen and (max-width: 480px) {
+    #contact-section {
+      padding: 20px 10px;
+      height: auto;
+    }
+    .colored-container-contact {
+      border-radius: 15px;
+      padding: 20px 10px;
+    }
+    .section-title {
+      font-size: 2rem;
+      text-align: center;
+    }
+    .section-subtitle {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+    .form-container {
+      width: 100%;
+      padding: 0 10px;
+    }
+    #contact-form input,
+    #contact-form textarea {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+    #contact-form button {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
+  }

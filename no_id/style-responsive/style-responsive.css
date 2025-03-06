@@ -1,0 +1,177 @@
+/* ========================================================================== 
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* -------------------------------
+   Grands écrans (18 pouces et plus)
+   -------------------------------
+   (Supposé : min-width 1920px)
+----------------------------------- */
+@media screen and (min-width: 1920px) {
+    .text-block-container {
+      margin-top: 8%;
+      height: 75%;
+    }
+    .stats-title,
+    .stats-footer {
+      font-size: 3rem;
+    }
+    .stat-number {
+      font-size: 5rem;
+    }
+    .stat-label {
+      font-size: 1.8rem;
+    }
+    .flash-news-banner {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+    }
+    .news-item img {
+      width: 80px;
+      height: 80px;
+    }
+    .news-title {
+      font-size: 1.5rem;
+    }
+    .news-text {
+      font-size: 1rem;
+    }
+  }
+  
+  /* -------------------------------
+     Tablettes en mode portrait
+     -------------------------------
+     (Largeur entre 768px et 1024px)
+  ----------------------------------- */
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+    .text-block-container {
+      margin-top: 10%;
+      height: 70%;
+    }
+    .stats-title,
+    .stats-footer {
+      font-size: 2rem;
+    }
+    .stat-number {
+      font-size: 3.5rem;
+    }
+    .stat-label {
+      font-size: 1.3rem;
+    }
+    .flash-news-banner {
+      width: 95%;
+      margin: 20px auto;
+      padding: 15px;
+    }
+    .news-item img {
+      width: 60px;
+      height: 60px;
+    }
+    .news-title {
+      font-size: 1.1rem;
+    }
+    .news-text {
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* -------------------------------
+     Téléphones en mode paysage
+     -------------------------------
+     (Largeur entre 481px et 767px)
+  ----------------------------------- */
+  @media screen and (max-width: 767px) and (min-width: 481px) {
+    .text-block-container {
+      margin-top: 12%;
+      height: 65%;
+    }
+    .stats-title,
+    .stats-footer {
+      font-size: 1.8rem;
+    }
+    .stat-number {
+      font-size: 3rem;
+    }
+    .stat-label {
+      font-size: 1.2rem;
+    }
+    .flash-news-banner {
+      width: 98%;
+      margin: 15px auto;
+      padding: 10px;
+    }
+    .news-item img {
+      width: 55px;
+      height: 55px;
+    }
+    .news-title {
+      font-size: 1rem;
+    }
+    .news-text {
+      font-size: 0.75rem;
+    }
+  }
+  
+  /* -------------------------------
+     Téléphones en mode portrait
+     -------------------------------
+     (Largeur jusqu'à 480px)
+  ----------------------------------- */
+  @media screen and (max-width: 480px) {
+   
+    .section-title {
+      font-family: 'extra-bold-montserrat', sans-serif;
+      font-size: 2.3rem;
+      text-align: left;
+      color: #131313;
+    }
+    .text-block-container {
+      margin-top: 15%;
+      height: 60%;
+    }
+    .stats-title,
+    .stats-footer {
+      font-size: 1.5rem;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+    }
+    .stat-label {
+      font-size: 1rem;
+    }
+    .flash-news-banner {
+      width: 100%;
+      margin: 10px auto;
+      padding: 8px;
+    }
+    /* Pour le flash news banner, conserver la disposition en ligne */
+    .flash-news-banner .news-item {
+      flex-direction: row !important;
+      align-items: center !important;
+      text-align: left !important;
+    }
+    .flash-news-banner .news-item img {
+      width: 50px;
+      height: 50px;
+      margin: 0 20px 0 0 !important;
+    }
+    .news-content {
+      margin-left: 0;
+    }
+    .news-title {
+      font-size: 1rem;
+    }
+    .news-text {
+      font-size: 0.7rem;
+    }
+    /* Repositionnement des points de navigation en dessous du bandeau */
+    .flash-news-banner .slider-dots {
+      position: relative !important;
+      bottom: auto !important;
+      right: auto !important;
+      margin-top: 10px;
+      text-align: center;
+    }
+  }
