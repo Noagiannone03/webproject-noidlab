@@ -431,7 +431,6 @@ document.querySelectorAll('.pill-item').forEach(pill => {
   });
 
   
-
   document.addEventListener("DOMContentLoaded", () => {
     /* Animation des compteurs (stats) */
     const statNumbers = document.querySelectorAll('.stat-number');
@@ -443,13 +442,13 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       const totalFrames = Math.round(duration / (1000 / frameRate));
       const increment = target / totalFrames;
       let highlightTriggered = false;
-    
+  
       const updateCount = () => {
         count += increment;
         // Affichage formaté avec espace pour séparer les milliers
         let formatted = Math.floor(count).toLocaleString('fr-FR');
         stat.textContent = formatted;
-    
+  
         if (!highlightTriggered && count >= target / 2) {
           setTimeout(() => {
             stat.classList.add('highlight');
@@ -467,34 +466,113 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       };
       updateCount();
     });
-    
-    /* Slider Flash News */
+  
+    /* Slider Flash News avec drag, pause et seuil réduit */
     const slider = document.querySelector('.flash-news-slider');
     const dots = document.querySelectorAll('.slider-dots .dot');
     const newsItems = document.querySelectorAll('.flash-news-slider .news-item');
     const totalItems = newsItems.length;
     let currentIndex = 0;
-    
+    let autoSlideInterval;
+  
+    // Variables pour le drag
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
+  
     function goToSlide(index) {
       slider.style.transform = `translateX(-${index * 100}%)`;
       dots.forEach(dot => dot.classList.remove('active'));
       dots[index].classList.add('active');
       currentIndex = index;
+      prevTranslate = -index * slider.offsetWidth;
+      currentTranslate = prevTranslate;
     }
-    
+  
+    // Auto-slide : redémarre le défilement automatique
+    function resumeAutoSlide() {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(() => {
+        let nextIndex = (currentIndex + 1) % totalItems;
+        goToSlide(nextIndex);
+      }, 5000);
+    }
+  
+    function pauseAutoSlide() {
+      clearInterval(autoSlideInterval);
+    }
+  
+    resumeAutoSlide();
+  
+    // Fonctions de gestion du drag
+    function getPositionX(event) {
+      return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
+  
+    function touchStart(event) {
+      isDragging = true;
+      startPos = getPositionX(event);
+      pauseAutoSlide();
+      slider.classList.add('grabbing');
+      animationID = requestAnimationFrame(animation);
+    }
+  
+    function touchMove(event) {
+      if (!isDragging) return;
+      const currentPosition = getPositionX(event);
+      const diff = currentPosition - startPos;
+      currentTranslate = prevTranslate + diff;
+    }
+  
+    function touchEnd() {
+      isDragging = false;
+      slider.classList.remove('grabbing');
+      cancelAnimationFrame(animationID);
+      const movedBy = currentTranslate - prevTranslate;
+      // Seuil réduit : par exemple, un sixième de la largeur du slider
+      const threshold = slider.offsetWidth / 9;
+      if (movedBy < -threshold && currentIndex < totalItems - 1) {
+        currentIndex += 1;
+      }
+      if (movedBy > threshold && currentIndex > 0) {
+        currentIndex -= 1;
+      }
+      goToSlide(currentIndex);
+      resumeAutoSlide();
+    }
+  
+    function animation() {
+      slider.style.transform = `translateX(${currentTranslate}px)`;
+      if (isDragging) requestAnimationFrame(animation);
+    }
+  
+    // Événements souris
+    slider.addEventListener('mousedown', touchStart);
+    slider.addEventListener('mousemove', touchMove);
+    slider.addEventListener('mouseup', touchEnd);
+    slider.addEventListener('mouseleave', () => { if (isDragging) touchEnd(); });
+  
+    // Événements tactiles
+    slider.addEventListener('touchstart', touchStart);
+    slider.addEventListener('touchmove', touchMove);
+    slider.addEventListener('touchend', touchEnd);
+  
+    // Pause auto-slide lors du survol et reprise à la sortie
+    slider.addEventListener('mouseenter', pauseAutoSlide);
+    slider.addEventListener('mouseleave', resumeAutoSlide);
+  
+    // Gestion des clics sur les dots
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
         const index = parseInt(dot.getAttribute('data-index'));
         goToSlide(index);
+        resumeAutoSlide();
       });
     });
-    
-    // Auto-slide toutes les 5 secondes
-    setInterval(() => {
-      let nextIndex = (currentIndex + 1) % totalItems;
-      goToSlide(nextIndex);
-    }, 5000);
   });
+  
 
 
  // Déclare index dès le début pour éviter le problème de temporal dead zone
