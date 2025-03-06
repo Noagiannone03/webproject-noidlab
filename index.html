@@ -27,17 +27,27 @@
   <link rel="stylesheet" href="no_id/styles/ou_nous_trouver.css">
   <link rel="stylesheet" href="no_id/styles/prestations.css">
  
-
   <!--styles responsives-->
 
   <link rel="stylesheet" href="no_id/style-responsive/style-responsive.css">
   <link rel="stylesheet" href="no_id/style-responsive/a_propos-responsive.css">
   <link rel="stylesheet" href="no_id/style-responsive/prestations-responsive.css">
   <link rel="stylesheet" href="no_id/style-responsive/lieux-responsive.css">
-
+  <link rel="stylesheet" href="no_id/style-responsive/références-responsive.css">
+  <link rel="stylesheet" href="no_id/style-responsive/media-responsive.css">
+  <link rel="stylesheet" href="no_id/style-responsive/contact-responsive.css">
+  <link rel="stylesheet" href="no_id/style-responsive/ou_nous_trouver-responsive.css">
+  <link rel="stylesheet" href="no_id/style-responsive/footer-responsive.css">
+  <link rel="stylesheet" href="no_id/style-responsive/navbar-responsive.css">
 </head>
 <body>
   <!-- Le canvas Three.js sera injecté dynamiquement -->
+
+
+  <!-- Overlay pour le dropdown -->
+
+
+
 
   <!-- Modal Contact -->
   <div class="modal-overlay" id="modal-overlay">
@@ -65,7 +75,7 @@
       </svg>
     </div>
   </div>
-  
+  <div class="dropdown-overlay" id="dropdown-overlay"></div>
   <!-- Navbar -->
   <nav class="navbar">
 
@@ -148,6 +158,21 @@
       </div>
     </div>
   </nav>
+ 
+
+  
+<script>// Ouvrir le dropdown
+  document.getElementById('menu-btn').addEventListener('click', function() {
+    
+    document.getElementById('dropdown-overlay').classList.add('active');
+  });
+  
+  // Fermer le dropdown (par exemple, via un bouton de fermeture ou en cliquant sur l'overlay)
+  document.getElementById('dropdown-overlay').addEventListener('click', function() {
+    document.getElementById('dropdown').classList.remove('active');
+    this.classList.remove('active');
+  });
+  </script>
   
   <!-- SECTION PRINCIPALE -->
   <section id="main">
@@ -251,7 +276,7 @@
       
       <!-- Informations sur le fondateur alignées à droite -->
       <p class="founder">
-        Par NOUS, pour NOUS <br><strong>Mathieu Priol</strong>, fondateur <strong> NO/ID</strong>
+        Par NOUS, pour NOUS <br><strong>Matthieu Priol</strong>, fondateur <strong> NO/ID</strong>
       </p>
     </div>
   </div>

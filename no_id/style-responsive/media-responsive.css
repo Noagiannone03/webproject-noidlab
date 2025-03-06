@@ -1,0 +1,113 @@
+/* ============================================================= */
+/*                          RESPONSIVE                         */
+/* ============================================================= */
+
+/* ------ Grands écrans (min-width: 1920px) ------ */
+@media screen and (min-width: 1920px) {
+    #gallery-media {
+      padding: 60px 100px;
+    }
+    .colored-container-media {
+      padding: 50px 80px;
+      border-radius: 35px;
+    }
+    .section-title {
+      font-size: 3.5rem;
+    }
+    .section-subtitle {
+      font-size: 1.8rem;
+      max-width: 900px;
+    }
+    .slider-wrapper-container {
+      padding: 0 100px;
+    }
+    .gallery-grid {
+      gap: 20px;
+    }
+  }
+  
+  /* ------ Tablettes (768px - 1024px) ------ */
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+    #gallery-media {
+      padding: 40px 40px;
+    }
+    .colored-container-media {
+      padding: 40px 20px;
+      border-radius: 25px;
+    }
+    .section-title {
+      font-size: 2.8rem;
+    }
+    .section-subtitle {
+      font-size: 1.5rem;
+      max-width: 90%;
+    }
+    .slider-wrapper-container {
+      padding: 0 40px;
+    }
+    .gallery-grid {
+      gap: 15px;
+    }
+  }
+  
+  /* ------ Téléphones en mode paysage (481px - 767px) ------ */
+  @media screen and (max-width: 767px) and (min-width: 481px) {
+    #gallery-media {
+      padding: 30px 20px;
+    }
+    .colored-container-media {
+      padding: 30px 15px;
+      border-radius: 20px;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+    }
+    .section-subtitle {
+      font-size: 1.3rem;
+      max-width: 95%;
+      text-align: center;
+    }
+    .slider-wrapper-container {
+      padding: 0 20px;
+    }
+    .gallery-grid {
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+  }
+  
+  /* ------ Téléphones en mode portrait (max-width: 480px) ------ */
+  @media screen and (max-width: 480px) {
+    #gallery-media {
+      padding: 20px 10px;
+    }
+    .colored-container-media {
+      padding: 20px 10px;
+      border-radius: 15px;
+    }
+    .section-title {
+      font-size: 2rem;
+      text-align: center;
+    }
+    .section-subtitle {
+      font-size: 1.2rem;
+      max-width: 100%;
+      text-align: center;
+    }
+    .slider-wrapper-container {
+      padding: 0 10px;
+    }
+    .gallery-grid {
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    .more-btn {
+      font-size: 0.9rem;
+      padding: 8px 14px;
+    }
+    /* Masquer les 4 dernières cartes sur mobile */
+    .gallery-grid .gallery-card:nth-last-child(-n+4) {
+      display: none;
+    }
+  }

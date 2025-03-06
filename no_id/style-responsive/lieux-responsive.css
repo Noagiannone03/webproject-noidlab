@@ -6,27 +6,23 @@
 /* Grands écrans (min-width: 1920px) */
 @media screen and (min-width: 1920px) {
     #slider-section {
+        height: auto;
       padding: 60px 80px;
     }
     .colored-container-slider {
       padding: 50px 40px;
       border-radius: 35px;
     }
-    #slider-section h1.section-title {
-      font-size: 3rem;
-    }
-    #slider-section .section-subtitle {
-      font-size: 1.4rem;
-    }
-    .slider-cards {
-      gap: 30px;
+    #slider-section .slider-subtitle {
+      font-size: 1.3rem;
+      max-width: 600px;
     }
     .slider-card {
-      width: 600px;
-      height: 400px;
+      width: 550px;
+      height: 380px;
     }
     .slider-card .overlay .text h3 {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
     }
     .slider-card .overlay .text p {
       font-size: 1.1rem;
@@ -36,59 +32,60 @@
   /* Tablettes en mode portrait (768px - 1024px) */
   @media screen and (max-width: 1024px) and (min-width: 768px) {
     #slider-section {
+        height: auto;
       padding: 40px 30px;
-      height: auto;
     }
     .colored-container-slider {
       padding: 40px 20px;
       border-radius: 25px;
     }
-    #slider-section h1.section-title {
-      font-size: 2.5rem;
-    }
-    #slider-section .section-subtitle {
-      font-size: 1.2rem;
+    #slider-section .slider-subtitle {
+      font-size: 1.1rem;
       max-width: 90%;
     }
-    .slider-cards {
-      gap: 20px;
-    }
     .slider-card {
-      width: 100%;
-      max-width: 510px;
-      height: 350px;
+      width: 480px;
+      height: 330px;
+    }
+    .slider-card .overlay .text h3 {
+      font-size: 1.4rem;
+    }
+    .slider-card .overlay .text p {
+      font-size: 0.95rem;
     }
   }
   
   /* Téléphones en mode paysage (481px - 767px) */
   @media screen and (max-width: 767px) and (min-width: 481px) {
     #slider-section {
+        height: auto;
       padding: 30px 20px;
-      height: auto;
     }
     .colored-container-slider {
       padding: 30px 15px;
       border-radius: 20px;
     }
-    #slider-section h1.section-title {
-      font-size: 2rem;
-    }
-    #slider-section .section-subtitle {
+    #slider-section .slider-subtitle {
       font-size: 1rem;
       max-width: 90%;
     }
-    .slider-cards {
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
     .slider-card {
       width: 100%;
-      max-width: 90%;
-      height: auto;
+      max-width: 400px;
+      height: 280px;
+      margin: 0 auto;
     }
-    .slider-card .slider-container {
-      height: auto;
+    .slider-card .overlay .text h3 {
+      font-size: 1.3rem;
+    }
+    .slider-card .overlay .text p {
+      font-size: 0.9rem;
+    }
+    /* Si deux cartes ne tiennent plus côte à côte, on les empile verticalement */
+    .slider-cards {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
     }
   }
   
@@ -102,28 +99,25 @@
       padding: 20px 10px;
       border-radius: 15px;
     }
-    #slider-section h1.section-title {
-      font-size: 1.8rem;
-    }
-    #slider-section .section-subtitle {
+    #slider-section .slider-subtitle {
       font-size: 0.9rem;
       max-width: 100%;
     }
-    .slider-cards {
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
     .slider-card {
       width: 100%;
-      max-width: 100%;
-      height: auto;
+      max-width: 350px;
+      height: 240px;
+      margin: 0 auto;
     }
-    .slider-card .slider-container {
-      height: auto;
+    .slider-card .overlay .text h3 {
+      font-size: 1.2rem;
     }
-    .slider-card .overlay {
-      height: auto;
-      padding: 10px;
+    .slider-card .overlay .text p {
+      font-size: 0.85rem;
+    }
+    .slider-cards {
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
     }
   }
