@@ -89,7 +89,6 @@
     margin: 5% auto;
     width: 900px;
     height: 300px;
-   
     perspective: 1500px;
     display: flex;
     justify-content: center;
@@ -154,7 +153,6 @@
   }
   
   .card-back-custom {
-    background: rgba(0, 0, 0, 0.8);
     color: white;
     transform: rotateY(180deg);
     display: flex;
@@ -229,3 +227,4 @@
       gap: 0;
     }
   }
+  

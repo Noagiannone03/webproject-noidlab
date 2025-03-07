@@ -41,6 +41,23 @@
     .main-image {
       width: 40%;
     }
+    #new-section {
+      padding: 20px 10px;
+    }
+    
+    .separatored {
+      padding: 0 20px;
+      margin: 10px 0;
+    }
+    
+    .image-row {
+      flex-direction: row;
+      gap: 10px;
+    }
+    
+    .image-item {
+      height: 70px;  /* Ajustez si nécessaire */
+    }
   }
   
   /* ------ Très petits écrans (max-width: 480px) ------ */

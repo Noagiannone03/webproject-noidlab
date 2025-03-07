@@ -34,6 +34,7 @@
   
   /* ------ Tablettes (768px - 1024px) ------ */
   @media screen and (max-width: 1024px) and (min-width: 768px) {
+
     #contact-section {
       padding: 40px 40px;
       height: auto;
@@ -41,6 +42,9 @@
     .colored-container-contact {
       border-radius: 25px;
       padding: 30px 20px;
+    }
+    .form-container::after {
+      display: none;
     }
     .section-title {
       font-size: 2.8rem;
@@ -77,6 +81,9 @@
       font-size: 2.2rem;
       text-align: center;
     }
+    .form-container::after {
+      display: none;
+    }
     .section-subtitle {
       font-size: 1.3rem;
       text-align: center;
@@ -106,8 +113,11 @@
       border-radius: 15px;
       padding: 20px 10px;
     }
+    .form-container::after {
+      display: none;
+    }
     .section-title {
-      font-size: 2rem;
+      font-size: 1.7rem;
       text-align: center;
     }
     .section-subtitle {
