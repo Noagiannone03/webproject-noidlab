@@ -39,11 +39,12 @@
   }
   /* Pour le dropdown sur tablette portrait et mobiles, on le passe en mode modal */
   .dropdown {
+    background-color: transparent;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 75%;
+    width: 90%;
     max-width: 400px;
     height: auto;
     max-height: 80vh;
