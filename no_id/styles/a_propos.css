@@ -43,7 +43,7 @@
 /* SECTION FUSION STACKÉE & DÉTAILS */
 /* ----------------------- */
 #stack-section {
-    padding: 50px 60px;             /* Ajustez le padding selon vos besoins */
+    padding: 30px 60px;             /* Ajustez le padding selon vos besoins */
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -51,7 +51,7 @@
     background-clip: content-box;
     min-height: auto;               /* S'adapte au contenu */
     text-align: center;
-    height: 780px;
+    height: 760px;
   }
   
   .interieur {

@@ -43,11 +43,12 @@
 /* NOUVELLE SECTION – SLIDER CARDS */
 /* ----------------------- */
 #slider-section {
-    padding: 50px 60px;
+    padding: 30px 60px;
     text-align: center;
     margin-top: 10px;
     height: 760px;
   }
+  #subtitle{min-width: 960px;}
   .colored-container-slider{
     display: flex;
   flex-direction: column;
@@ -126,7 +127,7 @@ box-shadow: inset 0 0 0 3px black;
     padding: 15px;
     transition: height 0.4s ease;
     overflow: hidden;
-    height: 80px;  /* Hauteur initiale */
+    height: 100px;  /* Hauteur initiale */
   }
     
   /* Texte de l'overlay */
@@ -137,20 +138,14 @@ box-shadow: inset 0 0 0 3px black;
     font-size: 1.5rem;
     margin: 0;
   }
-  .slider-card .overlay .text p {
-    font-size: 1rem;
-    margin: 5px 0 0;
-    max-height: 40px;  /* Texte condensé par défaut */
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-  }
+  
   
   /* Contenu supplémentaire caché initialement */
   .slider-card .overlay .extra-content {
     margin-top: 10px;
     opacity: 0;
     max-height: 0;
-    overflow: hidden;
+  
     transition: max-height 0.4s ease, opacity 0.4s ease;
   }
   
