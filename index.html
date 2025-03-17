@@ -658,52 +658,52 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
       <div class="gallery-grid">
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/danslesmurs_5.jpg" alt="Image 1">
+            <img src="assets/images/hors-les-murs/44-event-noid.jpg" alt="Image 1">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_2.jpg" alt="Image 2">
+            <img src="assets/images/dans-les-murs/Danslesmurs_A23.jpg" alt="Image 2">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_4.jpg" alt="Image 3">
+            <img src="assets/images/dans-les-murs/Danslesmurs_A35.jpg" alt="Image 3">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_3.jpg" alt="Image 4">
+            <img src="assets/images/hors-les-murs/78-event-noid.jpg" alt="Image 4">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_A15.jpg" alt="Image 5">
+            <img src="assets/images/dans-les-murs/Danslesmurs_A39.jpg" alt="Image 5">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_A27.jpg" alt="Image 6">
+            <img src="assets/images/hors-les-murs/66-event-noid.jpg" alt="Image 6">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_A23.jpg" alt="Image 7">
+            <img src="assets/images/hors-les-murs/17-event-noid.jpg" alt="Image 7">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_A18.jpg" alt="Image 8">
+            <img src="assets/images/dans-les-murs/Danslesmurs_A29.jpg" alt="Image 8">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_A35.jpg" alt="Image 9">
+            <img src="assets/images/hors-les-murs/71-event-noid.jpg" alt="Image 9">
           </a>
         </div>
         <div class="gallery-card">
           <a href="media_gallery_page/mediagallery.html">
-            <img src="assets/images/Danslesmurs_A30.jpg" alt="Image 10">
+            <img src="assets/images/hors-les-murs/14-event-noid.jpg" alt="Image 10">
           </a>
         </div>
       </div>
@@ -947,7 +947,88 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
 
 </div>
 
-  
+
+<link rel="stylesheet" id="silktide-consent-manager-css" href="path-to-css/silktide-consent-manager.css">
+<script src="path-to-js/silktide-consent-manager.js"></script>
+<script>
+silktideCookieBannerManager.updateCookieBannerConfig({
+  background: {
+    showBackground: true
+  },
+  cookieIcon: {
+    position: "bottomLeft"
+  },
+  cookieTypes: [
+    {
+      id: "necessary",
+      name: "Necessary",
+      description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+      required: true,
+      onAccept: function() {
+        console.log('Add logic for the required Necessary here');
+      }
+    },
+    {
+      id: "analytics",
+      name: "Analytical",
+      description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+      defaultValue: true,
+      onAccept: function() {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted',
+        });
+        dataLayer.push({
+          'event': 'consent_accepted_analytics',
+        });
+      },
+      onReject: function() {
+        gtag('consent', 'update', {
+          analytics_storage: 'denied',
+        });
+      }
+    },
+    {
+      id: "advertising",
+      name: "Advertising",
+      description: "<p>These cookies provide extra features and personalization to improve your experience. They may be set by us or by partners whose services we use.</p>",
+      onAccept: function() {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+        });
+        dataLayer.push({
+          'event': 'consent_accepted_advertising',
+        });
+      },
+      onReject: function() {
+        gtag('consent', 'update', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        });
+      }
+    }
+  ],
+  text: {
+    banner: {
+      description: "<p>We use cookies on our site to enhance your user experience, provide personalized content, and analyze our traffic. <a href=\"https://your-website.com/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
+      acceptAllButtonText: "Accept all",
+      acceptAllButtonAccessibleLabel: "Accept all cookies",
+      rejectNonEssentialButtonText: "Reject non-essential",
+      rejectNonEssentialButtonAccessibleLabel: "Reject non-essential",
+      preferencesButtonText: "Preferences",
+      preferencesButtonAccessibleLabel: "Toggle preferences"
+    },
+    preferences: {
+      title: "Customize your cookie preferences",
+      description: "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
+      creditLinkText: "Get this banner for free",
+      creditLinkAccessibleLabel: "Get this banner for free"
+    }
+  }
+});
+</script>
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
    
@@ -969,11 +1050,118 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
       
       // Tableau des chemins d'images locales disponibles
       const assetImages = [
-        "assets/images/Danslesmurs_A31.jpg",
-        "assets/images/Danslesmurs_A21.jpg",
-        "assets/images/Danslesmurs_A39.jpg",
-        "assets/images/Danslesmurs_A22.jpg",
-        "assets/images/Danslesmurs_A33.jpg"
+        "assets/images/dans-les-murs/Danslesmurs_A12.jpg",
+        "assets/images/hors-les-murs/53-event-noid.jpg",
+        "assets/images/hors-les-murs/57-event-noid.jpg",
+        "assets/images/hors-les-murs/74-event-noid.jpg",
+        "assets/images/hors-les-murs/2-event-noid.jpg",
+        "assets/images/hors-les-murs/19-event-noid.jpg",
+        "assets/images/hors-les-murs/36-event-noid.jpg",
+        "assets/images/hors-les-murs/53-event-noid.jpg",
+        "assets/images/hors-les-murs/75-event-noid.jpg",
+        "assets/images/dans-les-murs/Danslesmurs_4.jpg",
+        "assets/images/dans-les-murs/Danslesmurs_A25.jpg",
+        "assets/images/dans-les-murs/Danslesmurs_A36.jpg",
+        "assets/images/hors-les-murs/1-event-noid.jpg",
+"assets/images/hors-les-murs/2-event-noid.jpg",
+"assets/images/hors-les-murs/3-event-noid.jpg",
+"assets/images/hors-les-murs/4-event-noid.jpg",
+"assets/images/hors-les-murs/5-event-noid.jpg",
+"assets/images/hors-les-murs/6-event-noid.jpg",
+"assets/images/hors-les-murs/7-event-noid.jpg",
+"assets/images/hors-les-murs/8-event-noid.jpg",
+"assets/images/hors-les-murs/9-event-noid.jpg",
+"assets/images/hors-les-murs/10-event-noid.jpg",
+"assets/images/hors-les-murs/11-event-noid.jpg",
+"assets/images/hors-les-murs/12-event-noid.jpg",
+"assets/images/hors-les-murs/13-event-noid.jpg",
+"assets/images/hors-les-murs/14-event-noid.jpg",
+"assets/images/hors-les-murs/15-event-noid.jpg",
+"assets/images/hors-les-murs/16-event-noid.jpg",
+"assets/images/hors-les-murs/17-event-noid.jpg",
+"assets/images/hors-les-murs/18-event-noid.jpg",
+"assets/images/hors-les-murs/19-event-noid.jpg",
+"assets/images/hors-les-murs/20-event-noid.jpg",
+"assets/images/hors-les-murs/21-event-noid.jpg",
+"assets/images/hors-les-murs/22-event-noid.jpg",
+"assets/images/hors-les-murs/23-event-noid.jpg",
+"assets/images/hors-les-murs/24-event-noid.jpg",
+"assets/images/hors-les-murs/25-event-noid.jpg",
+"assets/images/hors-les-murs/26-event-noid.jpg",
+"assets/images/hors-les-murs/27-event-noid.jpg",
+"assets/images/hors-les-murs/28-event-noid.jpg",
+"assets/images/hors-les-murs/29-event-noid.jpg",
+"assets/images/hors-les-murs/30-event-noid.jpg",
+"assets/images/hors-les-murs/31-event-noid.jpg",
+"assets/images/hors-les-murs/32-event-noid.jpg",
+"assets/images/hors-les-murs/33-event-noid.jpg",
+"assets/images/hors-les-murs/34-event-noid.jpg",
+"assets/images/hors-les-murs/35-event-noid.jpg",
+"assets/images/hors-les-murs/36-event-noid.jpg",
+"assets/images/hors-les-murs/37-event-noid.jpg",
+"assets/images/hors-les-murs/38-event-noid.jpg",
+"assets/images/hors-les-murs/39-event-noid.jpg",
+"assets/images/hors-les-murs/40-event-noid.jpg",
+"assets/images/hors-les-murs/41-event-noid.jpg",
+"assets/images/hors-les-murs/42-event-noid.jpg",
+"assets/images/hors-les-murs/43-event-noid.jpg",
+"assets/images/hors-les-murs/44-event-noid.jpg",
+"assets/images/hors-les-murs/45-event-noid.jpg",
+"assets/images/hors-les-murs/46-event-noid.jpg",
+"assets/images/hors-les-murs/47-event-noid.jpg",
+"assets/images/hors-les-murs/48-event-noid.jpg",
+"assets/images/hors-les-murs/49-event-noid.jpg",
+"assets/images/hors-les-murs/50-event-noid.jpg",
+"assets/images/hors-les-murs/51-event-noid.jpg",
+"assets/images/hors-les-murs/52-event-noid.jpg",
+"assets/images/hors-les-murs/53-event-noid.jpg",
+"assets/images/hors-les-murs/54-event-noid.jpg",
+"assets/images/hors-les-murs/55-event-noid.jpg",
+"assets/images/hors-les-murs/56-event-noid.jpg",
+"assets/images/hors-les-murs/57-event-noid.jpg",
+"assets/images/hors-les-murs/58-event-noid.jpg",
+"assets/images/hors-les-murs/59-event-noid.jpg",
+"assets/images/hors-les-murs/60-event-noid.jpg",
+"assets/images/hors-les-murs/61-event-noid.jpg",
+"assets/images/hors-les-murs/62-event-noid.jpg",
+"assets/images/hors-les-murs/63-event-noid.jpg",
+"assets/images/hors-les-murs/64-event-noid.jpg",
+"assets/images/hors-les-murs/65-event-noid.jpg",
+"assets/images/hors-les-murs/66-event-noid.jpg",
+"assets/images/hors-les-murs/67-event-noid.jpg",
+"assets/images/hors-les-murs/68-event-noid.jpg",
+"assets/images/hors-les-murs/69-event-noid.jpg",
+"assets/images/hors-les-murs/70-event-noid.jpg",
+"assets/images/hors-les-murs/71-event-noid.jpg",
+"assets/images/hors-les-murs/72-event-noid.jpg",
+"assets/images/hors-les-murs/73-event-noid.jpg",
+"assets/images/hors-les-murs/74-event-noid.jpg",
+"assets/images/hors-les-murs/75-event-noid.jpg",
+"assets/images/hors-les-murs/76-event-noid.jpg",
+"assets/images/hors-les-murs/77-event-noid.jpg",
+"assets/images/hors-les-murs/78-event-noid.jpg",
+"assets/images/hors-les-murs/79-event-noid.jpg",
+"assets/images/hors-les-murs/80-event-noid.jpg",
+"assets/images/hors-les-murs/81-event-noid.jpg",
+"assets/images/hors-les-murs/82-event-noid.jpg",
+"assets/images/hors-les-murs/83-event-noid.jpg",
+"assets/images/hors-les-murs/84-event-noid.jpg",
+"assets/images/hors-les-murs/85-event-noid.jpg",
+"assets/images/hors-les-murs/86-event-noid.jpg",
+"assets/images/hors-les-murs/87-event-noid.jpg",
+"assets/images/hors-les-murs/88-event-noid.jpg",
+"assets/images/hors-les-murs/89-event-noid.jpg",
+"assets/images/hors-les-murs/90-event-noid.jpg",
+"assets/images/hors-les-murs/91-event-noid.jpg",
+"assets/images/hors-les-murs/92-event-noid.jpg",
+"assets/images/hors-les-murs/93-event-noid.jpg",
+"assets/images/hors-les-murs/94-event-noid.jpg",
+"assets/images/hors-les-murs/95-event-noid.jpg",
+"assets/images/hors-les-murs/96-event-noid.jpg",
+"assets/images/hors-les-murs/97-event-noid.jpg",
+"assets/images/hors-les-murs/98-event-noid.jpg",
+"assets/images/hors-les-murs/99-event-noid.jpg"
+
       ];
       const randomAssetIndex = Math.floor(Math.random() * assetImages.length);
       const newImageSrc = assetImages[randomAssetIndex];
