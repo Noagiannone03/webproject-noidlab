@@ -41,11 +41,17 @@
     margin-top: 10px;
     padding: 30px 60px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 760px;
   }
   .colored-container-event {
   padding: 40px 0;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
     background-color: #ffdbb0;
     height: 100%;
     width: 100%;
@@ -85,6 +91,7 @@
   .pill-container {
     display: inline-flex;
     gap: 10px;
+    align-self: center;
     margin-bottom: 20px;
   }
   .pill-item {

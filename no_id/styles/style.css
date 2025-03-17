@@ -96,7 +96,7 @@ body {
   justify-content: flex-start;
   overflow: hidden;
   text-align: center;
-  margin-top: 27px;
+  margin-top: 24px;
   box-sizing: border-box;
   width: 100%;
 }
@@ -142,7 +142,7 @@ body {
   content: "";
   position: absolute;
   top: 0;
-  left: -5px;  /* déborde légèrement à gauche */
+  left: -10px;  /* déborde légèrement à gauche */
   height: 100%;
   width: 0;
   background: black;
@@ -152,7 +152,7 @@ body {
 
 /* Lorsque la classe .highlight est ajoutée, le surlignage dépasse de 5px de chaque côté */
 .stat-number.highlight::after {
-  width: calc(100% + 10px);
+  width: calc(100% + 20px);
 }
 .stat-number.highlight {
   font-family: 'extra-bold-montserrat', sans-serif;
