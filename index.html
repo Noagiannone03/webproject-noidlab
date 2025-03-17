@@ -442,7 +442,7 @@
 </section>
 
   
-  <!-- Nouvelle Section : Slider Cards -->
+
   <!-- Nouvelle Section : Slider Cards -->
 <section  id="slider-section" class="observed-section">
   <div class="colored-container-slider">
@@ -458,48 +458,48 @@
     </p>
   <div class="slider-cards">
 
-
-      <!-- Slider Card 2 -->
-      <div class="slider-card" id="slider-card-2">
-        <div class="slider-container">
-          <!-- Trois images pour le slider -->
-          <img src="https://www.noidlab.com/wp-content/uploads/2020/06/Danslesmurs_1.jpg" alt="Projet 2 - Image 1" class="active">
-          <img src="https://www.noidlab.com/wp-content/uploads/2020/05/local0_1010x1920.png" alt="Projet 2 - Image 2">
-          <img src="https://www.noidlab.com/wp-content/uploads/2020/06/Danslesmurs_A24.jpg" alt="Projet 2 - Image 3">
-        </div>
-        <div class="overlay">
-          <div class="text">
-            <h3>FEAT*LAB</h3>
-           
-            <div class="extra-content">
-              <p>Le FEAT*Lab est un espace modulable parfaitement équipé de 200m² qui offre un cadre inspirant pour travailler. Un lieu incontournable situé en plein cœur de Toulon, propice à stimuler la créativité et favoriser les échanges enrichissants.
-              </p>
-            </div>
-          </div>
-          <button type="button" onclick="window.location.href='pages_lieux/featlab/index-feat-lab.html'" class="toggle-btn">Découvrir</button>
+<!-- Exemple Slider Card 2 -->
+<div class="slider-card" id="slider-card-2">
+  <div class="slider-container">
+    <!-- Trois images pour le slider -->
+    <img src="assets/images//nos-lieux/featlab.JPEG" alt="Projet 2 - Image 1" class="active">
+  </div>
+  <div class="overlay">
+    <div class="content">
+      <div class="text">
+        <h3>FEAT*LAB</h3>
+        <div class="extra-content">
+          <p>
+            Le FEAT*Lab est un espace modulable parfaitement équipé de 200m² qui offre un cadre inspirant pour travailler. Un lieu incontournable situé en plein cœur de Toulon, propice à stimuler la créativité et favoriser les échanges enrichissants.
+          </p>
         </div>
       </div>
-    <!-- Slider Card 1 -->
-    <div class="slider-card" id="slider-card-1">
-      <div class="slider-container">
-        <!-- Trois images pour le slider -->
-        <img src="https://provence-med.media.tourinsoft.eu/upload/2797982.jpg" alt="Projet 1 - Image 1" class="active">
-        <img src="https://www.la-seyne-tourisme.com/wp-content/uploads/2023/01/10-scaled-compressed.jpg" alt="Projet 1 - Image 2">
-        <img src="https://media-cdn.tripadvisor.com/media/photo-s/08/4d/f5/90/rade-de-toulon.jpg" alt="Projet 1 - Image 3">
-      </div>
-      <div class="overlay">
-        <div class="text">
-          <h3>FOR/NAP/</h3>
-          <div class="extra-content">
-            <p>For/Nap/ est un hub créatif mêlant culture, transmission et expérimentation. Un tiers lieu unique à la Seyne sur mer, ouvert aux créateurs et aux acteurs du territoire pour incuber des idées novatrices et développer des savoir-faire.
-            </p>
-          </div>
-        </div>
-        <button type="button" onclick="window.location.href='pages_lieux/featlab/index-fornap.html'" class="toggle-btn">Découvrir</button>
-
-
-      </div>
+      <button type="button" onclick="window.location.href='pages_lieux/featlab/index-feat-lab.html'" class="toggle-btn">Découvrir</button>
     </div>
+  </div>
+</div>
+
+<!-- Exemple Slider Card 1 -->
+<div class="slider-card" id="slider-card-1">
+  <div class="slider-container">
+    <!-- Trois images pour le slider -->
+    <img src="assets/images/nos-lieux/fornapp-photo-du-lieu.jpg" alt="Projet 1 - Image 1" class="active">
+  </div>
+  <div class="overlay">
+    <div class="content">
+      <div class="text">
+        <h3>FOR/NAP/</h3>
+        <div class="extra-content">
+          <p>
+            For/Nap/ est un hub créatif mêlant culture, transmission et expérimentation. Un tiers lieu unique à la Seyne sur mer, ouvert aux créateurs et aux acteurs du territoire pour incuber des idées novatrices et développer des savoir-faire.
+          </p>
+        </div>
+      </div>
+      <button type="button" onclick="window.location.href='pages_lieux/featlab/index-fornap.html'" class="toggle-btn">Découvrir</button>
+    </div>
+  </div>
+</div>
+
   
   </div>
 </div>
@@ -507,134 +507,397 @@
 
 
 
-
 <!-- Nouvelle Section : Catégories & Réalisations -->
 <!-- Nouvelle Section : Event Section -->
 <section id="event-section" class="observed-section">
   <!-- En-tête de section -->
-   <div class="colored-container-event">
-  <div class="section-header">
-    <div class="title-container">
-       <h1 class="section-title">NOS REFERENCES</h1>
-       <div class="circle" data-icon="assets/pictos/like.png"></div>
+  <div class="colored-container-event">
+    <div class="section-header">
+      <div class="title-container">
+        <h1 class="section-title">NOS REFERENCES</h1>
+        <div class="circle" data-icon="assets/pictos/like.png"></div>
       </div>
-   
-    <p class="section-subtitle">Une empreinte faconnéee avec le temps, la marque de fabrique d'un chemin constitué d'événements majeurs et de projets parallèles.</p>
+      <p class="section-subtitle">
+        Une empreinte faconnée avec le temps, la marque de fabrique d'un chemin constitué d'événements majeurs et de projets parallèles.
+      </p>
+    </div>
+
+    <!-- Zone des catégories (pillules) -->
+    <div class="pill-container">
+      <!-- Chaque bouton porte un data-category correspondant -->
+      <button class="pill-item" data-category="1">projets parallèles</button>
+      <button class="pill-item" data-category="2">lieux</button>
+      <button class="pill-item" data-category="3">évènements</button>
+    </div>
+
+    <!-- Zone des cards horizontales (Recycler view centrée) -->
+    <div class="horizontal-cards">
+      <!-- Card 1 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="BLOOM MARKET"
+           data-modal-subtitle="To keep on blooming"
+           data-modal-description="Depuis 2019, le Bloom Market s’installe deux fois par an au cœur de la pépinière Buton à La Londe pour célébrer la créativité locale. Ce marché saisonnier, niché dans un cadre luxuriant en pleine floraison, propose une expérience unique mêlant nature, artisanat et gastronomie.
+           Au fil des allées, laissez-vous séduire par de belles plantes à prix doux, un espace vintage pour chineurs passionnés, une sélection pointue de créateurs, de la décoration et les saveurs des producteurs locaux. Le Bloom Market, c’est aussi une parenthèse gourmande avec plusieurs food-trucks et un bar pour se restaurer. Dans une ambiance chaleureuse et musicale, les tables partagées invitent à savourer un moment de convivialité.
+           "
+           data-modal-image="assets/images/références-card-pictures/événements/bloommarket.png"
+           data-modal-footer-list="Date de création de l’événement : 2019;
+           Thématique : Marché producteurs et créateurs locaux;
+           Lieu : Pépinière Buton (La Londe);
+           Fréquence : 2 éditions par an durant un week end;
+           dernière fréquentation : 1948 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/bloommarket.png" alt="Item 1">
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="CHEAP AND CHIC"
+           data-modal-subtitle="Le grand vide-dressing éphémère féminin"
+           data-modal-description="Créé en 2007, la Cheap and Chic s’impose comme l’événement incontournable du vide-dressing sélectif à Toulon. Deux fois par an, en été et en hiver, cette vente privée éphémère invite à donner une seconde vie aux vêtements et accessoires, dans un esprit de recyclage et de partage.
+           Bien plus qu’un simple marché de seconde main, Cheap and Chic est une véritable caverne aux trésors où se mêlent pièces vintage, vêtements tendance, chaussures, bijoux et créations locales. Une sélection pointue à prix doux, pour renouveler son dressing tout en soutenant une mode plus responsable et accessible à toutes.
+           "
+           data-modal-image="assets/images/références-card-pictures/événements/cheapandchic.png"
+           data-modal-footer-list="Date de création de l'évènement : 2007;
+           Thématique : Ventes privées;
+           Lieu : divers;
+           Fréquence : 2 éditions par an (été & hiver) – 3 jours ½.;
+           Dernière fréquentation : 1091 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/cheapandchic.png" alt="Item 2">
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="CREATIVE PLAYGROUND"
+           data-modal-subtitle="Des expos qui vous montrent la création contemporaine autrement"
+           data-modal-description="Depuis plus de 20 ans, les expositions collectives “Creative Playground” font vibrer la scène artistique en explorant les nouvelles formes d’expression visuelle. Quatre fois par an, la galerie NO/ID* devient un terrain de jeu pour les talents émergents et confirmés du street art, du digital art et de l’illustration contemporaine.
+           À l’ère du multimédia, cet événement capte l’énergie des courants alternatifs pour proposer des expositions collectives où design, photographie et graphisme se réinventent sur des supports innovants. Un rendez-vous incontournable pour découvrir des artistes audacieux et une créativité en perpétuelle évolution."
+           data-modal-image="assets/images/références-card-pictures/événements/creativePlayground.png"
+           data-modal-footer-list="Date de création de l’événement : 2003;
+           Thématique : exposition Street Art / Digital Art / illustrations;
+           Lieu : NO/ID*;
+           Fréquence : 4 éditions par an;
+           Dernière fréquentation annuelle : 6112 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/creativePlayground.png" alt="Item 3">
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="CREATIVE PLAYGROUND"
+           data-modal-subtitle="Des expos qui vous montrent la création contemporaine autrement"
+           data-modal-description="Depuis plus de 20 ans, les expositions collectives “Creative Playground” font vibrer la scène artistique en explorant les nouvelles formes d’expression visuelle. Quatre fois par an, la galerie NO/ID* devient un terrain de jeu pour les talents émergents et confirmés du street art, du digital art et de l’illustration contemporaine.
+           À l’ère du multimédia, cet événement capte l’énergie des courants alternatifs pour proposer des expositions collectives où design, photographie et graphisme se réinventent sur des supports innovants. Un rendez-vous incontournable pour découvrir des artistes audacieux et une créativité en perpétuelle évolution."
+           data-modal-image="assets/images/références-card-pictures/événements/fetedelamusique.png"
+           data-modal-footer-list="Date de création de l’événement : 2003;
+           Thématique : exposition Street Art / Digital Art / illustrations;
+           Lieu : NO/ID*;
+           Fréquence : 4 éditions par an;
+           Dernière fréquentation annuelle : 6112 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/fetedelamusique.png" alt="Item 4">
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="NOMADISCO"
+           data-modal-subtitle="Musiques et saveurs du Monde"
+           data-modal-description="Nomadisco fait vibrer les cultures du monde à travers un festival itinérant et deux soirées annuelles placées sous le signe du groove. Entre afrobeat nigérian, funk brésilien et musiques orientales, c’est toute la sono mondiale qui s’invite sur scène pour une expérience immersive et festive.
+           Plus qu’un simple événement musical, Nomadisco mêle DJ sets envoûtants, troupes de percussions, projections visuelles et ateliers participatifs. Le voyage se poursuit dans l’assiette avec un espace restauration dédié aux saveurs d’ici et d’ailleurs. Un rendez-vous sensoriel où la musique et le métissage culturel se rencontrent dans une ambiance effervescente"
+           data-modal-image="assets/images/références-card-pictures/événements/nomaddisco.png"
+           data-modal-footer-list="Date de création de l’événement : 2017;
+           Thématique : Musiques et Cultures du Monde;
+           Lieu : itinérant;
+           Fréquence : 1 festival et 2 soirées par an;
+           Dernière fréquentation: 2442 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/nomaddisco.png" alt="Item 5">
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="NUITS BLANCHES"
+           data-modal-subtitle="Les jeudis les plus divertissants de la métropole."
+           data-modal-description="Durant l’été, si vous êtes dans la métropole, c’est à Hyères qu’il faut être absolument le jeudi soir. En effet, chaque jeudi, la ville de Hyères les palmiers sous la coordination de NO/ID* vous propose son incontournable rendez-vous nocturne et festif  appelé “Les Nuits Blanches”. Chaque édition propose un programme divertissant et hétéroclite qui se déroule sur toute la zone piétonne du centre ville. Vous y trouverez un grand marché de créateurs, un espace vintage rempli de merveilles rétros ainsi qu’un food court qui viendra ravir vos papilles avec de savoureux plats complétés par des bières artisanales et des vignobles du coin.
+           Un événement exhaustif et gratuit qui s’adresse aux petits et grands, en vous permettant de découvrir les charmes de la vieille ville d'Hyères et la convivialité de ses commerces et des habitants. 
+           "
+           data-modal-image="assets/images/références-card-pictures/événements/nuitsblanches.png"
+           data-modal-footer-list="Date de création de l’événement : 2017;
+           Thématique : événement multi thèmes;
+           Lieu : Centre ville à Hyères;
+           Fréquence : 6 dates par été;
+           Dernière fréquentation: 8500 personnes par date
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/nuitsblanches.png" alt="Item 6">
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="PAS//SAGES"
+           data-modal-subtitle="street art & muralisme"
+           data-modal-description="Une rencontre d’artistes et de créateurs autour d’un projet collectif qui réinterprète des lieux jugés souvent austères et pourtant utiles pour les habitants d’une agglomération.
+           Traverser une œuvre en parcourant la ville, en utilisant des espaces urbains comme des nouveaux terrains de jeux, où le sens fusionne avec l'esthétique en y ajoutant parfois une couche de nouvelles technologies. C’est par cette réflexion que nous souhaitons créer des mises en scène ajustées et des installations immersives en requalifiant des espaces urbains souvent délaissés pour les rendre attractifs. 
+           L’objectif du collectif Mains Sales : laisser une empreinte en intégrant l’intervention artistique comme un élément d’accompagnement du projet urbain. Un ajustement créatif qualifié de street hacking qui apporte une réflexion sur notre environnement et nous questionne : ne doit-on pas réinventer aujourd’hui notre rapport à la ville ?
+           "
+           data-modal-image="assets/images/références-card-pictures/événements/passages.png"
+           data-modal-footer-list="Date de création de l’événement : 2024;
+           Thématique : Rencontre sur les arts visuels urbains;
+           Lieu : itinérant;
+           Fréquence : 1 fois par an;
+           Dernière réalisation : fresque de 550m2 
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/passages.png" alt="Item 7">
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="*SUMO FESTIVAL"
+           data-modal-subtitle="Le festival urbain en mode XXL"
+           data-modal-description="Proposé à partir de 2012, le SUMO Festival électrise le Zénith de Toulon avec un long week-end de concerts et de DJ sets mêlant rock indépendant et musiques électroniques. Chaque année, deux soirées intenses plongent les festivaliers dans un univers musical éclectique et exaltant.
+           Le vendredi, place à SUMO Rock, où l’électro-pop débridée fusionne avec l’indie rock. Le samedi, l’espace se transforme en une SUMOtronik survoltée avec trois dancefloors dédiés à la techno, la house, l’électro hip-hop et la bass music. Une expérience immersive où une vingtaine d’artistes se relaient pour un festival à 360°, entre prestations vibrantes et Dj’s sets enflammés."
+           data-modal-image="assets/images/références-card-pictures/événements/sumofestival.png"
+           data-modal-footer-list="Date de création de l’événement : 2012;
+           Thématique : Electronic & Indie music festival;
+           Lieu : Zenith Toulon;
+           Fréquence : 1 édition par an sur 2 jours;
+           Dernière fréquentation: 3321 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/sumofestival.png" alt="Item 8">
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="TOULON STREET FOOD"
+           data-modal-subtitle="Le rendez-vous des épicuriens !"
+           data-modal-description="Toulon Street Food célèbre la cuisine nomade dans le cadre enchanteur du Parc des Lices. Chaque année, le temps d’une soirée, food trucks et stands gourmands se rassemblent autour de grandes tablées pour un festival de saveurs et de convivialité.
+           Dans une ambiance chaleureuse, les passionnés de gastronomie explorent une multitude de spécialités, des recettes traditionnelles aux créations audacieuses. Entre découvertes culinaires et propositions musicales savoureuses, Toulon Street Food est une invitation à partager un moment gourmand, en famille ou entre amis, au cœur d’une expérience gustative et festive unique.
+           "
+           data-modal-image="assets/images/références-card-pictures/événements/toulonstreetfood.png"
+           data-modal-footer-list="Date de création de l’événement : 2017;
+           Thématique : festival des cuisines nomades;
+           Lieu : Parc des Lices / Toulon;
+           Fréquence : 1 édition par an;
+           Dernière fréquentation: 2349 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/toulonstreetfood.png" alt="Item 9">
+        </div>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="UK BASS"
+           data-modal-subtitle="Soirées basslines aux consonances made in UK !"
+           data-modal-description="Depuis 2007, UK BASS fait résonner l'Oméga Live au rythme des basses lourdes et des beats percutants. Chaque année, cet événement incontournable plonge le public dans l’essence de la culture Drum & Bass, Dubstep et Nu Break, directement inspirée de la scène underground londonienne.
+           Sur scène, DJ’s et producteurs de renom côtoient les talents locaux pour une nuit explosive, portée par des mix intenses et les flows survoltés des MC’s. Entre vibrations profondes et énergie brute, UK BASS est une véritable immersion dans l’univers du sound system britannique, où chaque édition repousse les limites du dancefloor."
+           data-modal-image="assets/images/références-card-pictures/événements/ukbass.png"
+           data-modal-footer-list="Date de création de l’événement : 2007;
+           Thématique : Drum & Bass / Dubstep / Nu Break;
+           Lieu : Zénith Omega Live;
+           Fréquence : 1 édition par an;
+           Dernière fréquentation: 673 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/ukbass.png" alt="Item 10">
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="W*A*V*E"
+           data-modal-subtitle="Electronic vs Electric !"
+           data-modal-description="Créé en 2009, WAV*E (We Are Very Exciting) fait vibrer le Zénith Oméga Live avec un cocktail explosif de musiques électroniques survoltées. Chaque année, cet événement unique fusionne électro, fidget house et sonorités 8-bit, créant un univers sonore punchy où le rock insuffle une énergie débridée à des nappes électroniques qui déferlent sans retenue.
+           Sur scène, les figures montantes du sud de la France croisent des têtes d’affiche incontournables pour une messe musicale à haute intensité. Entre beats percutants, saturation assumée et tempos oscillant entre 120 et 140 BPM, le dancefloor bouillonne, porté par une atmosphère électrique où l’adrénaline ne cesse de monter.
+           "
+           data-modal-image="assets/images/références-card-pictures/événements/waveelectronic.png"
+           data-modal-footer-list="Date de création de l’événement : 2009;
+           Thématique : Electro / Fidget house / Electro rock;
+           Lieu : Zénith Oméga Live;
+           Fréquence : 1 édition par an;
+           Dernière fréquentation: 701 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/waveelectronic.png" alt="Item 11">
+        </div>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="WOW MARKET"
+           data-modal-subtitle="le marché créateurs qui vous inspire"
+           data-modal-description="Créé en 2012, le WOW Market s’impose comme le rendez-vous incontournable des créateurs du sud. Deux fois par an, l’espace de la Villette à Hyères accueille un marché vibrant où mode, bijoux, accessoires, cosmétiques et décoration se côtoient dans une sélection pointue.
+           Sur plus de 700 m², une cinquantaine de créateurs, designers et concept stores dévoilent leurs univers uniques, mêlant originalité et savoir-faire. Plus qu’un simple marché, WOW Market, c’est un week-end d’inspiration et de partage, où rencontres, couleurs et matières se mêlent pour révéler des créations passionnées et authentiques."
+           data-modal-image="assets/images/références-card-pictures/événements/wow-creative-market.png"
+           data-modal-footer-list="Date de création de l’événement : 2012;
+           Thématique : Marché créateurs;
+           Lieu : Espace de la Villette / Hyères;
+           Fréquence : 2 éditions par an durant un week-end;
+           Dernière fréquentation: 2843 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/wow-creative-market.png" alt="Item 12">
+        </div>
+      </div>
+
+      <!-- Card 13 -->
+      <div class="card-wrapper" data-category="1"
+           data-modal-title="YES WEEKEND"
+           data-modal-subtitle="3 jours / 3 ambiances / 1 lieu"
+           data-modal-description="Depuis 2015, YES Week-end s’impose comme un festival urbain unique en son genre. Chaque année, entre Septembre et Octobre, ce festival pluridisciplinaire investit un lieu emblématique pour trois jours d’expériences artistiques et musicales immersives.
+           À contre-courant des grandes affiches standardisées, le YES Week-end festival mise sur une programmation audacieuse, locale, tissant un lien intime entre le lieu et son public. Entre concerts, performances et découvertes insolites, chaque édition dévoile de nouvelles thématiques et surprises. Un rendez-vous incontournable de la rentrée, où la créativité s’exprime librement au cœur d’une atmosphère vibrante sur les rives méditerranéennes.
+           "
+           data-modal-image="assets/images/références-card-pictures/événements/yesweekend.png"
+           data-modal-footer-list="Date de création de l’événement : 2015;
+           Thématique : festival urbain pluridisciplinaire;
+           Lieu : Parc des Lices ;
+           Fréquence : 1 édition / an – début Octobre;
+           Dernière fréquentation : 6284 personnes
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/événements/yesweekend.png" alt="Item 13">
+        </div>
+      </div>
+
+      <!-- Cards pour catégorie "lieux" -->
+      <div class="card-wrapper" data-category="2"
+           data-modal-title="FEATlab"
+           data-modal-subtitle="Creative Social Club"
+           data-modal-description="Au cœur de Toulon, FEATlab offre un espace de 200 m² sur deux niveaux, idéal pour la création, les échanges et les événements privés. Le rez-de-chaussée de 90 m² est entièrement privatisable, tandis que le sous-sol accueille des coworkers résidents. Ce lieu unique et facilement accessible est parfaitement équipé pour divers événements récréatifs. 
+           Proche des commerces, bars et restaurants branchés, FEATlab se distingue par sa façade originale. Vous y trouverez une cuisine équipée, une salle de bain, des toilettes, ainsi que du mobilier (chaises, bancs, tables, portants). 
+           Situé à moins de 3 minutes de la gare et de la place centrale, cet espace atypique est un atout pour vos événements.
+           "
+           data-modal-image="assets/images/références-card-pictures/lieux/featlab.png"
+           data-modal-footer-list="Date de création du projet : 2003;
+           Thématique : Espace de création partagé;
+           Lieu : 18 rue d’Antrechaus - 83000 Toulon;
+           Fréquence : à l’année et sur demande 
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/lieux/featlab.png" alt="Item 14">
+        </div>
+      </div>
+
+      <div class="card-wrapper" data-category="2"
+           data-modal-title="FOR/NAP/"
+           data-modal-subtitle="Tiers lieu créatif et culturel"
+           data-modal-description="Au cœur de La Seyne-sur-Mer, un monument historique se réveille d'un long sommeil. 
+           Le Fort Napoléon, sous l'impulsion d’un projet édité par NO/ID, se métamorphose en un tiers-lieu vibrant, carrefour de la création et de la transmission.
+           FOR/NAP/ est un incubateur culturel où les talents locaux se rencontrent, un hub qui permet l'ensemble du processus créatif, de l'étincelle initiale à sa diffusion. Véritable lieu de vie de 2200 m2, c’est un terreau fertile pour l'événementiel, mais aussi, pour l’apprentissage, le travail collaboratif, l'échange et la découverte. Ce projet ambitieux s'inscrit dans une démarche de développement durable, enracinée dans le territoire. 
+           Avec l’objectif d'être utile et accessible à tous afin de créer un lieu où chacun se sent invité à participer, à s'engager, à apporter sa pierre à l'édifice. C'est une invitation à rejoindre une aventure collective, à écrire ensemble le prochain chapitre de l'histoire de ce lieu emblématique.
+           "
+           data-modal-image="assets/images/références-card-pictures/lieux/fornap.png"
+           data-modal-footer-list="Date de création du projet : 2025
+           Thématique : tiers lieu créatif et culturel
+           Lieu : Chemin  Marc Sagnier, 83500 La Seyne-sur-Mer
+           Fréquence : ouvert sur toute l’année et sur demande
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/lieux/fornap.png" alt="Item 15">
+        </div>
+      </div>
+
+      <div class="card-wrapper" data-category="2"
+           data-modal-title="NOMAD LIFESTORE"
+           data-modal-subtitle="Dénicheur de pièces originales à travers le monde."
+           data-modal-description="Depuis 10 ans, Nomad Lifestore parcourt le monde à la recherche de pièces uniques et originales, mêlant mode, décoration et création. Chaque objet sélectionné incarne une histoire, un savoir-faire, et une vision esthétique singulière, toujours dans un esprit d’accessibilité et d’authenticité.
+           Avec une sélection pointue de trésors venus d’ailleurs, Nomad Lifestore propose des créations exclusives, parfois inédites en France. Plus qu’un simple concept store, c’est une invitation au voyage à travers des collections soigneusement choisies, où chaque découverte est une rencontre qui permet de dénicher la perle rare dans les univers que nous privilégions."
+           data-modal-image="assets/images/références-card-pictures/lieux/nomadlifestore.png"
+           data-modal-footer-list="Date de création du projet : 2009;
+           Thématique : Concept pop store;
+           Lieu : 22 Rue Daumas - Toulon ;
+           Fréquence : toute l’année
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/lieux/nomadlifestore.png" alt="Item 16">
+        </div>
+      </div>
+
+      <!-- Cards pour catégorie "projets parallèles" -->
+      <div class="card-wrapper" data-category="3"
+           data-modal-title="CARABOOM"
+           data-modal-subtitle="Un seul but : amener la fête, partout !"
+           data-modal-description="La CarabOOm est la nouvelle référence des bringues itinérantes sur la côte méditerranéenne. Cette caravane customisée en véritable « DiscoMobile », arpente les routes depuis l’été 2018, et amène la fête partout avec elle!
+           Entièrement noire et ornée d’une multitude de boules disco, CarabOOm est une caravane 2.0 équipée d’une régie DJ, d’un pack son puissant et d’un jeu de lumières immersif. Conçue pour être rapide à installer et totalement autonome (un simple branchement électrique suffit), elle offre une solution clé en main pour dynamiser vos événements à prix attractif.
+           Idéale pour créer un dancefloor supplémentaire, ajouter un point sonore atypique ou accompagner un changement de plateau, CarabOOm s’adapte à toutes les ambiances. Osez l’expérience !"
+           data-modal-image="assets/images/références-card-pictures/projets-paralleles/caraboom.png"
+           data-modal-footer-list="Date de création du projet : 2018;
+           Thématique : Disco mobile;
+           Lieu : itinérant ;
+           Fréquence : sur demande
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/projets-paralleles/caraboom.png" alt="Item 17">
+        </div>
+      </div>
+
+      <div class="card-wrapper" data-category="3"
+           data-modal-title="LES MAINS SALES"
+           data-modal-subtitle="Collectif d’Urban Hacking"
+           data-modal-description="Satellite créatif à tête chercheuse, les MAINS SALES émergent comme un collectif artistique à géométrie variable, métamorphosant l'espace urbain en des expériences immersives inédites. Chaque projet est une invitation à redécouvrir l'environnement citadin, incitant les passants à interagir avec leur ville de manière nouvelle et récréative.
+           Les membres des MAINS SALES forment un écosystème dynamique, composé d'artistes, de designers, de programmeurs et de techniciens anonymes dévoilant leurs mains plutôt que leurs visages. Ensemble, ils conjuguent créativité et innovation pour concevoir des installations qui captent l'attention et encouragent l’interaction du public. A travers l'urban hacking, ils repensent la relation entre l'art, la ville et ses habitants, explorant de nouvelles façons de percevoir l'espace urbain."
+           data-modal-image="assets/images/références-card-pictures/projets-paralleles/lesmainssales.png"
+           data-modal-footer-list="Date de création du collectif : 2024;
+           Thématique : Urban Hacking;
+           Lieu : sur commande;
+           Fréquence : sur demande
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/projets-paralleles/lesmainssales.png" alt="Item 18">
+        </div>
+      </div>
+
+      <div class="card-wrapper" data-category="3"
+           data-modal-title="ROLL BLASTER"
+           data-modal-subtitle="Mobile sound system"
+           data-modal-description="La sono mobile la plus puissante du Sud de la France, un équipement de pointe adapté aux Dj’s les plus pointilleux servi par un combo audio Pioneers et Soundboks pour un rendu exceptionnel. Ce dispositif est complètement autonome avec une batterie à pleine puissance (126 décibel pour plus d’un 1,2 KW) avec une autonomie de 5H minimum et plus de 12H à mi volume.
+           Un engin sonore de 250 kg, monté sur 4 roues tout terrain increvables, en structure aluminium et contreplaqué marine, prend l’apparence d’un ghetto blaster* des années 80 pour animer musicalement n’importe quel événement dans pratiquement n’importe quel lieu en mode déambulatoire ou sur plusieurs étapes d’un parcours identifié.
+           "
+           data-modal-image="assets/images/références-card-pictures/projets-paralleles/rollblaster.png"
+           data-modal-footer-list="Date de création du projet : 2021;
+           Thématique : Mobile sound system;
+           Lieu : itinérant ;
+           Fréquence : sur demande 
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/projets-paralleles/rollblaster.png" alt="Item 19">
+        </div>
+      </div>
+
+      <div class="card-wrapper" data-category="3"
+           data-modal-title="UNDERLAB"
+           data-modal-subtitle="Le bon son remonte à la surface"
+           data-modal-description="Depuis 2018, Underlab s’impose comme la web radio de la famille NO/ID*, dédiée à la musique électronique et à ceux qui la font vivre. Avec une vision panoramique du son, elle soutient les artistes locaux et les événements en captant l’énergie des talents émergents à travers des sessions live enregistrées en studio.
+           Chaque mois, Underlab fait remonter le bon son à la surface, avec des performances exclusives diffusées en streaming sur les réseaux sociaux et son site. Un laboratoire sonore où créativité et passion s’expriment sans limite, offrant une expérience immersive aux amateurs de musiques électroniques."
+           data-modal-image="assets/images/références-card-pictures/projets-paralleles/underlab.png"
+           data-modal-footer-list="Date de création du projet : 2017;
+           Thématique : Performance Live streaming;
+           Lieu : 18 rue d’Antrechaus - Toulon ;
+           Fréquence : 1 édition par mois
+           ">
+        <div class="card-item">
+          <img src="assets/images/références-card-pictures/projets-paralleles/underlab.png" alt="Item 20">
+        </div>
+      </div>
+    </div>
   </div>
-
-  <!-- Zone des catégories (pillules) -->
-  <div class="pill-container">
-    <!-- Chaque bouton porte un data-category correspondant -->
-    <button class="pill-item active" data-category="1">projets parallèles</button>
-    <button class="pill-item" data-category="2">lieux</button>
-    <button class="pill-item" data-category="3">évènements</button>
-  </div>
-
-  <!-- Zone des cards horizontales (Recycler view centrée) -->
-  <div class="horizontal-cards">
-   <!-- Card 1 -->
-<div class="card-wrapper" data-category="1"
-data-modal-title="Titre Item 1"
-data-modal-subtitle="Sous-titre pour Item 1"
-data-modal-description="Le Bloom Market est un marché saisonnier dans un cadre luxuriant en pleine floraison. Un événement hybride qui vous proposera plusieurs espaces pour éveiller vos sens où vous trouverez de belles plantes à petits prix, un espace vintage pour chineurs avertis, une large sélection de créateurs, de la décoration ainsi que les délices des producteurs locaux.
-Le Bloom Market est une pause savoureuse avec plusieurs food-trucks et un bar pour se restaurer. Où le temps d’un week-end, la convivialité est de mise, la musique de choix et les tables partagées pour réjouir les papilles les plus délicates.
-Nous vous 
-"
-data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/YES_imagecle.png">
-<div class="card-item">
-<img src="http://www.noidlab.com/wp-content/uploads/2020/05/YES_imagecle.png" alt="Item 1">
-</div>
-<p class="card-label">Titre Item 1</p>
-</div>
-
-<!-- Card 2 -->
-<div class="card-wrapper" data-category="2"
-data-modal-title="Titre Item 2"
-data-modal-subtitle="Sous-titre pour Item 2"
-data-modal-description="Description détaillée pour Item 2."
-data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png">
-<div class="card-item">
-<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Item 2">
-</div>
-<p class="card-label">Titre Item 2</p>
-</div>
-
-<!-- Card 3 -->
-<div class="card-wrapper" data-category="3"
-data-modal-title="Titre Item 3"
-data-modal-subtitle="Sous-titre pour Item 3"
-data-modal-description="Description détaillée pour Item 3."
-data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png">
-<div class="card-item">
-<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 3">
-</div>
-<p class="card-label">Titre Item 3</p>
-</div>
-
-<!-- Card 4 -->
-<div class="card-wrapper" data-category="4"
-data-modal-title="Titre Item 4"
-data-modal-subtitle="Sous-titre pour Item 4"
-data-modal-description="Description détaillée pour Item 4."
-data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/WOW_imagecle.png">
-<div class="card-item">
-<img src="http://www.noidlab.com/wp-content/uploads/2020/05/WOW_imagecle.png" alt="Item 4">
-</div>
-<p class="card-label">Titre Item 4</p>
-</div>
-
-<!-- Card 5 -->
-<div class="card-wrapper" data-category="1"
-data-modal-title="Titre Item 5"
-data-modal-subtitle="Sous-titre pour Item 5"
-data-modal-description="Description détaillée pour Item 5."
-data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/LFCN_imagecle.png">
-<div class="card-item">
-<img src="http://www.noidlab.com/wp-content/uploads/2020/05/LFCN_imagecle.png" alt="Item 5">
-</div>
-<p class="card-label">Titre Item 5</p>
-</div>
-
-<!-- Card 6 -->
-<div class="card-wrapper" data-category="2"
-data-modal-title="Titre Item 6"
-data-modal-subtitle="Sous-titre pour Item 6"
-data-modal-description="Description détaillée pour Item 6."
-data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png">
-<div class="card-item">
-<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Item 6">
-</div>
-<p class="card-label">Titre Item 6</p>
-</div>
-
-<!-- Card 7 -->
-<div class="card-wrapper" data-category="3"
-data-modal-title="Titre Item 7"
-data-modal-subtitle="Sous-titre pour Item 7"
-data-modal-description="Description détaillée pour Item 7."
-data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png">
-<div class="card-item">
-<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 7">
-</div>
-<p class="card-label">Titre Item 7</p>
-</div>
-
-<!-- Card 8 -->
-<div class="card-wrapper" data-category="4"
-data-modal-title="Titre Item 8"
-data-modal-subtitle="Sous-titre pour Item 8"
-data-modal-description="Description détaillée pour Item 8."
-data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png">
-<div class="card-item">
-<img src="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic_imagecle.png" alt="Item 8">
-</div>
-<p class="card-label">Titre Item 8</p>
-</div>
-
-  </div>
-</div>
-</div>
 </section>
+
 
 
 <!-- Section Gallerie Media -->
@@ -913,11 +1176,11 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
  
 
 
-  <!-- Modal Overlay -->
+<!-- Modal Overlay -->
 <div id="unique-modal-overlay" class="unique-modal-overlay hidden">
   <!-- Flèches de navigation (hors du container modal) -->
-  <button class="unique-modal-nav unique-modal-prev">&larr;</button>
-  <button class="unique-modal-nav unique-modal-next">&rarr;</button>
+  <button class="unique-modal-nav unique-modal-prev"><img src="assets/pictos/fleche-gauche.png"></button>
+  <button class="unique-modal-nav unique-modal-next"><img src="assets/pictos/fleche-droite.png"></button>
   
   <div class="unique-modal-container">
     <!-- Bouton de fermeture -->
@@ -933,17 +1196,23 @@ data-modal-image="http://www.noidlab.com/wp-content/uploads/2020/05/Cheapandchic
         <h2 class="unique-modal-title"></h2>
         <h4 class="unique-modal-subtitle"></h4>
         <p class="unique-modal-description"></p>
-        <!-- Petit titre en bas à gauche -->
-        <p class="unique-modal-footer-text">Petit titre</p>
+        <!-- Liste à puces en bas à gauche -->
+        <ul class="unique-modal-footer-text">
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+          <li>Item 4</li>
+          <li>Item 5</li>
+        </ul>
         <!-- Boutons réseaux sociaux en bas à droite -->
         <div class="unique-social-buttons">
-          <button class="unique-social-btn"><i class="fab fa-facebook-f"></i></button>
-          <button class="unique-social-btn"><i class="fab fa-twitter"></i></button>
+          <!-- Vos boutons sociaux ici -->
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 </div>
 

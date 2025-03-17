@@ -355,6 +355,7 @@ document.querySelectorAll('.pill-item').forEach(pill => {
     const modalTitle = modalOverlay.querySelector('.unique-modal-title');
     const modalSubtitle = modalOverlay.querySelector('.unique-modal-subtitle');
     const modalDescription = modalOverlay.querySelector('.unique-modal-description');
+    const modalFooterList = modalOverlay.querySelector('.unique-modal-footer-text');
     const closeModalBtn = modalOverlay.querySelector('.unique-modal-close');
     const prevBtn = modalOverlay.querySelector('.unique-modal-prev');
     const nextBtn = modalOverlay.querySelector('.unique-modal-next');
@@ -367,7 +368,8 @@ document.querySelectorAll('.pill-item').forEach(pill => {
         image: card.getAttribute('data-modal-image') || (card.querySelector('img') ? card.querySelector('img').src : ''),
         title: card.getAttribute('data-modal-title') || (card.querySelector('.card-label') ? card.querySelector('.card-label').innerText : ''),
         subtitle: card.getAttribute('data-modal-subtitle') || '',
-        description: card.getAttribute('data-modal-description') || ''
+        description: card.getAttribute('data-modal-description') || '',
+        footerList: card.getAttribute('data-modal-footer-list') || ''
       });
       console.log(`Card ${index + 1} :`, modalData[index]);
   
@@ -385,6 +387,14 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       modalTitle.innerText = data.title;
       modalSubtitle.innerText = data.subtitle;
       modalDescription.innerText = data.description;
+  
+      // Traitement de la liste à puces
+      if(data.footerList) {
+        const items = data.footerList.split(';');
+        modalFooterList.innerHTML = items.map(item => `<li>${item.trim()}</li>`).join('');
+      } else {
+        modalFooterList.innerHTML = '';
+      }
   
       modalContainer.classList.remove('slide-left', 'slide-right');
       if (animationClass) {
@@ -429,6 +439,7 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       }
     });
   });
+  
 
   
   document.addEventListener("DOMContentLoaded", () => {
