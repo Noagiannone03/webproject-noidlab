@@ -366,7 +366,7 @@ body {
   font-family: 'bold-montserrat', sans-serif;
   font-size: 1.7rem;
   color: #121212;
-  max-width: 980px;
+  min-width: 1000px;
   margin: 0 auto 0;
   text-align: center;
 }
