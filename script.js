@@ -6,6 +6,51 @@
 
 
     document.addEventListener("DOMContentLoaded", function() {
+      /* Gestion du slider horizontal */
+      const horizontalSlider = document.querySelector('.horizontal-slider');
+      const indicators = document.querySelectorAll('.indicator');
+      const totalPages = 3; // On définit exactement trois pages toggle
+    
+      function updateIndicators() {
+        const pageWidth = horizontalSlider.offsetWidth;
+        let index = Math.round(horizontalSlider.scrollLeft / pageWidth);
+        // Forcer l'index à ne jamais dépasser le nombre de pages - 1
+        index = Math.min(totalPages - 2, index);
+        indicators.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+    
+      horizontalSlider.addEventListener('scroll', updateIndicators);
+    
+      // Permettre le clic sur les indicateurs pour naviguer
+      indicators.forEach(dot => {
+        dot.addEventListener('click', function() {
+          console.log("Clic détecté sur indicator", dot);
+          const index = parseInt(dot.getAttribute('data-index'));
+          const pageWidth = horizontalSlider.offsetWidth;
+          horizontalSlider.scrollTo({
+            left: index * pageWidth,
+            behavior: 'smooth'
+          });
+        });
+      });
+    
+      updateIndicators();
+    
+      /* Gestion du flip des cartes via écouteur d'événement sur chaque carte */
+      const flipCards = document.querySelectorAll('.flip-card');
+      flipCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          // On s'assure que le clic provient bien d'une carte et non d'un élément interne
+          // (Si nécessaire, on peut ajouter e.stopPropagation();)
+          card.classList.toggle('flipped');
+          console.log("Flip effectué sur :", card);
+        });
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
       console.log("DOM entièrement chargé");
       const sections = document.querySelectorAll('section');
       console.log("Nombre de sections détectées :", sections.length);
@@ -589,10 +634,6 @@ document.querySelectorAll('.pill-item').forEach(pill => {
  // Déclare index dès le début pour éviter le problème de temporal dead zone
 let index = 0;
 
-
-
-restartAnimation();
-setInterval(restartAnimation, 10000);
 
 // Carousel et positionnement 3D
 const cardElements = document.querySelectorAll(".card-custom");

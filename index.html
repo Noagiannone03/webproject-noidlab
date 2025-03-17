@@ -356,90 +356,77 @@
  
   
   <!-- Section Tarifs -->
-
-<section  id="pricing-section-custom" class="observed-section" >
-  <div class="colored-container-princing">
- 
-  <div class="title-container">
-    <h1 class="section-title">PRESTATIONS</h1>
-    <div class="circle" data-icon="assets/pictos/prestation.png"></div>
-   </div>
- 
-  <p class="section-subtitle">
-    Des solutions créatives sur mesure pour des projets d’envergures
-  </p>
-
-  <!-- Carousel avec cartes flip -->
-  <div class="carousel-container-custom">
-    <div class="carousel-custom">
-      <!-- Carte 1 -->
-      <div class="card-custom" onclick="flipCard(this)">
-        <div class="card-inner-custom">
-          <div class="card-front-custom" style="background-image: url('assets/images/card-prestations/aménagement-d_espace-carte.png');"></div>
-          <div class="card-back-custom" style="background: url('assets/images/card-prestations/aménagement-d_espaces-dos-carte.png') no-repeat center center; background-size: cover;">
-          
+  <section id="pricing-section-custom" class="observed-section">
+    <div class="colored-container-princing">
+      <div class="title-container">
+        <h1 class="section-title">PRESTATIONS</h1>
+        <div class="circle" data-icon="assets/pictos/prestation.png"></div>
+      </div>
+      <p class="section-subtitle">
+        Des solutions créatives sur mesure pour des projets d’envergure
+      </p>
+  
+      <!-- Conteneur slider avec marges latérales -->
+      <div class="horizontal-slider">
+        <div class="carousel" >
+          <!-- Exemple de plusieurs cartes flip (à ajuster en nombre pour former 3 pages) -->
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner" onclick="flipCard(this)">
+              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/aménagement-d_espace-carte.png');"></div>
+              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/aménagement-d_espaces-dos-carte.png');"></div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="flipCard(this)" >
+            <div class="flip-card-inner" onclick="flipCard(this.parentNode)">
+              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/bureau-de-producion-carte.png');"></div>
+              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/bureau-de-production-dos-carte.png');"></div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/location-d_espace-carte.png');"></div>
+              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/location-d_espaces-dos-carte.png');"></div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/solutions-digitales-carte.png');"></div>
+              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/solutions-digitales-dos-carte.png');"></div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/street-art-hacking-carte.png');"></div>
+              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/street-art-hacking-dos-carte.png');"></div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/studio-création-carte.png');"></div>
+              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/studio-de-création-dos-carte.png');"></div>
+            </div>
+          </div>
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/unité-de-fabrication-carte.png');"></div>
+              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/unité-de-fabrication-dos-carte.png');"></div>
+            </div>
           </div>
         </div>
+        <!-- Overlay de flou fixe sur le côté droit -->
+        
       </div>
-      <!-- Carte 2 -->
-      <div class="card-custom" onclick="flipCard(this)">
-        <div class="card-inner-custom">
-          <div class="card-front-custom" style="background-image: url('assets/images/card-prestations/bureau-de-producion-carte.png');"></div>
-          <div class="card-back-custom" style="background: url('assets/images/card-prestations/bureau-de-production-dos-carte.png') no-repeat center center; background-size: cover;">
-          
-          </div>
-        </div>
+  
+      <!-- Indicateurs hors du slider -->
+      <div class="carousel-indicators">
+        <span class="indicator active" data-index="0"></span>
+        <span class="indicator" data-index="1"></span>
+        <span class="indicator" data-index="2"></span>
       </div>
-      <!-- ... Autres cartes ... -->
-      <div class="card-custom" onclick="flipCard(this)">
-        <div class="card-inner-custom">
-          <div class="card-front-custom" style="background-image: url('assets/images/card-prestations/location-d_espace-carte.png');"></div>
-          <div class="card-back-custom" style="background: url('assets/images/card-prestations/location-d_espaces-dos-carte.png') no-repeat center center; background-size: cover;">
-          
-          </div>
-        </div>
-      </div>
-      <div class="card-custom" onclick="flipCard(this)">
-        <div class="card-inner-custom">
-          <div class="card-front-custom" style="background-image: url('assets/images/card-prestations/solutions-digitales-carte.png');"></div>
-          <div class="card-back-custom" style="background: url('assets/images/card-prestations/solutions-digitales-dos-carte.png') no-repeat center center; background-size: cover;">
-          
-          </div>
-        </div>
-      </div>
-      <div class="card-custom" onclick="flipCard(this)">
-        <div class="card-inner-custom">
-          <div class="card-front-custom" style="background-image: url('assets/images/card-prestations/street-art-hacking-carte.png');"></div>
-          <div class="card-back-custom" style="background: url('assets/images/card-prestations/street-art-hacking-dos-carte.png') no-repeat center center; background-size: cover;">
-          
-          </div>
-        </div>
-      </div>
-      <div class="card-custom" onclick="flipCard(this)">
-        <div class="card-inner-custom">
-          <div class="card-front-custom" style="background-image: url('assets/images/card-prestations/studio-création-carte.png');"></div>
-          <div class="card-back-custom" style="background: url('assets/images/card-prestations/studio-de-création-dos-carte.png') no-repeat center center; background-size: cover;">
-          
-          </div>
-        </div>
-      </div>
-      <div class="card-custom" onclick="flipCard(this)">
-        <div class="card-inner-custom">
-          <div class="card-front-custom" style="background-image: url('assets/images/card-prestations/unité-de-fabrication-carte.png');"></div>
-          <div class="card-back-custom" style="background: url('assets/images/card-prestations/unité-de-fabrication-dos-carte.png') no-repeat center center; background-size: cover;">
-          
-          </div>
-        </div>
-      </div>
-    
     </div>
-    <button class="prev-custom" onclick="moveCarousel(-1)">&#10094;</button>
-    <button class="next-custom" onclick="moveCarousel(1)">&#10095;</button>
+  </section>
+  
 
-  </div>
-  </div>
-
-</section>
 
   
 
@@ -1221,7 +1208,7 @@
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
    
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 <script>document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM fully loaded and parsed");
   
@@ -1452,131 +1439,6 @@ var gallerySlider = new Swiper(".mySwiper", {
         }, 100);
       },
     }
-});
-
-  
-  // Ajoute un event listener sur chaque image du slider pour déclencher une fonction au clic
-  document.querySelectorAll('.swiper-slide img').forEach(function(img) {
-    img.addEventListener('click', function() {
-      // Remplacez ce code par la fonction désirée
-      console.log("Image cliquée :", this.alt);
-      // Exemple : handleImageClick(this);
-    });
-  });
-  
-  
-  
-  
-  
-  document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM entièrement chargé.');
-
-  // Sélectionnez toutes vos cards
-  const cards = document.querySelectorAll('.card-wrapper');
-  console.log(`Nombre de cards trouvées : ${cards.length}`);
-
-  // Sélection des éléments du modal
-  const modalOverlay = document.getElementById('custom-modal');
-  const modalImage = modalOverlay.querySelector('.modal-image img');
-  const modalTitle = modalOverlay.querySelector('.modal-title');
-  const modalSubtitle = modalOverlay.querySelector('.modal-subtitle');
-  const modalDescription = modalOverlay.querySelector('.modal-description');
-  const closeModalBtn = modalOverlay.querySelector('.modal-close');
-  const prevBtn = modalOverlay.querySelector('.modal-prev');
-  const nextBtn = modalOverlay.querySelector('.modal-next');
-
-  // Tableau pour stocker les données de chaque modal récupérées depuis les cards
-  let modalData = [];
-
-  // Index du modal actuellement affiché
-  let currentModalIndex = 0;
-
-  // Parcourir les cards pour récupérer les données et ajouter un écouteur de clic
-  cards.forEach((card, index) => {
-    const imageAttr = card.getAttribute('data-modal-image') || (card.querySelector('img') ? card.querySelector('img').src : '');
-    const titleAttr = card.getAttribute('data-modal-title') || (card.querySelector('.card-label') ? card.querySelector('.card-label').innerText : '');
-    const subtitleAttr = card.getAttribute('data-modal-subtitle') || '';
-    const descriptionAttr = card.getAttribute('data-modal-description') || '';
-
-    modalData.push({
-      image: imageAttr,
-      title: titleAttr,
-      subtitle: subtitleAttr,
-      description: descriptionAttr
-    });
-    
-    console.log(`Card ${index + 1} :`, {
-      image: imageAttr,
-      title: titleAttr,
-      subtitle: subtitleAttr,
-      description: descriptionAttr
-    });
-    
-    // Au clic sur la card, ouvrir le modal avec le contenu correspondant
-    card.addEventListener('click', () => {
-      currentModalIndex = index;
-      console.log(`Card ${index + 1} cliquée. Ouverture du modal...`);
-      openModal(modalData[currentModalIndex]);
-    });
-  });
-
-  // Fonction pour ouvrir le modal avec une animation (optionnelle)
-  function openModal(data, animationClass = '') {
-    console.log('openModal() appelé avec les données :', data);
-
-    // Mettre à jour le contenu du modal
-    modalImage.src = data.image;
-    modalTitle.innerText = data.title;
-    modalSubtitle.innerText = data.subtitle;
-    modalDescription.innerText = data.description;
-
-  
-    
-    // Afficher le modal
-    modalOverlay.classList.add('active');
-    console.log('Modal affiché.');
-  }
-
-  // Fonction pour fermer le modal
-  function closeModal() {
-    console.log('Fermeture du modal.');
-    modalOverlay.classList.remove('active');
-  }
-
-  // Événement sur le bouton de fermeture
-  closeModalBtn.addEventListener('click', closeModal);
-
-  // Navigation vers la carte précédente
-  prevBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (currentModalIndex > 0) {
-      currentModalIndex--;
-      console.log(`Navigation vers la card précédente. Index actuel : ${currentModalIndex}`);
-      openModal(modalData[currentModalIndex], 'slide-right');
-    } else {
-      console.log('Déjà la première card, navigation précédente impossible.');
-    }
-  });
-
-  // Navigation vers la carte suivante
-  nextBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (currentModalIndex < modalData.length - 1) {
-      currentModalIndex++;
-      console.log(`Navigation vers la card suivante. Index actuel : ${currentModalIndex}`);
-      openModal(modalData[currentModalIndex], 'slide-left');
-    } else {
-      console.log('Déjà la dernière card, navigation suivante impossible.');
-    }
-  });
-
-  // Optionnel : fermer le modal si on clique à l'extérieur de la boîte (sur l'overlay)
-  modalOverlay.addEventListener('click', (e) => {
-    if(e.target === modalOverlay) {
-      console.log('Clic sur l\'overlay, fermeture du modal.');
-      closeModal();
-    }
-  });
 });
 
   </script>
