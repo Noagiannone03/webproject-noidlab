@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrousel à 3 cartes avec effet flip</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #eaeaea;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    /* Conteneur principal du carrousel */
+    .carousel-container {
+      position: relative;
+      width: 900px;
+      height: 350px;
+      overflow: hidden;
+      background: #f8f8f8;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    /* Zone de défilement des cartes */
+    .carousel {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    /* Style des cartes */
+    .card {
+      width: 300px;
+      margin: 0 10px;
+      transition: transform 0.3s, opacity 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+    /* Carte non-active : légère réduction */
+    .card:not(.active) .card-inner {
+      transform: scale(0.9);
+      opacity: 0.8;
+    }
+    /* Carte active (centrale) : agrandie */
+    .card.active .card-inner {
+      transform: scale(1.1);
+      opacity: 1;
+      z-index: 2;
+    }
+    /* Structure flip card */
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    /* Effet flip */
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    /* Faces de la carte */
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+    }
+    /* Utilisation d’images en background pour simplifier */
+    .card-front, .card-back {
+      background-size: cover;
+      background-position: center;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+    /* Boutons de navigation */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      padding: 10px 15px;
+      font-size: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+    }
+    .carousel-btn.left {
+      left: 10px;
+    }
+    .carousel-btn.right {
+      right: 10px;
+    }
+    /* Petit effet au clic sur une carte */
+    .card-inner:active {
+      transform: scale(0.95);
+      transition: transform 0.2s;
+    }
+  </style>
+</head>
+<body>
+
+<div class="carousel-container">
+  <!-- Bouton de navigation gauche -->
+  <button class="carousel-btn left" id="prevBtn">&#10094;</button>
+  
+  <!-- Conteneur du carrousel -->
+  <div class="carousel" id="carousel">
+    <!-- Carte 1 -->
+    <div class="card" data-index="0">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background-image: url('https://static.vecteezy.com/ti/photos-gratuite/p2/32170931-femme-conception-oeil-fleurs-portrait-ancien-beaute-ete-art-mode-art-style-pop-la-coupe-de-cheveux-concept-photo.jpg');">
+        </div>
+        <div class="card-face card-back" style="background-image: url('https://static.vecteezy.com/ti/photos-gratuite/p2/32170931-femme-conception-oeil-fleurs-portrait-ancien-beaute-ete-art-mode-art-style-pop-la-coupe-de-cheveux-concept-photo.jpg');">
+        </div>
+      </div>
+    </div>
+    <!-- Carte 2 -->
+    <div class="card" data-index="1">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background-image: url('https://static.vecteezy.com/ti/photos-gratuite/p2/32170931-femme-conception-oeil-fleurs-portrait-ancien-beaute-ete-art-mode-art-style-pop-la-coupe-de-cheveux-concept-photo.jpg');">
+        </div>
+        <div class="card-face card-back" style="background-image: url('https://static.vecteezy.com/ti/photos-gratuite/p2/32170931-femme-conception-oeil-fleurs-portrait-ancien-beaute-ete-art-mode-art-style-pop-la-coupe-de-cheveux-concept-photo.jpg');">
+        </div>
+      </div>
+    </div>
+    <!-- Carte 3 -->
+    <div class="card" data-index="2">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background-image: url('https://static.vecteezy.com/ti/photos-gratuite/p2/32170931-femme-conception-oeil-fleurs-portrait-ancien-beaute-ete-art-mode-art-style-pop-la-coupe-de-cheveux-concept-photo.jpg');">
+        </div>
+        <div class="card-face card-back" style="background-image: url('https://via.placeholder.com/300x350/17A2B8/ffffff?text=Carte+3+Back');">
+        </div>
+      </div>
+    </div>
+    <!-- Carte 4 -->
+    <div class="card" data-index="3">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background-image: url('https://via.placeholder.com/300x350/6F42C1/ffffff?text=Carte+4+Front');">
+        </div>
+        <div class="card-face card-back" style="background-image: url('https://via.placeholder.com/300x350/343A40/ffffff?text=Carte+4+Back');">
+        </div>
+      </div>
+    </div>
+    <!-- Carte 5 -->
+    <div class="card" data-index="4">
+      <div class="card-inner">
+        <div class="card-face card-front" style="background-image: url('https://via.placeholder.com/300x350/FD7E14/ffffff?text=Carte+5+Front');">
+        </div>
+        <div class="card-face card-back" style="background-image: url('https://via.placeholder.com/300x350/20C997/ffffff?text=Carte+5+Back');">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bouton de navigation droite -->
+  <button class="carousel-btn right" id="nextBtn">&#10095;</button>
+</div>
+
+<script>
+  // Dimensions et calculs
+  const containerWidth = 900;
+  const cardWidth = 300;
+  const cardMargin = 10;
+  const cardWidthWithMargin = cardWidth + (cardMargin * 2); // 300 + 20 = 320
+  const containerCenter = containerWidth / 2; // 450
+  const cardCenterOffset = cardMargin + (cardWidth / 2); // 10 + 150 = 160
+  
+  const carousel = document.getElementById('carousel');
+  const cards = document.querySelectorAll('.card');
+  const totalCards = cards.length;
+  let currentIndex = 0;
+  
+  // Fonction pour centrer la carte active
+  function updateCarousel() {
+    const offset = containerCenter - (currentIndex * cardWidthWithMargin + cardCenterOffset);
+    carousel.style.transform = `translateX(${offset}px)`;
+    
+    cards.forEach((card, index) => {
+      card.classList.remove('active');
+    });
+    cards[currentIndex].classList.add('active');
+  }
+  
+  // Navigation
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+    updateCarousel();
+  });
+  
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalCards;
+    updateCarousel();
+  });
+  
+  // Effet flip au clic sur chaque carte
+  cards.forEach(card => {
+    card.addEventListener('click', function() {
+      this.classList.toggle('flipped');
+    });
+  });
+  
+  // Initialisation
+  updateCarousel();
+</script>
+
+</body>
+</html>
