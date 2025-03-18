@@ -117,9 +117,16 @@
       margin: 0 20px;
       margin-bottom: 20px;
     }
+   
     .stack-card.subtitle h2 {
+      display: none;
+    }
+
+    #stack-card-responsive-subtitle{
       font-size: 1.2rem;
       margin-bottom: 15px;
+      margin: 10px;
+      display: flex;
     }
     .description {
       font-size: 0.9rem;
@@ -153,6 +160,14 @@
     .interieur {
       padding: 15px 10px;
       border-radius: 15px;
+    }
+    .stack-card.subtitle h2 {
+      display: none;
+    }
+
+    #stack-card-responsive-subtitle{
+      margin: 10px;
+      display: flex;
     }
   
     .title-container {

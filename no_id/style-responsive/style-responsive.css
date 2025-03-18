@@ -55,12 +55,12 @@
   ----------------------------------- */
   @media screen and (max-width: 1024px) and (min-width: 768px) {
     .section-title {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
     }
     .section-subtitle {
       width: auto;
       min-width: auto;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
     .text-block-container {
       margin-top: 10%;
@@ -103,14 +103,30 @@
   ----------------------------------- */
   @media screen and (max-width: 767px) and (min-width: 481px) {
 
+    
+.circle {
+  border: 3px solid black;
+  background-color: white;
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: border-box;
+  background-clip: border-box;
+  transition: background 0.5s ease;
+  /* Pour s'assurer que l'image couvre tout le cercle */
+  overflow: hidden;
+}
     .section-subtitle {
-      font-size: 1.3rem;
+      font-size: 1.15rem;
       text-align: center;
       width: auto;
       min-width: auto;
     }
     .section-title {
-      font-size: 2.2rem;
+      font-size: 1.9rem;
       text-align: center;
     }
     .text-block-container {
@@ -160,32 +176,48 @@
       height: 100vh;
     }
     .section-subtitle {
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       text-align: center;
       width: auto;
       min-width: auto;
     }
 
+    
+.circle {
+  border: 3px solid black;
+  background-color: white;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: border-box;
+  background-clip: border-box;
+  transition: background 0.5s ease;
+  /* Pour s'assurer que l'image couvre tout le cercle */
+  overflow: hidden;
+}
   
     .section-title {
       font-family: 'extra-bold-montserrat', sans-serif;
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       text-align: left;
       color: #131313;
     }
     .text-block-container {
       margin-top: 15%;
-      height: 74%;
+      height: 70%;
     }
     .stats-title,
     .stats-footer {
       text-align: center;
       font-size: 1.9rem;
-      margin-top: 40px;
-      margin-bottom: 40px;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
     .stat-number {
-      font-size: 3.8rem;
+      font-size: 3.5rem;
     }
     .stat-label {
       font-size: 1.5rem;

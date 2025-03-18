@@ -54,6 +54,10 @@
     height: 760px;
   }
   
+
+  #stack-card-responsive-subtitle{
+    display: none;
+  }
   .interieur {
     display: flex;
     flex-direction: column;
