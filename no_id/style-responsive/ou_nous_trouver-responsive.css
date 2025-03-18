@@ -7,6 +7,12 @@
     #map-section {
       padding: 40px 30px;
     }
+    #map-responsive{
+      display: block;
+    }
+    #map{
+      display: none;
+    }
     #map-container iframe {
       height: 300px;
     }
@@ -45,6 +51,7 @@
     #new-section {
       padding: 20px 10px;
     }
+
     
     .separatored {
       padding: 0 20px;
@@ -74,6 +81,12 @@
     .contact-info-row {
       flex-direction: column;
       gap: 15px;
+    }
+    #map-responsive{
+      display: block;
+    }
+    #map{
+      display: none;
     }
     .contact-card {
       width: 100%;

@@ -179,3 +179,13 @@
   object-fit: contain;
   transition: none;
 }
+
+
+/* ---------------------- */
+/*  Mode Desktop & Mobile */
+/* ---------------------- */
+
+/* Par défaut, on affiche la version desktop et on cache la version mobile */
+.modal-desktop { display: block; }
+.modal-mobile { display: none; }
+

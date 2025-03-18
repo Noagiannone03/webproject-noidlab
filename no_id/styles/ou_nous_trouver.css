@@ -43,6 +43,13 @@
     height: auto;
     margin-top: 10px;
   }
+
+  #map-responsive{
+    display: none;
+  }
+  #map{
+    display: block;
+  }
   
   /* Header de la section */
   .section-header {

@@ -398,21 +398,13 @@ document.querySelectorAll('.pill-item').forEach(pill => {
     const cards = document.querySelectorAll('.card-wrapper');
     console.log(`Nombre de cards trouvées : ${cards.length}`);
   
-    // Sélection des éléments du modal
+    // Sélection de l'overlay du modal
     const modalOverlay = document.getElementById('unique-modal-overlay');
-    const modalContainer = modalOverlay.querySelector('.unique-modal-container');
-    const modalImage = modalOverlay.querySelector('.unique-modal-image img');
-    const modalTitle = modalOverlay.querySelector('.unique-modal-title');
-    const modalSubtitle = modalOverlay.querySelector('.unique-modal-subtitle');
-    const modalDescription = modalOverlay.querySelector('.unique-modal-description');
-    const modalFooterList = modalOverlay.querySelector('.unique-modal-footer-text');
-    const closeModalBtn = modalOverlay.querySelector('.unique-modal-close');
-    const prevBtn = modalOverlay.querySelector('.unique-modal-prev');
-    const nextBtn = modalOverlay.querySelector('.unique-modal-next');
   
     let modalData = [];
     let currentModalIndex = 0;
   
+    // Récupération des données de chaque card
     cards.forEach((card, index) => {
       modalData.push({
         image: card.getAttribute('data-modal-image') || (card.querySelector('img') ? card.querySelector('img').src : ''),
@@ -432,24 +424,61 @@ document.querySelectorAll('.pill-item').forEach(pill => {
   
     function openModal(data, animationClass = '') {
       console.log('openModal() appelé avec les données :', data);
+      // Détecte la version mobile (largeur ≤600px)
+      const isMobile = window.innerWidth <= 600;
+      
+      if (isMobile) {
+        // Mise à jour de la version mobile
+        const mobileContainer = modalOverlay.querySelector('.modal-mobile');
+        const headerTitle = mobileContainer.querySelector('.modal-header .header-left h2');
+        const headerSubtitle = mobileContainer.querySelector('.modal-header .header-left h4');
+        const scrollableImage = mobileContainer.querySelector('.unique-modal-scrollable .unique-modal-image img');
+        const scrollableDescription = mobileContainer.querySelector('.unique-modal-scrollable .unique-modal-text .unique-modal-description');
+        const scrollableFooterList = mobileContainer.querySelector('.unique-modal-scrollable .unique-modal-text .unique-modal-footer-text');
   
-      modalImage.src = data.image;
-      modalTitle.innerText = data.title;
-      modalSubtitle.innerText = data.subtitle;
-      modalDescription.innerText = data.description;
+        headerTitle.innerText = data.title;
+        headerSubtitle.innerText = data.subtitle;
+        scrollableImage.src = data.image;
+        scrollableDescription.innerText = data.description;
   
-      // Traitement de la liste à puces
-      if(data.footerList) {
-        const items = data.footerList.split(';');
-        modalFooterList.innerHTML = items.map(item => `<li>${item.trim()}</li>`).join('');
+        if (data.footerList) {
+          const items = data.footerList.split(';');
+          scrollableFooterList.innerHTML = items.map(item => `<li>${item.trim()}</li>`).join('');
+        } else {
+          scrollableFooterList.innerHTML = '';
+        }
+  
+        mobileContainer.classList.remove('slide-left', 'slide-right');
+        if (animationClass) {
+          mobileContainer.classList.add(animationClass);
+          console.log(`Animation ${animationClass} ajoutée (mobile).`);
+        }
       } else {
-        modalFooterList.innerHTML = '';
-      }
+        // Mise à jour de la version desktop
+        const desktopContainer = modalOverlay.querySelector('.modal-desktop');
+        const desktopImage = desktopContainer.querySelector('.unique-modal-image img');
+        const desktopTitle = desktopContainer.querySelector('.unique-modal-text .unique-modal-title');
+        const desktopSubtitle = desktopContainer.querySelector('.unique-modal-text .unique-modal-subtitle');
+        const desktopDescription = desktopContainer.querySelector('.unique-modal-text .unique-modal-description');
+        const desktopFooterList = desktopContainer.querySelector('.unique-modal-text .unique-modal-footer-text');
   
-      modalContainer.classList.remove('slide-left', 'slide-right');
-      if (animationClass) {
-        modalContainer.classList.add(animationClass);
-        console.log(`Animation ${animationClass} ajoutée.`);
+        desktopImage.src = data.image;
+        desktopTitle.innerText = data.title;
+        desktopSubtitle.innerText = data.subtitle;
+        desktopDescription.innerText = data.description;
+  
+        if (data.footerList) {
+          const items = data.footerList.split(';');
+          desktopFooterList.innerHTML = items.map(item => `<li>${item.trim()}</li>`).join('');
+        } else {
+          desktopFooterList.innerHTML = '';
+        }
+  
+        desktopContainer.classList.remove('slide-left', 'slide-right');
+        if (animationClass) {
+          desktopContainer.classList.add(animationClass);
+          console.log(`Animation ${animationClass} ajoutée (desktop).`);
+        }
       }
   
       modalOverlay.classList.remove('hidden');
@@ -462,7 +491,13 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       modalOverlay.classList.remove('active');
     }
   
-    closeModalBtn.addEventListener('click', closeModal);
+    // Ajoute l'événement sur tous les boutons de fermeture (mobile et desktop)
+    modalOverlay.querySelectorAll('.unique-modal-close').forEach(btn => {
+      btn.addEventListener('click', closeModal);
+    });
+  
+    const prevBtn = modalOverlay.querySelector('.unique-modal-prev');
+    const nextBtn = modalOverlay.querySelector('.unique-modal-next');
   
     prevBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -483,8 +518,8 @@ document.querySelectorAll('.pill-item').forEach(pill => {
     });
   
     modalOverlay.addEventListener('click', (e) => {
-      if(e.target === modalOverlay) {
-        console.log('Clic sur l\'overlay, fermeture du modal.');
+      if (e.target === modalOverlay) {
+        console.log("Clic sur l'overlay, fermeture du modal.");
         closeModal();
       }
     });

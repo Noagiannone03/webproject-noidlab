@@ -147,6 +147,13 @@
   margin: 0;
 }
 
+#responsive-subtitle-lieux{
+
+  display: none;
+}
+#subtitle{
+  display: flex;
+}
 /* Contenu supplémentaire caché initialement */
 .slider-card .overlay .extra-content {
   margin-top: 10px;

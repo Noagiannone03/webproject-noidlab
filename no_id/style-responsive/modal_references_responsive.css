@@ -1,0 +1,126 @@
+
+/* ---------------------- */
+/*  Responsive Mobile ≤600px  */
+/* ---------------------- */
+@media (max-width: 600px) {
+  /* Désactivation de la version desktop et activation de la version mobile */
+  .modal-desktop { display: none; }
+  .modal-mobile { display: block; }
+  
+  /* Container du modal mobile */
+  .unique-modal-container.modal-mobile {
+    width: 93%;
+    height: 90vh;
+    border-radius: 20px;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+
+  }
+  
+  /* Organisation du contenu en colonne */
+  .unique-modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+  }
+  
+  /* Header fixe en haut */
+  .modal-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+  }
+  .modal-header .header-left {
+    text-align: left;
+  }
+  .modal-header .header-left h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .modal-header .header-left h4 {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .modal-header .header-right {
+    display: block;
+  }
+  .modal-header .header-right button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .modal-header .header-right img {
+    width: 30px;
+    height: auto;
+  }
+  
+  /* Conteneur scrollable sous le header.
+     On fixe le top à 70px (hauteur approximative du header) */
+  .unique-modal-scrollable {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 15px;
+  }
+  .unique-modal-title{
+    text-align: start;
+  }
+  .unique-modal-subtitle{
+    margin-top: 10px;
+  }
+  
+  /* Image mobile : occupe toute la largeur avec marges verticales */
+  .unique-modal-image {
+    width: 100%;
+    margin: 15px 0;
+  }
+  .unique-modal-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+  }
+  
+  /* Texte en dessous de l'image, aligné à gauche */
+  .unique-modal-text {
+    text-align: left;
+  }
+  
+  /* Flèches de navigation sur les côtés */
+  .unique-modal-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 200;
+  }
+  .unique-modal-prev {
+    left: 1px;
+  }
+  .unique-modal-next {
+    right: 1px;
+  }
+  .unique-modal-nav img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
