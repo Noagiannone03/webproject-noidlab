@@ -5,17 +5,17 @@
 
 
 
-    document.addEventListener("DOMContentLoaded", function() {
+  
       /* Gestion du slider horizontal */
       const horizontalSlider = document.querySelector('.horizontal-slider');
       const indicators = document.querySelectorAll('.indicator');
-      const totalPages = 3; // On définit exactement trois pages toggle
+      const totalPages = 2; // On définit exactement trois pages toggle
     
       function updateIndicators() {
         const pageWidth = horizontalSlider.offsetWidth;
         let index = Math.round(horizontalSlider.scrollLeft / pageWidth);
         // Forcer l'index à ne jamais dépasser le nombre de pages - 1
-        index = Math.min(totalPages - 2, index);
+        index = Math.min(totalPages -1, index);
         indicators.forEach((dot, i) => {
           dot.classList.toggle('active', i === index);
         });
@@ -48,7 +48,7 @@
           console.log("Flip effectué sur :", card);
         });
       });
-    });
+  
 
     document.addEventListener("DOMContentLoaded", function() {
       console.log("DOM entièrement chargé");
@@ -186,7 +186,7 @@
 
 
 
-    // Smooth scroll sur clic sur un lien du menu
+// Smooth scroll sur clic sur un lien du menu
 document.querySelectorAll('.dropdown .menu-card ul li a').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
@@ -194,12 +194,17 @@ document.querySelectorAll('.dropdown .menu-card ul li a').forEach(link => {
     const targetId = this.getAttribute('href');
     const targetSection = document.querySelector(targetId);
     if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth' });
+      const additionalOffset = 55; // décalage de 40px
+      // On soustrait l'offset pour faire descendre le scroll un peu plus bas
+      const yPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - additionalOffset;
+      window.scrollTo({ top: yPosition, behavior: 'smooth' });
     }
     // Ferme le dropdown après clic (si désiré)
     dropdown.classList.remove('active');
+    document.getElementById('dropdown-overlay').classList.remove('active');
   });
 });
+
 
 // Mise à jour de l'item actif en fonction de la section visible
 // Assurez-vous que vos sections ont des IDs correspondant aux hrefs
@@ -679,8 +684,229 @@ function closeLightbox() {
 
 
 
+//CHANGEMENT DES IMAGES DANS LA PARTIE MEDIA//
+console.log("DOM fully loaded and parsed");
+  
+// Vérifie qu'il y a bien des images dans la grille
+const initialImages = document.querySelectorAll('.gallery-card img');
+console.log("Found images:", initialImages.length);
+
+// Remplacement aléatoire d'une image toutes les 3 secondes
+setInterval(() => {
+  console.log("setInterval tick");
+  const images = document.querySelectorAll('.gallery-card img');
+  if (images.length > 0) {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const imgElement = images[randomIndex];
+    
+    // Tableau des chemins d'images locales disponibles
+    const assetImages = [
+      "assets/images/dans-les-murs/Danslesmurs_A12.jpg",
+      "assets/images/hors-les-murs/53-event-noid.jpg",
+      "assets/images/hors-les-murs/57-event-noid.jpg",
+      "assets/images/hors-les-murs/74-event-noid.jpg",
+      "assets/images/hors-les-murs/2-event-noid.jpg",
+      "assets/images/hors-les-murs/19-event-noid.jpg",
+      "assets/images/hors-les-murs/36-event-noid.jpg",
+      "assets/images/hors-les-murs/53-event-noid.jpg",
+      "assets/images/hors-les-murs/75-event-noid.jpg",
+      "assets/images/dans-les-murs/Danslesmurs_4.jpg",
+      "assets/images/dans-les-murs/Danslesmurs_A25.jpg",
+      "assets/images/dans-les-murs/Danslesmurs_A36.jpg",
+      "assets/images/hors-les-murs/1-event-noid.jpg",
+"assets/images/hors-les-murs/2-event-noid.jpg",
+"assets/images/hors-les-murs/3-event-noid.jpg",
+"assets/images/hors-les-murs/4-event-noid.jpg",
+"assets/images/hors-les-murs/5-event-noid.jpg",
+"assets/images/hors-les-murs/6-event-noid.jpg",
+"assets/images/hors-les-murs/7-event-noid.jpg",
+"assets/images/hors-les-murs/8-event-noid.jpg",
+"assets/images/hors-les-murs/9-event-noid.jpg",
+"assets/images/hors-les-murs/10-event-noid.jpg",
+"assets/images/hors-les-murs/11-event-noid.jpg",
+"assets/images/hors-les-murs/12-event-noid.jpg",
+"assets/images/hors-les-murs/13-event-noid.jpg",
+"assets/images/hors-les-murs/14-event-noid.jpg",
+"assets/images/hors-les-murs/15-event-noid.jpg",
+"assets/images/hors-les-murs/16-event-noid.jpg",
+"assets/images/hors-les-murs/17-event-noid.jpg",
+"assets/images/hors-les-murs/18-event-noid.jpg",
+"assets/images/hors-les-murs/19-event-noid.jpg",
+"assets/images/hors-les-murs/20-event-noid.jpg",
+"assets/images/hors-les-murs/21-event-noid.jpg",
+"assets/images/hors-les-murs/22-event-noid.jpg",
+"assets/images/hors-les-murs/23-event-noid.jpg",
+"assets/images/hors-les-murs/24-event-noid.jpg",
+"assets/images/hors-les-murs/25-event-noid.jpg",
+"assets/images/hors-les-murs/26-event-noid.jpg",
+"assets/images/hors-les-murs/27-event-noid.jpg",
+"assets/images/hors-les-murs/28-event-noid.jpg",
+"assets/images/hors-les-murs/29-event-noid.jpg",
+"assets/images/hors-les-murs/30-event-noid.jpg",
+"assets/images/hors-les-murs/31-event-noid.jpg",
+"assets/images/hors-les-murs/32-event-noid.jpg",
+"assets/images/hors-les-murs/33-event-noid.jpg",
+"assets/images/hors-les-murs/34-event-noid.jpg",
+"assets/images/hors-les-murs/35-event-noid.jpg",
+"assets/images/hors-les-murs/36-event-noid.jpg",
+"assets/images/hors-les-murs/37-event-noid.jpg",
+"assets/images/hors-les-murs/38-event-noid.jpg",
+"assets/images/hors-les-murs/39-event-noid.jpg",
+"assets/images/hors-les-murs/40-event-noid.jpg",
+"assets/images/hors-les-murs/41-event-noid.jpg",
+"assets/images/hors-les-murs/42-event-noid.jpg",
+"assets/images/hors-les-murs/43-event-noid.jpg",
+"assets/images/hors-les-murs/44-event-noid.jpg",
+"assets/images/hors-les-murs/45-event-noid.jpg",
+"assets/images/hors-les-murs/46-event-noid.jpg",
+"assets/images/hors-les-murs/47-event-noid.jpg",
+"assets/images/hors-les-murs/48-event-noid.jpg",
+"assets/images/hors-les-murs/49-event-noid.jpg",
+"assets/images/hors-les-murs/50-event-noid.jpg",
+"assets/images/hors-les-murs/51-event-noid.jpg",
+"assets/images/hors-les-murs/52-event-noid.jpg",
+"assets/images/hors-les-murs/53-event-noid.jpg",
+"assets/images/hors-les-murs/54-event-noid.jpg",
+"assets/images/hors-les-murs/55-event-noid.jpg",
+"assets/images/hors-les-murs/56-event-noid.jpg",
+"assets/images/hors-les-murs/57-event-noid.jpg",
+"assets/images/hors-les-murs/58-event-noid.jpg",
+"assets/images/hors-les-murs/59-event-noid.jpg",
+"assets/images/hors-les-murs/60-event-noid.jpg",
+"assets/images/hors-les-murs/61-event-noid.jpg",
+"assets/images/hors-les-murs/62-event-noid.jpg",
+"assets/images/hors-les-murs/63-event-noid.jpg",
+"assets/images/hors-les-murs/64-event-noid.jpg",
+"assets/images/hors-les-murs/65-event-noid.jpg",
+"assets/images/hors-les-murs/66-event-noid.jpg",
+"assets/images/hors-les-murs/67-event-noid.jpg",
+"assets/images/hors-les-murs/68-event-noid.jpg",
+"assets/images/hors-les-murs/69-event-noid.jpg",
+"assets/images/hors-les-murs/70-event-noid.jpg",
+"assets/images/hors-les-murs/71-event-noid.jpg",
+"assets/images/hors-les-murs/72-event-noid.jpg",
+"assets/images/hors-les-murs/73-event-noid.jpg",
+"assets/images/hors-les-murs/74-event-noid.jpg",
+"assets/images/hors-les-murs/75-event-noid.jpg",
+"assets/images/hors-les-murs/76-event-noid.jpg",
+"assets/images/hors-les-murs/77-event-noid.jpg",
+"assets/images/hors-les-murs/78-event-noid.jpg",
+"assets/images/hors-les-murs/79-event-noid.jpg",
+"assets/images/hors-les-murs/80-event-noid.jpg",
+"assets/images/hors-les-murs/81-event-noid.jpg",
+"assets/images/hors-les-murs/82-event-noid.jpg",
+"assets/images/hors-les-murs/83-event-noid.jpg",
+"assets/images/hors-les-murs/84-event-noid.jpg",
+"assets/images/hors-les-murs/85-event-noid.jpg",
+"assets/images/hors-les-murs/86-event-noid.jpg",
+"assets/images/hors-les-murs/87-event-noid.jpg",
+"assets/images/hors-les-murs/88-event-noid.jpg",
+"assets/images/hors-les-murs/89-event-noid.jpg",
+"assets/images/hors-les-murs/90-event-noid.jpg",
+"assets/images/hors-les-murs/91-event-noid.jpg",
+"assets/images/hors-les-murs/92-event-noid.jpg",
+"assets/images/hors-les-murs/93-event-noid.jpg",
+"assets/images/hors-les-murs/94-event-noid.jpg",
+"assets/images/hors-les-murs/95-event-noid.jpg",
+"assets/images/hors-les-murs/96-event-noid.jpg",
+"assets/images/hors-les-murs/97-event-noid.jpg",
+"assets/images/hors-les-murs/98-event-noid.jpg",
+"assets/images/hors-les-murs/99-event-noid.jpg"
+
+    ];
+    const randomAssetIndex = Math.floor(Math.random() * assetImages.length);
+    const newImageSrc = assetImages[randomAssetIndex];
+
+    // Message de débogage pour vérifier le changement
+    console.log("Changement de l'image:", imgElement.src, "->", newImageSrc);
+
+    imgElement.classList.add('fade-out');
+    setTimeout(() => {
+      imgElement.src = newImageSrc;
+      imgElement.classList.remove('fade-out');
+      imgElement.classList.add('fade-in');
+      setTimeout(() => {
+        imgElement.classList.remove('fade-in');
+      }, 500);
+    }, 500);
+  } else {
+    console.log("Aucune image trouvée dans .gallery-card img");
+  }
+}, 3000);
 
 
 
-// partie pour l'animation des cercles//
 
+//FONCTION INCONNU A REVERIFIER//
+
+var gallerySlider = new Swiper(".mySwiper", {
+  slidesPerView: 3,
+  centeredSlides: true,
+  spaceBetween: 1,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true,
+  },
+  speed: 600,
+  slideToClickedSlide: true,
+  on: {
+    click: function () {
+      setTimeout(() => {
+        this.update(); // Forcer la mise à jour après un clic
+      }, 100);
+    },
+  }
+});
+
+
+
+//FONCTION POUR OUVRIR LE DROPDOWN DU MENU RESPONSIVE//
+document.getElementById('menu-btn').addEventListener('click', function() {
+    
+    document.getElementById('dropdown-overlay').classList.toggle('active');
+ 
+});
+
+// Fermer le dropdown (par exemple, via un bouton de fermeture ou en cliquant sur l'overlay)
+document.getElementById('dropdown-overlay').addEventListener('click', function() {
+  document.getElementById('dropdown').classList.remove('active');
+  this.classList.remove('active');
+});
+
+
+//FONCTION POUR AFFICHER LES ICONES DANS LES DIFFERENTES SECTIONS QUAND ON SE TROUVE DESSUS//
+
+const sections = document.querySelectorAll('.observed-section');
+const options = { threshold: 0.5 };
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const circle = entry.target.querySelector('.circle');
+    if (!circle) return;
+    
+    if (entry.isIntersecting) {
+      // Lors de l'entrée, on récupère l'URL de l'image et on lance l'animation d'entrée.
+      const iconUrl = circle.getAttribute('data-icon');
+      circle.style.backgroundImage = `url('${iconUrl}')`;
+      // Si l'élément avait déjà une classe bounce-out, on la retire.
+      circle.classList.remove('bounce-out');
+      circle.classList.add('active');
+    } else {
+      // Lors de la sortie, on retire la classe active et on ajoute bounce-out.
+      if (circle.classList.contains('active')) {
+        circle.classList.remove('active');
+        circle.classList.add('bounce-out');
+        // Au terme de l'animation, on réinitialise le background et on retire bounce-out.
+        circle.addEventListener('animationend', function handler() {
+          circle.style.backgroundImage = '';
+          circle.classList.remove('bounce-out');
+          circle.removeEventListener('animationend', handler);
+        });
+      }
+    }
+  });
+}, options);
+
+sections.forEach(section => observer.observe(section));

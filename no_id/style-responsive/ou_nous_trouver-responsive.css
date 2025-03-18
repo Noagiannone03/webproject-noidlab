@@ -31,6 +31,7 @@
       width: 18%;
       margin: 0 10px;
     }
+    
     /* Rotation des images latérales pour un effet original */
     .side-image:first-child {
       transform: rotate(90deg);
@@ -54,9 +55,11 @@
       flex-direction: row;
       gap: 10px;
     }
-    
+    #image-first {
+      width: 85px;
+    }
     .image-item {
-      height: 70px;  /* Ajustez si nécessaire */
+      height: 65px;  /* Ajustez si nécessaire */
     }
   }
   
@@ -98,5 +101,9 @@
     }
     .main-image {
       width: 40%;
+    }
+
+    .image-item {
+      height: 55px;  /* Ajustez si nécessaire */
     }
   }

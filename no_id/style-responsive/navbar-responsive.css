@@ -18,6 +18,18 @@
   .nav-actions .contact-btn {
     display: none;
   }
+  .contact-btn .icon-circle,
+  .menu-btn .icon-circle {
+    width: 40px;
+    height: 40px;
+    
+  }
+  .separator {
+    display: none;
+  }
+  .nav-actions {
+    right: 30px;
+  }
   /* Ne garder que l'icône pour le menu */
   .menu-btn .btn-text {
     display: none;

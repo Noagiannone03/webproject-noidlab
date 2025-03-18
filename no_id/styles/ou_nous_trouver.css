@@ -135,7 +135,14 @@
     margin: 20px 0;
     width: 100%;
   }
-  
+
+  #image-first {
+    width: 140px;
+    height: 100%;
+   
+ 
+
+  }
   .image-row {
     display: flex;
     justify-content:space-evenly;
