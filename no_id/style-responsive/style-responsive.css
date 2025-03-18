@@ -8,6 +8,12 @@
    (Supposé : min-width 1920px)
 ----------------------------------- */
 @media screen and (min-width: 1920px) {
+  .section-title {
+    font-size: 3.5rem;
+  }
+  .section-subtitle {
+    font-size: 1.8rem;
+  }
     .text-block-container {
       margin-top: 8%;
       height: 75%;
@@ -38,6 +44,8 @@
     .news-text {
       font-size: 1rem;
     }
+
+
   }
   
   /* -------------------------------
@@ -46,9 +54,17 @@
      (Largeur entre 768px et 1024px)
   ----------------------------------- */
   @media screen and (max-width: 1024px) and (min-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+    .section-subtitle {
+      width: auto;
+      min-width: auto;
+      font-size: 1.5rem;
+    }
     .text-block-container {
       margin-top: 10%;
-      height: 70%;
+      height: 80%;
     }
     #backToTop {
       display: none;
@@ -86,9 +102,20 @@
      (Largeur entre 481px et 767px)
   ----------------------------------- */
   @media screen and (max-width: 767px) and (min-width: 481px) {
+
+    .section-subtitle {
+      font-size: 1.3rem;
+      text-align: center;
+      width: auto;
+      min-width: auto;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+    }
     .text-block-container {
       margin-top: 12%;
-      height: 65%;
+      height: 80%;
     }
     #backToTop {
       display: none;
@@ -129,31 +156,44 @@
   ----------------------------------- */
   @media screen and (max-width: 480px) {
    
+   #main {
+      height: 100vh;
+    }
+    .section-subtitle {
+      font-size: 1.2rem;
+      text-align: center;
+      width: auto;
+      min-width: auto;
+    }
 
   
     .section-title {
       font-family: 'extra-bold-montserrat', sans-serif;
-      font-size: 2.3rem;
+      font-size: 1.7rem;
       text-align: left;
       color: #131313;
     }
     .text-block-container {
       margin-top: 15%;
-      height: 60%;
+      height: 74%;
     }
     .stats-title,
     .stats-footer {
-      font-size: 1.5rem;
+      text-align: center;
+      font-size: 1.9rem;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 3.8rem;
     }
     .stat-label {
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
     .flash-news-banner {
       width: calc(100% - 20px);
-      margin: 20px auto 0 auto; /* 40px en haut, auto à gauche/droite, 0 en bas */
+      height: 130px;
+      margin: 10px auto 0 auto; /* 40px en haut, auto à gauche/droite, 0 en bas */
       padding: 8px;
     }
     
@@ -186,7 +226,9 @@
       margin-top: 10px;
       text-align: center;
     }
-    .section-title{
-      font-size: 1.1rem;
+
+    #backToTop {
+      display: none;
     }
+   
   }

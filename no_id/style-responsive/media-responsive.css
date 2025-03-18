@@ -35,13 +35,7 @@
       padding: 40px 20px;
       border-radius: 25px;
     }
-    .section-title {
-      font-size: 2.8rem;
-    }
-    .section-subtitle {
-      font-size: 1.5rem;
-      max-width: 90%;
-    }
+   
     .slider-wrapper-container {
       padding: 0 40px;
     }
@@ -59,15 +53,7 @@
       padding: 30px 15px;
       border-radius: 20px;
     }
-    .section-title {
-      font-size: 2.2rem;
-      text-align: center;
-    }
-    .section-subtitle {
-      font-size: 1.3rem;
-      max-width: 95%;
-      text-align: center;
-    }
+   
     .slider-wrapper-container {
       padding: 0 20px;
     }
@@ -86,15 +72,7 @@
       padding: 20px 10px;
       border-radius: 15px;
     }
-    .section-title {
-      font-size: 2rem;
-      text-align: center;
-    }
-    .section-subtitle {
-      font-size: 1.2rem;
-      max-width: 100%;
-      text-align: center;
-    }
+   
     .slider-wrapper-container {
       padding: 0 10px;
     }

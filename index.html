@@ -191,18 +191,7 @@
  
 
   
-<script>// Ouvrir le dropdown
-  document.getElementById('menu-btn').addEventListener('click', function() {
-    
-    document.getElementById('dropdown-overlay').classList.add('active');
-  });
-  
-  // Fermer le dropdown (par exemple, via un bouton de fermeture ou en cliquant sur l'overlay)
-  document.getElementById('dropdown-overlay').addEventListener('click', function() {
-    document.getElementById('dropdown').classList.remove('active');
-    this.classList.remove('active');
-  });
-  </script>
+
   
   <!-- SECTION PRINCIPALE -->
   <section id="main">
@@ -312,45 +301,6 @@
   </div>
 </section>
 
-
-<script>
- document.addEventListener("DOMContentLoaded", function() {
-  const sections = document.querySelectorAll('.observed-section');
-  const options = { threshold: 0.5 };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const circle = entry.target.querySelector('.circle');
-      if (!circle) return;
-      
-      if (entry.isIntersecting) {
-        // Lors de l'entrée, on récupère l'URL de l'image et on lance l'animation d'entrée.
-        const iconUrl = circle.getAttribute('data-icon');
-        circle.style.backgroundImage = `url('${iconUrl}')`;
-        // Si l'élément avait déjà une classe bounce-out, on la retire.
-        circle.classList.remove('bounce-out');
-        circle.classList.add('active');
-      } else {
-        // Lors de la sortie, on retire la classe active et on ajoute bounce-out.
-        if (circle.classList.contains('active')) {
-          circle.classList.remove('active');
-          circle.classList.add('bounce-out');
-          // Au terme de l'animation, on réinitialise le background et on retire bounce-out.
-          circle.addEventListener('animationend', function handler() {
-            circle.style.backgroundImage = '';
-            circle.classList.remove('bounce-out');
-            circle.removeEventListener('animationend', handler);
-          });
-        }
-      }
-    });
-  }, options);
-
-  sections.forEach(section => observer.observe(section));
-});
-
-
-  </script>
   
   <!-- Section Titre Aligné à Gauche (pour présenter une nouvelle thématique) -->
  
@@ -421,7 +371,7 @@
       <div class="carousel-indicators">
         <span class="indicator active" data-index="0"></span>
         <span class="indicator" data-index="1"></span>
-        <span class="indicator" data-index="2"></span>
+      
       </div>
     </div>
   </section>
@@ -999,7 +949,7 @@
   <h2 class="section-title" style="text-align: center;">Un grand merci à nos partenaires <3</h2>
   <hr class="separatored">
   <div class="image-row">
-    <img src="assets/images/partenaires/logo-toulon.png" alt="Image 2" class="image-item">
+    <img src="assets/images/partenaires/logo-toulon.png" alt="Image 2" class="image-item" id="image-first">
 
     <img src="assets/images/partenaires/LOGO TPM Métropole Signature CMJN.png" alt="Image 1" class="image-item">
     <img src="assets/images/partenaires/logo-vectoriel-departement-du-var.png" alt="Image 3" class="image-item">
@@ -1101,41 +1051,42 @@
     </div>
     
     <!-- Colonne droite -->
-    <div class="footer-column right">
-      <h2 class="footer-title">WE KEEP IN TOUCH</h2>
-      <div class="connect-block">
-        <h2 class="connect-title">Pour rester connecté :</h2>
-        <div class="connect-inputs">
-          <div class="input-group">
-            <input type="email" placeholder="Votre email" required>
-            <button type="submit">Envoyer</button>
-          </div>
-          <div class="input-group">
-            <input type="text" placeholder="Votre numéro" required>
-            <button type="submit">Envoyer</button>
-          </div>
-        </div>
-        <h3 class="follow-title">Nous suivre</h3>
-        <div class="follow-icons">
-          <button>
-            <img class="logo logo-black" src="assets/pictos/facebook_noir_et_blanc.png" alt="Facebook">
-            <img class="logo logo-color" src="assets/pictos/facebook_couleur.png" alt="Facebook">
-          </button>
-          <button>
-            <img class="logo logo-black" src="assets/pictos/insta_noir_et_blanc.png" alt="Instagram">
-            <img class="logo logo-color" src="assets/pictos/insta_couleur.png" alt="Instagram">
-          </button>
-          <button>
-            <img class="logo logo-black" src="assets/pictos/tik tok_noir_et_blanc.png" alt="TikTok">
-            <img class="logo logo-color" src="assets/pictos/tiktok_couleur.png" alt="TikTok">
-          </button>
-          <button>
-            <img class="logo logo-black" src="assets/pictos/x_noir_et_blanc.png" alt="Whatsapp">
-            <img class="logo logo-color" src="assets/pictos/x_couleur.png" alt="Whatsapp">
-          </button>
-        </div>
+<div class="footer-column right">
+  <h2 class="footer-title">WE KEEP IN TOUCH</h2>
+  <div class="connect-block">
+    <h2 class="connect-title">Pour rester connecté :</h2>
+    <div class="connect-inputs">
+      <div class="input-group">
+        <input type="email" placeholder="Votre email" required>
+        <button type="submit">Envoyer</button>
+      </div>
+      <div class="input-group checkbox-group">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
       </div>
     </div>
+    <h3 class="follow-title">Nous suivre</h3>
+    <div class="follow-icons">
+      <button>
+        <img class="logo logo-black" src="assets/pictos/facebook_noir_et_blanc.png" alt="Facebook">
+        <img class="logo logo-color" src="assets/pictos/facebook_couleur.png" alt="Facebook">
+      </button>
+      <button>
+        <img class="logo logo-black" src="assets/pictos/insta_noir_et_blanc.png" alt="Instagram">
+        <img class="logo logo-color" src="assets/pictos/insta_couleur.png" alt="Instagram">
+      </button>
+      <button>
+        <img class="logo logo-black" src="assets/pictos/tik tok_noir_et_blanc.png" alt="TikTok">
+        <img class="logo logo-color" src="assets/pictos/tiktok_couleur.png" alt="TikTok">
+      </button>
+      <button>
+        <img class="logo logo-black" src="assets/pictos/x_noir_et_blanc.png" alt="Whatsapp">
+        <img class="logo logo-color" src="assets/pictos/x_couleur.png" alt="Whatsapp">
+      </button>
+    </div>
+  </div>
+</div>
+
   </div>
   
   <!-- Section extra : liens légaux et trait blanc -->
@@ -1147,8 +1098,8 @@
     <div class="footer-links">
       <p class="rights-text">tous droits réservés</p>
       <a href="mentions-legales.html">Mentions Légales</a>
-      <a href="conditions.html">Conditions d'utilisation</a>
-      <a href="credits.html">Crédits</a>
+      <a href="https://www.termsfeed.com/live/79f1b3f9-baed-478f-83e5-10379c6734b1">Conditions d'utilisation</a>
+     
     </div>
   </div>
   
@@ -1209,239 +1160,9 @@
   <!-- Script Three.js et GSAP (scroll & animations) -->
    
 <script src="script.js" defer></script>
-<script>document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed");
-  
-  // Vérifie qu'il y a bien des images dans la grille
-  const initialImages = document.querySelectorAll('.gallery-card img');
-  console.log("Found images:", initialImages.length);
-  
-  // Remplacement aléatoire d'une image toutes les 3 secondes
-  setInterval(() => {
-    console.log("setInterval tick");
-    const images = document.querySelectorAll('.gallery-card img');
-    if (images.length > 0) {
-      const randomIndex = Math.floor(Math.random() * images.length);
-      const imgElement = images[randomIndex];
-      
-      // Tableau des chemins d'images locales disponibles
-      const assetImages = [
-        "assets/images/dans-les-murs/Danslesmurs_A12.jpg",
-        "assets/images/hors-les-murs/53-event-noid.jpg",
-        "assets/images/hors-les-murs/57-event-noid.jpg",
-        "assets/images/hors-les-murs/74-event-noid.jpg",
-        "assets/images/hors-les-murs/2-event-noid.jpg",
-        "assets/images/hors-les-murs/19-event-noid.jpg",
-        "assets/images/hors-les-murs/36-event-noid.jpg",
-        "assets/images/hors-les-murs/53-event-noid.jpg",
-        "assets/images/hors-les-murs/75-event-noid.jpg",
-        "assets/images/dans-les-murs/Danslesmurs_4.jpg",
-        "assets/images/dans-les-murs/Danslesmurs_A25.jpg",
-        "assets/images/dans-les-murs/Danslesmurs_A36.jpg",
-        "assets/images/hors-les-murs/1-event-noid.jpg",
-"assets/images/hors-les-murs/2-event-noid.jpg",
-"assets/images/hors-les-murs/3-event-noid.jpg",
-"assets/images/hors-les-murs/4-event-noid.jpg",
-"assets/images/hors-les-murs/5-event-noid.jpg",
-"assets/images/hors-les-murs/6-event-noid.jpg",
-"assets/images/hors-les-murs/7-event-noid.jpg",
-"assets/images/hors-les-murs/8-event-noid.jpg",
-"assets/images/hors-les-murs/9-event-noid.jpg",
-"assets/images/hors-les-murs/10-event-noid.jpg",
-"assets/images/hors-les-murs/11-event-noid.jpg",
-"assets/images/hors-les-murs/12-event-noid.jpg",
-"assets/images/hors-les-murs/13-event-noid.jpg",
-"assets/images/hors-les-murs/14-event-noid.jpg",
-"assets/images/hors-les-murs/15-event-noid.jpg",
-"assets/images/hors-les-murs/16-event-noid.jpg",
-"assets/images/hors-les-murs/17-event-noid.jpg",
-"assets/images/hors-les-murs/18-event-noid.jpg",
-"assets/images/hors-les-murs/19-event-noid.jpg",
-"assets/images/hors-les-murs/20-event-noid.jpg",
-"assets/images/hors-les-murs/21-event-noid.jpg",
-"assets/images/hors-les-murs/22-event-noid.jpg",
-"assets/images/hors-les-murs/23-event-noid.jpg",
-"assets/images/hors-les-murs/24-event-noid.jpg",
-"assets/images/hors-les-murs/25-event-noid.jpg",
-"assets/images/hors-les-murs/26-event-noid.jpg",
-"assets/images/hors-les-murs/27-event-noid.jpg",
-"assets/images/hors-les-murs/28-event-noid.jpg",
-"assets/images/hors-les-murs/29-event-noid.jpg",
-"assets/images/hors-les-murs/30-event-noid.jpg",
-"assets/images/hors-les-murs/31-event-noid.jpg",
-"assets/images/hors-les-murs/32-event-noid.jpg",
-"assets/images/hors-les-murs/33-event-noid.jpg",
-"assets/images/hors-les-murs/34-event-noid.jpg",
-"assets/images/hors-les-murs/35-event-noid.jpg",
-"assets/images/hors-les-murs/36-event-noid.jpg",
-"assets/images/hors-les-murs/37-event-noid.jpg",
-"assets/images/hors-les-murs/38-event-noid.jpg",
-"assets/images/hors-les-murs/39-event-noid.jpg",
-"assets/images/hors-les-murs/40-event-noid.jpg",
-"assets/images/hors-les-murs/41-event-noid.jpg",
-"assets/images/hors-les-murs/42-event-noid.jpg",
-"assets/images/hors-les-murs/43-event-noid.jpg",
-"assets/images/hors-les-murs/44-event-noid.jpg",
-"assets/images/hors-les-murs/45-event-noid.jpg",
-"assets/images/hors-les-murs/46-event-noid.jpg",
-"assets/images/hors-les-murs/47-event-noid.jpg",
-"assets/images/hors-les-murs/48-event-noid.jpg",
-"assets/images/hors-les-murs/49-event-noid.jpg",
-"assets/images/hors-les-murs/50-event-noid.jpg",
-"assets/images/hors-les-murs/51-event-noid.jpg",
-"assets/images/hors-les-murs/52-event-noid.jpg",
-"assets/images/hors-les-murs/53-event-noid.jpg",
-"assets/images/hors-les-murs/54-event-noid.jpg",
-"assets/images/hors-les-murs/55-event-noid.jpg",
-"assets/images/hors-les-murs/56-event-noid.jpg",
-"assets/images/hors-les-murs/57-event-noid.jpg",
-"assets/images/hors-les-murs/58-event-noid.jpg",
-"assets/images/hors-les-murs/59-event-noid.jpg",
-"assets/images/hors-les-murs/60-event-noid.jpg",
-"assets/images/hors-les-murs/61-event-noid.jpg",
-"assets/images/hors-les-murs/62-event-noid.jpg",
-"assets/images/hors-les-murs/63-event-noid.jpg",
-"assets/images/hors-les-murs/64-event-noid.jpg",
-"assets/images/hors-les-murs/65-event-noid.jpg",
-"assets/images/hors-les-murs/66-event-noid.jpg",
-"assets/images/hors-les-murs/67-event-noid.jpg",
-"assets/images/hors-les-murs/68-event-noid.jpg",
-"assets/images/hors-les-murs/69-event-noid.jpg",
-"assets/images/hors-les-murs/70-event-noid.jpg",
-"assets/images/hors-les-murs/71-event-noid.jpg",
-"assets/images/hors-les-murs/72-event-noid.jpg",
-"assets/images/hors-les-murs/73-event-noid.jpg",
-"assets/images/hors-les-murs/74-event-noid.jpg",
-"assets/images/hors-les-murs/75-event-noid.jpg",
-"assets/images/hors-les-murs/76-event-noid.jpg",
-"assets/images/hors-les-murs/77-event-noid.jpg",
-"assets/images/hors-les-murs/78-event-noid.jpg",
-"assets/images/hors-les-murs/79-event-noid.jpg",
-"assets/images/hors-les-murs/80-event-noid.jpg",
-"assets/images/hors-les-murs/81-event-noid.jpg",
-"assets/images/hors-les-murs/82-event-noid.jpg",
-"assets/images/hors-les-murs/83-event-noid.jpg",
-"assets/images/hors-les-murs/84-event-noid.jpg",
-"assets/images/hors-les-murs/85-event-noid.jpg",
-"assets/images/hors-les-murs/86-event-noid.jpg",
-"assets/images/hors-les-murs/87-event-noid.jpg",
-"assets/images/hors-les-murs/88-event-noid.jpg",
-"assets/images/hors-les-murs/89-event-noid.jpg",
-"assets/images/hors-les-murs/90-event-noid.jpg",
-"assets/images/hors-les-murs/91-event-noid.jpg",
-"assets/images/hors-les-murs/92-event-noid.jpg",
-"assets/images/hors-les-murs/93-event-noid.jpg",
-"assets/images/hors-les-murs/94-event-noid.jpg",
-"assets/images/hors-les-murs/95-event-noid.jpg",
-"assets/images/hors-les-murs/96-event-noid.jpg",
-"assets/images/hors-les-murs/97-event-noid.jpg",
-"assets/images/hors-les-murs/98-event-noid.jpg",
-"assets/images/hors-les-murs/99-event-noid.jpg"
 
-      ];
-      const randomAssetIndex = Math.floor(Math.random() * assetImages.length);
-      const newImageSrc = assetImages[randomAssetIndex];
-  
-      // Message de débogage pour vérifier le changement
-      console.log("Changement de l'image:", imgElement.src, "->", newImageSrc);
-  
-      imgElement.classList.add('fade-out');
-      setTimeout(() => {
-        imgElement.src = newImageSrc;
-        imgElement.classList.remove('fade-out');
-        imgElement.classList.add('fade-in');
-        setTimeout(() => {
-          imgElement.classList.remove('fade-in');
-        }, 500);
-      }, 500);
-    } else {
-      console.log("Aucune image trouvée dans .gallery-card img");
-    }
-  }, 3000);
-});
-</script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js">
-</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Déclaration globale pour les fonctions utilisées en inline
-  window.index = 0;
-  
-  // Récupérer les cartes et calculer leur nombre réel
-  const cardElements = document.querySelectorAll(".card-custom");
-  window.totalCards = cardElements.length;
-  
-  const carousel = document.querySelector(".carousel-custom");
-  const angleIncrement = 360 / window.totalCards;
-  const distance = 350;
-  
-  // Positionner chaque carte dans l'espace 3D
-  cardElements.forEach((card, i) => {
-    card.style.transform = `rotateY(${i * angleIncrement}deg) translateZ(${distance}px)`;
-  });
-  
-  // Fonction pour déplacer le carousel
-  window.moveCarousel = function(direction) {
-    window.index += direction;
-    if (window.index < 0) window.index = window.totalCards - 1;
-    if (window.index >= window.totalCards) window.index = 0;
-    updateCarousel();
-  };
-  
-  function updateCarousel() {
-    const angle = -window.index * angleIncrement;
-    carousel.style.transform = `rotateY(${angle}deg)`;
-  }
-  
-  // Fonction pour l'effet flip sur une carte
-  window.flipCard = function(cardElement) {
-    cardElement.classList.toggle('flipped-custom');
-  };
-  
-
-  
- 
-  // Fonctions lightbox (si besoin)
-  window.openLightbox = function(imageSrc) {
-    const lightbox = document.getElementById("lightbox-custom");
-    const lightboxImage = document.getElementById("lightbox-img-custom");
-    lightboxImage.src = imageSrc;
-    lightbox.style.display = "flex";
-  };
-  
-  window.closeLightbox = function() {
-    const lightbox = document.getElementById("lightbox-custom");
-    lightbox.style.display = "none";
-  };
-});
-
-
-
-
-
-var gallerySlider = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    centeredSlides: true,
-    spaceBetween: 1,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    speed: 600,
-    slideToClickedSlide: true,
-    on: {
-      click: function () {
-        setTimeout(() => {
-          this.update(); // Forcer la mise à jour après un clic
-        }, 100);
-      },
-    }
-});
-
-  </script>
 
 </body>
 </html>
