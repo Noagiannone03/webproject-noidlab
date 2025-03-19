@@ -2,7 +2,9 @@
 /* Responsive Design for Slider Cards */
 /* =============================== */
 
+/* ------------------------------ */
 /* Grands écrans (min-width: 1920px) */
+/* ------------------------------ */
 @media screen and (min-width: 1920px) {
   #slider-section {
     height: auto;
@@ -17,18 +19,84 @@
     max-width: 600px;
   }
   .slider-card {
+    position: relative;
+    overflow: hidden;
     width: 550px;
     height: 380px;
   }
-  .slider-card .overlay .content .header h3 {
-    font-size: 1.7rem;
+  /* Overlay par défaut (banderau en bas) */
+  .slider-card .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 15px;
+    transition: height 0.4s ease;
+    overflow: hidden;
+    height: 70px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .slider-card .overlay .content .body p {
-    font-size: 1.1rem;
+  /* Contenu en mode non actif : disposition en rangée */
+  .slider-card .overlay .content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .slider-card .overlay .text {
+    text-align: left;
+  }
+  .slider-card .overlay .text h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    padding-top: 5px; /* espace pour éviter le cropping */
+  }
+  .slider-card .overlay .extra-content {
+    margin-top: 10px;
+    opacity: 0;
+    max-height: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+  }
+  .slider-card .overlay button {
+    padding: 8px 15px;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .slider-card .overlay button:hover {
+    transform: translateY(-5px);
+    background: #fff;
+    color: #000;
+  }
+  /* État actif : l'overlay recouvre 100 % de la carte et le layout passe en colonne */
+  .slider-card.active .overlay {
+    height: 100%;
+    padding-top: 20px;
+  }
+  .slider-card.active .overlay .content {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .slider-card.active .overlay .extra-content {
+    max-height: 100px;
+    opacity: 1;
   }
 }
 
+/* ------------------------------ */
 /* Tablettes en mode portrait (768px - 1024px) */
+/* ------------------------------ */
 @media screen and (max-width: 1024px) and (min-width: 768px) {
   #slider-section {
     height: auto;
@@ -42,11 +110,10 @@
     font-size: 1.1rem;
     max-width: 90%;
   }
-  /* Pour afficher la bonne version du texte */
+  /* Affichage du texte alternatif */
   #responsive-subtitle-lieux { display: none; }
   #subtitle { display: flex; }
   
-  /* Slider Card */
   .slider-card {
     position: relative;
     overflow: hidden;
@@ -54,64 +121,73 @@
     height: 330px;
     margin: 0 auto;
   }
-  /* L'overlay est caché par défaut et se dévoile quand la carte a la classe active */
   .slider-card .overlay {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,0.5);
     color: #fff;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    padding: 15px;
+    transition: height 0.4s ease;
+    overflow: hidden;
+    height: 70px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
-  .slider-card.active .overlay {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  /* Structure interne de l'overlay */
   .slider-card .overlay .content {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
-  /* Header fixe en haut (titre/sous-titre) */
-  .slider-card .overlay .content .header {
-    flex: 0 0 auto;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.8);
+  .slider-card .overlay .text {
+    text-align: left;
   }
-  .slider-card .overlay .content .header h3 {
+  .slider-card .overlay .text h3 {
     margin: 0;
     font-size: 1.4rem;
+    padding-top: 5px;
   }
-  .slider-card .overlay .content .header p {
+  .slider-card .overlay .text p {
     margin: 0;
     font-size: 1rem;
   }
-  /* Body scrollable pour la description et contenu complémentaire */
-  .slider-card .overlay .content .body {
-    flex: 1 1 auto;
-    overflow-y: auto;
-    padding: 10px;
-  }
-  /* Footer fixe en bas (bouton) */
-  .slider-card .overlay .content .footer {
-    flex: 0 0 auto;
-    padding: 10px;
-    text-align: right;
+  .slider-card .overlay .extra-content {
+    margin-top: 10px;
+    opacity: 0;
+    max-height: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
   }
   .slider-card .overlay .content .footer button.toggle-btn {
     padding: 8px 12px;
     font-size: 1rem;
   }
+  .slider-card.active .overlay {
+    height: 100%;
+    padding-top: 20px;
+  }
+  .slider-card.active .overlay .content {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .slider-card.active .overlay .extra-content {
+    max-height: 100px;
+    opacity: 1;
+  }
+  .slider-card.active .overlay button.toggle-btn {
+    align-self: flex-end;
+  }
+  
 }
 
+/* ------------------------------ */
 /* Téléphones en mode paysage (481px - 767px) */
+/* ------------------------------ */
 @media screen and (max-width: 767px) and (min-width: 481px) {
   #slider-section {
     height: auto;
@@ -137,63 +213,80 @@
   }
   .slider-card .overlay {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,0.5);
     color: #fff;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    padding: 15px;
+    transition: height 0.4s ease;
+    overflow: hidden;
+    height: 70px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-  }
-  .slider-card.active .overlay {
-    opacity: 1;
-    pointer-events: auto;
+    justify-content: center;
   }
   .slider-card .overlay .content {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
-  .slider-card .overlay .content .header {
-    flex: 0 0 auto;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.8);
+  .slider-card .overlay .text {
+    text-align: left;
+    margin-right: 10px;
   }
-  .slider-card .overlay .content .header h3 {
+  .slider-card .overlay .text h3 {
     margin: 0;
     font-size: 1.3rem;
+    padding-top: 5px;
   }
-  .slider-card .overlay .content .header p {
+  .slider-card .overlay .text p {
     margin: 0;
     font-size: 0.9rem;
   }
-  .slider-card .overlay .content .body {
-    flex: 1 1 auto;
-    overflow-y: auto;
-    padding: 10px;
-  }
-  .slider-card .overlay .content .footer {
-    flex: 0 0 auto;
-    padding: 10px;
-    text-align: right;
+  .slider-card .overlay .extra-content {
+    margin-top: 10px;
+    opacity: 0;
+    max-height: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
   }
   .slider-card .overlay .content .footer button.toggle-btn {
     padding: 8px 12px;
     font-size: 1rem;
+    align-self: flex-end;
   }
-  /* Si deux cartes ne tiennent plus côte à côte, on les empile verticalement */
+  .slider-card.active .overlay {
+    height: 100%;
+    padding-top: 20px;
+  }
+  .slider-card.active .overlay .content {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .slider-card.active .overlay .extra-content {
+    max-height: 100px;
+    opacity: 1;
+  }
   .slider-cards {
     flex-direction: column;
     gap: 20px;
     align-items: center;
   }
+  .slider-card.active .overlay button.toggle-btn {
+    align-self: flex-end;
+  }
+
+  
+  
 }
 
+/* ------------------------------ */
 /* Téléphones en mode portrait (max-width: 480px) */
+/* ------------------------------ */
 @media screen and (max-width: 480px) {
   #slider-section {
     padding: 20px 10px;
@@ -219,53 +312,63 @@
   #subtitle { display: none; }
   .slider-card .overlay {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,0.5);
     color: #fff;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    padding: 15px;
+    transition: height 0.4s ease;
+    overflow: hidden;
+    height: 70px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-  }
-  .slider-card.active .overlay {
-    opacity: 1;
-    pointer-events: auto;
+    justify-content: center;
   }
   .slider-card .overlay .content {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
-  .slider-card .overlay .content .header {
-    flex: 0 0 auto;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.8);
+  .slider-card .overlay .text {
+    text-align: left;
+    margin-right: 10px;
   }
-  .slider-card .overlay .content .header h3 {
+  .slider-card .overlay .text h3 {
     margin: 0;
     font-size: 1.2rem;
+    padding-top: 5px;
   }
-  .slider-card .overlay .content .header p {
+  .slider-card .overlay .text p {
     margin: 0;
     font-size: 0.9rem;
   }
-  .slider-card .overlay .content .body {
-    flex: 1 1 auto;
-    overflow-y: auto;
-    padding: 10px;
-  }
-  .slider-card .overlay .content .footer {
-    flex: 0 0 auto;
-    padding: 10px;
-    text-align: right;
+  .slider-card .overlay .extra-content {
+    margin-top: 10px;
+    opacity: 0;
+    max-height: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
   }
   .slider-card .overlay .content .footer button.toggle-btn {
     padding: 8px 12px;
     font-size: 0.9rem;
+    align-self: flex-end;
+  }
+  .slider-card.active .overlay {
+    height: 100%;
+    padding-top: 20px;
+  }
+  .slider-card.active .overlay .content {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  .slider-card.active .overlay .extra-content {
+    max-height: 100px;
+    opacity: 1;
   }
   .slider-cards {
     margin-top: 30px;
@@ -273,4 +376,10 @@
     gap: 20px;
     align-items: center;
   }
+  .slider-card.active .overlay button.toggle-btn {
+    align-self: flex-end;
+  }
+ 
+  
+  
 }

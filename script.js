@@ -842,7 +842,6 @@ setInterval(() => {
 "assets/images/hors-les-murs/92-event-noid.jpg",
 "assets/images/hors-les-murs/93-event-noid.jpg",
 "assets/images/hors-les-murs/94-event-noid.jpg",
-"assets/images/hors-les-murs/95-event-noid.jpg",
 "assets/images/hors-les-murs/96-event-noid.jpg",
 "assets/images/hors-les-murs/97-event-noid.jpg",
 "assets/images/hors-les-murs/98-event-noid.jpg",
@@ -897,12 +896,11 @@ var gallerySlider = new Swiper(".mySwiper", {
 
 
 
-//FONCTION POUR OUVRIR LE DROPDOWN DU MENU RESPONSIVE//
 document.getElementById('menu-btn').addEventListener('click', function() {
-    
-    document.getElementById('dropdown-overlay').classList.toggle('active');
- 
+  this.classList.toggle('active');
+  document.getElementById('dropdown-overlay').classList.toggle('active');
 });
+
 
 // Fermer le dropdown (par exemple, via un bouton de fermeture ou en cliquant sur l'overlay)
 document.getElementById('dropdown-overlay').addEventListener('click', function() {
@@ -945,3 +943,56 @@ const observer = new IntersectionObserver((entries) => {
 }, options);
 
 sections.forEach(section => observer.observe(section));
+
+
+
+document.querySelectorAll('.slider-card').forEach(card => {
+  card.addEventListener('click', () => {
+    // Basculer la classe active sur la carte cliquée
+    card.classList.toggle('active');
+  });
+});
+
+
+
+function initMap() {
+  // Coordonnées des deux points (à adapter selon vos besoins)
+  const point1 = { lat: 43.1242, lng: 5.9280 };
+  const point2 = { lat: 43.1300, lng: 5.9400 };
+
+  // Création de la carte centrée sur le premier point (la position initiale n'est pas critique ici)
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: point1,
+    zoom: 13,
+    // Style personnalisé pour masquer les points d'intérêt
+    styles: [
+      {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }],
+      },
+      {
+        featureType: "poi.business",
+        stylers: [{ visibility: "off" }],
+      }
+    ]
+  });
+
+  // Ajout des marqueurs
+  new google.maps.Marker({
+    position: point1,
+    map: map,
+    title: "Point 1"
+  });
+  new google.maps.Marker({
+    position: point2,
+    map: map,
+    title: "Point 2"
+  });
+
+  // Ajustement automatique du zoom pour afficher les deux points
+  const bounds = new google.maps.LatLngBounds();
+  bounds.extend(point1);
+  bounds.extend(point2);
+  map.fitBounds(bounds);
+}

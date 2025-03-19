@@ -37,14 +37,28 @@
   
   /* Tablettes en mode portrait (768px - 1024px) */
   @media screen and (max-width: 1024px) and (min-width: 768px) {
+   
     #right-title-section {
       padding: 40px 15px;
     }
     #right-title-section h1 {
       font-size: 3rem;
     }
+    .flip-card {
+      width: 350px;
+      height: 500px;
+    }
+    /* Optionnel : augmenter l'espacement entre les cartes */
+    .carousel {
+      gap: 30px;
+    }
+    /* Masquer les indicateurs */
+    .carousel-indicators {
+      display: none;
+    }
     #pricing-section-custom {
       padding: 40px 30px;
+      height: fit-content;
     }
     .colored-container-princing {
       padding: 40px 20px;
@@ -70,6 +84,7 @@
   
   /* Téléphones en mode paysage (481px - 767px) */
   @media screen and (max-width: 767px) and (min-width: 481px) {
+   
     #right-title-section {
       padding: 30px 10px;
     }
@@ -78,6 +93,7 @@
     }
     #pricing-section-custom {
       padding: 30px 20px;
+      height: fit-content;
     }
     .colored-container-princing {
       padding: 30px 15px;
@@ -99,10 +115,22 @@
       height: 220px;
       font-size: 18px;
     }
+    .flip-card {
+      width: 300px;
+      height: 430px;
+    }
+    .carousel {
+      gap: 15px;
+    }
+    .carousel-indicators {
+      display: none;
+    }
+
   }
   
   /* Téléphones en mode portrait (max-width: 480px) */
   @media screen and (max-width: 480px) {
+  
     #right-title-section {
       padding: 20px 10px;
     }
@@ -111,10 +139,16 @@
     }
     #pricing-section-custom {
       padding: 20px 10px;
+      height: fit-content;
     }
     .colored-container-princing {
+      display: flex;
+      flex-direction: column;
+   
+      justify-content: center;
       padding: 20px 10px;
       border-radius: 15px;
+      height: fit-content;
     }
     .section-title-custom {
       font-size: 1.8rem;
@@ -124,11 +158,27 @@
     }
     .carousel-container-custom {
       width: 100%;
-      height: 200px;
+      height: 240px;
     }
     .card-custom {
-      width: 120px;
-      height: 200px;
+      width: 160px;
+      height: 240px;
       font-size: 16px;
+    }
+    .flip-card {
+      width: 250px;
+      padding: 25px 0;
+      height: 400px;
+    }
+    .carousel {
+      gap: 10px;
+    }
+    .horizontal-slider {
+      height: fit-content;
+      padding: 0 0;
+      margin-bottom: 0;
+    }
+    .carousel-indicators {
+      display: none;
     }
   }
