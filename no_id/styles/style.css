@@ -65,8 +65,8 @@ body {
 .text-block-container {
   position: relative;
   width: 100%;
-  margin-top: 6%;
-  height: 71%; /* Hauteur du bloc central, ajustable */
+  margin-top: 5%;
+  height: 68%; /* Hauteur du bloc central, ajustable */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,6 +96,7 @@ body {
   justify-content: flex-start;
   overflow: hidden;
   text-align: center;
+  height: 100vh;
   margin-top: 24px;
   box-sizing: border-box;
   width: 100%;
@@ -114,9 +115,9 @@ body {
 .stats-title,
 .stats-footer {
   font-family: 'extra-bold-montserrat', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   color: #fe4949; /* teinte rosée */
-  margin: 0.5em 0;
+  margin: 0 0;
 }
 
 .stat-item {
@@ -130,7 +131,7 @@ body {
 .stat-number {
   display: inline-block; /* largeur limitée au texte */
   font-family: 'extra-bold-montserrat', sans-serif;
-  font-size: 4rem;
+  font-size: 3.6rem;
   margin-bottom: 0.05em;
   position: relative;
   color: black;
@@ -162,7 +163,7 @@ body {
 .stat-label {
   font-family: 'extra-bold-montserrat', sans-serif;
   display: block;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: black;
   margin-top: 0;
 }
@@ -288,7 +289,7 @@ body {
 
 .section-title {
   font-family: 'extra-bold-montserrat', sans-serif;
-  font-size: 3rem;
+  font-size: 2.8rem;
   text-align: left;
   color: #131313;
 }

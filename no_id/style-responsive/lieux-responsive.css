@@ -10,6 +10,9 @@
     height: auto;
     padding: 60px 80px;
   }
+  #subtitle{
+    max-width: fit-content;
+  }
   .colored-container-slider {
     padding: 50px 40px;
     border-radius: 35px;
@@ -21,8 +24,8 @@
   .slider-card {
     position: relative;
     overflow: hidden;
-    width: 550px;
-    height: 380px;
+    width: 590px;
+    height: 400px;
   }
   /* Overlay par défaut (banderau en bas) */
   .slider-card .overlay {
@@ -35,7 +38,7 @@
     padding: 15px;
     transition: height 0.4s ease;
     overflow: hidden;
-    height: 70px;
+    height: 80px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

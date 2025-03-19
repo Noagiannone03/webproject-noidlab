@@ -45,7 +45,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 760px;
+    height: 97vh;
   }
   .colored-container-event {
   padding: 40px 0;
@@ -60,13 +60,7 @@
   }
   
 
-    /* Titre */
-    .section-title {
-      font-family: 'extra-bold-montserrat', sans-serif;
-      font-size: 3rem;
-      text-align: left;
-      color: #131313;
-    }
+ 
     
     
     

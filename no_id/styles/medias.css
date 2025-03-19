@@ -43,7 +43,7 @@
     margin-top: 10px;
     padding: 30px 60px;
     text-align: center;
-    min-height: 760px;
+    min-height: 97vh;
     /* La section est visible dès le départ */
     opacity: 1;
     transition: opacity 1s ease;
@@ -60,6 +60,9 @@
     border-radius: 30px;
     box-shadow: inset 0 0 0 3px black;
   }
+  .gallery-card {
+    aspect-ratio: 1 / 1;
+  }
   
   .section-header {
     max-width: 800px;
@@ -67,12 +70,7 @@
     text-align: left;
   }
   
-  .section-title {
-    font-family: 'extra-bold-montserrat', sans-serif;
-    font-size: 3rem;
-    text-align: left;
-    color: #131313;
-  }
+ 
   
 
   
@@ -110,11 +108,13 @@
   }
   
   /* Grille en 2 lignes x 5 colonnes */
-  .gallery-grid {
+
+
+  #gallery-grid {
     display: grid;
     /* Ici, chaque carte aura au minimum 150px de large et pourra s'étendre jusqu'à 1fr.
        La grille s'adaptera au nombre d'éléments par ligne en fonction de la taille du conteneur. */
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px; /* Vous pouvez ajuster l'espacement entre les cartes */
     width: 100%;
     margin: 0 auto;
@@ -135,7 +135,7 @@
     position: relative;
     background: #fff;
     border-radius: 10px;
-    
+    aspect-ratio: 1 / 1;
     overflow: hidden;
     box-shadow:  0 0 0 3px black;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -222,17 +222,7 @@
 
 
   
-/* Animation d'apparition */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
-    width: 100%;
-    margin: 0 auto;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s ease forwards;
-  }
+
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
