@@ -68,6 +68,10 @@
   gap: 30px;
   flex-wrap: wrap;
 }
+#subtitle{
+  display: flex;
+  min-width: 1200px
+}
 
 .slider-card {
   position: relative;
@@ -151,9 +155,7 @@
 
   display: none;
 }
-#subtitle{
-  display: flex;
-}
+
 /* Contenu supplémentaire caché initialement */
 .slider-card .overlay .extra-content {
   margin-top: 10px;

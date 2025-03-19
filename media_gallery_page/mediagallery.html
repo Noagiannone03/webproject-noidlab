@@ -17,6 +17,8 @@
   <link href="../no_id/style-responsive/navbar-responsive.css" rel="stylesheet"/>
   <link href="../no_id/styles/contact_modal.css" rel="stylesheet"/>
   <link href="../no_id/style-responsive/contact-responsive.css" rel="stylesheet"/>
+  <link href="../no_id/style-responsive/footer-responsive.css" rel="stylesheet"/>
+  <link href="../no_id/styles/footer.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -255,85 +257,101 @@
     </section>
   </main>
   
-<footer>
-  <div class="footer-container">
-    <!-- Colonne gauche -->
-    <div class="footer-column left">
-      <h2 class="footer-title">À propos</h2>
-      <p class="footer-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod urna eu tincidunt consectetur, nisi nisl lacinia mi, eu pulvinar nisi neque sit amet turpis.
-      </p>
-    </div>
-    
-    <!-- Colonne centrale -->
-    <div class="footer-column center">
-      <h2 class="footer-title">Nos lieux d'exploitations</h2>
-      <div class="footer-info">
-        <h3 class="footer-subtitle">FEATlab</h3>
-        <p class="footer-details">
-          13 Rue d'Antrechaus<br>
-          83000 Toulon<br>
-          04 94 62 24 77<br>
-          info@noidlab.com | www.noidlab.com
+
+  <footer>
+    <div class="footer-container">
+      <!-- Colonne gauche -->
+      <div class="footer-column left">
+        <h2 class="footer-title">We are NO/ID</h2>
+        <p class="footer-text">
+          NO/ID est une structure culturelle qui propose des événements (ré)créatifs et des solutions innovantes sur la côte méditerranéenne depuis 1997.<br>
+          Nous pouvons intervenir sur les différentes étapes qui permettent de créer une identité, d'incuber une idée jusqu'à sa réalisation ou d'élargir le vecteur de diffusion entre un projet et son public.
         </p>
       </div>
-      <hr class="footer-divider">
-      <div class="footer-info footer-repeat">
-        <h3 class="footer-subtitle">Fort Napoleon</h3>
-        <p class="footer-details">
-          56 montée charles Barnier<br>
-          83500 La Seyne sur Mer<br>
-          04 94 62 24 77<br>
-          info@fornap.com | www.fornap.org
-        </p>
+      
+      <!-- Colonne centrale -->
+      <div class="footer-column center">
+        <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
+        <div class="footer-info">
+          <h3 class="footer-subtitle">FEATlab</h3>
+          <p class="footer-details">
+            18 Rue d'Antrechaus<br>
+            83000 Toulon<br>
+            04 94 62 24 77<br>
+            info@noidlab.com | www.noidlab.com
+          </p>
+        </div>
+        <!-- Divider personnalisé -->
+        <div class="center-divider"></div>
+        <div class="footer-info footer-repeat">
+          <h3 class="footer-subtitle">Fort Napoleon</h3>
+          <p class="footer-details">
+            56 montée charles Barnier<br>
+            83500 La Seyne sur Mer<br>
+            04 94 62 24 77<br>
+            info@fornap.com | www.fornap.org
+          </p>
+        </div>
+        
       </div>
-      <div class="footer-image">
-        <img  src="../assets/pieddepouleunique.png" alt="Image Footer">
-      </div>
-    </div>
-    
-    <!-- Colonne droite -->
-    <div class="footer-column right">
-      <h2 class="footer-title">Keep in touch</h2>
-      <div class="newsletter-cardbottom">
-        <h3>Découvrez notre newsletter</h3>
-        <form onsubmit="return false;">
-          <input type="email" placeholder="Votre email" required />
+      
+      <!-- Colonne droite -->
+  <div class="footer-column right">
+    <h2 class="footer-title">WE KEEP IN TOUCH</h2>
+    <div class="connect-block">
+      <h2 class="connect-title">Pour rester connecté :</h2>
+      <div class="connect-inputs">
+        <div class="input-group">
+          <input type="email" placeholder="Votre email" required>
           <button type="submit">Envoyer</button>
-        </form>
-      </div>
-      <!-- Card Social Follow -->
-      <div class="follow-cardbottom">
-        <h3>Nous suivre</h3>
-        <div class="social-buttons">
-          <button>
-            <!-- Facebook SVG -->
-            <svg viewBox="0 0 24 24">
-              <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.337v21.326C0 23.4.6 24 1.325 24H12.82v-9.294H9.692V11.07h3.128V8.413c0-3.1 1.893-4.788 4.658-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.716-1.795 1.763v2.31h3.587l-.467 3.636h-3.12V24h6.116C23.4 24 24 23.4 24 22.663V1.337C24 .6 23.4 0 22.675 0z"/>
-            </svg>
-          </button>
-          <button>
-            <!-- Instagram SVG -->
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.337 3.608 1.312.975.975 1.25 2.242 1.312 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.337 2.633-1.312 3.608-.975.975-2.242 1.25-3.608 1.312-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.337-3.608-1.312-.975-.975-1.25-2.242-1.312-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.337-2.633 1.312-3.608.975-.975 2.242-1.25 3.608-1.312 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.332.012 7.052.07 5.771.127 4.602.443 3.635 1.41 2.668 2.377 2.352 3.546 2.295 4.827.012 8.332 0 8.741 0 12s.012 3.668.07 4.948c.057 1.281.373 2.45 1.34 3.417.967.967 2.136 1.283 3.417 1.34 1.28.058 1.689.07 4.948.07s3.668-.012 4.948-.07c1.281-.057 2.45-.373 3.417-1.34.967-.967 1.283-2.136 1.34-3.417.058-1.28.07-1.689.07-4.948s-.012-3.668-.07-4.948c-.057-1.281-.373-2.45-1.34-3.417-.967-.967-2.136-1.283-3.417-1.34C15.668.012 15.259 0 12 0z"/>
-              <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
-              <circle cx="18.406" cy="5.594" r="1.44"/>
-            </svg>
-          </button>
-          <button>
-            <!-- TikTok SVG -->
-            <svg viewBox="0 0 24 24">
-              <path d="M9 0h3v12c-1.667-.667-3.333-1-5-1 0 0 0 0 0 0C3 11 0 13 0 16c0 4 4 8 8 8s8-4 8-8V0H9z"/>
-            </svg>
-          </button>
+        </div>
+        <div class="input-group checkbox-group">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
         </div>
       </div>
+      <h3 class="follow-title">Nous suivre</h3>
+      <div class="follow-icons">
+        <button>
+          <img class="logo logo-black" src="../assets/pictos/facebook_noir_et_blanc.png" alt="Facebook">
+          <img class="logo logo-color" src="../assets/pictos/facebook_couleur.png" alt="Facebook">
+        </button>
+        <button>
+          <img class="logo logo-black" src="../assets/pictos/insta_noir_et_blanc.png" alt="Instagram">
+          <img class="logo logo-color" src="../assets/pictos/insta_couleur.png" alt="Instagram">
+        </button>
+        <button>
+          <img class="logo logo-black" src="../assets/pictos/tik tok_noir_et_blanc.png" alt="TikTok">
+          <img class="logo logo-color" src="../assets/pictos/tiktok_couleur.png" alt="TikTok">
+        </button>
+        <button>
+          <img class="logo logo-black" src="../assets/pictos/x_noir_et_blanc.png" alt="Whatsapp">
+          <img class="logo logo-color" src="../assets/pictos/x_couleur.png" alt="Whatsapp">
+        </button>
+      </div>
     </div>
   </div>
- <div class="footer-bottom">
-    &copy; 2025 noidlab. Tous droits réservés.
-  </div>
-</footer>
+  
+    </div>
+    
+    <!-- Section extra : liens légaux et trait blanc -->
+   
+     
+    </div>
+    <div class="footer-extra">
+      <hr class="footer-extra-line">
+      <div class="footer-links">
+        <p class="rights-text">tous droits réservés</p>
+        <a href="mentions-legales.html">Mentions Légales</a>
+        <a href="https://www.termsfeed.com/live/79f1b3f9-baed-478f-83e5-10379c6734b1">Conditions d'utilisation</a>
+       
+      </div>
+    </div>
+    
+    
+    <!-- Bandeau inférieur (footer bottom) -->
+    <div class="footer-bottom">
+  </footer>
   <!-- Sticky Music Player -->
   <footer>
     <div class="iframe-container">
@@ -355,313 +373,10 @@
   
 
    
-  <script src="script.js" defer></script>
+  <script src="../script.js" defer></script>
+  <script src="script_media_gallery.js" defer></script>
 
 
-  <script>document.addEventListener("DOMContentLoaded", () => {
-    AOS.init({ duration: 800 });
-  
-    /* ----------------- Navbar Dropdown ----------------- */
-    const menuBtn = document.getElementById("menu-btn");
-    const dropdown = document.getElementById("dropdown");
-    if (menuBtn && dropdown) {
-      menuBtn.addEventListener("click", () => { 
-        dropdown.classList.toggle("active"); 
-      });
-    }
-  
-    /* ----------------- Filter Photos ----------------- */
-    const filterButtons = document.querySelectorAll(".filter-buttons button");
-    const photoCards = document.querySelectorAll(".photos-grid .media-card");
-    filterButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        filterButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const filter = btn.getAttribute("data-filter");
-        photoCards.forEach(card => {
-          if (filter === "all" || card.getAttribute("data-category") === filter) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      });
-    });
-  
-    /* ----------------- Modal for Media ----------------- */
-    const mediaModal = document.getElementById("media-modal");
-    const modalMedia = document.getElementById("modal-media");
-    const modalClose = document.getElementById("modal-close");
-    const modalPrev = document.getElementById("modal-prev");
-    const modalNext = document.getElementById("modal-next");
-    let currentMediaIndex = 0;
-    let currentMediaList = [];
-  
-    const mediaCards = document.querySelectorAll(".media-grid .media-card");
-    mediaCards.forEach((card, index) => {
-      // Pour les sections autres que Audio, ouvrir le modal
-      if (card.closest("#audio")) return;
-      card.addEventListener("click", () => { 
-        currentMediaIndex = index;
-        currentMediaList = Array.from(document.querySelectorAll(".media-grid .media-card"));
-        loadModalMedia(currentMediaList[currentMediaIndex]);
-        mediaModal.classList.add("active");
-      });
-    });
-  
-    function loadModalMedia(card) {
-      const img = card.querySelector("img");
-      modalMedia.innerHTML = "";
-      if (img) {
-        const clone = img.cloneNode();
-        clone.style.maxWidth = "100%";
-        clone.style.maxHeight = "100%";
-        modalMedia.appendChild(clone);
-      }
-    }
-  
-    if (modalClose) {
-      modalClose.addEventListener("click", () => { 
-        mediaModal.classList.remove("active"); 
-      });
-    }
-    if (modalPrev) {
-      modalPrev.addEventListener("click", () => {
-        currentMediaIndex = (currentMediaIndex - 1 + currentMediaList.length) % currentMediaList.length;
-        loadModalMedia(currentMediaList[currentMediaIndex]);
-      });
-    }
-    if (modalNext) {
-      modalNext.addEventListener("click", () => {
-        currentMediaIndex = (currentMediaIndex + 1) % currentMediaList.length;
-        loadModalMedia(currentMediaList[currentMediaIndex]);
-      });
-    }
-  
-    /* ----------------- Image aléatoire pour la section Featured Background ----------------- */
-    const bgImages = ["44-event-noid.jpg", "18-event-noid.jpg", "28-event-noid.jpg", "39-event-noid.jpg"];
-    const randIndex = Math.floor(Math.random() * bgImages.length);
-    const chosenImage = bgImages[randIndex];
-    const randomImageElem = document.getElementById("randomImage");
-    if (randomImageElem) {
-      randomImageElem.src = "../assets/images/hors-les-murs/" + chosenImage;
-    } else {
-      console.error("Élément randomImage introuvable.");
-    }
-  
-    /* ----------------- Player (mise à jour de l'iframe) ----------------- */
-    const audioSection = document.getElementById("audio");
-    const iframeContainer = document.querySelector(".iframe-container");
-    if (audioSection && iframeContainer) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.intersectionRatio >= 0.75) {
-            iframeContainer.classList.add("visible");
-          } else {
-            iframeContainer.classList.remove("visible");
-          }
-        });
-      }, { threshold: [0, 0.75, 1] });
-      observer.observe(audioSection);
-    } else {
-      console.error("Section audio ou conteneur iframe introuvable.");
-    }
-    
-    /* Mise à jour du src de l'iframe du player sans recréer l'iframe */
-    const audioCards = document.querySelectorAll("#audio .media-card");
-    audioCards.forEach(card => {
-      card.addEventListener("click", () => {
-        const newSrc = card.getAttribute("data-audio");
-        console.log("Audio card clicked, newSrc:", newSrc);
-        if (!iframeContainer) {
-          console.error("Aucun conteneur iframe trouvé!");
-          return;
-        }
-        const iframe = iframeContainer.querySelector("iframe");
-        if (iframe) {
-          iframe.src = newSrc;
-          console.log("iframe src mis à jour:", newSrc);
-        } else {
-          console.error("Aucun iframe existant dans le conteneur.");
-        }
-      });
-    });
-  
-    /* ----------------- Audio Player Controls ----------------- */
-    const playPauseBtn = document.getElementById("play-pause");
-    const playIcon = document.getElementById("play-icon");
-    const pauseIcon = document.getElementById("pause-icon");
-    const prevTrackBtn = document.getElementById("prev-track");
-    const nextTrackBtn = document.getElementById("next-track");
-    const trackTitle = document.getElementById("track-title");
-    const trackArtist = document.getElementById("track-artist");
-    const albumArt = document.querySelector(".album-art img");
-    const volumeSlider = document.getElementById("volume-slider");
-    const discoverSounds = document.getElementById("discover-sounds");
-  
-    const audioPlaylist = [
-      { src: "../assets/audio/sample.mp3", title: "Titre 1", artist: "Artiste 1", cover: "../assets/images/Danslesmurs_A27.jpg" },
-      { src: "../assets/audio/sample.mp3", title: "Titre 2", artist: "Artiste 2", cover: "../assets/images/Danslesmurs_A27.jpg" },
-      { src: "../assets/audio/sample.mp3", title: "Titre 3", artist: "Artiste 3", cover: "../assets/images/Danslesmurs_A27.jpg" }
-    ];
-    let currentTrackIndex = 0;
-    const audioPlayer = new Audio();
-    
-    function loadTrack(index) {
-      const track = audioPlaylist[index];
-      audioPlayer.src = track.src;
-      trackTitle.textContent = track.title;
-      trackArtist.textContent = track.artist;
-      albumArt.src = track.cover;
-    }
-    
-    loadTrack(currentTrackIndex);
-    
-    function startAudio() {
-      audioPlayer.play();
-      playIcon.style.display = "none";
-      pauseIcon.style.display = "block";
-      // Animation pour faire disparaître le bouton Discover en douceur
-      discoverSounds.classList.add("hide");
-      setTimeout(() => { discoverSounds.style.display = "none"; }, 400);
-      // Masquer l'overlay sur toutes les cards audio
-      document.querySelectorAll("#audio .audio-overlay").forEach(el => el.style.opacity = "0");
-    }
-    
-    if (playPauseBtn) {
-      playPauseBtn.addEventListener("click", () => {
-        if (audioPlayer.paused) {
-          startAudio();
-        } else {
-          audioPlayer.pause();
-          playIcon.style.display = "block";
-          pauseIcon.style.display = "none";
-        }
-      });
-    }
-    
-    if (prevTrackBtn) {
-      prevTrackBtn.addEventListener("click", () => {
-        currentTrackIndex = (currentTrackIndex - 1 + audioPlaylist.length) % audioPlaylist.length;
-        loadTrack(currentTrackIndex);
-        startAudio();
-      });
-    }
-    
-    if (nextTrackBtn) {
-      nextTrackBtn.addEventListener("click", () => {
-        currentTrackIndex = (currentTrackIndex + 1) % audioPlaylist.length;
-        loadTrack(currentTrackIndex);
-        startAudio();
-      });
-    }
-    
-    audioPlayer.addEventListener("timeupdate", () => {
-      const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-      document.getElementById("progress-bar").style.width = progressPercent + "%";
-    });
-    
-    volumeSlider.addEventListener("input", () => {
-      audioPlayer.volume = volumeSlider.value;
-    });
-    
-    // Pour lancer directement la piste au clic sur une card audio
-    const directAudioCards = document.querySelectorAll("#audio .media-card");
-    directAudioCards.forEach(card => {
-      card.addEventListener("click", () => {
-        const audioSrc = card.getAttribute("data-audio");
-        currentTrackIndex = 0;
-        audioPlaylist[0].src = audioSrc;
-        loadTrack(currentTrackIndex);
-        startAudio();
-      });
-    });
-    
-    /* ----------------- Toggle "Voir plus" pour chaque section ----------------- */
-    function setupToggle(sectionId, additionalItems, gridSelector, buttonSelector) {
-      const section = document.getElementById(sectionId);
-      const grid = section.querySelector(gridSelector);
-      const button = section.querySelector(buttonSelector);
-      let expanded = false;
-      // On stocke le nombre d'items initialement affichés
-      const initialCount = parseInt(grid.getAttribute("data-initial-count")) || grid.children.length;
-      // Optionnel : mélanger aléatoirement la liste supplémentaire
-      additionalItems.sort(() => Math.random() - 0.5);
-      button.addEventListener("click", () => {
-        if (!expanded) {
-          additionalItems.forEach(item => {
-            const card = document.createElement("div");
-            card.classList.add("media-card");
-            // Pour la section audio, ajouter data-audio
-            if (sectionId === "audio") {
-              card.setAttribute("data-audio", item.src);
-            }
-            if (item.category) {
-              card.setAttribute("data-category", item.category);
-            }
-            const img = document.createElement("img");
-            img.src = item.src;
-            img.alt = sectionId === "audio" ? "Audio" : sectionId === "videos" ? "Vidéo" : "Photo";
-            card.appendChild(img);
-            // Appliquer une animation d'apparition
-            card.style.opacity = 0;
-            grid.appendChild(card);
-            setTimeout(() => {
-              card.style.transition = "opacity 0.5s";
-              card.style.opacity = 1;
-            }, 50);
-          });
-          button.textContent = "Voir moins";
-          expanded = true;
-        } else {
-          const cards = grid.querySelectorAll(".media-card");
-          for (let i = cards.length - 1; i >= initialCount; i--) {
-            const card = cards[i];
-            card.style.transition = "opacity 0.5s";
-            card.style.opacity = 0;
-            setTimeout(() => { card.remove(); }, 500);
-          }
-          button.textContent = "Voir plus";
-          expanded = false;
-        }
-      });
-    }
-    
-    // Définissez des tableaux supplémentaires pour chaque section
-    const additionalPhotos = [
-      { src: "../assets/images/dans-les-murs/Danslesmurs_A22.jpg", category: "interieur" },
-      { src: "../assets/images/dans-les-murs/Danslesmurs_A21.jpg", category: "exterieur" },
-      { src: "../assets/images/dans-les-murs/Danslesmurs_A29.jpg", category: "interieur" },
-      { src: "../assets/images/dans-les-murs/Danslesmurs_A31.jpg", category: "exterieur" }
-    ];
-    const additionalVideos = [
-      { src: "../assets/images/dans-les-murs/Danslesmurs_A27.jpg" },
-      { src: "../assets/images/dans-les-murs/Danslesmurs_A28.jpg" },
-      { src: "../assets/images/dans-les-murs/Danslesmurs_A33.jpg" }
-    ];
-    const additionalAudios = [
-      { src: "../assets/audio/sample.mp3" },
-      { src: "../assets/audio/sample.mp3" },
-      { src: "../assets/audio/sample.mp3" }
-    ];
-    
-    // Assurez-vous que dans le HTML, les grilles ont un attribut data-initial-count,
-    // par exemple, pour la section Photos :
-    // <div class="media-grid photos-grid" data-initial-count="8" ...>
-    setupToggle("photos", additionalPhotos, ".photos-grid", "#photos .see-more button");
-    setupToggle("videos", additionalVideos, ".videos-grid", "#videos .see-more button");
-    setupToggle("audio", additionalAudios, ".audio-grid", "#audio .see-more button");
-    
-    /* ----------------- GSAP Featured Animation (optionnel) ----------------- */
-    gsap.from("#featured .featured-carousel", {
-      y: 20,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: { trigger: "#featured", start: "top 80%" }
-    });
-  });
-  
-  </script>
+ 
 </body>
 </html>
