@@ -597,7 +597,7 @@ h2.section-title {
   main { padding-top: 70px; }
   section { padding: 30px 20px; }
   h2.section-title { font-size: 2rem; text-align: center; }
-  .media-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 5px; }
+  .media-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 5px; }
   .section-separator { max-width: 90%; }
   .filter-buttons { flex-wrap: wrap; justify-content: center; }
 }

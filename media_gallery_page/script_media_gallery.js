@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+
   AOS.init({ duration: 800 });
 
   /* ----------------- Navbar Dropdown ----------------- */
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power2.out",
     scrollTrigger: { trigger: "#featured", start: "top 80%" }
   });
-});
+
 
 
 
