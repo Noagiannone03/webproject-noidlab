@@ -48,7 +48,9 @@
   .dropdown .follow-card {
     background-color: white;
     color: black;
-    
+     padding: 1.5vh 1.5vw;
+     width: 100%;
+     margin: 0 0;
 
   }
   .dropdown .follow-card h3 {

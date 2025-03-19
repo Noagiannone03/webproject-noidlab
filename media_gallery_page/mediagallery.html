@@ -13,22 +13,44 @@
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js" defer></script>
   <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js" defer></script>
   <link href="style_media_gallery.css" rel="stylesheet"/>
+  <link href="../no_id/styles/navbar.css" rel="stylesheet"/>
+  <link href="../no_id/style-responsive/navbar-responsive.css" rel="stylesheet"/>
+  <link href="../no_id/styles/contact_modal.css" rel="stylesheet"/>
+  <link href="../no_id/style-responsive/contact-responsive.css" rel="stylesheet"/>
 </head>
 <body>
+
+  <!-- Modal Contact -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <button class="close-modal" id="close-modal">&times;</button>
+      <h2>Contactez-nous</h2>
+      <form id="contact-form">
+        <input type="text" name="from_name" placeholder="Votre nom" required />
+        <input type="email" name="from_email" placeholder="Votre email" required />
+        <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="dropdown-overlay" id="dropdown-overlay"></div>
   <!-- Navbar -->
   <nav class="navbar">
 
     <div class="nav-center">
-      <img src="../assets/logo/LOGONOIDsimpleBlanc.png"/>
+      <a href="index.html">
+        <img src="../assets/logo/LOGONOIDsimpleBlanc.png"/>
+      </a>
+      
     </div>
     <div class="nav-actions">
       <!-- Bouton Contact -->
       <div class="contact-btn" id="contact-btn">
         <div class="icon-circle">
           <!-- SVG bulle de message -->
-          <svg viewBox="0 0 24 24">
-            <path d="M20 2H4C2.9 2 2 2.9 2 4v14l4-4h14c1.1 0 2-.9 2-2V4C22 2.9 21.1 2 20 2z"/>
-          </svg>
+          <img src="../assets/pictos/box contact.png" alt="Contact">
         </div>
         <span class="btn-text">Nous contacter</span>
       </div>
@@ -66,8 +88,15 @@
         <h3>Découvrez notre newsletter</h3>
         <form onsubmit="return false;">
           <input type="email" placeholder="Votre email" required />
-          <button type="submit">Envoyer</button>
+          <button type="submit">Go</button>
         </form>
+       
+        <div class="input-grouped checkbox-grouped">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
+        </div>
+
+      
       </div>
       <!-- Card Social Follow -->
       <div class="follow-card">
@@ -75,28 +104,28 @@
         <div class="social-buttons">
           <!-- Facebook -->
           <button>
-            <img class="logo logo-black" src="../assets/logo/facebook noir et blanc.png" alt="Facebook">
-            <img class="logo logo-color" src="../assets/logo/facebook couleur.png" alt="Facebook">
+            <img class="logo logo-black" src="../assets/pictos/facebook_noir_et_blanc.png" alt="Facebook">
+            <img class="logo logo-color" src="../assets/pictos/facebook_couleur.png" alt="Facebook">
           </button>
           <!-- Instagram -->
           <button>
-            <img class="logo logo-black" src="../assets/logo/insta noir et blanc.png" alt="Instagram">
-            <img class="logo logo-color" src="../assets/logo/instagram couleur.png" alt="Instagram">
+            <img class="logo logo-black" src="../assets/pictos/insta_noir_et_blanc.png" alt="Instagram">
+            <img class="logo logo-color" src="../assets/pictos/insta_couleur.png" alt="Instagram">
           </button>
           <!-- TikTok -->
           <button>
-            <img class="logo logo-black" src="../assets/logo/tiktok noir et blanc.png" alt="TikTok">
-            <img class="logo logo-color" src="../assets/logo/tiktok couleur.png" alt="TikTok">
+            <img class="logo logo-black" src="../assets/pictos/tik tok_noir_et_blanc.png" alt="TikTok">
+            <img class="logo logo-color" src="../assets/pictos/tiktok_couleur.png" alt="TikTok">
           </button>
           <button>
-            <img class="logo logo-black" src="../assets/logo/whatsapp noir et blanc.png" alt="Whatsapp">
-            <img class="logo logo-color" src="../assets/logo/whatsapp couleur.png" alt="Whatsapp">
+            <img class="logo logo-black" src="../assets/pictos/x_noir_et_blanc.png" alt="Whatsapp">
+            <img class="logo logo-color" src="../assets/pictos/x_couleur.png" alt="Whatsapp">
           </button>
         </div>
       </div>
     </div>
   </nav>
-  
+ 
   <!-- Main Content -->
   <main>
  <!-- Section "À la une" - Fullscreen Hero -->
@@ -134,28 +163,28 @@
   <div class="media-grid photos-grid" data-aos="fade-up" data-initial-count="8">
     <!-- Items initiaux (8 items) -->
     <div class="media-card" data-category="interieur">
-      <img src="../assets/images/Danslesmurs_A22.jpg" alt="Photo">
+      <img src="../assets/images/dans-les-murs/Danslesmurs_A10.jpg" alt="Photo">
     </div>
     <div class="media-card" data-category="exterieur">
-      <img src="../assets/images/Danslesmurs_A21.jpg" alt="Photo">
+      <img src="../assets/images/dans-les-murs/Danslesmurs_A21.jpg" alt="Photo">
     </div>
     <div class="media-card" data-category="interieur">
-      <img src="../assets/images/Danslesmurs_A29.jpg" alt="Photo">
+      <img src="../assets/images/dans-les-murs/Danslesmurs_A29.jpg" alt="Photo">
     </div>
     <div class="media-card" data-category="exterieur">
-      <img src="../assets/images/Danslesmurs_A31.jpg" alt="Photo">
+      <img src="../assets/imagesdans-les-murs//Danslesmurs_A31.jpg" alt="Photo">
     </div>
     <div class="media-card" data-category="interieur">
-      <img src="../assets/images/Danslesmurs_A37.jpg" alt="Photo">
+      <img src="../assets/images/dans-les-murs/Danslesmurs_A37.jpg" alt="Photo">
     </div>
     <div class="media-card" data-category="exterieur">
-      <img src="../assets/images/Danslesmurs_A33.jpg" alt="Photo">
+      <img src="../assets/images/dans-les-murs/Danslesmurs_A33.jpg" alt="Photo">
     </div>
     <div class="media-card" data-category="interieur">
-      <img src="../assets/images/Danslesmurs_A39.jpg" alt="Photo">
+      <img src="../assets/images/dans-les-murs/Danslesmurs_A39.jpg" alt="Photo">
     </div>
     <div class="media-card" data-category="exterieur">
-      <img src="../assets/images/Danslesmurs_A21.jpg" alt="Photo">
+      <img src="../assets/images/dans-les-murs/Danslesmurs_A21.jpg" alt="Photo">
     </div>
   </div>
   <div class="see-more" data-aos="fade-up">
@@ -173,13 +202,13 @@
           <img src="https://www.noidlab.com/wp-content/uploads/2020/06/Annotation-2020-06-10-144104-300x164.png" alt="Vidéo">
         </div>
         <div class="media-card" data-type="video">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Vidéo">
+          <img src="../assets/images/dans-les-murs/Danslesmurs_A27.jpg" alt="Vidéo">
         </div>
         <div class="media-card" data-type="video">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Vidéo">
+          <img src="../assets/images/dans-les-murs/Danslesmurs_A27.jpg" alt="Vidéo">
         </div>
         <div class="media-card" data-type="video">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Vidéo">
+          <img src="../assets/images/dans-les-murs/Danslesmurs_A27.jpg" alt="Vidéo">
         </div>
       </div>
       <div class="see-more" data-aos="fade-up">
@@ -194,7 +223,7 @@
       <div class="media-grid audio-grid" data-aos="fade-up">
         <!-- Chaque card audio possède un attribut data-audio -->
         <div class="media-card" data-audio="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-031-red-room-session-3am-podcast%2F">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
+          <img src="../assets/images/dans-les-murs/Danslesmurs_A27.jpg" alt="Audio">
           <!-- Overlay pour indiquer lecture -->
           <div class="audio-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3); transition: opacity 0.3s;">
             <svg viewBox="0 0 24 24" width="36" height="36">
@@ -203,7 +232,7 @@
           </div>
         </div>
         <div class="media-card" data-audio="../assets/audio/sample.mp3">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
+          <img src="../assets/images/dans-les-murs/Danslesmurs_A27.jpg" alt="Audio">
           <div class="audio-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3); transition: opacity 0.3s;">
             <svg viewBox="0 0 24 24" width="36" height="36">
               <polygon points="6,4 20,12 6,20" fill="#fff"/>
@@ -211,7 +240,7 @@
           </div>
         </div>
         <div class="media-card" data-audio="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-podcast-024-life-recorder-extendplay-marseille-underlab_toulon-200418%2F"">
-          <img src="../assets/images/Danslesmurs_A27.jpg" alt="Audio">
+          <img src="../assets/images/dans-les-murs/Danslesmurs_A27.jpg" alt="Audio">
           <div class="audio-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3); transition: opacity 0.3s;">
             <svg viewBox="0 0 24 24" width="36" height="36">
               <polygon points="6,4 20,12 6,20" fill="#fff"/>
@@ -324,6 +353,11 @@
     </div>
   </div>
   
+
+   
+  <script src="script.js" defer></script>
+
+
   <script>document.addEventListener("DOMContentLoaded", () => {
     AOS.init({ duration: 800 });
   
@@ -410,7 +444,7 @@
     const chosenImage = bgImages[randIndex];
     const randomImageElem = document.getElementById("randomImage");
     if (randomImageElem) {
-      randomImageElem.src = "../assets/images/" + chosenImage;
+      randomImageElem.src = "../assets/images/hors-les-murs/" + chosenImage;
     } else {
       console.error("Élément randomImage introuvable.");
     }
@@ -595,15 +629,15 @@
     
     // Définissez des tableaux supplémentaires pour chaque section
     const additionalPhotos = [
-      { src: "../assets/images/Danslesmurs_A22.jpg", category: "interieur" },
-      { src: "../assets/images/Danslesmurs_A21.jpg", category: "exterieur" },
-      { src: "../assets/images/Danslesmurs_A29.jpg", category: "interieur" },
-      { src: "../assets/images/Danslesmurs_A31.jpg", category: "exterieur" }
+      { src: "../assets/images/dans-les-murs/Danslesmurs_A22.jpg", category: "interieur" },
+      { src: "../assets/images/dans-les-murs/Danslesmurs_A21.jpg", category: "exterieur" },
+      { src: "../assets/images/dans-les-murs/Danslesmurs_A29.jpg", category: "interieur" },
+      { src: "../assets/images/dans-les-murs/Danslesmurs_A31.jpg", category: "exterieur" }
     ];
     const additionalVideos = [
-      { src: "../assets/images/Danslesmurs_A27.jpg" },
-      { src: "../assets/images/Danslesmurs_A28.jpg" },
-      { src: "../assets/images/Danslesmurs_A33.jpg" }
+      { src: "../assets/images/dans-les-murs/Danslesmurs_A27.jpg" },
+      { src: "../assets/images/dans-les-murs/Danslesmurs_A28.jpg" },
+      { src: "../assets/images/dans-les-murs/Danslesmurs_A33.jpg" }
     ];
     const additionalAudios = [
       { src: "../assets/audio/sample.mp3" },
