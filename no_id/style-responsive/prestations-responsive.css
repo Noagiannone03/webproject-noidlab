@@ -15,6 +15,7 @@
       padding: 60px 80px;
     }
     .colored-container-princing {
+      height: fit-content;
       padding: 50px 40px;
       border-radius: 35px;
     }
@@ -26,12 +27,15 @@
     }
     .carousel-container-custom {
       max-width: 1000px;
-      height: 350px;
+      height: fit-content;
     }
     .card-custom {
       width: 200px;
       height: 280px;
       font-size: 26px;
+    }
+    .horizontal-slider {
+      height: fit-content;
     }
   }
   

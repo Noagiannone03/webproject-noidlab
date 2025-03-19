@@ -131,8 +131,8 @@
   }
   /* Agrandissement des cards sur mobile */
   .card-item {
-    width: 190px;
-    min-height: 170px;
+    width: 250px;
+    min-height: 180px;
   }
   .card-label {
     font-size: 1rem;

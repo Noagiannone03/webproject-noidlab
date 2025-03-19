@@ -51,7 +51,7 @@
     background-clip: content-box;
     min-height: auto;               /* S'adapte au contenu */
     text-align: center;
-    height: 760px;
+    height: 97vh;
   }
   
 
@@ -71,13 +71,7 @@
     box-shadow: inset 0 0 0 3px black;
   }
   
-  /* Titre */
-  .section-title {
-    font-family: 'extra-bold-montserrat', sans-serif;
-    font-size: 3rem;
-    text-align: left;
-    color: #131313;
-  }
+
   
   
   
@@ -93,7 +87,7 @@
   /* Sous-titre et paragraphe fusionnés */
   .stack-card.subtitle {
     font-family: 'bold-montserrat', sans-serif;
-    max-width: 1110px;
+    max-width: 1280px;
     margin: 0 auto;
     font-size: 0.5em;
     text-align: center;
