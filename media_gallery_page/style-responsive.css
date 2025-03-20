@@ -14,6 +14,7 @@
     .media-grid { gap: 15px; }
     .section-separator { max-width: 1000px; }
   }
+
   @media (min-width: 768px) and (max-width: 991px) {
     .photos-header .section-title {
       /* Décalage de 15px vers la gauche */
@@ -33,7 +34,7 @@
     .media-grid { 
       gap: 10px; 
       padding: 0 5px;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
     .section-separator { 
       max-width: 800px;
@@ -53,11 +54,12 @@
       padding: 30px 20px;
      }
     h2.section-title {
+      font-family: 'bold-montserrat', sans-serif;
        font-size: 2rem; text-align: center; 
       }
     .media-grid {
       padding: 0 0;
-       grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 5px;
+       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 5px;
        }
     .section-separator {
        max-width: 90%;
@@ -65,4 +67,33 @@
     .filter-buttons { 
       flex-wrap: wrap; justify-content: center; 
     }
+    
+.modal-content {
+  position: relative;
+ margin: 10px 10px;
+  min-width: fit-content;  /* Taille minimale pour éviter un modal trop petit */
+  min-height: fit-content; /* Taille minimale pour une bonne lisibilité */
+  background: #000;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  /* Optionnel : centrer le contenu si besoin */
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-buttons button {
+  padding: 6px 10px;
+  border: 2px solid #000;
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #000;
+}
+.filter-buttons button:hover,
+.filter-buttons button.active {
+  background-color: #000;
+  color: #fff;
+}
   }
