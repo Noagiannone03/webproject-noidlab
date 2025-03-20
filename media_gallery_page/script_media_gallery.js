@@ -23,13 +23,11 @@ let extraLoaded = false;
 const extraPhotos = [
   // Exterieur photos
   { src: "../assets/images/dans-les-murs/Danslesmurs_A12.jpg", alt: "Exterieur Photo 1", category: "exterieur" },
-  { src: "../assets/images/hors-les-murs/53-event-noid.jpg", alt: "Exterieur Photo 2", category: "exterieur" },
   { src: "../assets/images/hors-les-murs/57-event-noid.jpg", alt: "Exterieur Photo 3", category: "exterieur" },
   { src: "../assets/images/hors-les-murs/74-event-noid.jpg", alt: "Exterieur Photo 4", category: "exterieur" },
   { src: "../assets/images/hors-les-murs/2-event-noid.jpg", alt: "Exterieur Photo 5", category: "exterieur" },
   { src: "../assets/images/hors-les-murs/19-event-noid.jpg", alt: "Exterieur Photo 6", category: "exterieur" },
   { src: "../assets/images/hors-les-murs/36-event-noid.jpg", alt: "Exterieur Photo 7", category: "exterieur" },
-  { src: "../assets/images/hors-les-murs/53-event-noid.jpg", alt: "Exterieur Photo 8", category: "exterieur" },
   { src: "../assets/images/hors-les-murs/75-event-noid.jpg", alt: "Exterieur Photo 9", category: "exterieur" },
   { src: "../assets/images/dans-les-murs/Danslesmurs_4.jpg", alt: "Exterieur Photo 10", category: "exterieur" },
   { src: "../assets/images/dans-les-murs/Danslesmurs_A25.jpg", alt: "Exterieur Photo 11", category: "exterieur" },
