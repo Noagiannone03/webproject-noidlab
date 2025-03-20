@@ -5,7 +5,7 @@
 /* ------------------------------ */
 /* Grands écrans (min-width: 1920px) */
 /* ------------------------------ */
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 2000px) {
   #slider-section {
     height: auto;
     padding: 60px 80px;
@@ -24,8 +24,8 @@
   .slider-card {
     position: relative;
     overflow: hidden;
-    width: 590px;
-    height: 400px;
+    width: 610px;
+    height: 420px;
   }
   /* Overlay par défaut (banderau en bas) */
   .slider-card .overlay {

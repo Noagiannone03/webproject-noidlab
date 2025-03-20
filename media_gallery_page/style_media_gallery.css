@@ -357,7 +357,7 @@ h2.section-title {
 /* ---------- GRID SECTIONS (Photos, Vidéos, Audio) ---------- */
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 10px;
   padding: 0 20px;
   max-width: 1200px;
@@ -378,6 +378,11 @@ h2.section-title {
 .audio-grid .media-card {
   aspect-ratio: 1 / 1;
 }
+
+.videos-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
 .see-more { text-align: center; margin-top: 20px; }
 .see-more button {
   padding: 10px 20px;
@@ -530,22 +535,36 @@ h2.section-title {
   justify-content: center;
   z-index: 1200;
 }
-.media-modal.active { display: flex; }
+
+.media-modal.active {
+  display: flex;
+}
+
 .modal-content {
   position: relative;
   max-width: 90%;
   max-height: 90%;
+  min-width: 800px;  /* Taille minimale pour éviter un modal trop petit */
+  min-height: 500px; /* Taille minimale pour une bonne lisibilité */
+  background: #000;
   border-radius: 15px;
   overflow: hidden;
-  background: #000;
+  display: flex;
+  /* Optionnel : centrer le contenu si besoin */
+  align-items: center;
+  justify-content: center;
 }
+
+/* Pour forcer le média à occuper tout le conteneur */
 .modal-content img,
-.modal-content video {
+.modal-content video,
+.modal-content iframe {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover; /* Remplit le conteneur, quitte à rogner */
   display: block;
 }
+
 .modal-close {
   position: absolute;
   top: 10px;
@@ -556,6 +575,11 @@ h2.section-title {
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 1300;
+}
+
+.modal-media{
+  height: 100%;
+  width: 100%;
 }
 .modal-prev, .modal-next {
   position: absolute;
@@ -568,39 +592,10 @@ h2.section-title {
   cursor: pointer;
   z-index: 1300;
 }
+
 .modal-prev { left: 10px; }
 .modal-next { right: 10px; }
 
-/* ---------- Responsive ---------- */
-@media (min-width: 1200px) {
-  main { padding-top: 70px; }
-  section { padding: 50px 100px; }
-  h2.section-title { font-size: 3rem; }
-  .media-grid { gap: 20px; }
-  .section-separator { max-width: 1200px; }
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-  main { padding-top: 70px; }
-  section { padding: 40px 80px; }
-  h2.section-title { font-size: 2.75rem; }
-  .media-grid { gap: 15px; }
-  .section-separator { max-width: 1000px; }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  main { padding-top: 70px; }
-  section { padding: 35px 60px; }
-  h2.section-title { font-size: 2.5rem; }
-  .media-grid { gap: 10px; }
-  .section-separator { max-width: 800px; }
-}
-@media (max-width: 767px) {
-  main { padding-top: 70px; }
-  section { padding: 30px 20px; }
-  h2.section-title { font-size: 2rem; text-align: center; }
-  .media-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 5px; }
-  .section-separator { max-width: 90%; }
-  .filter-buttons { flex-wrap: wrap; justify-content: center; }
-}
 
 
 footer {
