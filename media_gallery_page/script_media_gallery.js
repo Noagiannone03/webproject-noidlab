@@ -1,14 +1,7 @@
 
   AOS.init({ duration: 800 });
 
-  /* ----------------- Navbar Dropdown ----------------- */
-  const menuBtn = document.getElementById("menu-btn");
-  const dropdown = document.getElementById("dropdown");
-  if (menuBtn && dropdown) {
-    menuBtn.addEventListener("click", () => { 
-      dropdown.classList.toggle("active"); 
-    });
-  }
+
 
   /* ----------------- Filter Photos ----------------- */
 // Sélection des éléments du DOM
@@ -557,4 +550,15 @@ if (modalNext) {
 
 
 
+  
 
+
+
+
+
+
+
+
+
+
+  

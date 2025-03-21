@@ -46,6 +46,7 @@
     transform: none;
   }
   .dropdown .follow-card {
+    border: 3px solid #000;
     background-color: white;
     color: black;
      padding: 1.5vh 1.5vw;

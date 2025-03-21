@@ -563,6 +563,9 @@ document.querySelectorAll('.pill-item').forEach(pill => {
       updateCount();
     });
   
+
+
+    
     /* Slider Flash News avec drag, pause et seuil réduit */
     const slider = document.querySelector('.flash-news-slider');
     const dots = document.querySelectorAll('.slider-dots .dot');
@@ -996,3 +999,6 @@ function initMap() {
   bounds.extend(point2);
   map.fitBounds(bounds);
 }
+
+
+

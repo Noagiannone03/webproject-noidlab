@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>No ID Website Manager</title>
+  <!-- SweetAlert2 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <style>
+    /* ===============================
+       GLOBAL & RESET
+    ================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: #f0f0f5;
+      color: #333;
+    }
+    a { text-decoration: none; color: inherit; }
+    
+    /* ===============================
+       LOGIN PAGE (Design épuré)
+    ================================ */
+    #login-page {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+    }
+    #login-container {
+      background: #fafafa;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    #login-container img {
+      width: 80px;
+      margin-bottom: 20px;
+    }
+    #login-container h2 {
+      margin-bottom: 20px;
+      color: #111;
+    }
+    #login-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    #login-container button {
+      width: 100%;
+      padding: 12px;
+      background: #007aff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    #login-container button:hover {
+      background: #005bb5;
+    }
+
+    /* ===============================
+       ADMIN PANEL
+    ================================ */
+    #admin-panel {
+      display: none;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Sidebar styles */
+    .sidebar {
+      width: 240px;
+      background: #1c1c1e;
+      color: #fff;
+      padding-top: 20px;
+      position: fixed;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .sidebar ul li.active,
+    .sidebar ul li:hover {
+      background: #2c2c2e;
+    }
+    /* Sur mobile, la sidebar se cache */
+    .sidebar.hide {
+      transform: translateX(-100%);
+    }
+    /* Main Content */
+    .main-content {
+      margin-left: 240px;
+      padding: 20px;
+      height: 100%;
+      overflow-y: auto;
+      transition: margin-left 0.3s ease;
+    }
+    .header {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    /* Mobile header pour le toggle de la sidebar */
+    .mobile-header {
+      display: none;
+      background: #fff;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      z-index: 1001;
+      top: 0;
+      left: 0;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mobile-header button {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #007aff;
+    }
+    
+    /* ===============================
+       NEWS SECTION
+    ================================ */
+    .news-section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .news-section h3 {
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      color: #111;
+    }
+    /* Flash News Banner Preview */
+    .flash-news-banner {
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      width: 95%;
+      margin: 0 auto 20px;
+      padding: 15px;
+      box-sizing: border-box;
+      margin-top: 2%;
+      z-index: 2;
+      color: #fff;
+    }
+    .flash-news-slider {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .news-item {
+      flex: 0 0 100%;
+      display: flex;
+      align-items: center;
+    }
+    .news-item img {
+      width: 65px;
+      height: 65px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+    .news-content {
+      text-align: left;
+    }
+    .news-content .news-title {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .news-content .news-text {
+      font-size: 0.9rem;
+    }
+    .slider-dots {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+    }
+    .slider-dots .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      margin-left: 5px;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    .slider-dots .dot.active {
+      opacity: 1;
+    }
+    /* Section Ajout de News */
+    .add-news {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+    .add-news h4 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      color: #111;
+    }
+    .upload-container {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 15px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .upload-container:hover {
+      border-color: #007aff;
+    }
+    .upload-container input[type="file"] {
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      cursor: pointer;
+    }
+    .upload-container img {
+      max-width: 100%;
+      height: auto;
+      display: none;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+    .add-news input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .add-news button {
+      padding: 12px 20px;
+      background: #34c759;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .add-news button:hover {
+      background: #28a745;
+    }
+    /* Liste des News publiées */
+    .news-list {
+      margin-top: 20px;
+    }
+    .news-item-display {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f7f7f7;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .news-item-display img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-right: 10px;
+    }
+    .news-item-display .news-info {
+      flex: 1;
+    }
+    .news-item-display .news-info strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #111;
+    }
+    .news-item-display .news-info small {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .news-item-display .news-actions button {
+      margin-left: 5px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    .news-item-display .news-actions .edit-btn {
+      background: #ffcc00;
+      color: #fff;
+    }
+    .news-item-display .news-actions .delete-btn {
+      background: #ff3b30;
+      color: #fff;
+    }
+    
+    /* ===============================
+       RESPONSIVE DESIGN
+    ================================ */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        height: 100%;
+        z-index: 1000;
+      }
+      .main-content {
+        margin-left: 0;
+        padding-top: 60px;
+      }
+      .mobile-header {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- PAGE DE LOGIN -->
+  <div id="login-page">
+    <div id="login-container">
+      <img src="../../assets/images/favicone/NOID logoNOIR FAVICON.png" alt="Logo">
+      <h2>Connexion</h2>
+      <input type="text" id="username" placeholder="Identifiant" required>
+      <input type="password" id="password" placeholder="Mot de passe" required>
+      <button id="login-btn">Se connecter</button>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="admin-panel">
+    <!-- Mobile header pour toggle de la sidebar -->
+    <div class="mobile-header">
+      <button id="toggle-sidebar">☰</button>
+      <div class="header">No ID Website Manager</div>
+    </div>
+    <div class="sidebar" id="sidebar">
+      <h2>No ID Manager</h2>
+      <ul>
+        <li class="active" data-tab="news-tab">News</li>
+        <!-- D'autres onglets peuvent être ajoutés ici -->
+      </ul>
+    </div>
+    <div class="main-content">
+      <!-- Onglet News -->
+      <div id="news-tab" class="tab-content">
+        <h3>News</h3>
+        <!-- Preview Flash News (la première news-item sert de prévisualisation en direct) -->
+        <div class="flash-news-banner" id="live-flash-news">
+          <div class="flash-news-slider">
+            <div class="news-item" id="live-preview">
+              <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="Preview Image">
+              <div class="news-content">
+                <h3 class="news-title" id="preview-title">Titre News</h3>
+                <p class="news-text" id="preview-text">Voici un long texte descriptif pour la news qui s'étend sur toute la largeur du bandeau.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slider-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+          </div>
+        </div>
+        <!-- Module d'ajout de News -->
+        <div class="add-news">
+          <h4>Ajouter une news</h4>
+          <div class="upload-container">
+            <p>Glissez-déposez une image ici ou cliquez pour sélectionner</p>
+            <input type="file" id="media-upload" accept="image/*">
+            <img id="media-preview" src="#" alt="Aperçu de l'image">
+          </div>
+          <input type="text" id="news-title" placeholder="Titre">
+          <input type="text" id="news-subtitle" placeholder="Sous-titre">
+          <button id="add-news-btn">Ajouter</button>
+        </div>
+        <!-- Affichage des News publiées (max. 3) -->
+        <div class="news-list" id="news-list">
+          <!-- Les news seront injectées ici dynamiquement -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK et Firestore (Module) -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAz6k773uRrJeRiJsFJS5Z-xg2I5nm892E",
+      authDomain: "no-id-website.firebaseapp.com",
+      projectId: "no-id-website",
+      storageBucket: "no-id-website.firebasestorage.app",
+      messagingSenderId: "166665035020",
+      appId: "1:166665035020:web:d60b6c11a54cc6c6acbd29",
+      measurementId: "G-RZB38ET9KC"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    // Fonction pour nettoyer le formulaire d'ajout et réinitialiser la preview
+    function clearAddNewsForm() {
+      document.getElementById('media-upload').value = "";
+      document.getElementById('news-title').value = "";
+      document.getElementById('news-subtitle').value = "";
+      const preview = document.getElementById('media-preview');
+      preview.src = "#";
+      preview.style.display = "none";
+      document.getElementById('preview-title').textContent = "Titre News";
+      document.getElementById('preview-text').textContent = "Voici un long texte descriptif pour la news qui s'étend sur toute la largeur du bandeau.";
+    }
+
+    // Rendu des news depuis Firestore (limité à 3)
+    async function renderNews() {
+      const newsList = document.getElementById('news-list');
+      newsList.innerHTML = "";
+      const querySnapshot = await getDocs(collection(db, "news"));
+      let count = 0;
+      querySnapshot.forEach((docSnap) => {
+        count++;
+        if(count <= 3) {
+          const newsData = docSnap.data();
+          const newsItem = document.createElement('div');
+          newsItem.className = "news-item-display";
+          newsItem.innerHTML = `
+            <div class="news-info">
+              <img src="${newsData.image || 'https://via.placeholder.com/50'}" alt="News Image">
+              <strong>${newsData.title}</strong>
+              <small>${newsData.subtitle}</small>
+            </div>
+            <div class="news-actions">
+              <button class="edit-btn" data-id="${docSnap.id}">Modifier</button>
+              <button class="delete-btn" data-id="${docSnap.id}">Supprimer</button>
+            </div>
+          `;
+          newsList.appendChild(newsItem);
+        }
+      });
+    }
+
+    // Prévisualisation de l'image lors du chargement
+    document.getElementById('media-upload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if(file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById('media-preview');
+          preview.src = e.target.result;
+          preview.style.display = "block";
+          // Mise à jour de l'image dans la preview live
+          document.querySelector('#live-preview img').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Mise à jour de la preview en temps réel pour le titre et sous-titre
+    document.getElementById('news-title').addEventListener('input', function() {
+      document.getElementById('preview-title').textContent = this.value || "Titre News";
+    });
+    document.getElementById('news-subtitle').addEventListener('input', function() {
+      document.getElementById('preview-text').textContent = this.value || "Voici un long texte descriptif pour la news qui s'étend sur toute la largeur du bandeau.";
+    });
+
+    // Ajout d'une news dans Firestore
+    document.getElementById('add-news-btn').addEventListener('click', async function() {
+      const fileInput = document.getElementById('media-upload');
+      const title = document.getElementById('news-title').value;
+      const subtitle = document.getElementById('news-subtitle').value;
+      let imageData = "";
+      if(fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+          imageData = e.target.result;
+          try {
+            await addDoc(collection(db, "news"), {
+              image: imageData,
+              title: title,
+              subtitle: subtitle,
+              createdAt: new Date()
+            });
+            Swal.fire({
+              icon: 'success',
+              title: 'News ajoutée',
+              text: 'La news a été ajoutée avec succès!'
+            });
+            clearAddNewsForm();
+            renderNews();
+          } catch (error) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Erreur',
+              text: 'Une erreur est survenue lors de l\'ajout de la news.'
+            });
+          }
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        try {
+          await addDoc(collection(db, "news"), {
+            image: "",
+            title: title,
+            subtitle: subtitle,
+            createdAt: new Date()
+          });
+          Swal.fire({
+            icon: 'success',
+            title: 'News ajoutée',
+            text: 'La news a été ajoutée avec succès!'
+          });
+          clearAddNewsForm();
+          renderNews();
+        } catch (error) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Une erreur est survenue lors de l\'ajout de la news.'
+          });
+        }
+      }
+    });
+
+    // Suppression et modification des news
+    document.getElementById('news-list').addEventListener('click', async function(e) {
+      if(e.target.classList.contains('delete-btn')) {
+        const newsId = e.target.getAttribute('data-id');
+        try {
+          await deleteDoc(doc(db, "news", newsId));
+          Swal.fire({
+            icon: 'success',
+            title: 'News supprimée',
+            text: 'La news a été supprimée avec succès!'
+          });
+          renderNews();
+        } catch (error) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Une erreur est survenue lors de la suppression de la news.'
+          });
+        }
+      }
+      if(e.target.classList.contains('edit-btn')) {
+        const newsId = e.target.getAttribute('data-id');
+        const newTitle = prompt("Nouveau titre:");
+        const newSubtitle = prompt("Nouveau sous-titre:");
+        if(newTitle !== null && newSubtitle !== null) {
+          try {
+            await updateDoc(doc(db, "news", newsId), {
+              title: newTitle,
+              subtitle: newSubtitle
+            });
+            Swal.fire({
+              icon: 'success',
+              title: 'News modifiée',
+              text: 'La news a été modifiée avec succès!'
+            });
+            renderNews();
+          } catch (error) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Erreur',
+              text: 'Une erreur est survenue lors de la modification de la news.'
+            });
+          }
+        }
+      }
+    });
+
+    // Rendu initial
+    renderNews();
+  </script>
+  <!-- SweetAlert2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- ===============================
+       LOGIN FUNCTIONALITY
+       (Identifiant: admin / Mot de passe: admin123)
+  ================================ -->
+  <script>
+    const USERNAME = "admin";
+    const PASSWORD = "admin123";
+
+    document.getElementById('login-btn').addEventListener('click', function() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if(username === USERNAME && password === PASSWORD) {
+        document.getElementById('login-page').style.display = "none";
+        document.getElementById('admin-panel').style.display = "block";
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: 'Identifiant ou mot de passe incorrect!'
+        });
+      }
+    });
+
+    // Toggle de la sidebar sur mobile
+    document.getElementById('toggle-sidebar').addEventListener('click', function() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('hide');
+    });
+  </script>
+</body>
+</html>
