@@ -70,6 +70,90 @@
   en proposant des événements (ré)créatifs et des solutions innovantes sur la côte méditerranéenne.">
   <meta name="twitter:image" content="https://www.votresite.com/chemin/vers/twitter-image.jpg">
   
+
+
+  <link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
+<script src="cookie-banner/silktide-consent-manager.js"></script>
+<script>
+silktideCookieBannerManager.updateCookieBannerConfig({
+  background: {
+    showBackground: true
+  },
+  cookieIcon: {
+    position: "bottomLeft"
+  },
+  cookieTypes: [
+    {
+      id: "necessary",
+      name: "Nécessaires",
+      description: "<p>Ces cookies sont nécessaires au bon fonctionnement du site et ne peuvent pas être désactivés. Ils aident notamment à la connexion et à la configuration de vos préférences de confidentialité.</p>",
+      required: true,
+      onAccept: function() {
+        console.log('Ajoutez ici la logique pour les cookies Nécessaires');
+      }
+    },
+    {
+      id: "analytics",
+      name: "Analytiques",
+      description: "<p>Ces cookies nous aident à améliorer le site en suivant les pages les plus populaires et la manière dont les visiteurs naviguent sur le site.</p>",
+      defaultValue: true,
+      onAccept: function() {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted',
+        });
+        dataLayer.push({
+          'event': 'consent_accepted_analytics',
+        });
+      },
+      onReject: function() {
+        gtag('consent', 'update', {
+          analytics_storage: 'denied',
+        });
+      }
+    },
+    {
+      id: "advertising",
+      name: "Publicitaires",
+      description: "<p>Ces cookies offrent des fonctionnalités supplémentaires et une personnalisation pour améliorer votre expérience. Ils peuvent être définis par nous ou par des partenaires dont nous utilisons les services.</p>",
+      onAccept: function() {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+        });
+        dataLayer.push({
+          'event': 'consent_accepted_advertising',
+        });
+      },
+      onReject: function() {
+        gtag('consent', 'update', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        });
+      }
+    }
+  ],
+  text: {
+    banner: {
+      description: "<p>Nous utilisons des cookies sur notre site pour améliorer votre expérience utilisateur, fournir un contenu personnalisé et analyser notre trafic. <a href=\"https://votre-site.com/politique-cookies\" target=\"_blank\">Politique de cookies.</a></p>",
+      acceptAllButtonText: "Tout accepter",
+      acceptAllButtonAccessibleLabel: "Accepter tous les cookies",
+      rejectNonEssentialButtonText: "Refuser les non-essentiels",
+      rejectNonEssentialButtonAccessibleLabel: "Refuser les cookies non essentiels",
+      preferencesButtonText: "Préférences",
+      preferencesButtonAccessibleLabel: "Basculer les préférences"
+    },
+    preferences: {
+      title: "Personnalisez vos préférences en matière de cookies",
+      description: "<p>Nous respectons votre droit à la vie privée. Vous pouvez choisir de ne pas autoriser certains types de cookies. Vos préférences s'appliqueront à l'ensemble de notre site.</p>",
+      creditLinkText: "Obtenez cette bannière gratuitement",
+      creditLinkAccessibleLabel: "Obtenez cette bannière gratuitement"
+    }
+  }
+});
+</script>
+
 </head>
 <body>
   <!-- Le canvas Three.js sera injecté dynamiquement -->
@@ -175,13 +259,17 @@
         <div class="social-buttons">
           <!-- Facebook -->
           <button>
+            <a href="https://www.facebook.com/noidlabtoulon">
             <img class="logo logo-black" src="assets/pictos/facebook_noir_et_blanc.png" alt="Facebook">
             <img class="logo logo-color" src="assets/pictos/facebook_couleur.png" alt="Facebook">
+          </a>
           </button>
           <!-- Instagram -->
           <button>
+            <a href="https://www.instagram.com/noidlab/">
             <img class="logo logo-black" src="assets/pictos/insta_noir_et_blanc.png" alt="Instagram">
             <img class="logo logo-color" src="assets/pictos/insta_couleur.png" alt="Instagram">
+          </a>
           </button>
           <!-- TikTok -->
           <button>
@@ -237,14 +325,30 @@
     <div class="bubble" style="width:120px; height:120px; top:40%; left:60%;"></div>
     <div class="bubble" style="width:60px; height:60px; top:80%; left:30%;"></div>
     
-<div class="flash-news-banner slide-in" style="animation-delay: 1.2s;">
-  <div class="flash-news-slider">
-    <!-- Les news récupérées de Firebase seront insérées ici -->
-  </div>
-  <div class="slider-dots">
-    <!-- Les dots seront générés ici -->
-  </div>
-</div>
+    <div class="flash-news-banner slide-in" style="animation-delay: 1.2s;">
+      <div class="flash-news-slider">
+        <div class="news-item">
+          <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="News 1">
+          <div class="news-content">
+            <h3 class="news-title">Titre News 1</h3>
+            <p class="news-text">Voici un long texte descriptif pour la news 1 qui s'étend sur toute la largeur du bandeau.</p>
+          </div>
+        </div>
+        <div class="news-item">
+          <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="News 2">
+          <div class="news-content">
+            <h3 class="news-title">Titre News 2</h3>
+            <p class="news-text">Voici un long texte descriptif pour la news 2 qui s'étend sur toute la largeur du bandeau.</p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="slider-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        
+      </div>
+    </div>
 
 
 
@@ -957,7 +1061,6 @@
 
 
 <section id="map-section"  class="observed-section">
-  <div id="map">
   <div class="section-header">
     <div class="title-container">
       <h1 class="section-title">OU NOUS TROUVER ?</h1>
@@ -998,62 +1101,14 @@
         www.fornap.org
       </p>
     </div>
-
-  </div>
-</div>
-  <!--PARTIE REDESIGNE POUR LE RESPONSIVE-->
-<div id="map-responsive">
-  <div class="section-header">
-    <div class="title-container">
-      <h1 class="section-title">OU NOUS TROUVER ?</h1>
-      <div class="circle" data-icon="assets/pictos/lieux.png"></div>
-    </div>
-    <p class="section-subtitle">Vous pouvez aussi nous rendre visite<br>dans les deux espaces que nous gérons.</p>
-  </div>
-  
-  <!-- Rangée d'infos de contact et images -->
-  <div class="contact-info-row">
-    <!-- Card gauche -->
-
-    <div class="center-images">
-      
-      <img src="assets/pictos/house.png" alt="Image principale" class="main-image">
-     
-    </div>
-    <div class="contact-card">
-      <p>
-        <strong>FEATlab</strong><br>
-        18 rue d'antrechaus<br>
-        83000 Toulon<br>
-        04 94 62 24 77<br>
-        info@noidlab.com<br>
-        www.noidlab.com
-      </p>
-    </div>
-    
-    <!-- Zone centrale avec images -->
-   
-    
-    <!-- Card droite -->
-    <div class="contact-card">
-      <p>
-        <strong>Fort NAPOLEON</strong><br>
-        56 montée charles Barnier<br>
-        83500 La Seyne sur Mer<br>
-        04 94 62 24 77<br>
-        info@fornap.org<br>
-        www.fornap.org
-      </p>
-    </div>
-
-
   </div>
   
   <!-- Google Map en dessous -->
  
 </section>
+
 <div id="map-container">
-  <div id="map"></div>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.984068136755!2d5.931554076533459!3d43.12586088637723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b0f171f29e3%3A0xd084a59bf3639ab5!2sNO%2FID*2A%20lab.!5e0!3m2!1sfr!2sfr!4v1742565487870!5m2!1sfr!2sfr"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 
 <footer>
@@ -1244,7 +1299,7 @@
 
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
-  <script type="module">
+  <!--<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
       import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
       
@@ -1311,14 +1366,12 @@
       
       // Appel initial pour charger les news
       loadNews();
-      </script>
+      </script> -->
 <script src="script.js" defer></script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-    </script>
+
 
 </body>
 </html>

@@ -46,7 +46,7 @@
       transform: rotate(90deg);
     }
     .main-image {
-      width: 40%;
+      width: 20%;
     }
     #new-section {
       padding: 20px 10px;
@@ -85,9 +85,7 @@
     #map-responsive{
       display: block;
     }
-    #map{
-      display: none;
-    }
+  
     .contact-card {
       width: 100%;
       padding: 15px;
@@ -113,7 +111,7 @@
       transform: rotate(90deg);
     }
     .main-image {
-      width: 40%;
+      width: 20%;
     }
 
     .image-item {
