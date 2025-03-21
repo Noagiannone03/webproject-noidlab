@@ -237,37 +237,15 @@
     <div class="bubble" style="width:120px; height:120px; top:40%; left:60%;"></div>
     <div class="bubble" style="width:60px; height:60px; top:80%; left:30%;"></div>
     
-    <!-- FLASH NEWS BANNER -->
 <div class="flash-news-banner slide-in" style="animation-delay: 1.2s;">
   <div class="flash-news-slider">
-    <div class="news-item">
-      <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="News 1">
-      <div class="news-content">
-        <h3 class="news-title">Titre News 1</h3>
-        <p class="news-text">Voici un long texte descriptif pour la news 1 qui s'étend sur toute la largeur du bandeau.</p>
-      </div>
-    </div>
-    <div class="news-item">
-      <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="News 2">
-      <div class="news-content">
-        <h3 class="news-title">Titre News 2</h3>
-        <p class="news-text">Voici un long texte descriptif pour la news 2 qui s'étend sur toute la largeur du bandeau.</p>
-      </div>
-    </div>
-    <div class="news-item">
-      <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="News 3">
-      <div class="news-content">
-        <h3 class="news-title">Titre News 3</h3>
-        <p class="news-text">Voici un long texte descriptif pour la news 3 qui s'étend sur toute la largeur du bandeau.</p>
-      </div>
-    </div>
+    <!-- Les news récupérées de Firebase seront insérées ici -->
   </div>
   <div class="slider-dots">
-    <span class="dot active" data-index="0"></span>
-    <span class="dot" data-index="1"></span>
-    <span class="dot" data-index="2"></span>
+    <!-- Les dots seront générés ici -->
   </div>
 </div>
+
 
 
   </section>
@@ -1266,7 +1244,74 @@
 
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
-   
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+      import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+      
+      // Configuration Firebase (remplacez par vos informations si besoin)
+      const firebaseConfig = {
+        apiKey: "AIzaSyAz6k773uRrJeRiJsFJS5Z-xg2I5nm892E",
+        authDomain: "no-id-website.firebaseapp.com",
+        projectId: "no-id-website",
+        storageBucket: "no-id-website.firebasestorage.app",
+        messagingSenderId: "166665035020",
+        appId: "1:166665035020:web:d60b6c11a54cc6c6acbd29",
+        measurementId: "G-RZB38ET9KC"
+      };
+      
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      
+      // Fonction pour charger et afficher les news dans le flash news banner
+      async function loadNews() {
+      try {
+        const newsCollection = collection(db, "news");
+        const querySnapshot = await getDocs(newsCollection);
+        console.log("Nombre de news récupérées :", querySnapshot.size);
+        if(querySnapshot.empty) {
+          console.log("Aucune news trouvée dans la collection.");
+        }
+        const slider = document.querySelector('.flash-news-slider');
+        slider.innerHTML = "";
+        querySnapshot.forEach((docSnap) => {
+          const news = docSnap.data();
+          console.log("News récupérée :", news);
+          const newsItem = document.createElement('div');
+          newsItem.classList.add('news-item');
+          newsItem.innerHTML = `
+            <img src="${news.image ? news.image : 'https://via.placeholder.com/65'}" alt="${news.title}">
+            <div class="news-content">
+              <h3 class="news-title">${news.title}</h3>
+              <p class="news-text">${news.subtitle}</p>
+            </div>
+          `;
+          slider.appendChild(newsItem);
+        });
+        updateSliderDots();
+      } catch (error) {
+        console.error("Erreur lors du chargement des news :", error);
+      }
+    }
+    
+      
+      // (Optionnel) Fonction pour mettre à jour les points de navigation du slider
+      function updateSliderDots() {
+        const slider = document.querySelector('.flash-news-slider');
+        const dotsContainer = document.querySelector('.slider-dots');
+        dotsContainer.innerHTML = ""; // Réinitialisation des dots
+        const totalItems = slider.children.length;
+        for(let i = 0; i < totalItems; i++){
+          const dot = document.createElement('span');
+          dot.classList.add('dot');
+          if(i === 0) dot.classList.add('active');
+          dot.setAttribute('data-index', i);
+          dotsContainer.appendChild(dot);
+        }
+      }
+      
+      // Appel initial pour charger les news
+      loadNews();
+      </script>
 <script src="script.js" defer></script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
