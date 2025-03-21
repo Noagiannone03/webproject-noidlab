@@ -44,9 +44,7 @@
     margin-top: 10px;
   }
 
-  #map-responsive{
-    display: none;
-  }
+
   #map{
     display: block;
   }
@@ -109,7 +107,7 @@
   
   /* Images secondaires (gauche et droite) */
   .side-image {
-    width: 30%;
+    width: 15%;
     object-fit: cover;
     margin : 0 30px;
     border-radius: 5px;
@@ -117,7 +115,7 @@
   
   /* Image principale */
   .main-image {
-    width: 40%;
+    width: 25%;
     object-fit: cover;
     border-radius: 5px;
   }

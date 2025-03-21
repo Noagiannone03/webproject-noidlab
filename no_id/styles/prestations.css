@@ -19,6 +19,38 @@
   src: url('../../assets/fonts/Montserrat-Bold.ttf') format('truetype');
 }
 
+
+.slider-wrapper {
+  position: relative;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* Zone scrollable contenant le carousel */
+.horizontal-slider {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 0;
+  /* Masquer la scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.horizontal-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Overlay de flou fixé au wrapper */
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px; /* Ajustez selon l'effet désiré */
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  z-index: 10;
+}
 /* Section PRESTATIONS */
 #pricing-section-custom {
   padding: 50px 60px;

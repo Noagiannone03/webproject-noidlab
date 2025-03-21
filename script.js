@@ -38,16 +38,22 @@
     
       updateIndicators();
     
-      /* Gestion du flip des cartes via écouteur d'événement sur chaque carte */
-      const flipCards = document.querySelectorAll('.flip-card');
-      flipCards.forEach(card => {
-        card.addEventListener('click', function(e) {
-          // On s'assure que le clic provient bien d'une carte et non d'un élément interne
-          // (Si nécessaire, on peut ajouter e.stopPropagation();)
-          card.classList.toggle('flipped');
-          console.log("Flip effectué sur :", card);
-        });
-      });
+     /* Gestion du flip des cartes via écouteur d'événement sur chaque carte */
+const flipCards = document.querySelectorAll('.flip-card');
+flipCards.forEach(card => {
+  card.addEventListener('click', function(e) {
+    // Si la carte cliquée n'est pas déjà retournée, on retire le flip de toutes les autres
+    if (!card.classList.contains('flipped')) {
+      flipCards.forEach(c => c.classList.remove('flipped'));
+      card.classList.add('flipped');
+    } else {
+      // Sinon, on la déflippe
+      card.classList.remove('flipped');
+    }
+    console.log("Flip effectué sur :", card);
+  });
+});
+
   
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -573,7 +579,7 @@ document.querySelectorAll('.pill-item').forEach(pill => {
     const totalItems = newsItems.length;
     let currentIndex = 0;
     let autoSlideInterval;
-  
+    let index = 0;
     // Variables pour le drag
     let isDragging = false;
     let startPos = 0;
@@ -675,7 +681,7 @@ document.querySelectorAll('.pill-item').forEach(pill => {
 
 
  // Déclare index dès le début pour éviter le problème de temporal dead zone
-let index = 0;
+
 
 
 // Carousel et positionnement 3D
@@ -704,8 +710,16 @@ function updateCarousel() {
 
 // Fonction pour l'effet flip sur une carte
 function flipCard(cardElement) {
-  cardElement.classList.toggle('flipped-custom');
+  // Si la carte cliquée est déjà retournée, on la déflippe et on quitte la fonction
+  if (cardElement.classList.contains('flipped-custom')) {
+    cardElement.classList.remove('flipped-custom');
+    return;
+  }
+  // Sinon, on déflippe toutes les cartes puis on retourne celle-ci
+  cardElements.forEach(card => card.classList.remove('flipped-custom'));
+  cardElement.classList.add('flipped-custom');
 }
+
 
 // Fonctions lightbox (si besoin)
 function openLightbox(imageSrc) {
