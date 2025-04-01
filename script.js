@@ -163,33 +163,43 @@ flipCards.forEach(card => {
       }
     });
 
-    // Gestion du modal et dropdown (reste inchangée)
-    const contactBtn = document.getElementById('contact-btn');
-    const menuBtn = document.getElementById('menu-btn');
-    const dropdown = document.getElementById('dropdown');
-    const modalOverlay = document.getElementById('modal-overlay');
-    const closeModal = document.getElementById('close-modal');
+// Gestion du modal et dropdown
+const contactBtn = document.getElementById('contact-btn');
+const menuBtn = document.getElementById('menu-btn');
+const dropdown = document.getElementById('dropdown');
+const modalOverlay = document.getElementById('modal-overlay');
+const closeModal = document.getElementById('close-modal');
+const dropdownOverlay = document.getElementById('dropdown-overlay');
 
-    contactBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      modalOverlay.classList.add('active');
-    });
+contactBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Ferme le dropdown s'il est ouvert
+  dropdown.classList.remove('active');
+  // Ferme le dropdown-overlay s'il est ouvert
+  dropdownOverlay.classList.remove('active');
+  // Ouvre le modal de contact
+  modalOverlay.classList.add('active');
+});
 
-    menuBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdown.classList.toggle('active');
-    });
+menuBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  dropdown.classList.toggle('active');
+});
 
-    document.addEventListener('click', (e) => {
-      if (!contactBtn.contains(e.target) && !modalOverlay.contains(e.target) && !menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.remove('active');
-      }
-    });
+document.addEventListener('click', (e) => {
+  if (
+    !contactBtn.contains(e.target) &&
+    !modalOverlay.contains(e.target) &&
+    !menuBtn.contains(e.target) &&
+    !dropdown.contains(e.target)
+  ) {
+    dropdown.classList.remove('active');
+  }
+});
 
-    closeModal.addEventListener('click', () => {
-      modalOverlay.classList.remove('active');
-    });
-
+closeModal.addEventListener('click', () => {
+  modalOverlay.classList.remove('active');
+});
 
 
 // Smooth scroll sur clic sur un lien du menu
