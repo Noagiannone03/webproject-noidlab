@@ -165,15 +165,11 @@
       height: 240px;
     }
     .card-custom {
-      width: 160px;
-      height: 240px;
+      width:fit-content;
+      height: fit-content;
       font-size: 16px;
     }
-    .flip-card {
-      width: 250px;
-      padding: 25px 0;
-      height: 400px;
-    }
+  
     .carousel {
       gap: 10px;
     }
@@ -185,4 +181,68 @@
     .carousel-indicators {
       display: none;
     }
+
+
+
+
+
+    
+  /* Conteneur horizontal du slider : scroll snap et marges réduites */
+  .horizontal-slider {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0;
+    margin: 0 10px;
+  }
+  .horizontal-slider::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Chaque carte s'affiche en quasi plein écran (une par vue) */
+  .flip-card {
+
+    height: 395px;
+    width: 285px;
+    margin: 0 0;
+    scroll-snap-align: center;
+    position: relative;
+
+    /* Effet de bounce automatique */
+  }
+ 
+  /* Si la carte est flipée, annuler le bounce */
+  .flip-card.flipped {
+    animation: none;
+  }
+  
+  .prestation-slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin: 10px 10px 10px;
+  }
+  
+  .prestation-slider-btn {
+    background: #000;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+ 
+  
+  .prestation-slider-btn:hover {
+    background: #333;
+    transform: scale(1.1);
+  }
+  
   }

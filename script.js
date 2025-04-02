@@ -38,21 +38,27 @@
     
       updateIndicators();
     
-     /* Gestion du flip des cartes via écouteur d'événement sur chaque carte */
-const flipCards = document.querySelectorAll('.flip-card');
-flipCards.forEach(card => {
+
+
+// Gestion du flip via clic direct sur la carte
+document.querySelectorAll('.flip-card').forEach(card => {
   card.addEventListener('click', function(e) {
-    // Si la carte cliquée n'est pas déjà retournée, on retire le flip de toutes les autres
-    if (!card.classList.contains('flipped')) {
-      flipCards.forEach(c => c.classList.remove('flipped'));
-      card.classList.add('flipped');
-    } else {
-      // Sinon, on la déflippe
-      card.classList.remove('flipped');
-    }
-    console.log("Flip effectué sur :", card);
+    flipCard(card);
   });
 });
+
+// Exemple d'appel depuis un bouton flip (pour mobile par exemple)
+document.querySelector('.prestation-slider-controls .prestation-flip')?.addEventListener('click', function(e) {
+  e.stopPropagation();
+  // Ici, vous pouvez choisir la carte à flipper, par exemple la première carte visible dans le slider
+  const currentCard = document.querySelector('.horizontal-slider .flip-card');
+  if (currentCard) {
+    flipCard(currentCard);
+  } else {
+    console.error("Aucune carte trouvée pour effectuer le flip.");
+  }
+});
+
 
   
 
@@ -1153,10 +1159,116 @@ document.addEventListener('DOMContentLoaded', () => {
       sliderContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
     });
   });
+
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Pour mobile uniquement (ajustez la condition si nécessaire)
+    if (window.innerWidth > 480) return;
+  
+    const sliderContainer = document.querySelector('.horizontal-slider');
+    const prevBtn = document.querySelector('.prestation-slider-controls .prestation-prev');
+    const nextBtn = document.querySelector('.prestation-slider-controls .prestation-next');
+    const flipBtn = document.querySelector('.prestation-slider-controls .prestation-flip');
+  
+    if (!sliderContainer || !prevBtn || !nextBtn || !flipBtn) return;
+  
+    // Calculer la largeur d'une carte
+    const firstCard = sliderContainer.querySelector('.flip-card');
+    let cardWidth = 0;
+    if (firstCard) {
+      const cardStyles = window.getComputedStyle(firstCard);
+      cardWidth = firstCard.getBoundingClientRect().width + parseFloat(cardStyles.marginRight || 0);
+    }
+    console.log("Largeur d'une carte :", cardWidth);
+  
+    prevBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      sliderContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+  
+    nextBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      sliderContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+  
+    flipBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      // Sélectionne la carte actuellement visible (ou la première carte du conteneur)
+      const currentCard = sliderContainer.querySelector('.flip-card');
+      if (currentCard && typeof flipCard === "function") {
+        flipCard(currentCard);
+      } else {
+        console.error("Aucune carte trouvée ou fonction flipCard introuvable");
+      }
+    });
+  });
+  
   
 
 
 
 
  
+  document.addEventListener("DOMContentLoaded", function() {
+    // Exécuter uniquement en mobile (≤480px)
+    if (window.innerWidth > 480) return;
+  
+    const sliderContainer = document.querySelector('.horizontal-slider');
+    const flipBtn = document.querySelector('.prestation-slider-controls .prestation-flip');
+  
+    if (!sliderContainer || !flipBtn) return;
+  
+    // Fonction qui retourne la carte la plus visible dans le slider
+    function getCurrentVisibleCard() {
+      const cards = sliderContainer.querySelectorAll('.flip-card');
+      const containerRect = sliderContainer.getBoundingClientRect();
+      let bestCard = null;
+      let maxVisible = 0;
+      cards.forEach(card => {
+        const cardRect = card.getBoundingClientRect();
+        const visibleLeft = Math.max(cardRect.left, containerRect.left);
+        const visibleRight = Math.min(cardRect.right, containerRect.right);
+        const visibleWidth = Math.max(0, visibleRight - visibleLeft);
+        if (visibleWidth > maxVisible) {
+          maxVisible = visibleWidth;
+          bestCard = card;
+        }
+      });
+      return bestCard;
+    }
+  
+    // Fonction flipCard qui bascule la classe "flipped"
+    function flipCard(card) {
+      card.classList.toggle('flipped');
+      console.log("Flip toggled on card:", card);
+    }
+  
+    // Ajout d'un écouteur sur chaque carte pour retourner directement celle-ci lors du clic
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.stopPropagation();
+        flipCard(card);
+      });
+    });
+  
+    // Gestion du clic sur le bouton flip (qui retourne la carte la plus visible)
+    flipBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      let currentCard = getCurrentVisibleCard();
+      // Si aucune carte n'est détectée, on prend la première
+      if (!currentCard) {
+        currentCard = sliderContainer.querySelector('.flip-card');
+      }
+      if (currentCard) {
+        flipCard(currentCard);
+      } else {
+        console.error("Aucune carte trouvée pour effectuer le flip.");
+      }
+    });
+  });
+  
+  
   

@@ -414,12 +414,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       <div class="horizontal-slider">
         <div class="carousel" >
           <!-- Exemple de plusieurs cartes flip (à ajuster en nombre pour former 3 pages) -->
-          <div class="flip-card" onclick="flipCard(this)">
-            <div class="flip-card-inner" onclick="flipCard(this)">
-              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/aménagement-d_espace-carte.png');"></div>
-              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/aménagement-d_espaces-dos-carte.png');"></div>
-            </div>
-          </div>
+        
           <div class="flip-card" onclick="flipCard(this)" >
             <div class="flip-card-inner" onclick="flipCard(this.parentNode)">
               <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/bureau-de-producion-carte.png');"></div>
@@ -456,6 +451,12 @@ silktideCookieBannerManager.updateCookieBannerConfig({
               <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/unité-de-fabrication-dos-carte.png');"></div>
             </div>
           </div>
+          <div class="flip-card" onclick="flipCard(this)">
+            <div class="flip-card-inner" onclick="flipCard(this)">
+              <div class="flip-card-front" style="background-image: url('assets/images/card-prestations/aménagement-d_espace-carte.png');"></div>
+              <div class="flip-card-back" style="background-image: url('assets/images/card-prestations/aménagement-d_espaces-dos-carte.png');"></div>
+            </div>
+          </div>
         </div>
         <!-- Overlay de flou fixe sur le côté droit -->
         
@@ -467,9 +468,31 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         <span class="indicator" data-index="1"></span>
       
       </div>
+
+      <div class="prestation-slider-controls">
+        <button class="prestation-slider-btn prestation-prev">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        <button class="prestation-slider-btn prestation-flip">
+          <!-- Exemple d'icône flip (vous pouvez la modifier si besoin) -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="#fff" d="M12 6V3L8 7l4 4V8c3.31 0 6 2.69 6 6 0 .34-.03.67-.08 1h2.02c.05-.33.06-.66.06-1 0-4.42-3.58-8-8-8zm-6 6c0-.34.03-.67.08-1H4.06C4 11.33 4 11.66 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6z"/>
+          </svg>
+        </button>
+        <button class="prestation-slider-btn prestation-next">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+          </svg>
+        </button>
+      </div>
+      
+      
     </div>
   </section>
   
+
 
 
   
