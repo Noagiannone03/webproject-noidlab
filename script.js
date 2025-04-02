@@ -1211,16 +1211,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
- 
   document.addEventListener("DOMContentLoaded", function() {
     // Exécuter uniquement en mobile (≤480px)
     if (window.innerWidth > 480) return;
-  
+    
     const sliderContainer = document.querySelector('.horizontal-slider');
     const flipBtn = document.querySelector('.prestation-slider-controls .prestation-flip');
-  
+    
     if (!sliderContainer || !flipBtn) return;
-  
+    
     // Fonction qui retourne la carte la plus visible dans le slider
     function getCurrentVisibleCard() {
       const cards = sliderContainer.querySelectorAll('.flip-card');
@@ -1239,22 +1238,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       return bestCard;
     }
-  
-    // Fonction flipCard qui bascule la classe "flipped"
+    
+    // Fonction flipCard qui retire le flip des autres avant d'appliquer sur la carte cible
     function flipCard(card) {
-      card.classList.toggle('flipped');
+      if (!card.classList.contains('flipped')) {
+        // Déflippe toutes les cartes
+        sliderContainer.querySelectorAll('.flip-card').forEach(c => c.classList.remove('flipped'));
+        card.classList.add('flipped');
+      } else {
+        card.classList.remove('flipped');
+      }
       console.log("Flip toggled on card:", card);
     }
-  
-    // Ajout d'un écouteur sur chaque carte pour retourner directement celle-ci lors du clic
+    
+    // Gestion du clic sur chaque carte pour un flip direct
     document.querySelectorAll('.flip-card').forEach(card => {
       card.addEventListener('click', function(e) {
         e.stopPropagation();
         flipCard(card);
       });
     });
-  
-    // Gestion du clic sur le bouton flip (qui retourne la carte la plus visible)
+    
+    // Bouton flip : retourne la carte la plus visible dans le slider
     flipBtn.addEventListener('click', function(e) {
       e.stopPropagation();
       let currentCard = getCurrentVisibleCard();
@@ -1267,6 +1272,34 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         console.error("Aucune carte trouvée pour effectuer le flip.");
       }
+    });
+  });
+  
+  
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // Exécuter uniquement sur mobile (max-width: 480px)
+    if (window.innerWidth > 480) return;
+    
+    const sliderCards = document.querySelectorAll('.slider-card');
+    
+    // Ajout d'un écouteur sur chaque carte pour toggler l'overlay
+    sliderCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Fermer les autres cartes
+        sliderCards.forEach(c => {
+          if (c !== card) c.classList.remove('active');
+        });
+        // Toggle sur la carte cliquée
+        card.classList.toggle('active');
+      });
+    });
+    
+    // Fermer l'overlay si l'utilisateur clique ailleurs sur la page
+    document.addEventListener('click', () => {
+      sliderCards.forEach(card => card.classList.remove('active'));
     });
   });
   

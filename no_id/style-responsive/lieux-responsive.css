@@ -310,31 +310,24 @@
     max-width: 350px;
     height: 240px;
     margin: 0 auto;
-    cursor: pointer;
   }
-  #responsive-subtitle-lieux { 
-    display: flex; 
-  }
-  #subtitle { 
-    display: none; 
-  }
+  #responsive-subtitle-lieux { display: flex; }
+  #subtitle { display: none; }
   .slider-card .overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.5);
     color: #fff;
     padding: 15px;
     transition: height 0.4s ease;
     overflow: hidden;
-    height: 70px; /* Bandeau réduit par défaut */
+    height: 70px;
     box-sizing: border-box;
-    /* Disposition par défaut en ligne */
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
   }
   .slider-card .overlay .content {
     width: 100%;
@@ -365,39 +358,32 @@
   .slider-card .overlay .content .footer button.toggle-btn {
     padding: 8px 12px;
     font-size: 0.9rem;
+    align-self: flex-end;
   }
-  
-  /* État actif : la carte est cliquée pour s'étendre */
   .slider-card.active .overlay {
-    height: auto;  /* Laisser la hauteur s'ajuster à son contenu */
+    height: 100%;
     padding-top: 20px;
-    /* Passage en disposition colonne pour afficher tout le contenu */
-    flex-direction: column;
-    align-items: flex-start;
   }
   .slider-card.active .overlay .content {
-    display: flex;
     flex-direction: column;
-    width: 100%;
-    gap: 10px;
-  }
-  .slider-card.active .overlay .text {
-    margin-bottom: 10px;
-  }
-  /* Le bouton se place en bas avec margin-top: auto */
-  .slider-card.active .overlay button.toggle-btn {
-    margin-top: auto;
-    align-self: stretch;
+    justify-content: space-between;
+    height: 100%;
   }
   .slider-card.active .overlay .extra-content {
-    max-height: 100px; /* Ajustez selon la quantité de contenu */
+    max-height: 100px;
     opacity: 1;
   }
-  
   .slider-cards {
     margin-top: 30px;
     flex-direction: column;
     gap: 20px;
     align-items: center;
   }
+  .slider-card.active .overlay button.toggle-btn {
+    align-self: flex-end;
+  }
+ 
+  
+  
 }
+
