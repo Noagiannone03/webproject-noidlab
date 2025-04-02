@@ -147,6 +147,11 @@
   z-index: 10;
 }
 
+.prestation-slider-controls {
+  display: none;
+  
+}
+
 /* Indicators */
 .carousel-indicators {
 
@@ -157,7 +162,7 @@
 .indicator {
   width: 12px;
   height: 12px;
-  background: #ccc;
+  background: #d1d0d0;
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s;
