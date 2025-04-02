@@ -238,27 +238,34 @@ filterButtons.forEach(btn => {
     });
   });
 });
-
 // Sélection des éléments du modal
 const mediaModal = document.getElementById("media-modal");
 const modalMedia = document.getElementById("modal-media");
 const modalClose = document.getElementById("modal-close");
 const modalPrev = document.getElementById("modal-prev");
 const modalNext = document.getElementById("modal-next");
+const modalPrevDekstop = document.getElementById("modal-prev-dekstop");
+const modalNextDekstop = document.getElementById("modal-next-dekstop");
 
 let currentMediaIndex = 0;
 let currentMediaList = [];
 
-// Sélection de toutes les cartes des grilles (images et vidéos)
-const mediaCards = document.querySelectorAll(".media-grid .media-card");
-mediaCards.forEach((card, index) => {
-  // Pour la section audio, on ne gère pas le modal
-  if (card.closest("#audio")) return;
-  card.addEventListener("click", () => {
-    currentMediaIndex = index;
-    currentMediaList = Array.from(document.querySelectorAll(".media-grid .media-card"));
-    loadModalContent(currentMediaList[currentMediaIndex]);
+// Pour le modal (images & vidéos) – utiliser la délégation d'événements
+document.querySelectorAll(".media-grid").forEach(grid => {
+  // Ne pas attacher pour la section audio
+  if (grid.closest("#audio")) return;
+  grid.addEventListener("click", (e) => {
+    const card = e.target.closest(".media-card");
+    if (!card) return;
+    // Récupère la liste actuelle de cartes dans ce grid (images ou vidéos)
+    const cards = Array.from(grid.querySelectorAll(".media-card"));
+    // Détermine l'index de la carte cliquée dans ce grid
+    currentMediaIndex = cards.indexOf(card);
+    currentMediaList = cards;
+    loadModalContent(card);
     mediaModal.classList.add("active");
+    // Désactive le scroll de la page
+    document.body.style.overflow = "hidden";
   });
 });
 
@@ -306,9 +313,30 @@ function loadModalContent(card) {
 // Fermeture du modal
 if (modalClose) {
   modalClose.addEventListener("click", () => {
+    // Vider le contenu du modal pour arrêter la lecture des médias
+    modalMedia.innerHTML = "";
     mediaModal.classList.remove("active");
+    // Rétablir le scroll de la page
+    document.body.style.overflow = "";
   });
 }
+
+
+mediaModal.addEventListener("click", (e) => {
+  // Si l'utilisateur clique directement sur l'overlay (et non sur un enfant du modal)
+  if (e.target === mediaModal) {
+    closeMediaModal();
+  }
+});
+
+function closeMediaModal() {
+  // Vider le contenu du modal pour arrêter la lecture
+  modalMedia.innerHTML = "";
+  mediaModal.classList.remove("active");
+  // Réactiver le scroll de la page
+  document.body.style.overflow = "";
+}
+
 
 // Navigation "Précédent" et "Suivant" dans le modal
 if (modalPrev) {
@@ -324,6 +352,18 @@ if (modalNext) {
   });
 }
 
+if (modalPrevDekstop) {
+  modalPrevDekstop.addEventListener("click", () => {
+    currentMediaIndex = (currentMediaIndex - 1 + currentMediaList.length) % currentMediaList.length;
+    loadModalContent(currentMediaList[currentMediaIndex]);
+  });
+}
+if (modalNextDekstop) {
+  modalNextDekstop.addEventListener("click", () => {
+    currentMediaIndex = (currentMediaIndex + 1) % currentMediaList.length;
+    loadModalContent(currentMediaList[currentMediaIndex]);
+  });
+}
 
   /* ----------------- Image aléatoire pour la section Featured Background ----------------- */
   const bgImages = ["46-event-noid.jpg", "18-event-noid.jpg", "28-event-noid.jpg", "39-event-noid.jpg"];
@@ -336,133 +376,55 @@ if (modalNext) {
     console.error("Élément randomImage introuvable.");
   }
 
-  /* ----------------- Player (mise à jour de l'iframe) ----------------- */
-  const audioSection = document.getElementById("audio");
-  const iframeContainer = document.querySelector(".iframe-container");
-  if (audioSection && iframeContainer) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio >= 0.75) {
-          iframeContainer.classList.add("visible");
-        } else {
-          iframeContainer.classList.remove("visible");
-        }
-      });
-    }, { threshold: [0, 0.75, 1] });
-    observer.observe(audioSection);
-  } else {
-    console.error("Section audio ou conteneur iframe introuvable.");
-  }
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Sélection du conteneur du player audio sticky
+    const stickyPlayer = document.querySelector(".sticky-player");
+    if (!stickyPlayer) {
+      console.error("Conteneur du player audio introuvable");
+      return;
+    }
+    // Masquer le player par défaut
+    stickyPlayer.style.display = "none";
   
-  /* Mise à jour du src de l'iframe du player sans recréer l'iframe */
-  const audioCards = document.querySelectorAll("#audio .media-card");
-  audioCards.forEach(card => {
-    card.addEventListener("click", () => {
+    // Sélection de la section audio
+    const audioSection = document.getElementById("audio");
+    if (!audioSection) {
+      console.error("Section audio introuvable");
+      return;
+    }
+    
+    // Utilisation de la délégation d'événements dans la section audio
+    audioSection.addEventListener("click", function(e) {
+      // On recherche la carte audio cliquée
+      const card = e.target.closest(".media-card");
+      if (!card) return;
+      
       const newSrc = card.getAttribute("data-audio");
-      console.log("Audio card clicked, newSrc:", newSrc);
-      if (!iframeContainer) {
-        console.error("Aucun conteneur iframe trouvé!");
+      if (!newSrc) {
+        console.error("Aucun data-audio trouvé sur la carte");
         return;
       }
-      const iframe = iframeContainer.querySelector("iframe");
-      if (iframe) {
-        iframe.src = newSrc;
-        console.log("iframe src mis à jour:", newSrc);
-      } else {
-        console.error("Aucun iframe existant dans le conteneur.");
+      
+      // Sélection de l'iframe à l'intérieur du conteneur du player
+      const iframe = stickyPlayer.querySelector("iframe");
+      if (!iframe) {
+        console.error("Aucun iframe trouvé dans le conteneur du player");
+        return;
       }
+      
+      // Mettre à jour le src de l'iframe et afficher le conteneur du player
+      iframe.src = newSrc;
+      stickyPlayer.style.display = "block";
+      console.log("Player affiché avec src:", newSrc);
     });
   });
+  
+  
 
-  /* ----------------- Audio Player Controls ----------------- */
-  const playPauseBtn = document.getElementById("play-pause");
-  const playIcon = document.getElementById("play-icon");
-  const pauseIcon = document.getElementById("pause-icon");
-  const prevTrackBtn = document.getElementById("prev-track");
-  const nextTrackBtn = document.getElementById("next-track");
-  const trackTitle = document.getElementById("track-title");
-  const trackArtist = document.getElementById("track-artist");
-  const albumArt = document.querySelector(".album-art img");
-  const volumeSlider = document.getElementById("volume-slider");
-  const discoverSounds = document.getElementById("discover-sounds");
 
-  const audioPlaylist = [
-    { src: "../assets/audio/sample.mp3", title: "Titre 1", artist: "Artiste 1", cover: "../assets/images/Danslesmurs_A27.jpg" },
-    { src: "../assets/audio/sample.mp3", title: "Titre 2", artist: "Artiste 2", cover: "../assets/images/Danslesmurs_A27.jpg" },
-    { src: "../assets/audio/sample.mp3", title: "Titre 3", artist: "Artiste 3", cover: "../assets/images/Danslesmurs_A27.jpg" }
-  ];
-  let currentTrackIndex = 0;
-  const audioPlayer = new Audio();
-  
-  function loadTrack(index) {
-    const track = audioPlaylist[index];
-    audioPlayer.src = track.src;
-    trackTitle.textContent = track.title;
-    trackArtist.textContent = track.artist;
-    albumArt.src = track.cover;
-  }
-  
-  loadTrack(currentTrackIndex);
-  
-  function startAudio() {
-    audioPlayer.play();
-    playIcon.style.display = "none";
-    pauseIcon.style.display = "block";
-    // Animation pour faire disparaître le bouton Discover en douceur
-    discoverSounds.classList.add("hide");
-    setTimeout(() => { discoverSounds.style.display = "none"; }, 400);
-    // Masquer l'overlay sur toutes les cards audio
-    document.querySelectorAll("#audio .audio-overlay").forEach(el => el.style.opacity = "0");
-  }
-  
-  if (playPauseBtn) {
-    playPauseBtn.addEventListener("click", () => {
-      if (audioPlayer.paused) {
-        startAudio();
-      } else {
-        audioPlayer.pause();
-        playIcon.style.display = "block";
-        pauseIcon.style.display = "none";
-      }
-    });
-  }
-  
-  if (prevTrackBtn) {
-    prevTrackBtn.addEventListener("click", () => {
-      currentTrackIndex = (currentTrackIndex - 1 + audioPlaylist.length) % audioPlaylist.length;
-      loadTrack(currentTrackIndex);
-      startAudio();
-    });
-  }
-  
-  if (nextTrackBtn) {
-    nextTrackBtn.addEventListener("click", () => {
-      currentTrackIndex = (currentTrackIndex + 1) % audioPlaylist.length;
-      loadTrack(currentTrackIndex);
-      startAudio();
-    });
-  }
-  
-  audioPlayer.addEventListener("timeupdate", () => {
-    const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    document.getElementById("progress-bar").style.width = progressPercent + "%";
-  });
-  
-  volumeSlider.addEventListener("input", () => {
-    audioPlayer.volume = volumeSlider.value;
-  });
-  
-  // Pour lancer directement la piste au clic sur une card audio
-  const directAudioCards = document.querySelectorAll("#audio .media-card");
-  directAudioCards.forEach(card => {
-    card.addEventListener("click", () => {
-      const audioSrc = card.getAttribute("data-audio");
-      currentTrackIndex = 0;
-      audioPlaylist[0].src = audioSrc;
-      loadTrack(currentTrackIndex);
-      startAudio();
-    });
-  });
   
   /* ----------------- Toggle "Voir plus" pour chaque section ----------------- */
   function setupToggle(sectionId, additionalItems, gridSelector, buttonSelector) {

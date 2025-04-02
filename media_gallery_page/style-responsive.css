@@ -2,14 +2,14 @@
 /* ---------- Responsive ---------- */
 @media (min-width: 1200px) {
     main { padding-top: 70px; }
-    section { padding: 50px 100px; }
+    section { padding: 10px 100px; }
     h2.section-title { font-size: 3rem; }
     .media-grid { gap: 20px; }
     .section-separator { max-width: 1200px; }
   }
   @media (min-width: 992px) and (max-width: 1199px) {
     main { padding-top: 70px; }
-    section { padding: 40px 80px; }
+    section { padding: 20px 80px; }
     h2.section-title { font-size: 2.75rem; }
     .media-grid { gap: 15px; }
     .section-separator { max-width: 1000px; }
@@ -26,7 +26,7 @@
       padding-top: 70px; 
     }
     section {
-       padding: 35px 60px; 
+       padding: 25px 60px; 
       }
     h2.section-title { 
       font-size: 2.5rem; 
@@ -51,7 +51,7 @@
       padding-top: 70px;
      }
     section { 
-      padding: 30px 20px;
+      padding: 0px 20px;
      }
     h2.section-title {
       font-family: 'bold-montserrat', sans-serif;

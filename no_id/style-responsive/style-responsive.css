@@ -7,6 +7,15 @@
    -------------------------------
    (Supposé : min-width 1920px)
 ----------------------------------- */
+
+
+@media (hover: none) and (pointer: coarse) {
+  *:hover {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 @media screen and (min-width: 1920px) {
   .section-title {
     font-size: 3.5rem;

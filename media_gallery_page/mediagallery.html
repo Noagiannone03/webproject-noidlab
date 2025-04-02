@@ -172,7 +172,6 @@
   </div>
   <div class="featured-overlay">
     <h1 class="featured-title">La Galerie Media</h1>
-    
   </div>
 </section>
 
@@ -468,26 +467,38 @@
     
     
     <!-- Bandeau inférieur (footer bottom) -->
-    <div class="footer-bottom">
+    <div class="footer-bottom"></div>
   </footer>
   <!-- Sticky Music Player -->
-  <footer>
-    <div class="iframe-container">
-      <!-- L'iframe initiale peut être vide ou avoir un src par défaut -->
-      <iframe class="iframplayer" width="100%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-030-session-red-room-deniamoro-afrobeat-world%2F" frameborder="0"></iframe>
+ 
+    <div class="sticky-player">
+      <iframe class="iframe-player" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-030-session-red-room-deniamoro-afrobeat-world%2F" frameborder="0" allowtransparency="true"></iframe>
     </div>
-  </footer>
+
   
   
-  <!-- Modal for Media -->
-  <div class="media-modal" id="media-modal">
+<!-- Modal for Media -->
+<div class="media-modal" id="media-modal">
+  <div class="modal-wrapper">
     <div class="modal-content">
-      <button class="modal-close" id="modal-close">✖</button>
-      <button class="modal-prev" id="modal-prev">⟨</button>
-      <div class="modal-media" id="modal-media"></div>
-      <button class="modal-next" id="modal-next">⟩</button>
+      <div class="modal-media" id="modal-media">
+        <!-- Le média (img, video, iframe) sera inséré ici -->
+      </div>
     </div>
+    <!-- Bouton de fermeture reste à l'extérieur -->
+    <button class="modal-close" id="modal-close">&#215;</button>
+    <!-- Conteneur de contrôle pour mobile (et qui sera masqué sur desktop) -->
+    <div class="modal-controls">
+      <button class="modal-prev" id="modal-prev">&#x2039;</button>
+      <button class="modal-next" id="modal-next">&#x203A;</button>
+    </div>
+    <!-- Pour desktop, on utilisera les boutons absolus positionnés sur les côtés -->
+    <button class="modal-prev desktop" id="modal-prev-dekstop">&#x2039;</button>
+    <button class="modal-next desktop" id="modal-next-dekstop">&#x203A;</button>
   </div>
+</div>
+
+
   
 
    

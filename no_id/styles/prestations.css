@@ -103,8 +103,8 @@
 /* Flip Card */
 .flip-card {
   position: relative;
-  width: 280px;
-  height: 400px;
+  width: 295px;
+  height: 410px;
   perspective: 1000px;
   scroll-snap-align: center;
   flex-shrink: 0;
