@@ -58,9 +58,18 @@
     box-shadow: inset 0 0 0 3px black;
   }
   
+  .mobile-slider-controls {
+    display: none;
+  }
 
  
-    
+  .pill-container {
+    display: flex;
+  }
+  /* Version mobile du filtre */
+  .mobile-filter {
+    display: none;
+  }
     
     
     /* Conteneur du titre */
@@ -151,6 +160,7 @@
   
   /* Card Item avec effet flat/neumorphisme */
   .card-item {
+    cursor: pointer;
     width: 212px;
     min-height: 205px;
     background: #fff;

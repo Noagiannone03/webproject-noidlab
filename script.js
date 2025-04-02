@@ -328,45 +328,52 @@ document.querySelectorAll('.pill-item').forEach(pill => {
     // Réinitialiser l'état de toutes les pillules
     document.querySelectorAll('.pill-item').forEach(el => el.classList.remove('active'));
 
-    if (isAlreadyActive) {
-      // Désactivation du filtre : réinitialisation de toutes les cards et du conteneur
+    if (isAlreadyActive || selectedCategory === "all") {
+      // Cas "Toutes" ou désactivation du filtre : on affiche toutes les cards
       document.querySelectorAll('.card-wrapper').forEach(card => {
-        card.classList.remove('filtered', 'emphasized');
+        card.style.opacity = 0;
+        setTimeout(() => {
+          card.style.display = "block";
+          void card.offsetWidth;
+          card.style.opacity = 1;
+        }, 500);
       });
       horizontalCardsContainer.classList.remove('filter-active');
-      // Optionnel : on peut aussi réinitialiser le scroll du container
       horizontalCardsContainer.scrollTo({ left: 0, behavior: "smooth" });
+      // Active la pillule "Toutes"
+      document.querySelector('.pill-item[data-category="all"]').classList.add('active');
     } else {
       // Active la pillule sélectionnée
       this.classList.add('active');
 
-      // Appliquer le filtre sur les cards
+      // Filtrer avec animation
       document.querySelectorAll('.card-wrapper').forEach(card => {
         if (card.getAttribute('data-category') === selectedCategory) {
-          card.classList.remove('filtered');
-          card.classList.add('emphasized');
+          card.style.display = "block";
+          card.style.opacity = 0;
+          void card.offsetWidth;
+          card.style.opacity = 1;
         } else {
-          card.classList.remove('emphasized');
-          card.classList.add('filtered');
+          card.style.opacity = 0;
+          setTimeout(() => { card.style.display = "none"; }, 500);
         }
       });
-
-      // Modifier l'alignement du conteneur pour que les éléments filtrés soient à gauche
       horizontalCardsContainer.classList.add('filter-active');
 
-      // Récupérer le premier élément filtré (mis en avant)
-      const firstEmphasized = document.querySelector('.card-wrapper.emphasized');
-      if (firstEmphasized) {
-        // Calcul de la position relative de l'élément par rapport au conteneur
+      // Ajuster le scroll pour afficher la première carte filtrée
+      const visibleCards = Array.from(document.querySelectorAll('.card-wrapper'))
+        .filter(card => card.style.display !== "none");
+      if (visibleCards.length) {
+        const firstVisible = visibleCards[0];
         const containerRect = horizontalCardsContainer.getBoundingClientRect();
-        const cardRect = firstEmphasized.getBoundingClientRect();
-        // Calcul de la nouvelle position de scroll souhaitée
+        const cardRect = firstVisible.getBoundingClientRect();
         const offset = cardRect.left - containerRect.left;
         horizontalCardsContainer.scrollTo({ left: horizontalCardsContainer.scrollLeft + offset, behavior: "smooth" });
       }
     }
   });
 });
+
 
 
 
@@ -1054,3 +1061,102 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const filterToggle = document.querySelector('.filter-toggle');
+  const filterOptions = document.querySelector('.filter-options');
+
+
+  
+  if (filterToggle && filterOptions) {
+    filterToggle.addEventListener('click', function() {
+      // Toggle l'affichage des options
+      if (filterOptions.style.display === "block") {
+        filterOptions.style.display = "none";
+        filterToggle.parentElement.classList.remove("open");
+      } else {
+        filterOptions.style.display = "block";
+        filterToggle.parentElement.classList.add("open");
+      }
+    });
+    
+    // Lorsqu'une option est cliquée
+    document.querySelectorAll('.filter-option').forEach(option => {
+      option.addEventListener('click', function() {
+        // Récupérer la catégorie sélectionnée
+        const category = this.getAttribute('data-category');
+        // Mettre à jour le texte du bouton
+        filterToggle.innerHTML = this.textContent + ' <span class="chevron">&#x25BC;</span>';
+        // Fermer les options
+        filterOptions.style.display = "none";
+        filterToggle.parentElement.classList.remove("open");
+        // Appliquer le filtre sur vos cartes (vous adapterez ce code à votre logique existante)
+        // Par exemple, pour toutes les cartes dans .horizontal-cards :
+        const cards = document.querySelectorAll('.horizontal-cards .card-wrapper');
+        cards.forEach(card => {
+          if (category === "all" || card.getAttribute('data-category') === category) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  }
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Vérifier que le conteneur des contrôles de slider mobile est présent
+    const mobileSliderControls = document.querySelector('.mobile-slider-controls');
+    if (!mobileSliderControls) {
+      console.log("Mobile slider controls non trouvés : script de défilement non activé.");
+      return;
+    }
+    
+    const sliderContainer = document.querySelector('.horizontal-cards');
+    const prevBtn = mobileSliderControls.querySelector('.prev');
+    const nextBtn = mobileSliderControls.querySelector('.next');
+    
+    // Vérifier que les éléments existent bien
+    if (!sliderContainer || !prevBtn || !nextBtn) return;
+    
+    // Calculer la largeur d'une carte (incluant la marge droite)
+    const firstCard = sliderContainer.querySelector('.card-wrapper');
+    let cardWidth = 0;
+    if (firstCard) {
+      const cardStyles = window.getComputedStyle(firstCard);
+      cardWidth = firstCard.offsetWidth + parseFloat(cardStyles.marginRight || 0);
+    }
+    console.log("Largeur d'une carte :", cardWidth);
+    
+    // Attacher l'événement pour défiler vers la gauche
+    prevBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      sliderContainer.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+    
+    // Attacher l'événement pour défiler vers la droite
+    nextBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      sliderContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+  });
+  
+
+
+
+
+ 
+  
