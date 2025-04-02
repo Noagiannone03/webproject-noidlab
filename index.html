@@ -561,11 +561,26 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
     <!-- Zone des catégories (pillules) -->
     <div class="pill-container">
-      <!-- Chaque bouton porte un data-category correspondant -->
+      <!-- Ajout d'un bouton "Toutes" qui sera actif par défaut -->
+      <button class="pill-item active" data-category="all">Tout</button>
       <button class="pill-item" data-category="2">Lieux</button>
       <button class="pill-item" data-category="1">Projets parallèles</button>
       <button class="pill-item" data-category="3">Évènements</button>
     </div>
+    
+    <!-- Version mobile : filtre toggle -->
+<div class="mobile-filter">
+  <button class="filter-toggle">Filtrer <span class="chevron">&#x25BC;</span></button>
+  <div class="filter-options">
+    <div class="filter-option" data-category="all">Tout</div>
+    <hr>
+    <div class="filter-option" data-category="2">Lieux</div>
+    <hr>
+    <div class="filter-option" data-category="1">Projets parallèles</div>
+    <hr>
+    <div class="filter-option" data-category="3">Évènements</div>
+  </div>
+</div>
 
     <!-- Zone des cards horizontales (Recycler view centrée) -->
     <div class="horizontal-cards">
@@ -932,6 +947,19 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         </div>
       </div>
     </div>
+    <div class="mobile-slider-controls">
+      <button class="slider-control prev">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+        </svg>
+      </button>
+      <button class="slider-control next">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+        </svg>
+      </button>
+    </div>
+    
   </div>
 </section>
 
