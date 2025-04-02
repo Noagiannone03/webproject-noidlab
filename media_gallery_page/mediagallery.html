@@ -172,14 +172,6 @@
   </div>
   <div class="featured-overlay">
     <h1 class="featured-title">La Galerie Media</h1>
-    <div class="scroll-indicator">
-      <svg class="arrow" viewBox="0 0 20 20">
-        <path d="M12 16l-6-6h12z"/>
-      </svg>
-      <svg class="arrow" viewBox="0 0 20 20">
-        <path d="M12 20l-6-6h12z"/>
-      </svg>
-    </div>
   </div>
 </section>
 
@@ -394,31 +386,31 @@
         </p>
       </div>
       
-      <!-- Colonne centrale -->
-      <div class="footer-column center">
-        <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
-        <div class="footer-info">
-          <h3 class="footer-subtitle">FEATlab</h3>
-          <p class="footer-details">
-            18 Rue d'Antrechaus<br>
-            83000 Toulon<br>
-            04 94 62 24 77<br>
-            info@noidlab.com | www.noidlab.com
-          </p>
-        </div>
-        <!-- Divider personnalisé -->
-        <div class="center-divider"></div>
-        <div class="footer-info footer-repeat">
-          <h3 class="footer-subtitle">Fort Napoleon</h3>
-          <p class="footer-details">
-            56 montée charles Barnier<br>
-            83500 La Seyne sur Mer<br>
-            04 94 62 24 77<br>
-            info@fornap.com | www.fornap.org
-          </p>
-        </div>
-        
+        <!-- Colonne centrale -->
+    <div class="footer-column center">
+      <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
+      <div class="footer-info">
+        <h3 class="footer-subtitle">FEATlab</h3>
+        <p class="footer-details">
+          18 Rue d'Antrechaus<br>
+          83000 Toulon<br>
+          04 94 62 24 77<br>
+          info@noidlab.com | <a href="pages_lieux/featlab/index-feat-lab.html" style="color: white; text-decoration: underline;" target="_blank">www.noidlab.com</a>
+        </p>
       </div>
+      <!-- Divider personnalisé -->
+      <div class="center-divider"></div>
+      <div class="footer-info footer-repeat">
+        <h3 class="footer-subtitle">Fort Napoleon</h3>
+        <p class="footer-details">
+          56 montée charles Barnier<br>
+          83500 La Seyne sur Mer<br>
+          04 94 62 24 77<br>
+          info@fornap.com | <a href="pages_lieux/fornap/index.html" style="color: white; text-decoration: underline;" target="_blank">www.fornap.org</a>
+        </p>
+      </div>
+      
+    </div>
       
       <!-- Colonne droite -->
   <div class="footer-column right">
@@ -467,34 +459,46 @@
       <hr class="footer-extra-line">
       <div class="footer-links">
         <p class="rights-text">tous droits réservés</p>
-        <a href="mentions-legales.html">Mentions Légales</a>
-        <a href="https://www.termsfeed.com/live/79f1b3f9-baed-478f-83e5-10379c6734b1">Conditions d'utilisation</a>
+        <a href="../legals/mentions-legales.html">Mentions Légales</a>
+        <a href="../legals/conditions-generales.html">Conditions d'utilisation</a>
        
       </div>
     </div>
     
     
     <!-- Bandeau inférieur (footer bottom) -->
-    <div class="footer-bottom">
+    <div class="footer-bottom"></div>
   </footer>
   <!-- Sticky Music Player -->
-  <footer>
-    <div class="iframe-container">
-      <!-- L'iframe initiale peut être vide ou avoir un src par défaut -->
-      <iframe class="iframplayer" width="100%" height="60" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-030-session-red-room-deniamoro-afrobeat-world%2F" frameborder="0"></iframe>
+ 
+    <div class="sticky-player">
+      <iframe class="iframe-player" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FUnderlab_Toulon%2Fudlb-030-session-red-room-deniamoro-afrobeat-world%2F" frameborder="0" allowtransparency="true"></iframe>
     </div>
-  </footer>
+
   
   
-  <!-- Modal for Media -->
-  <div class="media-modal" id="media-modal">
+<!-- Modal for Media -->
+<div class="media-modal" id="media-modal">
+  <div class="modal-wrapper">
     <div class="modal-content">
-      <button class="modal-close" id="modal-close">✖</button>
-      <button class="modal-prev" id="modal-prev">⟨</button>
-      <div class="modal-media" id="modal-media"></div>
-      <button class="modal-next" id="modal-next">⟩</button>
+      <div class="modal-media" id="modal-media">
+        <!-- Le média (img, video, iframe) sera inséré ici -->
+      </div>
     </div>
+    <!-- Bouton de fermeture reste à l'extérieur -->
+    <button class="modal-close" id="modal-close">&#215;</button>
+    <!-- Conteneur de contrôle pour mobile (et qui sera masqué sur desktop) -->
+    <div class="modal-controls">
+      <button class="modal-prev" id="modal-prev">&#x2039;</button>
+      <button class="modal-next" id="modal-next">&#x203A;</button>
+    </div>
+    <!-- Pour desktop, on utilisera les boutons absolus positionnés sur les côtés -->
+    <button class="modal-prev desktop" id="modal-prev-dekstop">&#x2039;</button>
+    <button class="modal-next desktop" id="modal-next-dekstop">&#x203A;</button>
   </div>
+</div>
+
+
   
 
    
@@ -513,39 +517,43 @@
       this.classList.remove('active');
     });
     
-    // Gestion du modal et dropdown
-    const contactBtn = document.getElementById('contact-btn');
-    const menuBtn = document.getElementById('menu-btn');
-    const dropdown = document.getElementById('dropdown');
-    const modalOverlay = document.getElementById('modal-overlay');
-    const closeModal = document.getElementById('close-modal');
-  
-    contactBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      modalOverlay.classList.add('active');
-    });
-  
-    menuBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdown.classList.toggle('active');
-    });
-  
-    document.addEventListener('click', (e) => {
-      if (
-        !contactBtn.contains(e.target) &&
-        !modalOverlay.contains(e.target) &&
-        !menuBtn.contains(e.target) &&
-        !dropdown.contains(e.target)
-      ) {
-        dropdown.classList.remove('active');
-      }
-    });
-  
-    closeModal.addEventListener('click', () => {
-      modalOverlay.classList.remove('active');
-    });
-  
+   // Gestion du modal et dropdown
+const contactBtn = document.getElementById('contact-btn');
+const menuBtn = document.getElementById('menu-btn');
+const dropdown = document.getElementById('dropdown');
+const modalOverlay = document.getElementById('modal-overlay');
+const closeModal = document.getElementById('close-modal');
+const dropdownOverlay = document.getElementById('dropdown-overlay');
 
+contactBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Ferme le dropdown s'il est ouvert
+  dropdown.classList.remove('active');
+  // Ferme le dropdown-overlay s'il est ouvert
+  dropdownOverlay.classList.remove('active');
+  // Ouvre le modal de contact
+  modalOverlay.classList.add('active');
+});
+
+menuBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  dropdown.classList.toggle('active');
+});
+
+document.addEventListener('click', (e) => {
+  if (
+    !contactBtn.contains(e.target) &&
+    !modalOverlay.contains(e.target) &&
+    !menuBtn.contains(e.target) &&
+    !dropdown.contains(e.target)
+  ) {
+    dropdown.classList.remove('active');
+  }
+});
+
+closeModal.addEventListener('click', () => {
+  modalOverlay.classList.remove('active');
+});
 
     const FORM_ENDPOINT = "https://formspree.io/f/xeoezqea";
 

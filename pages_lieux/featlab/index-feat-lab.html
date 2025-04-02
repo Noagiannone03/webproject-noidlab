@@ -279,7 +279,7 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
   
   <!-- Google Maps -->
   <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.984068136755!2d5.931554076533459!3d43.12586088637723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b0f171f29e3%3A0xd084a59bf3639ab5!2sNO%2FID*2A%20lab.!5e0!3m2!1sfr!2sfr!4v1742565487870!5m2!1sfr!2sfr"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.984068136755!2d5.931554076533459!3d43.12586088637723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b0f171f29e3%3A0xd084a59bf3639ab5!2sNO%2FID*2A%20lab.!5e0!3m2!1sfr!2sfr!4v1742565487870!5m2!1sfr!2sfr"  style="border:0;" allowfullscreen="" loading="lazy" width="100%" height="100%" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
   </div>
   
@@ -295,31 +295,31 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
         </p>
       </div>
       
-      <!-- Colonne centrale -->
-      <div class="footer-column center">
-        <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
-        <div class="footer-info">
-          <h3 class="footer-subtitle">FEATlab</h3>
-          <p class="footer-details">
-            18 Rue d'Antrechaus<br>
-            83000 Toulon<br>
-            04 94 62 24 77<br>
-            info@noidlab.com | www.noidlab.com
-          </p>
-        </div>
-        <!-- Divider personnalisé -->
-        <div class="center-divider"></div>
-        <div class="footer-info footer-repeat">
-          <h3 class="footer-subtitle">Fort Napoleon</h3>
-          <p class="footer-details">
-            56 montée charles Barnier<br>
-            83500 La Seyne sur Mer<br>
-            04 94 62 24 77<br>
-            info@fornap.com | www.fornap.org
-          </p>
-        </div>
-        
+     <!-- Colonne centrale -->
+     <div class="footer-column center">
+      <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
+      <div class="footer-info">
+        <h3 class="footer-subtitle">FEATlab</h3>
+        <p class="footer-details">
+          18 Rue d'Antrechaus<br>
+          83000 Toulon<br>
+          04 94 62 24 77<br>
+          info@noidlab.com | <a href="pages_lieux/featlab/index-feat-lab.html" style="color: white; text-decoration: underline;" target="_blank">www.noidlab.com</a>
+        </p>
       </div>
+      <!-- Divider personnalisé -->
+      <div class="center-divider"></div>
+      <div class="footer-info footer-repeat">
+        <h3 class="footer-subtitle">Fort Napoleon</h3>
+        <p class="footer-details">
+          56 montée charles Barnier<br>
+          83500 La Seyne sur Mer<br>
+          04 94 62 24 77<br>
+          info@fornap.com | <a href="pages_lieux/fornap/index.html" style="color: white; text-decoration: underline;" target="_blank">www.fornap.org</a>
+        </p>
+      </div>
+      
+    </div>
       
       <!-- Colonne droite -->
   <div class="footer-column right">
@@ -368,8 +368,8 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
       <hr class="footer-extra-line">
       <div class="footer-links">
         <p class="rights-text">tous droits réservés</p>
-        <a href="mentions-legales.html">Mentions Légales</a>
-        <a href="https://www.termsfeed.com/live/79f1b3f9-baed-478f-83e5-10379c6734b1">Conditions d'utilisation</a>
+        <a href="../../legals/mentions-legales.html">Mentions Légales</a>
+        <a href="../../legals/conditions-generales.html">Conditions d'utilisation</a>
        
       </div>
     </div>
@@ -393,37 +393,43 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
     });
     
     // Gestion du modal et dropdown
-    const contactBtn = document.getElementById('contact-btn');
-    const menuBtn = document.getElementById('menu-btn');
-    const dropdown = document.getElementById('dropdown');
-    const modalOverlay = document.getElementById('modal-overlay');
-    const closeModal = document.getElementById('close-modal');
-  
-    contactBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      modalOverlay.classList.add('active');
-    });
-  
-    menuBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdown.classList.toggle('active');
-    });
-  
-    document.addEventListener('click', (e) => {
-      if (
-        !contactBtn.contains(e.target) &&
-        !modalOverlay.contains(e.target) &&
-        !menuBtn.contains(e.target) &&
-        !dropdown.contains(e.target)
-      ) {
-        dropdown.classList.remove('active');
-      }
-    });
-  
-    closeModal.addEventListener('click', () => {
-      modalOverlay.classList.remove('active');
-    });
-  
+const contactBtn = document.getElementById('contact-btn');
+const menuBtn = document.getElementById('menu-btn');
+const dropdown = document.getElementById('dropdown');
+const modalOverlay = document.getElementById('modal-overlay');
+const closeModal = document.getElementById('close-modal');
+const dropdownOverlay = document.getElementById('dropdown-overlay');
+
+contactBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Ferme le dropdown s'il est ouvert
+  dropdown.classList.remove('active');
+  // Ferme le dropdown-overlay s'il est ouvert
+  dropdownOverlay.classList.remove('active');
+  // Ouvre le modal de contact
+  modalOverlay.classList.add('active');
+});
+
+menuBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  dropdown.classList.toggle('active');
+});
+
+document.addEventListener('click', (e) => {
+  if (
+    !contactBtn.contains(e.target) &&
+    !modalOverlay.contains(e.target) &&
+    !menuBtn.contains(e.target) &&
+    !dropdown.contains(e.target)
+  ) {
+    dropdown.classList.remove('active');
+  }
+});
+
+closeModal.addEventListener('click', () => {
+  modalOverlay.classList.remove('active');
+});
+
     
 
     const FORM_ENDPOINT = "https://formspree.io/f/xeoezqea";

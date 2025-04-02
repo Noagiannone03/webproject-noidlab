@@ -7,6 +7,12 @@
  body {  font-family: 'medium-montserrat', sans-serif; background: #fff; color: #333; }
  a { text-decoration: none; color: inherit; }
  
+ @media (hover: none) and (pointer: coarse) {
+  *:hover {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 
  
 @font-face {
@@ -115,30 +121,7 @@
 /* ----------------------- */
 /* DROPDOWN MENU */
 /* ----------------------- */
-.dropdown {
-  position: absolute;
-  top: 104px;
-  right: 50px;
-  max-width: 300px;
-  width: 24vw;
-  height: 70vh; 
-  max-height: 70vh;                   /* Dropdown occupe 70% de la hauteur du viewport */
-  display: flex;
-  flex-direction: column;
-  gap: 1vh;                       /* Petit espace entre les blocs */
-  border-radius: 2vh;
-  overflow-y: auto;
-  opacity: 0;
-  pointer-events: none;           /* Empêche l'interaction quand non actif */
-  transform: translateX(-3vh);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  z-index: 1100;
-}
-.dropdown.active {
-  opacity: 1;
-  pointer-events: auto;           /* Rétablit les interactions */
-  transform: translateX(0);
-}
+
 
 /* Répartition du poids des blocs :
    - Menu : 2 parts
@@ -328,6 +311,8 @@ section { padding: 30px 50px; }
 h2.section-title { 
   font-family: 'bold-montserrat', sans-serif;
   font-size: 2.5rem; 
+  align-self: center;
+  margin-left: 80px;
   text-align: left; 
   margin-bottom: 30px; 
 }
@@ -451,15 +436,19 @@ h2.section-title {
 /* ---------- Photos Section Header ---------- */
 /* Disposition verticale et centrée */
 .photos-header {
+  display:grid;
+  align-self: center;
+  margin-left: 70px;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
   padding: 0 20px;
+  max-width: 1200px;
 }
 .photos-header .section-title {
-  margin-left: -15px; /* Décalage de 15px vers la gauche */
+  /* Décalage de 15px vers la gauche */
   margin-bottom: 20px;
   width: 100%;
   font-family: 'bold-montserrat', sans-serif;
@@ -471,22 +460,26 @@ h2.section-title {
   justify-content: center;
 }
 
-/* ---------- STICKY MUSIC PLAYER ---------- */
-.iframe-container {
+.sticky-player {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  height: 60px; /* Ajustez la hauteur selon vos préférences */
   background-color: #25292c;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+  /* Optionnel : pour une transition d'apparition/disparition */
   transition: transform 0.5s ease, opacity 0.5s ease;
-  transform: translateY(100%);
-  opacity: 0;
 }
-.iframe-container.visible {
-  transform: translateY(0);
-  opacity: 1;
+
+.iframe-player {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
+
 .player-container {
   display: flex;
   align-items: center;
@@ -558,7 +551,6 @@ h2.section-title {
   background: #1db954;
   width: 0%;
 }
-
 /* ---------- MODAL MEDIA ---------- */
 .media-modal {
   position: fixed;
@@ -571,67 +563,161 @@ h2.section-title {
   align-items: center;
   justify-content: center;
   z-index: 1200;
+  padding: 20px; /* espace autour */
 }
 
 .media-modal.active {
   display: flex;
 }
 
-.modal-content {
+.modal-wrapper {
   position: relative;
+  width: 100%;
   max-width: 90%;
   max-height: 90%;
-  min-width: 800px;  /* Taille minimale pour éviter un modal trop petit */
-  min-height: 500px; /* Taille minimale pour une bonne lisibilité */
-  background: #000;
-  border-radius: 15px;
-  overflow: hidden;
+  margin: 0 auto;
   display: flex;
-  /* Optionnel : centrer le contenu si besoin */
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Pour forcer le média à occuper tout le conteneur */
+/* Les médias remplissent le conteneur */
 .modal-content img,
 .modal-content video,
 .modal-content iframe {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Remplit le conteneur, quitte à rogner */
+  object-fit: cover;
   display: block;
 }
 
+/* Bouton de fermeture (commun à tous) */
 .modal-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
+  top: -30px;
+  right: -30px;
+  background: rgba(0,0,0,0.7);
   border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  border: white 2px solid;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 1300;
+  transition: background 0.3s, transform 0.3s;
+}
+.modal-close:hover {
+  background: rgba(0,0,0,0.9);
+  transform: scale(1.1);
+}
+
+
+/* Boutons de navigation pour desktop */
+.modal-prev.desktop,
+.modal-next.desktop {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: #fff;
+  border: white 2px solid;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 1300;
+  transition: background 0.3s, transform 0.3s;
+}
+.modal-prev.desktop {
+  left: -30px;
+  top: 50%;
+  border: white 2px solid;
+  transform: translateY(-50%);
+}
+.modal-next.desktop {
+  right: -30px;
+  top: 50%;
+  border: white 2px solid;
+  transform: translateY(-50%);
+}
+.modal-prev.desktop:hover,
+.modal-next.desktop:hover {
+  background: rgba(0,0,0,0.9);
+
+}
+
+/* Boutons de navigation pour mobile dans .modal-controls */
+.modal-controls {
+  display: none;
+  width: 100%;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
+}
+.modal-controls button {
+  background: rgba(0,0,0,0.7);
+  border: white 2px solid;
   color: #fff;
   font-size: 1.5rem;
+  line-height: 1;
   cursor: pointer;
-  z-index: 1300;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: background 0.3s, transform 0.3s;
+}
+.modal-controls button:hover {
+  background: rgba(0,0,0,0.9);
 }
 
-.modal-media{
-  height: 100%;
-  width: 100%;
-}
-.modal-prev, .modal-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 1300;
+/* Responsive adjustments */
+
+/* Pour desktop, afficher les boutons absolus, masquer les contrôles mobile */
+@media (min-width: 768px) {
+  .modal-prev.desktop,
+  .modal-next.desktop {
+    display: block;
+  }
+  .modal-controls {
+    display: none;
+  }
 }
 
-.modal-prev { left: 10px; }
-.modal-next { right: 10px; }
+/* Pour mobile, masquer les boutons absolus et afficher le conteneur de contrôles */
+@media (max-width: 767px) {
+  .modal-prev.desktop,
+  .modal-next.desktop {
+    display: none;
+  }
+  .modal-controls {
+    display: flex;
+  }
+  /* Ajuster le contenu modal pour mobile */
+  .modal-content {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 5px;
+  }
+}
 
 
 

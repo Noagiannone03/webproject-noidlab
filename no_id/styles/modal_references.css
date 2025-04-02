@@ -100,7 +100,7 @@
   justify-content: flex-start;
 }
 .unique-modal-title {
-  font-size: 1.85rem;
+  font-size: 1.75rem;
   text-align: center;
   margin: 0 0 10px 0;
 }
@@ -120,16 +120,16 @@
 
 /* ---------- Liste à puces en bas à gauche ---------- */
 .unique-modal-footer-text {
-  margin-top: 2%;
+  margin-top: auto; /* pousse l'élément vers le bas */
   font-size: 0.9rem;
   color: #000000;
-  align-self: flex-start;
   text-align: start;
   list-style-type: disc;
   margin-left: 10px; /* Légère décalage vers la droite */
   font-weight: bold;
   padding-left: 20px;
 }
+
 
 .unique-modal-nav {
   position: absolute;
@@ -155,7 +155,7 @@
 }
 
 .unique-modal-prev {
-  left: 8%;
+  left: 15%;
 }
 
 /* Pour l'image, on retire le padding et la transition, et on lui fixe 90% de la taille du conteneur */
@@ -169,7 +169,7 @@
 
 
 .unique-modal-next {
-  right: 8%;
+  right: 15%;
 }
 
 /* Pour l'image, on retire le padding et la transition, et on lui fixe 90% de la taille du conteneur */

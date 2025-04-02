@@ -10,6 +10,13 @@
   font-optical-sizing: auto;
   box-sizing: border-box;
 }
+
+@media (hover: none) and (pointer: coarse) {
+  *:hover {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 html, body {
   height: 100%;
 }

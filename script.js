@@ -162,35 +162,47 @@ flipCards.forEach(card => {
         toggleActions: "play none none reverse"
       }
     });
+// Gestion du modal et dropdown
+const contactBtn = document.getElementById('contact-btn');
+const menuBtn = document.getElementById('menu-btn');
+const dropdown = document.getElementById('dropdown');
+const modalOverlay = document.getElementById('modal-overlay');
+const closeModal = document.getElementById('close-modal');
+const dropdownOverlay = document.getElementById('dropdown-overlay');
 
-    // Gestion du modal et dropdown (reste inchangée)
-    const contactBtn = document.getElementById('contact-btn');
-    const menuBtn = document.getElementById('menu-btn');
-    const dropdown = document.getElementById('dropdown');
-    const modalOverlay = document.getElementById('modal-overlay');
-    const closeModal = document.getElementById('close-modal');
+contactBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Ferme le dropdown s'il est ouvert
+  dropdown.classList.remove('active');
+  // Ferme le dropdown-overlay s'il est ouvert
+  dropdownOverlay.classList.remove('active');
+  // Ouvre le modal de contact
+  modalOverlay.classList.add('active');
+  // Bloque le scroll de la page
+  document.body.style.overflow = "hidden";
+});
 
-    contactBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      modalOverlay.classList.add('active');
-    });
+menuBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  dropdown.classList.toggle('active');
+});
 
-    menuBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdown.classList.toggle('active');
-    });
+document.addEventListener('click', (e) => {
+  if (
+    !contactBtn.contains(e.target) &&
+    !modalOverlay.contains(e.target) &&
+    !menuBtn.contains(e.target) &&
+    !dropdown.contains(e.target)
+  ) {
+    dropdown.classList.remove('active');
+  }
+});
 
-    document.addEventListener('click', (e) => {
-      if (!contactBtn.contains(e.target) && !modalOverlay.contains(e.target) && !menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.remove('active');
-      }
-    });
-
-    closeModal.addEventListener('click', () => {
-      modalOverlay.classList.remove('active');
-    });
-
-
+closeModal.addEventListener('click', () => {
+  modalOverlay.classList.remove('active');
+  // Rétablit le scroll de la page lors de la fermeture du modal
+  document.body.style.overflow = "";
+});
 
 // Smooth scroll sur clic sur un lien du menu
 document.querySelectorAll('.dropdown .menu-card ul li a').forEach(link => {
@@ -200,7 +212,7 @@ document.querySelectorAll('.dropdown .menu-card ul li a').forEach(link => {
     const targetId = this.getAttribute('href');
     const targetSection = document.querySelector(targetId);
     if (targetSection) {
-      const additionalOffset = 55; // décalage de 40px
+      const additionalOffset = 55; // décalage de 55px
       // On soustrait l'offset pour faire descendre le scroll un peu plus bas
       const yPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - additionalOffset;
       window.scrollTo({ top: yPosition, behavior: 'smooth' });
@@ -211,9 +223,7 @@ document.querySelectorAll('.dropdown .menu-card ul li a').forEach(link => {
   });
 });
 
-
 // Mise à jour de l'item actif en fonction de la section visible
-// Assurez-vous que vos sections ont des IDs correspondant aux hrefs
 const sections = document.querySelectorAll('section');
 const options = { threshold: 0.5 };
 
@@ -235,7 +245,6 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(section => {
   observer.observe(section);
 });
-
 
 
 
@@ -393,10 +402,6 @@ document.querySelectorAll('.pill-item').forEach(pill => {
   });
   
 
-
-
-
-
   document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM entièrement chargé.');
   
@@ -489,12 +494,19 @@ document.querySelectorAll('.pill-item').forEach(pill => {
   
       modalOverlay.classList.remove('hidden');
       modalOverlay.classList.add('active');
+      
+      // Bloquer le scroll de la page
+      document.body.style.overflow = "hidden";
+      
       console.log('Modal affiché.');
     }
   
     function closeModal() {
       console.log('Fermeture du modal.');
       modalOverlay.classList.remove('active');
+      
+      // Rétablir le scroll de la page
+      document.body.style.overflow = "";
     }
   
     // Ajoute l'événement sur tous les boutons de fermeture (mobile et desktop)
@@ -1016,3 +1028,29 @@ function initMap() {
 
 
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Appliquer ce comportement uniquement en mode mobile
+  if (window.innerWidth <= 480) {
+    const cards = document.querySelectorAll('.slider-card');
+    
+    // Ajout d'un écouteur sur chaque carte
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();  // Évite que le clic se propage au document
+        // Si la carte est déjà active, on la ferme ; sinon, on ferme les autres et on ouvre celle-ci
+        if (card.classList.contains('active')) {
+          card.classList.remove('active');
+        } else {
+          cards.forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+        }
+      });
+    });
+    
+    // Ferme toute carte active si l'utilisateur clique en dehors
+    document.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('active'));
+    });
+  }
+});

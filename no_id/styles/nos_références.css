@@ -44,14 +44,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 97vh;
   }
   .colored-container-event {
   padding: 40px 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
     background-color: #ffdbb0;
     height: 100%;
     width: 100%;
@@ -125,6 +124,7 @@
   
   /* Wrapper pour chaque card */
   .card-wrapper {
+    cursor: pointer;
     text-align: center;
     /* Pour le scroll snap */
     scroll-snap-align: start;
