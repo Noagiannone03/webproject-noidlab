@@ -202,8 +202,8 @@
   /* Chaque carte s'affiche en quasi plein écran (une par vue) */
   .flip-card {
 
-    height: 395px;
-    width: 285px;
+    height: 430px;
+    width: 310px;
     margin: 0 0;
     scroll-snap-align: center;
     position: relative;
