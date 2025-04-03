@@ -325,30 +325,16 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     <div class="bubble" style="width:120px; height:120px; top:40%; left:60%;"></div>
     <div class="bubble" style="width:60px; height:60px; top:80%; left:30%;"></div>
     
-    <div class="flash-news-banner slide-in" style="animation-delay: 1.2s;">
+    <div class="flash-news-banner slide-in hidden" style="animation-delay: 1.2s;">
       <div class="flash-news-slider">
-        <div class="news-item">
-          <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="News 1">
-          <div class="news-content">
-            <h3 class="news-title">Titre News 1</h3>
-            <p class="news-text">Voici un long texte descriptif pour la news 1 qui s'étend sur toute la largeur du bandeau.</p>
-          </div>
-        </div>
-        <div class="news-item">
-          <img src="http://www.noidlab.com/wp-content/uploads/2020/05/Toulonstreetfood_imagecle.png" alt="News 2">
-          <div class="news-content">
-            <h3 class="news-title">Titre News 2</h3>
-            <p class="news-text">Voici un long texte descriptif pour la news 2 qui s'étend sur toute la largeur du bandeau.</p>
-          </div>
-        </div>
-        
+        <!-- Le slider sera rempli par Firebase -->
       </div>
       <div class="slider-dots">
         <span class="dot active" data-index="0"></span>
         <span class="dot" data-index="1"></span>
-        
       </div>
     </div>
+    
 
 
 
@@ -1346,79 +1332,257 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 </div>
 
 
-
+<script src="script.js" defer></script>
 
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
-  <!--<script type="module">
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-      import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
-      
-      // Configuration Firebase (remplacez par vos informations si besoin)
-      const firebaseConfig = {
-        apiKey: "AIzaSyAz6k773uRrJeRiJsFJS5Z-xg2I5nm892E",
-        authDomain: "no-id-website.firebaseapp.com",
-        projectId: "no-id-website",
-        storageBucket: "no-id-website.firebasestorage.app",
-        messagingSenderId: "166665035020",
-        appId: "1:166665035020:web:d60b6c11a54cc6c6acbd29",
-        measurementId: "G-RZB38ET9KC"
-      };
-      
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-      
-      // Fonction pour charger et afficher les news dans le flash news banner
-      async function loadNews() {
-      try {
-        const newsCollection = collection(db, "news");
-        const querySnapshot = await getDocs(newsCollection);
-        console.log("Nombre de news récupérées :", querySnapshot.size);
-        if(querySnapshot.empty) {
-          console.log("Aucune news trouvée dans la collection.");
-        }
-        const slider = document.querySelector('.flash-news-slider');
-        slider.innerHTML = "";
-        querySnapshot.forEach((docSnap) => {
-          const news = docSnap.data();
-          console.log("News récupérée :", news);
-          const newsItem = document.createElement('div');
-          newsItem.classList.add('news-item');
-          newsItem.innerHTML = `
-            <img src="${news.image ? news.image : 'https://via.placeholder.com/65'}" alt="${news.title}">
-            <div class="news-content">
-              <h3 class="news-title">${news.title}</h3>
-              <p class="news-text">${news.subtitle}</p>
-            </div>
-          `;
-          slider.appendChild(newsItem);
-        });
-        updateSliderDots();
-      } catch (error) {
-        console.error("Erreur lors du chargement des news :", error);
-      }
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+
+// Configuration Firebase (remplacez par vos informations si besoin)
+const firebaseConfig = {
+  apiKey: "AIzaSyAz6k773uRrJeRiJsFJS5Z-xg2I5nm892E",
+  authDomain: "no-id-website.firebaseapp.com",
+  projectId: "no-id-website",
+  storageBucket: "no-id-website.firebasestorage.app",
+  messagingSenderId: "166665035020",
+  appId: "1:166665035020:web:d60b6c11a54cc6c6acbd29",
+  measurementId: "G-RZB38ET9KC"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Fonction pour charger et afficher les news dans le flash news banner
+async function loadNews() {
+  try {
+    const newsCollection = collection(db, "news");
+    const querySnapshot = await getDocs(newsCollection);
+    console.log("Nombre de news récupérées :", querySnapshot.size);
+    if(querySnapshot.empty) {
+      console.log("Aucune news trouvée dans la collection.");
     }
+    const slider = document.querySelector('.flash-news-slider');
+    slider.innerHTML = "";
+    querySnapshot.forEach((docSnap) => {
+      const news = docSnap.data();
+      console.log("News récupérée :", news);
+      const newsItem = document.createElement('div');
+      newsItem.classList.add('news-item');
+      newsItem.innerHTML = `
+        <img src="${news.image ? news.image : 'https://via.placeholder.com/65'}" alt="${news.title}">
+        <div class="news-content">
+          <h3 class="news-title">${news.title}</h3>
+          <p class="news-text">${news.subtitle}</p>
+        </div>
+      `;
+      slider.appendChild(newsItem);
+    });
+    updateSliderDots();
+
+    // Une fois le chargement terminé, faire apparaître la bannière
+    document.querySelector('.flash-news-banner').classList.remove('hidden');
+  } catch (error) {
+    console.error("Erreur lors du chargement des news :", error);
+  }
+}
+
+// (Optionnel) Fonction pour mettre à jour les points de navigation du slider
+function updateSliderDots() {
+  const slider = document.querySelector('.flash-news-slider');
+  const dotsContainer = document.querySelector('.slider-dots');
+  dotsContainer.innerHTML = ""; // Réinitialisation des dots
+  const totalItems = slider.children.length;
+  for(let i = 0; i < totalItems; i++){
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if(i === 0) dot.classList.add('active');
+    dot.setAttribute('data-index', i);
+    dotsContainer.appendChild(dot);
+  }
+}
+
+// Appel initial pour charger les news
+loadNews();
+
+
+function initFlashNewsSlider() {
+  const slider = document.querySelector('.flash-news-slider');
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  const newsItems = document.querySelectorAll('.flash-news-slider .news-item');
+  const totalItems = newsItems.length;
+  let currentIndex = 0;
+  let autoSlideInterval;
+  let index = 0;
+  let isDragging = false;
+  let startPos = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let animationID;
+
+  function goToSlide(index) {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[index]) {
+      dots[index].classList.add('active');
+    }
+    currentIndex = index;
+    prevTranslate = -index * slider.offsetWidth;
+    currentTranslate = prevTranslate;
+  }
+
+  function resumeAutoSlide() {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => {
+      let nextIndex = (currentIndex + 1) % totalItems;
+      goToSlide(nextIndex);
+    }, 5000);
+  }
+
+  function pauseAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  resumeAutoSlide();
+
+  function getPositionX(event) {
+    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+  }
+
+  function touchStart(event) {
+    isDragging = true;
+    startPos = getPositionX(event);
+    pauseAutoSlide();
+    slider.classList.add('grabbing');
+    animationID = requestAnimationFrame(animation);
+  }
+
+  function touchMove(event) {
+    if (!isDragging) return;
+    const currentPosition = getPositionX(event);
+    const diff = currentPosition - startPos;
+    currentTranslate = prevTranslate + diff;
+  }
+
+  function touchEnd() {
+    isDragging = false;
+    slider.classList.remove('grabbing');
+    cancelAnimationFrame(animationID);
+    const movedBy = currentTranslate - prevTranslate;
+    const threshold = slider.offsetWidth / 9;
+    if (movedBy < -threshold && currentIndex < totalItems - 1) {
+      currentIndex += 1;
+    }
+    if (movedBy > threshold && currentIndex > 0) {
+      currentIndex -= 1;
+    }
+    goToSlide(currentIndex);
+    resumeAutoSlide();
+  }
+
+  function animation() {
+    slider.style.transform = `translateX(${currentTranslate}px)`;
+    if (isDragging) requestAnimationFrame(animation);
+  }
+
+  // Ajout des écouteurs pour le drag/touch
+  slider.addEventListener('mousedown', touchStart);
+  slider.addEventListener('mousemove', touchMove);
+  slider.addEventListener('mouseup', touchEnd);
+  slider.addEventListener('mouseleave', () => { if (isDragging) touchEnd(); });
+  slider.addEventListener('touchstart', touchStart);
+  slider.addEventListener('touchmove', touchMove);
+  slider.addEventListener('touchend', touchEnd);
+  slider.addEventListener('mouseenter', pauseAutoSlide);
+  slider.addEventListener('mouseleave', resumeAutoSlide);
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const index = parseInt(dot.getAttribute('data-index'));
+      goToSlide(index);
+      resumeAutoSlide();
+    });
+  });
+
+  // Optionnel : appeler goToSlide(0) pour réinitialiser le slider
+  goToSlide(0);
+}
+
+
+// Fonction de validation d'email
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
+  // Attendre que le DOM soit complètement chargé
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM entièrement chargé, initialisation du formulaire newsletter.");
     
-      
-      // (Optionnel) Fonction pour mettre à jour les points de navigation du slider
-      function updateSliderDots() {
-        const slider = document.querySelector('.flash-news-slider');
-        const dotsContainer = document.querySelector('.slider-dots');
-        dotsContainer.innerHTML = ""; // Réinitialisation des dots
-        const totalItems = slider.children.length;
-        for(let i = 0; i < totalItems; i++){
-          const dot = document.createElement('span');
-          dot.classList.add('dot');
-          if(i === 0) dot.classList.add('active');
-          dot.setAttribute('data-index', i);
-          dotsContainer.appendChild(dot);
-        }
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (!newsletterForm) {
+      console.error("Formulaire newsletter introuvable !");
+      return;
+    }
+
+    newsletterForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const emailInput = newsletterForm.querySelector('input[type="email"]');
+      const termsCheckbox = document.getElementById('terms');
+      const email = emailInput.value.trim();
+
+      console.log("Tentative d'inscription avec email :", email, "Case cochée :", termsCheckbox.checked);
+
+      // Vérification de la validité de l'email
+      if (!validateEmail(email)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Email invalide',
+          text: 'Veuillez entrer un email valide.'
+        });
+        return;
       }
       
-      // Appel initial pour charger les news
-      loadNews();
-      </script> -->
-<script src="script.js" defer></script>
+      // Vérification de la case à cocher
+      if (!termsCheckbox.checked) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Conditions non acceptées',
+          text: "Veuillez accepter nos conditions d'utilisation."
+        });
+        return;
+      }
+
+      // Créer un document dans la collection "newsletter_subscribe"
+      try {
+        await addDoc(collection(db, 'newsletter_subscribe'), {
+          email: email,
+          timestamp: serverTimestamp()
+        });
+        console.log("Inscription réussie pour email :", email);
+        Swal.fire({
+          icon: 'success',
+          title: 'Inscription réussie',
+          text: 'Vous êtes inscrit à notre newsletter !'
+        });
+        // Réinitialiser le formulaire
+        emailInput.value = '';
+        termsCheckbox.checked = false;
+      } catch (error) {
+        console.error("Erreur lors de l'inscription :", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: 'Une erreur est survenue, veuillez réessayer plus tard.'
+        });
+      }
+    });
+  });
+
+      </script> 
+
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 

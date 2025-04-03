@@ -41,6 +41,12 @@
      }
   }
   @media (max-width: 767px) {
+  
+      *:hover {
+        animation: none !important;
+        transition: none !important;
+      }
+    
     .photos-header .section-title {
      /* Décalage de 15px vers la gauche */
       margin-bottom: 20px;
