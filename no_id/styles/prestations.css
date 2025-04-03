@@ -76,7 +76,7 @@
 /* Horizontal Slider */
 .horizontal-slider {
   margin: 0 auto;
-  max-width: 90%; /* Limite la largeur pour avoir des marges latérales */
+  max-width: 93%; /* Limite la largeur pour avoir des marges latérales */
   padding: 0 1%;;
   height: auto;
   position: relative;
@@ -103,8 +103,8 @@
 /* Flip Card */
 .flip-card {
   position: relative;
-  width: 295px;
-  height: 410px;
+  width: 305px;
+  height: 427px;
   perspective: 1000px;
   scroll-snap-align: center;
   flex-shrink: 0;

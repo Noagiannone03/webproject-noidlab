@@ -24,6 +24,7 @@
 
 
   
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     
   <!-- Titre et Description -->
@@ -55,19 +56,21 @@
 </head>
 <body>
 
-  <!-- Modal Contact -->
-  <div class="modal-overlay" id="modal-overlay">
-    <div class="modal">
-      <button class="close-modal" id="close-modal">&times;</button>
-      <h2>Contactez-nous</h2>
-      <form id="contact-form">
-        <input type="text" name="from_name" placeholder="Votre nom" required />
-        <input type="email" name="from_email" placeholder="Votre email" required />
-        <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
-        <button type="submit">Envoyer</button>
-      </form>
+  
+
+    <!-- Modal Contact -->
+    <div class="modal-overlay" id="modal-overlay">
+      <div class="modal">
+        <button class="close-modal" id="close-modal">&times;</button>
+        <h2>Contactez-nous</h2>
+        <form id="contact-form">
+          <input style="  border: 3px solid #000;" type="text" name="from_name" placeholder="Votre nom" required />
+          <input style="  border: 3px solid #000;" type="email" name="from_email" placeholder="Votre email" required />
+          <textarea style="  border: 3px solid #000;" name="message" rows="5" placeholder="Votre message" required></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
     </div>
-  </div>
 
 
   <div class="dropdown-overlay" id="dropdown-overlay"></div>
@@ -121,17 +124,14 @@
       <!-- Card Newsletter -->
       <div class="newsletter-card">
         <h3>Découvrez notre newsletter</h3>
-        <form onsubmit="return false;">
+        <form class="newsletter-form" onsubmit="return false;">
           <input type="email" placeholder="Votre email" required />
           <button type="submit">Go</button>
         </form>
-       
         <div class="input-grouped checkbox-grouped">
-          <input type="checkbox" id="terms" required>
-          <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
+          <input type="checkbox" class="terms-checkbox" required>
+          <label>Veuillez accepter nos conditions d'utilisation</label>
         </div>
-
-      
       </div>
       <!-- Card Social Follow -->
       <div class="follow-card">
@@ -177,14 +177,26 @@
 
     
   <!-- Photos Section -->
-<section id="photos" data-aos="fade-up">
-  <div class="photos-header" data-aos="fade-up">
-    <h2 class="section-title" style="margin-left: -15px;">Photos</h2>
+<section id="photos" >
+  <div class="photos-header">
+    <h2 class="section-title" >Photos</h2>
     <div class="filter-buttons">
       <button data-filter="all" class="active">Toutes</button>
       <button data-filter="interieur">Dans les murs</button>
       <button data-filter="exterieur">Hors les murs</button>
     </div>
+
+        <!-- Version mobile : filtre toggle -->
+<div class="mobile-filter">
+  <button class="filter-toggle">Filtrer <span class="chevron">&#x25BC;</span></button>
+  <div class="filter-options">
+    <div class="filter-option" data-category="all">Tout</div>
+    <hr>
+    <div class="filter-option" data-category="2">Dans les murs</div>
+    <hr>
+    <div class="filter-option" data-category="1">Hors les murs</div>
+  </div>
+</div>
   </div>
   <!-- Ajoutez l'attribut data-initial-count pour indiquer le nombre d'items initiaux -->
   <div class="media-grid photos-grid" data-aos="fade-up" data-initial-count="8">
@@ -215,7 +227,22 @@
       <img src="../assets/images/hors-les-murs/66-event-noid.jpg" alt="Photo">
     </div>
   </div>
-  <div class="see-more" data-aos="fade-up">
+
+  <div class="scroll-buttons">
+    <button class="scroll-btn left">
+      <!-- SVG flèche gauche -->
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <polyline points="15 18 9 12 15 6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="scroll-btn right">
+      <!-- SVG flèche droite -->
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <polyline points="9 18 15 12 9 6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+  <div class="see-more" >
     <button>Voir plus <span class="arrow">➔</span></button>
   </div>
   <hr class="section-separator">
@@ -223,17 +250,17 @@
 
     
     <!-- Videos Section -->
-    <section id="videos" data-aos="fade-up">
+    <section id="videos" data-aos="fade-up" >
       <h2 class="section-title">Vidéos</h2>
-      <div class="media-grid videos-grid" data-aos="fade-up">
+      <div class="media-grid videos-grid" >
         <div class="media-card" data-type="video" data-video="../assets/videos/Aftermovie Festival YES Week End 2019.mp4">
-          <img  style="width: 100%; height: 100%;" src="../assets/videos/miniatures-videos/YES_2.jpg" alt="Vidéo">
+          <img  style="width: 100%; height: 100%;" src="../assets/images/hors-les-murs/86-event-noid.jpg" alt="Vidéo">
         </div>
         <div class="media-card" data-type="video"  data-video="../assets/videos/alci-b2b-atree.mp4">
           <img src="../assets/images/hors-les-murs/71-event-noid.jpg" alt="Vidéo">
         </div>
         <div class="media-card" data-type="video" data-video="../assets/videos/nomadisco-2019.mp4">
-          <img src="../assets/videos/miniatures-videos/NOMADISCO_1.jpg" alt="Vidéo">
+          <img src="../assets/images/hors-les-murs/55-event-noid.jpg" alt="Vidéo">
         </div>
         <div class="media-card" data-type="video" data-video="../assets/videos/olivier-serrus-ywe-2018.mp4">
           <img src="../assets/images/hors-les-murs/51-event-noid.jpg" alt="Vidéo">
@@ -251,8 +278,22 @@
           <img src="../assets/images/hors-les-murs/99-event-noid.jpg" alt="Vidéo">
         </div>
         <div class="media-card" data-type="video" data-video="../assets/videos/yes-week-end-2017.mp4">
-          <img src="../assets/videos/miniatures-videos/YES_6.jpg" alt="Vidéo">
+          <img src="../assets/images/hors-les-murs/22-event-noid.jpg" alt="Vidéo">
         </div>
+      </div>
+      <div class="scroll-buttons">
+        <button class="scroll-btn left">
+          <!-- SVG flèche gauche -->
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="scroll-btn right">
+          <!-- SVG flèche droite -->
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <polyline points="9 18 15 12 9 6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </div>
       
       <hr class="section-separator">
@@ -367,6 +408,20 @@
           </div>
         </div>
       </div>
+      <div class="scroll-buttons">
+        <button class="scroll-btn left">
+          <!-- SVG flèche gauche -->
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="scroll-btn right">
+          <!-- SVG flèche droite -->
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <polyline points="9 18 15 12 9 6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
       <div class="see-more" data-aos="fade-up">
         <button id="btn-seemore-audio">Voir plus <span class="arrow">➔</span></button>
       </div>
@@ -375,10 +430,10 @@
   </main>
   
 
-  <footer>
+  <footer style="padding-bottom: 0px;">
     <div class="footer-container">
       <!-- Colonne gauche -->
-      <div class="footer-column left">
+      <div class="footer-column left" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">
         <h2 class="footer-title">We are NO/ID</h2>
         <p class="footer-text">
           NO/ID est une structure culturelle qui propose des événements (ré)créatifs et des solutions innovantes sur la côte méditerranéenne depuis 1997.<br>
@@ -387,7 +442,7 @@
       </div>
       
         <!-- Colonne centrale -->
-    <div class="footer-column center">
+    <div class="footer-column center" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700">
       <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
       <div class="footer-info">
         <h3 class="footer-subtitle">FEATlab</h3>
@@ -413,19 +468,22 @@
     </div>
       
       <!-- Colonne droite -->
-  <div class="footer-column right">
+  <div class="footer-column right" data-aos="fade-up"  data-aos-delay="700" data-aos-duration="900">
     <h2 class="footer-title">WE KEEP IN TOUCH</h2>
     <div class="connect-block">
       <h2 class="connect-title">Pour rester connecté :</h2>
       <div class="connect-inputs">
-        <div class="input-group">
-          <input type="email" placeholder="Votre email" required>
-          <button type="submit">Envoyer</button>
-        </div>
-        <div class="input-group checkbox-group">
-          <input type="checkbox" id="terms" required>
-          <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
-        </div>
+
+        <form id="newsletter-form-bottom" class="newsletter-form" onsubmit="return false;">
+          <div class="input-group">
+            <input type="email" placeholder="Votre email" required />
+            <button type="submit">Envoyer</button>
+          </div>
+          <div class="input-group checkbox-group" style="margin-top: 10px;">
+            <input type="checkbox" id="terms-bottom" class="terms-checkbox" required>
+            <label for="terms-bottom">Veuillez accepter nos conditions d'utilisation</label>
+          </div>
+        </form>
       </div>
       <h3 class="follow-title">Nous suivre</h3>
       <div class="follow-icons">
@@ -559,8 +617,10 @@ closeModal.addEventListener('click', () => {
 
 
 
-    
-// Envoi du formulaire via Formspree
+  
+
+
+
 const contactForm = document.getElementById('contact-form');
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -569,16 +629,27 @@ contactForm.addEventListener('submit', (e) => {
     method: "POST",
     body: formData,
     headers: { 'Accept': 'application/json' }
-  }).then(response => {
+  })
+  .then(response => {
     if (response.ok) {
-      alert("Message envoyé avec succès !");
+      Toast.fire({
+        icon: 'success',
+        title: 'Message envoyé avec succès !'
+      });
       contactForm.reset();
       modalOverlay.classList.remove('active');
     } else {
-      alert("Une erreur est survenue, veuillez réessayer.");
+      Toast.fire({
+        icon: 'error',
+        title: 'Une erreur est survenue, veuillez réessayer.'
+      });
     }
-  }).catch(error => {
-    alert("Une erreur est survenue, veuillez réessayer.");
+  })
+  .catch(error => {
+    Toast.fire({
+      icon: 'error',
+      title: 'Une erreur est survenue, veuillez réessayer.'
+    });
     console.error(error);
   });
 });
@@ -635,6 +706,286 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
   </script>
+
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+  // Pour chaque section qui possède une media-grid et des scroll-buttons
+  document.querySelectorAll('section').forEach(section => {
+    const mediaGrid = section.querySelector('.media-grid');
+    const btnLeft = section.querySelector('.scroll-btn.left');
+    const btnRight = section.querySelector('.scroll-btn.right');
+    
+    // Si ces éléments n'existent pas, passer à la section suivante
+    if (!mediaGrid || !btnLeft || !btnRight) return;
+    
+    function getCardWidth() {
+      const card = mediaGrid.querySelector('.media-card');
+      const width = card ? card.getBoundingClientRect().width : 0;
+      return width;
+    }
+    
+    btnLeft.addEventListener('click', () => {
+      const cardWidth = getCardWidth();
+      mediaGrid.scrollBy({
+        left: -cardWidth,
+        behavior: 'smooth'
+      });
+    });
+    
+    btnRight.addEventListener('click', () => {
+      const cardWidth = getCardWidth();
+      mediaGrid.scrollBy({
+        left: cardWidth,
+        behavior: 'smooth'
+      });
+    });
+  });
+});
+
+
+
+
+
+
+function mapMobileCategory(mobileVal) {
+  // Ici, on définit le mapping pour chaque valeur mobile
+  if (mobileVal === "all") return "all";
+  if (mobileVal === "2") return "interieur";
+  if (mobileVal === "1") return "exterieur";
+  return mobileVal;
+}
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const filterToggle = document.querySelector('.filter-toggle');
+  const filterOptions = document.querySelector('.filter-options');
+
+  if (filterToggle && filterOptions) {
+    // Toggle l'affichage des options
+    filterToggle.addEventListener('click', () => {
+      filterOptions.classList.toggle('open');
+      filterToggle.parentElement.classList.toggle('open');
+    });
+    
+    document.querySelectorAll('.filter-option').forEach(option => {
+      option.addEventListener('click', () => {
+        // Récupérer la valeur mobile (ici, par exemple "2", "1", "3" ou "all")
+        const mobileCategory = option.getAttribute('data-category');
+        // Mettre à jour le texte du toggle avec le libellé choisi
+        filterToggle.innerHTML = option.textContent + ' <span class="chevron">&#x25BC;</span>';
+        // Fermer les options
+        filterOptions.classList.remove('open');
+        filterToggle.parentElement.classList.remove('open');
+        
+        // Appliquer le mapping pour obtenir la catégorie à filtrer
+        const filter = mapMobileCategory(mobileCategory);
+        
+        // Appliquer le filtre sur vos cartes (ici pour .photos-grid .media-card)
+        const cards = document.querySelectorAll('.photos-grid .media-card');
+        cards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+});
+
+  
+
+
+  
+</script>
+
+
+
+<script type="module">
+  //gestion des email pour la newsletter
+
+
+// Importations Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+  import { getFirestore,getDocs, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+
+  // Configuration Firebase (remplacez par vos informations)
+  const firebaseConfig = {
+    apiKey: "AIzaSyAz6k773uRrJeRiJsFJS5Z-xg2I5nm892E",
+    authDomain: "no-id-website.firebaseapp.com",
+    projectId: "no-id-website",
+    storageBucket: "no-id-website.firebasestorage.app",
+    messagingSenderId: "166665035020",
+    appId: "1:166665035020:web:d60b6c11a54cc6c6acbd29",
+    measurementId: "G-RZB38ET9KC"
+  };
+
+  // Initialisation de Firebase et de Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+
+
+  const Toast = Swal.mixin({
+  toast: true,
+  position: "bottom-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
+// Fonction de validation d'email
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("DOM entièrement chargé, initialisation du formulaire newsletter.");
+
+  // Sélectionner tous les formulaires newsletter via une classe commune
+  const newsletterForms = document.querySelectorAll('.newsletter-form');
+  if (!newsletterForms.length) {
+    console.error("Aucun formulaire newsletter trouvé !");
+    return;
+  }
+
+  newsletterForms.forEach(form => {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const emailInput = form.querySelector('input[type="email"]');
+      // Pour récupérer la case à cocher, on cherche dans le même conteneur parent
+      const termsCheckbox = form.closest('.newsletter-card') 
+                            ? form.closest('.newsletter-card').querySelector('.terms-checkbox')
+                            : document.querySelector('.terms-checkbox');
+
+      const email = emailInput.value.trim();
+      console.log("Tentative d'inscription avec email :", email, "Case cochée :", termsCheckbox ? termsCheckbox.checked : "inconnue");
+
+      if (!validateEmail(email)) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Veuillez entrer un email valide.'
+        });
+        return;
+      }
+
+      if (!termsCheckbox || !termsCheckbox.checked) {
+        Toast.fire({
+          icon: 'error',
+          title: "Veuillez accepter nos conditions d'utilisation."
+        });
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, 'newsletter_subscribe'), {
+          email: email,
+          timestamp: serverTimestamp()
+        });
+        console.log("Inscription réussie pour email :", email);
+        Toast.fire({
+          icon: 'success',
+          title: 'Inscription réussie !'
+        });
+        // Réinitialiser le formulaire
+        emailInput.value = '';
+        termsCheckbox.checked = false;
+      } catch (error) {
+        console.error("Erreur lors de l'inscription :", error);
+        Toast.fire({
+          icon: 'error',
+          title: 'Erreur, veuillez réessayer plus tard.'
+        });
+      }
+    });
+  });
+});
+
+
+
+//grstino du deuxieme formulaire
+// Fonction de validation d'email renommée en isValidEmail
+function isValidEmail(emailAddress) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(emailAddress);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("DOM entièrement chargé, initialisation des formulaires newsletter.");
+
+  // Liste des formulaires et de leurs cases associées, avec des IDs distincts
+  const subscribeForms = [
+    { formId: 'newsletter-form-top', checkboxId: 'terms-top' },
+    { formId: 'newsletter-form-bottom', checkboxId: 'terms-bottom' }
+  ];
+
+  subscribeForms.forEach(item => {
+    const formElement = document.getElementById(item.formId);
+    const checkBoxElement = document.getElementById(item.checkboxId);
+    if (!formElement) {
+      console.error("Formulaire non trouvé :", item.formId);
+      return;
+    }
+    formElement.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const emailField = formElement.querySelector('input[type="email"]');
+      const emailValue = emailField.value.trim();
+      console.log(`Tentative d'inscription (${item.formId}) avec email:`, emailValue, "Case cochée:", checkBoxElement.checked);
+
+      // Vérification de l'email
+      if (!isValidEmail(emailValue)) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Veuillez entrer un email valide.'
+        });
+        return;
+      }
+      
+      // Vérification de la case à cocher
+      if (!checkBoxElement.checked) {
+        Toast.fire({
+          icon: 'error',
+          title: "Veuillez accepter nos conditions d'utilisation."
+        });
+        return;
+      }
+      
+      try {
+        await addDoc(collection(db, 'newsletter_subscribe'), {
+          email: emailValue,
+          timestamp: serverTimestamp()
+        });
+        console.log(`Inscription réussie (${item.formId}) pour email:`, emailValue);
+        Toast.fire({
+          icon: 'success',
+          title: 'Inscription réussie !'
+        });
+        // Réinitialiser le formulaire
+        emailField.value = '';
+        checkBoxElement.checked = false;
+      } catch (err) {
+        console.error(`Erreur lors de l'inscription (${item.formId}):`, err);
+        Toast.fire({
+          icon: 'error',
+          title: 'Une erreur est survenue, veuillez réessayer plus tard.'
+        });
+      }
+    });
+  });
+});
+
+</script>
   
 </body>
 </html>
