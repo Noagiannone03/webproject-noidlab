@@ -459,10 +459,16 @@ contactForm.addEventListener('submit', (e) => {
 
 
 //gestion du formulaire de contact dans la section contact
+
+
 document.addEventListener('DOMContentLoaded', function() {
-  const formContact = document.getElementById('contact-form');
-  if (!formContact) {
-    console.error("Formulaire de contact introuvable.");
+  const FORM_ENDPOINT = "https://formspree.io/f/xeoezqea";
+
+
+  // Sélectionnez tous les formulaires de contact via la classe .contact-form
+  const contactForms = document.querySelectorAll('.contact-form');
+  if (!contactForms.length) {
+    console.error("Aucun formulaire de contact trouvé.");
     return;
   }
 
@@ -473,41 +479,45 @@ document.addEventListener('DOMContentLoaded', function() {
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.onmouseenter = Swal.stopTimer;
-      toast.onmouseleave = Swal.resumeTimer;
+    didOpen: (toastElem) => {
+      toastElem.onmouseenter = Swal.stopTimer;
+      toastElem.onmouseleave = Swal.resumeTimer;
     }
   });
 
-  formContact.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const dataContact = new FormData(formContact);
-    // Assurez-vous que FORM_ENDPOINT est défini globalement (par exemple, votre URL Formspree)
-    fetch(FORM_ENDPOINT, {
-      method: "POST",
-      body: dataContact,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-      if (response.ok) {
-        Toast.fire({
-          icon: 'success',
-          title: 'Message envoyé avec succès !'
-        });
-        formContact.reset();
-      } else {
+  // Pour chaque formulaire de contact, attacher un gestionnaire de soumission
+  contactForms.forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      // Envoi du formulaire via Formspree (ou votre endpoint défini dans FORM_ENDPOINT)
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          Toast.fire({
+            icon: 'success',
+            title: 'Message envoyé avec succès !'
+          });
+          form.reset();
+        } else {
+          Toast.fire({
+            icon: 'error',
+            title: 'Une erreur est survenue, veuillez réessayer.'
+          });
+        }
+      })
+      .catch(error => {
         Toast.fire({
           icon: 'error',
           title: 'Une erreur est survenue, veuillez réessayer.'
         });
-      }
-    })
-    .catch(error => {
-      Toast.fire({
-        icon: 'error',
-        title: 'Une erreur est survenue, veuillez réessayer.'
+        console.error(error);
       });
-      console.error(error);
     });
   });
 });
@@ -1378,4 +1388,29 @@ function initMap() {
     });
   });
   
+  
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // Détecte si l'appareil supporte le touch (mobile)
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      // Création d'une balise <style> pour injecter des règles spécifiques
+      const style = document.createElement('style');
+      style.innerText = `
+        /* Désactiver les effets hover sur mobile */
+        *:hover {
+          transition: none !important;
+        }
+        
+        /* Supprimer le surlignage bleu lors d'un tap sur mobile */
+        * {
+          -webkit-tap-highlight-color: transparent !important;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  });
   

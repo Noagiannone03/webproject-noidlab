@@ -20,7 +20,7 @@
       /* Décalage de 15px vers la gauche */
        margin-bottom: 20px;
        width: 100%;
-       text-align: center;
+       text-align: left;
      }
     main { 
       padding-top: 70px; 
@@ -29,6 +29,7 @@
        padding: 25px 60px; 
       }
     h2.section-title { 
+      text-align: start;
       font-size: 2.5rem; 
     }
     .media-grid { 
@@ -39,9 +40,47 @@
     .section-separator { 
       max-width: 800px;
      }
+     .mobile-filter {
+      display: flex;
+    }
+    .filter-buttons {
+      display: none;
+    }
   }
   @media (max-width: 767px) {
+    .filter-buttons {
+      display: none;
+    }
+    .mobile-filter {
+      display: flex;
+    }
+    /* Pour les conteneurs de médias (Photos, Vidéos, Audio) */
+  .media-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* Pour un scroll fluide sur iOS */
+    gap: 10px; /* Espace entre les cartes */
+    padding: 10px; /* Optionnel : ajuster le padding pour le scroll */
+    -ms-overflow-style: none; /* IE et Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .media-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
   
+  /* Pour chaque carte dans le grid */
+  .media-grid .media-card {
+    flex: 0 0 auto; /* Empêche le wrapping */
+    scroll-snap-align: start; /* Pour que la carte s'aligne au début du conteneur */
+    width: 100%; /* Optionnel : adapter la largeur pour mieux visualiser une carte à la fois */
+    /* Vous pouvez ajuster la largeur en fonction de vos besoins */
+  }
+  
+  /* Si vous souhaitez masquer le bouton "Voir plus" sur mobile, ajoutez : */
+  .see-more {
+    display: none;
+  }
       *:hover {
         animation: none !important;
         transition: none !important;
@@ -50,6 +89,8 @@
     .photos-header .section-title {
      /* Décalage de 15px vers la gauche */
       margin-bottom: 20px;
+      margin-left: 0px;
+
       width: 100%;
       text-align: center;
     }
@@ -62,6 +103,7 @@
     h2.section-title {
       font-family: 'bold-montserrat', sans-serif;
        font-size: 2rem; text-align: center; 
+       margin-left: 0px;
       }
     .media-grid {
       padding: 0 0;
@@ -72,6 +114,11 @@
        }
     .filter-buttons { 
       flex-wrap: wrap; justify-content: center; 
+    }
+
+    .photos-header{
+      margin-left: 0px;
+     align-self: self-start;
     }
     
 .modal-content {
@@ -101,5 +148,38 @@
 .filter-buttons button.active {
   background-color: #000;
   color: #fff;
+}
+
+
+
+.scroll-buttons {
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.scroll-btn {
+  background-color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.scroll-btn:hover {
+  transform: scale(1.1);
+}
+
+
+
+.media-container {
+  position: relative;
 }
   }

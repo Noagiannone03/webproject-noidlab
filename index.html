@@ -27,6 +27,10 @@
   <link rel="stylesheet" href="no_id/styles/ou_nous_trouver.css">
   <link rel="stylesheet" href="no_id/styles/prestations.css">
  
+
+  <!--implementation de aos-->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
   <!--styles responsives-->
 
   <link rel="stylesheet" href="no_id/style-responsive/style-responsive.css">
@@ -340,7 +344,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   
 <!-- Section fusion Stackée & Détails -->
 <section id="stack-section" class="observed-section">
-  <div class="interieur">
+  <div class="interieur" data-aos="fade-up">
     <div class="stack-card title">
       <div class="title-container">
         <h1 class="section-title">À PROPOS</h1>
@@ -385,17 +389,17 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   
   <!-- Section Tarifs -->
   <section id="pricing-section-custom" class="observed-section">
-    <div class="colored-container-princing">
+    <div class="colored-container-princing" data-aos="fade-up">
       <div class="title-container">
-        <h1 class="section-title">PRESTATIONS</h1>
+        <h1 class="section-title"  data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">PRESTATIONS</h1>
         <div class="circle" data-icon="assets/pictos/prestation.png"></div>
       </div>
-      <p class="section-subtitle">
+      <p class="section-subtitle"  data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">
         Des solutions créatives sur mesure pour des projets d’envergure
       </p>
   
       <!-- Conteneur slider avec marges latérales -->
-      <div class="horizontal-slider">
+      <div class="horizontal-slider" data-aos="fade-up"  data-aos-delay="400" data-aos-duration="600">
         <div class="carousel" >
           <!-- Exemple de plusieurs cartes flip (à ajuster en nombre pour former 3 pages) -->
         
@@ -447,13 +451,13 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       </div>
   
       <!-- Indicateurs hors du slider -->
-      <div class="carousel-indicators">
+      <div class="carousel-indicators" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700">
         <span class="indicator active" data-index="0"></span>
         <span class="indicator" data-index="1"></span>
       
       </div>
 
-      <div class="prestation-slider-controls">
+      <div class="prestation-slider-controls" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700"> 
         <button class="prestation-slider-btn prestation-prev">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
@@ -483,19 +487,19 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
   <!-- Nouvelle Section : Slider Cards -->
 <section  id="slider-section" class="observed-section">
-  <div class="colored-container-slider">
+  <div class="colored-container-slider" data-aos="fade-up">
   <div class="title-container">
-    <h1 class="section-title">NOS LIEUX</h1>
+    <h1 class="section-title" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">NOS LIEUX</h1>
     <div class="circle" data-icon="assets/pictos/home.png"></div>
    </div>
  
-  <p class="section-subtitle" id="subtitle">Plus de 2500 M2 d’espaces de travail répartis
+  <p class="section-subtitle" id="subtitle" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">Plus de 2500 M2 d’espaces de travail répartis
     entre la Seyne sur mer et Toulon.<br>
     Un tiers lieux culturel qui domine la rade ou un laboratoire de création <br>
      en plein cœur de la capitale varoise ? <br>
     
     </p>
-    <p class="section-subtitle" id="responsive-subtitle-lieux">Un tiers lieux culturel qui domine la rade 
+    <p class="section-subtitle" id="responsive-subtitle-lieux" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">Un tiers lieux culturel qui domine la rade 
       ou un laboratoire de création en plein cœur de la capitale varoise? 
       Plus de 2500 M2 d’espaces de travail répartis
        entre la Seyne sur mer et Toulon.
@@ -555,19 +559,19 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 <!-- Nouvelle Section : Event Section -->
 <section id="event-section" class="observed-section">
   <!-- En-tête de section -->
-  <div class="colored-container-event">
+  <div class="colored-container-event" data-aos="fade-up">
     <div class="section-header">
       <div class="title-container">
-        <h1 class="section-title">RÉFÉRENCES</h1>
+        <h1 class="section-title" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">RÉFÉRENCES</h1>
         <div class="circle" data-icon="assets/pictos/like.png"></div>
       </div>
-      <p class="section-subtitle">
+      <p class="section-subtitle" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">
         Une empreinte faconnée avec le temps, la marque de fabrique d'un chemin constitué d'événements majeurs et de projets parallèles.
       </p>
     </div>
 
     <!-- Zone des catégories (pillules) -->
-    <div class="pill-container">
+    <div class="pill-container" data-aos="fade-up"  data-aos-delay="400" data-aos-duration="500">
       <!-- Ajout d'un bouton "Toutes" qui sera actif par défaut -->
       <button class="pill-item active" data-category="all">Tout</button>
       <button class="pill-item" data-category="2">Lieux</button>
@@ -576,7 +580,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     </div>
     
     <!-- Version mobile : filtre toggle -->
-<div class="mobile-filter">
+<div class="mobile-filter" data-aos="fade-up"  data-aos-delay="400" data-aos-duration="500">
   <button class="filter-toggle">Filtrer <span class="chevron">&#x25BC;</span></button>
   <div class="filter-options">
     <div class="filter-option" data-category="all">Tout</div>
@@ -590,7 +594,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 </div>
 
     <!-- Zone des cards horizontales (Recycler view centrée) -->
-    <div class="horizontal-cards">
+    <div class="horizontal-cards" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="600">
       <!-- Card 1 -->
       <div class="card-wrapper" data-category="1"
            data-modal-title="BLOOM MARKET"
@@ -974,20 +978,20 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
 <!-- Section Gallerie Media -->
 <section id="gallery-media" class="observed-section">
-  <div class="colored-container-media">
+  <div class="colored-container-media" data-aos="fade-up">
     <div class="section-header">
       <div class="title-container">
-        <h1 class="section-title">MEDIAS</h1>
+        <h1 class="section-title" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">MEDIAS</h1>
         <div class="circle" data-icon="assets/pictos/média.png"></div>
       </div>
-      <p class="section-subtitle">
+      <p class="section-subtitle" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">
         Photos, vidéos, mix...<br>
         voici quelques uns de nos souvenirs suspendus à découvrir ici !
       </p>
     </div>
     
     <!-- Conteneur qui masque le débordement horizontal et applique une marge latérale -->
-    <div class="slider-wrapper-container">
+    <div class="slider-wrapper-container" data-aos="fade-up"  data-aos-delay="400" data-aos-duration="600">
       <!-- Grille de 2 lignes x 5 colonnes -->
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-card">
@@ -1044,7 +1048,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       </div>
       
       <!-- Bouton "Voir plus" centré en dessous de la grille -->
-      <div class="more-button-container">
+      <div class="more-button-container" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700">
         <a href="media_gallery_page/mediagallery.html" class="more-btn">
           <span>Voir plus</span>
           <span>+</span>
@@ -1056,20 +1060,21 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
 
 <section id="contact-section" class="observed-section">
-  <div class="colored-container-contact">
+  <div class="colored-container-contact" data-aos="fade-up">
     <div class="section-header">
       <div class="title-container">
-        <h1 class="section-title">CONTACTEZ-NOUS</h1>
+        <h1 class="section-title" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">CONTACTEZ-NOUS</h1>
         <div class="circle" data-icon="assets/pictos/contactez-nous.png"></div>
       </div>
-      <p class="section-subtitle" style="max-width: 1100px;">
+      <p class="section-subtitle" style="max-width: 1100px;" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">
         Prenons contact si vous êtes intéressé par notre démarche,<br>
         nous reviendrons vers vous afin de vous renseigner dès que possible ;)
       </p>
     </div>
     
-    <div class="form-container">
-      <form id="contact-form">
+    <div class="form-container" data-aos="fade-up"  data-aos-delay="400" data-aos-duration="400">
+      <!-- Ajoutez ici la classe contact-form au lieu d'un id -->
+      <form class="contact-form" id="contact-form" onsubmit="return false;">
         <input type="text" name="full_name" placeholder="Nom et Prénom" required />
         <input type="email" name="from_email" placeholder="Votre Email" required />
         <textarea name="message" rows="5" placeholder="Votre Message" required></textarea>
@@ -1083,8 +1088,8 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
 
 
-<section id="new-section">
-  <h2 class="section-title" style="text-align: center;">Un grand merci à nos partenaires <3</h2>
+<section id="new-section" data-aos="fade-up">
+  <h2 class="section-title" style="text-align: center;" >Un grand merci à nos partenaires <3</h2>
   <hr class="separatored">
   <div class="image-row">
     <img src="assets/images/partenaires/logo-toulon.png" alt="Image 2" class="image-item" id="image-first">
@@ -1097,17 +1102,17 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
 
 
-<section id="map-section"  class="observed-section">
+<section id="map-section"  class="observed-section" data-aos="fade-up">
   <div class="section-header">
     <div class="title-container">
-      <h1 class="section-title">OU NOUS TROUVER ?</h1>
+      <h1 class="section-title"   >OU NOUS TROUVER ?</h1>
       <div class="circle" data-icon="assets/pictos/lieux.png"></div>
     </div>
-    <p class="section-subtitle">Vous pouvez aussi nous rendre visite<br>dans les deux espaces que nous gérons.</p>
+    <p class="section-subtitle" >Vous pouvez aussi nous rendre visite<br>dans les deux espaces que nous gérons.</p>
   </div>
   
   <!-- Rangée d'infos de contact et images -->
-  <div class="contact-info-row">
+  <div class="contact-info-row" data-aos="fade-up"  data-aos-delay="400" data-aos-duration="600">
     <!-- Card gauche -->
     <div class="contact-card">
       <p>
@@ -1151,7 +1156,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 <footer>
   <div class="footer-container">
     <!-- Colonne gauche -->
-    <div class="footer-column left">
+    <div class="footer-column left" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">
       <h2 class="footer-title">We are NO/ID</h2>
       <p class="footer-text">
         NO/ID est une structure culturelle qui propose des événements (ré)créatifs et des solutions innovantes sur la côte méditerranéenne depuis 1997.<br>
@@ -1160,7 +1165,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     </div>
     
     <!-- Colonne centrale -->
-    <div class="footer-column center">
+    <div class="footer-column center" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700">
       <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
       <div class="footer-info">
         <h3 class="footer-subtitle">FEATlab</h3>
@@ -1186,7 +1191,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     </div>
     
     <!-- Colonne droite -->
-<div class="footer-column right">
+<div class="footer-column right" data-aos="fade-up"  data-aos-delay="700" data-aos-duration="900">
   <h2 class="footer-title">WE KEEP IN TOUCH</h2>
   <div class="connect-block">
     <h2 class="connect-title">Pour rester connecté :</h2>
@@ -1686,6 +1691,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 </body>
 </html>

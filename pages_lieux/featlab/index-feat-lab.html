@@ -11,6 +11,9 @@
 
   <!--CODE CSS VERSION RESPONSIVE-->
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
   <link rel="stylesheet" href="../../no_id/style-responsive/navbar-responsive.css">
   <link rel="stylesheet" href="../../no_id/style-responsive/footer-responsive.css">
   <link rel="stylesheet" href="../../no_id/style-responsive/modal_references_responsive.css">
@@ -20,6 +23,9 @@
 
   
 
+  <!--implementation de aos-->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
     
   <!-- Titre et Description -->
   <title>FEAT*LAB</title>
@@ -52,6 +58,7 @@
 
 
     <!-- Modal Contact -->
+   
     <div class="modal-overlay" id="modal-overlay">
       <div class="modal">
         <button class="close-modal" id="close-modal">&times;</button>
@@ -116,17 +123,14 @@
       <!-- Card Newsletter -->
       <div class="newsletter-card">
         <h3>Découvrez notre newsletter</h3>
-        <form onsubmit="return false;">
+        <form class="newsletter-form" onsubmit="return false;">
           <input type="email" placeholder="Votre email" required />
           <button type="submit">Go</button>
         </form>
-       
         <div class="input-grouped checkbox-grouped">
-          <input type="checkbox" id="terms" required>
-          <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
+          <input type="checkbox" class="terms-checkbox" required>
+          <label>Veuillez accepter nos conditions d'utilisation</label>
         </div>
-
-      
       </div>
       <!-- Card Social Follow -->
       <div class="follow-card">
@@ -172,8 +176,8 @@
   </div>
   
   <!-- Section Two -->
-  <section class="section-two">
-    <h2 class="semi-title">
+  <section class="section-two" data-aos="fade-up">
+    <h2 class="semi-title" >
       «Le lab de NO/id* est un lieu de convergences créatives,<br>
      qui expérimente, mutualise et développe des idées<br>
       par la proximité de compétences et de savoirs différents»
@@ -183,7 +187,7 @@
      qui expérimente, mutualise et développe des idées
       par la proximité de compétences et de savoirs différents»
     </h2>
-    <p class="paragraph">
+    <p class="paragraph" >
       Un espace de 100 M2 en plein cœur de Toulon pour créer, échanger et découvrir le savoir-faire de passionnés, également à la location pour vos événements.<br>
       Quelle que soit la nature de votre événement, nous mettons à votre disposition un espace unique entièrement privatisable d'une surface de 200 m² en plein cœur de ville, situé à proximité de nombreuses enseignes, bars et restaurants branchés situés en haute ville, cet espace atypique est repérable dès l'extérieur avec sa façade pied de poule noire et blanche.<br>
       Ce lieu est optimisé pour recevoir de nombreux types d'événements novateurs et récréatifs. Totalement équipé pour la majorité des prestations, l'espace, facile d'accès en rez-de-chaussée, est situé à moins de 3 minutes à pied de la gare et de la place centrale de Toulon.<br>
@@ -193,8 +197,8 @@
   
   <!-- Section Three -->
   <section class="section-three">
-    <h2>CARACTERISTIQUES :</h2>
-    <p>
+    <h2 >CARACTERISTIQUES :</h2>
+    <p >
      Emplacement: Espace en plein coeur de Toulon, à 3 mn à pied de la gare, à 2 mn du centre ancien<br>
 Superficie totale: 100M2 en rez-de-chaussée - 85 m2 en sous sol<br>
 Détail: composé par une grande salle de 80m2, complété par une cuisine équipée, une salle de bain, des toilettes. le sous sol est constitué de 3 espaces distincts: un espace de coworking de 60 m2, un bureau privé<br>
@@ -212,11 +216,11 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
    </p>
   </section>
   
-  <section class="section-four">
-    <h2>TARIFS</h2>
+  <section class="section-four" data-aos="fade-up">
+    <h2 >TARIFS</h2>
   
     <!-- Partie Rez-de-chaussée -->
-    <div class="tarif-ground">
+    <div class="tarif-ground" >
       <h3 class="subtitle">Pour réservation du rez-de-chaussée pour :</h3>
       <p class="description">
         Atelier - formation - réunion - brainstorming
@@ -233,7 +237,7 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
     </div>
   
     <!-- Partie Coworking -->
-    <div class="tarif-coworking">
+    <div class="tarif-coworking" >
       <h3 class="subtitle">Tarif pour coworking pour :</h3>
       <p class="description">
         Indépendant, créatif, informatique, auto entrepreneur & petite entreprise<br>
@@ -252,8 +256,8 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
   
   
   <!-- Section Five : Contact -->
-  <section class="section-five" id="contact-section">
-    <div class="contact-header">
+  <section class="section-five" id="contact-section " data-aos="fade-up">
+    <div  class="contact-header">
       <h2>CONTACTEZ-NOUS</h2>
       <div class="phone-box">
         04 94 62 24 77
@@ -261,9 +265,10 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
     </div>
     <div class="subtitle">Nous serions ravis de vous entendre!</div>
     <div class="form-container">
-      <form id="contact-form">
-        <input type="text" name="full_name" placeholder="Nom et Prénom" required>
-        <input type="email" name="from_email" placeholder="Votre Email" required>
+      <!-- Ajoutez ici la classe contact-form au lieu d'un id -->
+      <form class="contact-form" id="contact-form" onsubmit="return false;">
+        <input type="text" name="full_name" placeholder="Nom et Prénom" required />
+        <input type="email" name="from_email" placeholder="Votre Email" required />
         <textarea name="message" rows="5" placeholder="Votre Message" required></textarea>
         <button type="submit">Envoyer</button>
       </form>
@@ -278,7 +283,7 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
   </div>
   
   <!-- Google Maps -->
-  <div class="map-container">
+  <div class="map-container" >
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2911.984068136755!2d5.931554076533459!3d43.12586088637723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b0f171f29e3%3A0xd084a59bf3639ab5!2sNO%2FID*2A%20lab.!5e0!3m2!1sfr!2sfr!4v1742565487870!5m2!1sfr!2sfr"  style="border:0;" allowfullscreen="" loading="lazy" width="100%" height="100%" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
   </div>
@@ -287,7 +292,7 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
   <footer>
     <div class="footer-container">
       <!-- Colonne gauche -->
-      <div class="footer-column left">
+      <div class="footer-column left"  data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">
         <h2 class="footer-title">We are NO/ID</h2>
         <p class="footer-text">
           NO/ID est une structure culturelle qui propose des événements (ré)créatifs et des solutions innovantes sur la côte méditerranéenne depuis 1997.<br>
@@ -296,7 +301,7 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
       </div>
       
      <!-- Colonne centrale -->
-     <div class="footer-column center">
+     <div class="footer-column center" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700">
       <h2 class="footer-title">NOS LIEUX D'EXPLOITATIONS</h2>
       <div class="footer-info">
         <h3 class="footer-subtitle">FEATlab</h3>
@@ -322,19 +327,22 @@ Indépendant - créatif informatique - auto entrepreneur & petite entreprise<br>
     </div>
       
       <!-- Colonne droite -->
-  <div class="footer-column right">
+  <div class="footer-column right" data-aos="fade-up"  data-aos-delay="700" data-aos-duration="900">
     <h2 class="footer-title">WE KEEP IN TOUCH</h2>
     <div class="connect-block">
       <h2 class="connect-title">Pour rester connecté :</h2>
       <div class="connect-inputs">
-        <div class="input-group">
-          <input type="email" placeholder="Votre email" required>
-          <button type="submit">Envoyer</button>
-        </div>
-        <div class="input-group checkbox-group">
-          <input type="checkbox" id="terms" required>
-          <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
-        </div>
+
+        <form id="newsletter-form-bottom" class="newsletter-form" onsubmit="return false;">
+          <div class="input-group">
+            <input type="email" placeholder="Votre email" required />
+            <button type="submit">Envoyer</button>
+          </div>
+          <div class="input-group checkbox-group" style="margin-top: 10px;">
+            <input type="checkbox" id="terms-bottom" class="terms-checkbox" required>
+            <label for="terms-bottom">Veuillez accepter nos conditions d'utilisation</label>
+          </div>
+        </form>
       </div>
       <h3 class="follow-title">Nous suivre</h3>
       <div class="follow-icons">
@@ -436,29 +444,256 @@ closeModal.addEventListener('click', () => {
 
 
 
-    
-    // Envoi du formulaire via Formspree
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(contactForm);
-      fetch(FORM_ENDPOINT, {
-        method: "POST",
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          alert("Message envoyé avec succès !");
-          contactForm.reset();
-          modalOverlay.classList.remove('active');
-        } else {
-          alert("Une erreur est survenue, veuillez réessayer.");
-        }
-      }).catch(error => {
-        alert("Une erreur est survenue, veuillez réessayer.");
-        console.error(error);
+  
+
+   // Configuration du toast avec SweetAlert2 (assurez-vous d'avoir inclus SweetAlert2 via CDN)
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom-end', // en bas à gauche
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(contactForm);
+  fetch(FORM_ENDPOINT, {
+    method: "POST",
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      Toast.fire({
+        icon: 'success',
+        title: 'Message envoyé avec succès !'
       });
+      contactForm.reset();
+      modalOverlay.classList.remove('active');
+    } else {
+      Toast.fire({
+        icon: 'error',
+        title: 'Une erreur est survenue, veuillez réessayer.'
+      });
+    }
+  })
+  .catch(error => {
+    Toast.fire({
+      icon: 'error',
+      title: 'Une erreur est survenue, veuillez réessayer.'
     });
+    console.error(error);
+  });
+});
+
   </script>
+
+<script type="module">
+  // Importations Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+  import { getFirestore,getDocs, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+
+  // Configuration Firebase (remplacez par vos informations)
+  const firebaseConfig = {
+    apiKey: "AIzaSyAz6k773uRrJeRiJsFJS5Z-xg2I5nm892E",
+    authDomain: "no-id-website.firebaseapp.com",
+    projectId: "no-id-website",
+    storageBucket: "no-id-website.firebasestorage.app",
+    messagingSenderId: "166665035020",
+    appId: "1:166665035020:web:d60b6c11a54cc6c6acbd29",
+    measurementId: "G-RZB38ET9KC"
+  };
+
+  // Initialisation de Firebase et de Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+
+
+  
+
+
+
+
+
+// Fonction de validation d'email
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("DOM entièrement chargé, initialisation du formulaire newsletter.");
+
+  // Sélectionner tous les formulaires newsletter via une classe commune
+  const newsletterForms = document.querySelectorAll('.newsletter-form');
+  if (!newsletterForms.length) {
+    console.error("Aucun formulaire newsletter trouvé !");
+    return;
+  }
+
+  newsletterForms.forEach(form => {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const emailInput = form.querySelector('input[type="email"]');
+      // Pour récupérer la case à cocher, on cherche dans le même conteneur parent
+      const termsCheckbox = form.closest('.newsletter-card') 
+                            ? form.closest('.newsletter-card').querySelector('.terms-checkbox')
+                            : document.querySelector('.terms-checkbox');
+
+      const email = emailInput.value.trim();
+      console.log("Tentative d'inscription avec email :", email, "Case cochée :", termsCheckbox ? termsCheckbox.checked : "inconnue");
+
+      if (!validateEmail(email)) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Veuillez entrer un email valide.'
+        });
+        return;
+      }
+
+      if (!termsCheckbox || !termsCheckbox.checked) {
+        Toast.fire({
+          icon: 'error',
+          title: "Veuillez accepter nos conditions d'utilisation."
+        });
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, 'newsletter_subscribe'), {
+          email: email,
+          timestamp: serverTimestamp()
+        });
+        console.log("Inscription réussie pour email :", email);
+        Toast.fire({
+          icon: 'success',
+          title: 'Inscription réussie !'
+        });
+        // Réinitialiser le formulaire
+        emailInput.value = '';
+        termsCheckbox.checked = false;
+      } catch (error) {
+        console.error("Erreur lors de l'inscription :", error);
+        Toast.fire({
+          icon: 'error',
+          title: 'Erreur, veuillez réessayer plus tard.'
+        });
+      }
+    });
+  });
+});
+
+
+
+//grstino du deuxieme formulaire
+// Fonction de validation d'email renommée en isValidEmail
+function isValidEmail(emailAddress) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(emailAddress);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("DOM entièrement chargé, initialisation des formulaires newsletter.");
+
+  // Liste des formulaires et de leurs cases associées, avec des IDs distincts
+  const subscribeForms = [
+    { formId: 'newsletter-form-top', checkboxId: 'terms-top' },
+    { formId: 'newsletter-form-bottom', checkboxId: 'terms-bottom' }
+  ];
+
+  subscribeForms.forEach(item => {
+    const formElement = document.getElementById(item.formId);
+    const checkBoxElement = document.getElementById(item.checkboxId);
+    if (!formElement) {
+      console.error("Formulaire non trouvé :", item.formId);
+      return;
+    }
+    formElement.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const emailField = formElement.querySelector('input[type="email"]');
+      const emailValue = emailField.value.trim();
+      console.log(`Tentative d'inscription (${item.formId}) avec email:`, emailValue, "Case cochée:", checkBoxElement.checked);
+
+      // Vérification de l'email
+      if (!isValidEmail(emailValue)) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Veuillez entrer un email valide.'
+        });
+        return;
+      }
+      
+      // Vérification de la case à cocher
+      if (!checkBoxElement.checked) {
+        Toast.fire({
+          icon: 'error',
+          title: "Veuillez accepter nos conditions d'utilisation."
+        });
+        return;
+      }
+      
+      try {
+        await addDoc(collection(db, 'newsletter_subscribe'), {
+          email: emailValue,
+          timestamp: serverTimestamp()
+        });
+        console.log(`Inscription réussie (${item.formId}) pour email:`, emailValue);
+        Toast.fire({
+          icon: 'success',
+          title: 'Inscription réussie !'
+        });
+        // Réinitialiser le formulaire
+        emailField.value = '';
+        checkBoxElement.checked = false;
+      } catch (err) {
+        console.error(`Erreur lors de l'inscription (${item.formId}):`, err);
+        Toast.fire({
+          icon: 'error',
+          title: 'Une erreur est survenue, veuillez réessayer plus tard.'
+        });
+      }
+    });
+  });
+});
+
+</script>
+
+<script>document.addEventListener("DOMContentLoaded", function() {
+  // Détecte si l'appareil supporte le touch (mobile)
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    // Création d'une balise <style> pour injecter des règles spécifiques
+    const style = document.createElement('style');
+    style.innerText = `
+      /* Désactiver les effets hover sur mobile */
+      *:hover {
+        transition: none !important;
+      }
+      
+      /* Supprimer le surlignage bleu lors d'un tap sur mobile */
+      * {
+        -webkit-tap-highlight-color: transparent !important;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+});
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>

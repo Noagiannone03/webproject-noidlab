@@ -86,6 +86,9 @@ section {
   max-width: 15%;
 }
 
+.section-two{
+ margin-top: 150px;
+}
 /* --- Section Two : Texte --- */
 .section-two .semi-title {
   text-align: right;
@@ -445,4 +448,7 @@ section {
   .map-container {
     height: 250px;
   }
+  .section-two{
+    margin-top: 0px;
+   }
 }

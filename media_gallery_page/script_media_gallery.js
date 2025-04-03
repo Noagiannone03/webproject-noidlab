@@ -2,6 +2,31 @@
   AOS.init({ duration: 800 });
 
 
+  document.addEventListener("DOMContentLoaded", function() {
+    // Détecte si l'appareil supporte le touch (mobile)
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      // Création d'une balise <style> pour injecter des règles spécifiques
+      const style = document.createElement('style');
+      style.innerText = `
+        /* Désactiver les effets hover sur mobile */
+        *:hover {
+          transition: none !important;
+        }
+        
+        /* Supprimer le surlignage bleu lors d'un tap sur mobile */
+        * {
+          -webkit-tap-highlight-color: transparent !important;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  });
+  
+
 
   /* ----------------- Filter Photos ----------------- */
 // Sélection des éléments du DOM
@@ -10,6 +35,16 @@ const photoGrid = document.querySelector(".photos-grid");
 const initialPhotoCards = Array.from(document.querySelectorAll(".photos-grid .media-card"));
 const voirPlusBtn = document.querySelector(".see-more button");
 
+document.addEventListener("DOMContentLoaded", function() {
+  // Si la fenêtre est en mode mobile (par exemple moins de 768px de largeur)
+  if(window.innerWidth < 768) {
+    loadExtraPhotos();
+    extraLoaded = true;
+    setVoirMoinsButton();
+    // Optionnel : masquer le bouton "Voir plus"
+    voirPlusBtn.parentElement.style.display = "none";
+  }
+});
 let extraLoaded = false;
 
 // Liste des photos supplémentaires à ajouter (adaptez les chemins, alt et catégories)
@@ -191,6 +226,8 @@ function setVoirMoinsButton() {
 function setVoirPlusButton() {
   voirPlusBtn.innerHTML = 'Voir plus <span class="arrow">➔</span>';
 }
+
+
 
 // Gestion du clic sur le bouton "Voir plus"/"Voir moins"
 voirPlusBtn.addEventListener("click", () => {
@@ -514,13 +551,4 @@ if (modalNextDekstop) {
 
   
 
-
-
-
-
-
-
-
-
-
-  
+  // === Gestion du filtre pour mobile ===
