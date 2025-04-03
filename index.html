@@ -42,6 +42,7 @@
   <link rel="stylesheet" href="no_id/style-responsive/modal_references_responsive.css">
 
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     
   <!-- Titre et Description -->
@@ -241,18 +242,16 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       <!-- Card Newsletter -->
       <div class="newsletter-card">
         <h3>Découvrez notre newsletter</h3>
-        <form onsubmit="return false;">
+        <form class="newsletter-form" onsubmit="return false;">
           <input type="email" placeholder="Votre email" required />
           <button type="submit">Go</button>
         </form>
-       
         <div class="input-grouped checkbox-grouped">
-          <input type="checkbox" id="terms" required>
-          <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
+          <input type="checkbox" class="terms-checkbox" required>
+          <label>Veuillez accepter nos conditions d'utilisation</label>
         </div>
-
-      
       </div>
+      
       <!-- Card Social Follow -->
       <div class="follow-card">
         <h3>Nous suivre</h3>
@@ -329,10 +328,9 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       <div class="flash-news-slider">
         <!-- Le slider sera rempli par Firebase -->
       </div>
-      <div class="slider-dots">
-        <span class="dot active" data-index="0"></span>
-        <span class="dot" data-index="1"></span>
-      </div>
+  
+      <div class="slider-dots"></div>
+
     </div>
     
 
@@ -1057,28 +1055,30 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 </section>
 
 
-
-<section  id="contact-section" class="observed-section">
+<section id="contact-section" class="observed-section">
   <div class="colored-container-contact">
-  <div class="section-header">
-    <div class="title-container">
-      <h1 class="section-title">CONTACTEZ-NOUS</h1>
-      <div class="circle" data-icon="assets/pictos/contactez\ nous.png"></div>
-     </div>
-    <p class="section-subtitle" style="max-width: 1100px;">Prenons contact si vous êtes intéréssé par notre démarche,<br> nous reviendrons vers vous afin de vous renseigner dès que possible ;)</p>
+    <div class="section-header">
+      <div class="title-container">
+        <h1 class="section-title">CONTACTEZ-NOUS</h1>
+        <div class="circle" data-icon="assets/pictos/contactez-nous.png"></div>
+      </div>
+      <p class="section-subtitle" style="max-width: 1100px;">
+        Prenons contact si vous êtes intéressé par notre démarche,<br>
+        nous reviendrons vers vous afin de vous renseigner dès que possible ;)
+      </p>
+    </div>
+    
+    <div class="form-container">
+      <form id="contact-form">
+        <input type="text" name="full_name" placeholder="Nom et Prénom" required />
+        <input type="email" name="from_email" placeholder="Votre Email" required />
+        <textarea name="message" rows="5" placeholder="Votre Message" required></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
   </div>
-  
-  <div class="form-container">
-    <form id="contact-form">
-      <input type="text" name="full_name" placeholder="Nom et Prénom" required />
-      <input type="email" name="from_email" placeholder="Votre Email" required />
-      <textarea name="message" rows="5" placeholder="Votre Message" required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-  </div>
-</div>
- 
 </section>
+
 
 
 
@@ -1191,15 +1191,20 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   <div class="connect-block">
     <h2 class="connect-title">Pour rester connecté :</h2>
     <div class="connect-inputs">
-      <div class="input-group">
-        <input type="email" placeholder="Votre email" required>
-        <button type="submit">Envoyer</button>
-      </div>
-      <div class="input-group checkbox-group">
-        <input type="checkbox" id="terms" required>
-        <label for="terms">Veuillez accepter nos conditions d'utilisation</label>
-      </div>
+
+  <form id="newsletter-form-bottom" class="newsletter-form" onsubmit="return false;">
+    <div class="input-group">
+      <input type="email" placeholder="Votre email" required />
+      <button type="submit">Envoyer</button>
     </div>
+    <div class="input-group checkbox-group" style="margin-top: 10px;">
+      <input type="checkbox" id="terms-bottom" class="terms-checkbox" required>
+      <label for="terms-bottom">Veuillez accepter nos conditions d'utilisation</label>
+    </div>
+  </form>
+</div>
+
+    
     <h3 class="follow-title">Nous suivre</h3>
     <div class="follow-icons">
       <button>
@@ -1337,22 +1342,25 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+  // Importations Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+  import { getFirestore,getDocs, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
 
-// Configuration Firebase (remplacez par vos informations si besoin)
-const firebaseConfig = {
-  apiKey: "AIzaSyAz6k773uRrJeRiJsFJS5Z-xg2I5nm892E",
-  authDomain: "no-id-website.firebaseapp.com",
-  projectId: "no-id-website",
-  storageBucket: "no-id-website.firebasestorage.app",
-  messagingSenderId: "166665035020",
-  appId: "1:166665035020:web:d60b6c11a54cc6c6acbd29",
-  measurementId: "G-RZB38ET9KC"
-};
+  // Configuration Firebase (remplacez par vos informations)
+  const firebaseConfig = {
+    apiKey: "AIzaSyAz6k773uRrJeRiJsFJS5Z-xg2I5nm892E",
+    authDomain: "no-id-website.firebaseapp.com",
+    projectId: "no-id-website",
+    storageBucket: "no-id-website.firebasestorage.app",
+    messagingSenderId: "166665035020",
+    appId: "1:166665035020:web:d60b6c11a54cc6c6acbd29",
+    measurementId: "G-RZB38ET9KC"
+  };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  // Initialisation de Firebase et de Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
 
 // Fonction pour charger et afficher les news dans le flash news banner
 async function loadNews() {
@@ -1360,11 +1368,13 @@ async function loadNews() {
     const newsCollection = collection(db, "news");
     const querySnapshot = await getDocs(newsCollection);
     console.log("Nombre de news récupérées :", querySnapshot.size);
-    if(querySnapshot.empty) {
+    if (querySnapshot.empty) {
       console.log("Aucune news trouvée dans la collection.");
     }
     const slider = document.querySelector('.flash-news-slider');
-    slider.innerHTML = "";
+    slider.innerHTML = ""; // Réinitialiser le contenu
+
+    // Création des news items
     querySnapshot.forEach((docSnap) => {
       const news = docSnap.data();
       console.log("News récupérée :", news);
@@ -1379,34 +1389,33 @@ async function loadNews() {
       `;
       slider.appendChild(newsItem);
     });
+    // Génération dynamique des dots
     updateSliderDots();
-
-    // Une fois le chargement terminé, faire apparaître la bannière
+    // Initialisation du slider flash news
+    initFlashNewsSlider();
+    // Affichage de la bannière (en retirant la classe hidden)
     document.querySelector('.flash-news-banner').classList.remove('hidden');
   } catch (error) {
     console.error("Erreur lors du chargement des news :", error);
   }
 }
 
-// (Optionnel) Fonction pour mettre à jour les points de navigation du slider
+// Fonction pour mettre à jour les indicateurs (dots)
 function updateSliderDots() {
   const slider = document.querySelector('.flash-news-slider');
   const dotsContainer = document.querySelector('.slider-dots');
   dotsContainer.innerHTML = ""; // Réinitialisation des dots
   const totalItems = slider.children.length;
-  for(let i = 0; i < totalItems; i++){
+  for (let i = 0; i < totalItems; i++) {
     const dot = document.createElement('span');
     dot.classList.add('dot');
-    if(i === 0) dot.classList.add('active');
+    if (i === 0) dot.classList.add('active');
     dot.setAttribute('data-index', i);
     dotsContainer.appendChild(dot);
   }
 }
 
-// Appel initial pour charger les news
-loadNews();
-
-
+// Fonction d'initialisation du slider flash news
 function initFlashNewsSlider() {
   const slider = document.querySelector('.flash-news-slider');
   const dots = document.querySelectorAll('.slider-dots .dot');
@@ -1414,7 +1423,6 @@ function initFlashNewsSlider() {
   const totalItems = newsItems.length;
   let currentIndex = 0;
   let autoSlideInterval;
-  let index = 0;
   let isDragging = false;
   let startPos = 0;
   let currentTranslate = 0;
@@ -1505,83 +1513,174 @@ function initFlashNewsSlider() {
     });
   });
 
-  // Optionnel : appeler goToSlide(0) pour réinitialiser le slider
   goToSlide(0);
 }
 
+// Appel initial pour charger les news et initialiser le slider
+loadNews();
+
+
+
+
+
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "bottom-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
 
 // Fonction de validation d'email
 function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("DOM entièrement chargé, initialisation du formulaire newsletter.");
+
+  // Sélectionner tous les formulaires newsletter via une classe commune
+  const newsletterForms = document.querySelectorAll('.newsletter-form');
+  if (!newsletterForms.length) {
+    console.error("Aucun formulaire newsletter trouvé !");
+    return;
   }
 
-  // Attendre que le DOM soit complètement chargé
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM entièrement chargé, initialisation du formulaire newsletter.");
-    
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (!newsletterForm) {
-      console.error("Formulaire newsletter introuvable !");
-      return;
-    }
-
-    newsletterForm.addEventListener('submit', async function(e) {
+  newsletterForms.forEach(form => {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      const emailInput = newsletterForm.querySelector('input[type="email"]');
-      const termsCheckbox = document.getElementById('terms');
+      const emailInput = form.querySelector('input[type="email"]');
+      // Pour récupérer la case à cocher, on cherche dans le même conteneur parent
+      const termsCheckbox = form.closest('.newsletter-card') 
+                            ? form.closest('.newsletter-card').querySelector('.terms-checkbox')
+                            : document.querySelector('.terms-checkbox');
+
       const email = emailInput.value.trim();
+      console.log("Tentative d'inscription avec email :", email, "Case cochée :", termsCheckbox ? termsCheckbox.checked : "inconnue");
 
-      console.log("Tentative d'inscription avec email :", email, "Case cochée :", termsCheckbox.checked);
-
-      // Vérification de la validité de l'email
       if (!validateEmail(email)) {
-        Swal.fire({
+        Toast.fire({
           icon: 'error',
-          title: 'Email invalide',
-          text: 'Veuillez entrer un email valide.'
-        });
-        return;
-      }
-      
-      // Vérification de la case à cocher
-      if (!termsCheckbox.checked) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Conditions non acceptées',
-          text: "Veuillez accepter nos conditions d'utilisation."
+          title: 'Veuillez entrer un email valide.'
         });
         return;
       }
 
-      // Créer un document dans la collection "newsletter_subscribe"
+      if (!termsCheckbox || !termsCheckbox.checked) {
+        Toast.fire({
+          icon: 'error',
+          title: "Veuillez accepter nos conditions d'utilisation."
+        });
+        return;
+      }
+
       try {
         await addDoc(collection(db, 'newsletter_subscribe'), {
           email: email,
           timestamp: serverTimestamp()
         });
         console.log("Inscription réussie pour email :", email);
-        Swal.fire({
+        Toast.fire({
           icon: 'success',
-          title: 'Inscription réussie',
-          text: 'Vous êtes inscrit à notre newsletter !'
+          title: 'Inscription réussie !'
         });
         // Réinitialiser le formulaire
         emailInput.value = '';
         termsCheckbox.checked = false;
       } catch (error) {
         console.error("Erreur lors de l'inscription :", error);
-        Swal.fire({
+        Toast.fire({
           icon: 'error',
-          title: 'Erreur',
-          text: 'Une erreur est survenue, veuillez réessayer plus tard.'
+          title: 'Erreur, veuillez réessayer plus tard.'
         });
       }
     });
   });
+});
+
+
+
+//grstino du deuxieme formulaire
+// Fonction de validation d'email renommée en isValidEmail
+function isValidEmail(emailAddress) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(emailAddress);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("DOM entièrement chargé, initialisation des formulaires newsletter.");
+
+  // Liste des formulaires et de leurs cases associées, avec des IDs distincts
+  const subscribeForms = [
+    { formId: 'newsletter-form-top', checkboxId: 'terms-top' },
+    { formId: 'newsletter-form-bottom', checkboxId: 'terms-bottom' }
+  ];
+
+  subscribeForms.forEach(item => {
+    const formElement = document.getElementById(item.formId);
+    const checkBoxElement = document.getElementById(item.checkboxId);
+    if (!formElement) {
+      console.error("Formulaire non trouvé :", item.formId);
+      return;
+    }
+    formElement.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const emailField = formElement.querySelector('input[type="email"]');
+      const emailValue = emailField.value.trim();
+      console.log(`Tentative d'inscription (${item.formId}) avec email:`, emailValue, "Case cochée:", checkBoxElement.checked);
+
+      // Vérification de l'email
+      if (!isValidEmail(emailValue)) {
+        Toast.fire({
+          icon: 'error',
+          title: 'Veuillez entrer un email valide.'
+        });
+        return;
+      }
+      
+      // Vérification de la case à cocher
+      if (!checkBoxElement.checked) {
+        Toast.fire({
+          icon: 'error',
+          title: "Veuillez accepter nos conditions d'utilisation."
+        });
+        return;
+      }
+      
+      try {
+        await addDoc(collection(db, 'newsletter_subscribe'), {
+          email: emailValue,
+          timestamp: serverTimestamp()
+        });
+        console.log(`Inscription réussie (${item.formId}) pour email:`, emailValue);
+        Toast.fire({
+          icon: 'success',
+          title: 'Inscription réussie !'
+        });
+        // Réinitialiser le formulaire
+        emailField.value = '';
+        checkBoxElement.checked = false;
+      } catch (err) {
+        console.error(`Erreur lors de l'inscription (${item.formId}):`, err);
+        Toast.fire({
+          icon: 'error',
+          title: 'Une erreur est survenue, veuillez réessayer plus tard.'
+        });
+      }
+    });
+  });
+});
 
       </script> 
+
 
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
