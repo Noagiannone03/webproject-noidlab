@@ -988,12 +988,7 @@ sections.forEach(section => observer.observe(section));
 
 
 
-document.querySelectorAll('.slider-card').forEach(card => {
-  card.addEventListener('click', () => {
-    // Basculer la classe active sur la carte cliquée
-    card.classList.toggle('active');
-  });
-});
+
 
 
 
@@ -1041,32 +1036,6 @@ function initMap() {
 
 
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Appliquer ce comportement uniquement en mode mobile
-  if (window.innerWidth <= 480) {
-    const cards = document.querySelectorAll('.slider-card');
-    
-    // Ajout d'un écouteur sur chaque carte
-    cards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        e.stopPropagation();  // Évite que le clic se propage au document
-        // Si la carte est déjà active, on la ferme ; sinon, on ferme les autres et on ouvre celle-ci
-        if (card.classList.contains('active')) {
-          card.classList.remove('active');
-        } else {
-          cards.forEach(c => c.classList.remove('active'));
-          card.classList.add('active');
-        }
-      });
-    });
-    
-    // Ferme toute carte active si l'utilisateur clique en dehors
-    document.addEventListener('click', () => {
-      cards.forEach(c => c.classList.remove('active'));
-    });
-  }
-});
 
 
 
@@ -1274,34 +1243,35 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  
-  
-
-
   document.addEventListener("DOMContentLoaded", function() {
     // Exécuter uniquement sur mobile (max-width: 480px)
     if (window.innerWidth > 480) return;
     
-    const sliderCards = document.querySelectorAll('.slider-card');
+    const cardsContainer = document.querySelector('.slider-cards');
+    if (!cardsContainer) return;
     
-    // Ajout d'un écouteur sur chaque carte pour toggler l'overlay
-    sliderCards.forEach(card => {
-      card.addEventListener('click', function(e) {
-        e.stopPropagation();
-        // Fermer les autres cartes
-        sliderCards.forEach(c => {
-          if (c !== card) c.classList.remove('active');
-        });
-        // Toggle sur la carte cliquée
-        card.classList.toggle('active');
+    // Utilisation de la délégation d'événements sur le conteneur des cartes
+    cardsContainer.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const card = e.target.closest('.slider-card');
+      if (!card) return;
+      
+      // Si la carte n'est pas déjà active, fermer les autres et activer celle-ci
+      if (!card.classList.contains('active')) {
+        cardsContainer.querySelectorAll('.slider-card.active').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      }
+      // Si la carte est déjà active, on ne fait rien.
+    });
+    
+    // Fermer les cartes actives si l'utilisateur clique en dehors
+    document.addEventListener('click', function() {
+      cardsContainer.querySelectorAll('.slider-card.active').forEach(card => {
+        card.classList.remove('active');
       });
     });
-    
-    // Fermer l'overlay si l'utilisateur clique ailleurs sur la page
-    document.addEventListener('click', () => {
-      sliderCards.forEach(card => card.classList.remove('active'));
-    });
   });
-  
   
   

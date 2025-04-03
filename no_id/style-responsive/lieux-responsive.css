@@ -90,6 +90,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    margin-top: 20px;
   }
   .slider-card.active .overlay .extra-content {
     max-height: 100px;
@@ -191,7 +192,7 @@
 /* ------------------------------ */
 /* Téléphones en mode paysage (481px - 767px) */
 /* ------------------------------ */
-@media screen and (max-width: 767px) and (min-width: 481px) {
+@media screen and (max-width: 767px) and (min-width: 481px), (hover: none) {
   #slider-section {
     height: auto;
     padding: 30px 20px;
@@ -290,7 +291,7 @@
 /* ------------------------------ */
 /* Téléphones en mode portrait (max-width: 480px) */
 /* ------------------------------ */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px), (hover: none) {
   #slider-section {
     padding: 20px 10px;
     height: auto;
@@ -310,7 +311,16 @@
     max-width: 350px;
     height: 240px;
     margin: 0 auto;
+    user-select: none;              /* Désactive la sélection de texte */
+    -webkit-tap-highlight-color: transparent; /* Supprime le tap highlight sur mobile */
+    outline: none;                  /* Supprime le contour de focus */
   }
+  .slider-card,
+.slider-control {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
   #responsive-subtitle-lieux { display: flex; }
   #subtitle { display: none; }
   .slider-card .overlay {
@@ -368,6 +378,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    margin-top: 10px;
   }
   .slider-card.active .overlay .extra-content {
     max-height: 100px;
@@ -381,8 +392,12 @@
   }
   .slider-card.active .overlay button.toggle-btn {
     align-self: flex-end;
+    margin-top: 8px;
   }
  
+  .slider-card:focus {
+    outline: none;
+  }
   
   
 }
