@@ -255,28 +255,52 @@ sections.forEach(section => {
 
 
 
-    // Envoi du formulaire via Formspree
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(contactForm);
-      fetch(FORM_ENDPOINT, {
-        method: "POST",
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          alert("Message envoyé avec succès !");
-          contactForm.reset();
-          modalOverlay.classList.remove('active');
-        } else {
-          alert("Une erreur est survenue, veuillez réessayer.");
-        }
-      }).catch(error => {
-        alert("Une erreur est survenue, veuillez réessayer.");
-        console.error(error);
+   // Configuration du toast avec SweetAlert2 (assurez-vous d'avoir inclus SweetAlert2 via CDN)
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom-end', // en bas à gauche
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(contactForm);
+  fetch(FORM_ENDPOINT, {
+    method: "POST",
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      Toast.fire({
+        icon: 'success',
+        title: 'Message envoyé avec succès !'
       });
+      contactForm.reset();
+      modalOverlay.classList.remove('active');
+    } else {
+      Toast.fire({
+        icon: 'error',
+        title: 'Une erreur est survenue, veuillez réessayer.'
+      });
+    }
+  })
+  .catch(error => {
+    Toast.fire({
+      icon: 'error',
+      title: 'Une erreur est survenue, veuillez réessayer.'
     });
+    console.error(error);
+  });
+});
+
 
     // Slider Cards : Changement d'image toutes les 6 secondes
     function initSlider(sliderId) {
@@ -385,28 +409,108 @@ document.querySelectorAll('.pill-item').forEach(pill => {
 
 
  
-  const contactForm = document.getElementById('contact-form');
-  contactForm.addEventListener('submit', (e) => {
+// Configuration du toast avec SweetAlert2
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom-end', // Position en bas à gauche
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(contactForm);
+  
+  fetch(FORM_ENDPOINT, {
+    method: "POST",
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      Toast.fire({
+        icon: 'success',
+        title: 'Message envoyé avec succès !'
+      });
+      contactForm.reset();
+    } else {
+      Toast.fire({
+        icon: 'error',
+        title: 'Une erreur est survenue, veuillez réessayer.'
+      });
+    }
+  })
+  .catch(error => {
+    Toast.fire({
+      icon: 'error',
+      title: 'Une erreur est survenue, veuillez réessayer.'
+    });
+    console.error(error);
+  });
+});
+
+
+
+
+//gestion du formulaire de contact dans la section contact
+document.addEventListener('DOMContentLoaded', function() {
+  const formContact = document.getElementById('contact-form');
+  if (!formContact) {
+    console.error("Formulaire de contact introuvable.");
+    return;
+  }
+
+  // Configuration du toast avec SweetAlert2
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end', // Affiché en bas à droite
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+
+  formContact.addEventListener('submit', function(e) {
     e.preventDefault();
-    const formData = new FormData(contactForm);
+    const dataContact = new FormData(formContact);
+    // Assurez-vous que FORM_ENDPOINT est défini globalement (par exemple, votre URL Formspree)
     fetch(FORM_ENDPOINT, {
       method: "POST",
-      body: formData,
+      body: dataContact,
       headers: { 'Accept': 'application/json' }
     })
     .then(response => {
       if (response.ok) {
-        alert("Message envoyé avec succès !");
-        contactForm.reset();
+        Toast.fire({
+          icon: 'success',
+          title: 'Message envoyé avec succès !'
+        });
+        formContact.reset();
       } else {
-        alert("Une erreur est survenue, veuillez réessayer.");
+        Toast.fire({
+          icon: 'error',
+          title: 'Une erreur est survenue, veuillez réessayer.'
+        });
       }
     })
     .catch(error => {
-      alert("Une erreur est survenue, veuillez réessayer.");
+      Toast.fire({
+        icon: 'error',
+        title: 'Une erreur est survenue, veuillez réessayer.'
+      });
       console.error(error);
     });
   });
+});
 
 
 

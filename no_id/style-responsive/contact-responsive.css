@@ -100,6 +100,10 @@
     .form-container::after {
       display: none;
     }
+    
+    h2{
+      margin-top: 25px;
+    }
    
     .form-container {
       width: 100%;
