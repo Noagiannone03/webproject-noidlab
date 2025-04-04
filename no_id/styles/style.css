@@ -82,6 +82,7 @@ body {
 }
 
 .bg-video {
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -113,6 +114,7 @@ body {
    Bloc central des stats (au-dessus de la vidéo)
 --------------------------------------------------------- */
 .stats-container {
+  pointer-events: none;
   font-family: 'extra-bold-montserrat', sans-serif;
   font-weight: bold;
   position: relative;
@@ -136,6 +138,7 @@ body {
    Les compteurs
 --------------------------------------------------------- */
 .stat-number {
+  pointer-events: none;
   display: inline-block; /* largeur limitée au texte */
   font-family: 'extra-bold-montserrat', sans-serif;
   font-size: 3.6rem;
@@ -147,6 +150,7 @@ body {
 
 /* Pseudo-élément pour le surlignage avec débordement */
 .stat-number::after {
+  pointer-events: none;
   content: "";
   position: absolute;
   top: 0;
@@ -168,6 +172,7 @@ body {
 }
 
 .stat-label {
+  pointer-events: none;
   font-family: 'extra-bold-montserrat', sans-serif;
   display: block;
   font-size: 1.8rem;
@@ -389,4 +394,15 @@ body {
 .slider-wrapper-container {
   width: 100%;
   padding: 0 80px;
+}
+
+
+
+@media (hover: none) and (pointer: coarse) {
+  /* Désactive l'animation et la mise en forme du focus sur mobile */
+  .slide-in:focus,
+  .slider-control:focus {
+    outline: none;
+    animation: none !important;
+  }
 }

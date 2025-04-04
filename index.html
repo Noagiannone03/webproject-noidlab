@@ -290,7 +290,22 @@ silktideCookieBannerManager.updateCookieBannerConfig({
  
 
   
-
+<script>document.addEventListener('DOMContentLoaded', function() {
+  // Vérifier si l'utilisateur est sur mobile
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    // Sélectionner tous les éléments qui ont la classe 'slide-in'
+    var elements = document.querySelectorAll('.slide-in');
+    elements.forEach(function(el) {
+      // Supprimer la classe 'slide-in' pour désactiver l'animation
+      el.classList.remove('slide-in');
+      // Facultatif : on s'assure que l'élément est affiché sans transformation ni délai
+      el.style.animation = 'none';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+});
+</script>
   
   <!-- SECTION PRINCIPALE -->
   <section id="main">
@@ -301,19 +316,19 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         Votre navigateur ne supporte pas la vidéo.
       </video>
       <div class="stats-container">
-        <p class="stats-title slide-in" style="animation-delay: 0.2s;">LES STATISTIQUES</p>
+        <p class="stats-title" style="animation-delay: 0.2s;">LES STATISTIQUES</p>
         
-        <div class="stat-item slide-in" style="animation-delay: 0.4s;">
+        <div class="stat-item" style="animation-delay: 0.4s;">
           <span class="stat-number" data-target="534">0</span>
           <span class="stat-label">évènements programmés</span>
         </div>
         
-        <div class="stat-item slide-in" style="animation-delay: 0.6s;">
+        <div class="stat-item" style="animation-delay: 0.6s;">
           <span class="stat-number" data-target="1283">0</span>
           <span class="stat-label">artistes et créateurs présentés</span>
         </div>
         
-        <div class="stat-item slide-in" style="animation-delay: 0.8s;">
+        <div class="stat-item" style="animation-delay: 0.8s;">
           <span class="stat-number" data-target="579000">0</span>
           <span class="stat-label">spectacles réunis</span>
         </div>
@@ -328,7 +343,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     <div class="bubble" style="width:120px; height:120px; top:40%; left:60%;"></div>
     <div class="bubble" style="width:60px; height:60px; top:80%; left:30%;"></div>
     
-    <div class="flash-news-banner slide-in hidden" style="animation-delay: 1.2s;">
+    <div class="flash-news-banner" >
       <div class="flash-news-slider">
         <!-- Le slider sera rempli par Firebase -->
       </div>
@@ -348,7 +363,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     <div class="stack-card title">
       <div class="title-container">
         <h1 class="section-title">À PROPOS</h1>
-        <div class="circle" data-icon="assets/pictos/à\ propos.png"></div>
+        <div class="circle active" data-icon="assets/pictos/à\ propos.png" style="background-image: url(assets/pictos/à\ propos.png);"></div>
       </div>
     </div>
     <!-- Sous-titre et paragraphe fusionnés -->
@@ -392,7 +407,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     <div class="colored-container-princing" data-aos="fade-up">
       <div class="title-container">
         <h1 class="section-title"  data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">PRESTATIONS</h1>
-        <div class="circle" data-icon="assets/pictos/prestation.png"></div>
+        <div class="circle active" data-icon="assets/pictos/prestation.png" style="background-image: url(assets/pictos/prestation.png);"></div>
       </div>
       <p class="section-subtitle"  data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">
         Des solutions créatives sur mesure pour des projets d’envergure
@@ -451,28 +466,24 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       </div>
   
       <!-- Indicateurs hors du slider -->
-      <div class="carousel-indicators" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700">
+      <div class="carousel-indicators">
         <span class="indicator active" data-index="0"></span>
         <span class="indicator" data-index="1"></span>
       
       </div>
 
-      <div class="prestation-slider-controls" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700"> 
+      <div class="prestation-slider-controls" > 
         <button class="prestation-slider-btn prestation-prev">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-          </svg>
+          <img style="align-self: center; width: 60%;" src="assets/pictos/chevron-gauche.png">
         </button>
         <button class="prestation-slider-btn prestation-flip">
           <!-- Exemple d'icône flip (vous pouvez la modifier si besoin) -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path fill="#fff" d="M12 6V3L8 7l4 4V8c3.31 0 6 2.69 6 6 0 .34-.03.67-.08 1h2.02c.05-.33.06-.66.06-1 0-4.42-3.58-8-8-8zm-6 6c0-.34.03-.67.08-1H4.06C4 11.33 4 11.66 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6z"/>
-          </svg>
+          <img style="align-self: center; width: 60%;" src="assets/pictos/flip.png">
+
         </button>
         <button class="prestation-slider-btn prestation-next">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
-          </svg>
+          <img style="align-self: center; width: 60%;" src="assets/pictos/chevron-droit.png">
+
         </button>
       </div>
       
@@ -490,7 +501,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   <div class="colored-container-slider" data-aos="fade-up">
   <div class="title-container">
     <h1 class="section-title" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">NOS LIEUX</h1>
-    <div class="circle" data-icon="assets/pictos/home.png"></div>
+    <div class="circle active" data-icon="assets/pictos/home.png" style="background-image: url(assets/pictos/home.png);"></div>
    </div>
  
   <p class="section-subtitle" id="subtitle" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">Plus de 2500 M2 d’espaces de travail répartis
@@ -510,7 +521,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 <div class="slider-card" id="slider-card-2">
   <div class="slider-container">
     <!-- Trois images pour le slider -->
-    <img src="assets/images//nos-lieux/featlab.JPEG" alt="Projet 2 - Image 1" class="active">
+    <img src="assets/images/nos-lieux/featlab.JPEG" alt="Projet 2 - Image 1" class="active">
   </div>
   <div class="overlay">
     <div class="content">
@@ -563,7 +574,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     <div class="section-header">
       <div class="title-container">
         <h1 class="section-title" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">RÉFÉRENCES</h1>
-        <div class="circle" data-icon="assets/pictos/like.png"></div>
+        <div class="circle active" data-icon="assets/pictos/like.png" style="background-image: url(assets/pictos/like.png) ;"></div>
       </div>
       <p class="section-subtitle" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">
         Une empreinte faconnée avec le temps, la marque de fabrique d'un chemin constitué d'événements majeurs et de projets parallèles.
@@ -960,14 +971,10 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     </div>
     <div class="mobile-slider-controls">
       <button class="slider-control prev">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-        </svg>
+        <img style="align-self: center; width: 60%;" src="assets/pictos/chevron-gauche.png">
       </button>
       <button class="slider-control next">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
-        </svg>
+        <img style="align-self: center; width: 60%;" src="assets/pictos/chevron-droit.png">
       </button>
     </div>
     
@@ -982,7 +989,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     <div class="section-header">
       <div class="title-container">
         <h1 class="section-title" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">MEDIAS</h1>
-        <div class="circle" data-icon="assets/pictos/média.png"></div>
+        <div class="circle active" data-icon="assets/pictos/média.png" style="background-image: url(assets/pictos/média.png);"></div>
       </div>
       <p class="section-subtitle" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">
         Photos, vidéos, mix...<br>
@@ -991,7 +998,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     </div>
     
     <!-- Conteneur qui masque le débordement horizontal et applique une marge latérale -->
-    <div class="slider-wrapper-container" data-aos="fade-up"  data-aos-delay="400" data-aos-duration="600">
+    <div class="slider-wrapper-container">
       <!-- Grille de 2 lignes x 5 colonnes -->
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-card">
@@ -1048,7 +1055,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
       </div>
       
       <!-- Bouton "Voir plus" centré en dessous de la grille -->
-      <div class="more-button-container" data-aos="fade-up"  data-aos-delay="500" data-aos-duration="700">
+      <div class="more-button-container">
         <a href="media_gallery_page/mediagallery.html" class="more-btn">
           <span>Voir plus</span>
           <span>+</span>
@@ -1064,7 +1071,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
     <div class="section-header">
       <div class="title-container">
         <h1 class="section-title" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="400">CONTACTEZ-NOUS</h1>
-        <div class="circle" data-icon="assets/pictos/contactez-nous.png"></div>
+        <div class="circle active" data-icon="assets/pictos/contactez-nous.png" style="background-image: url(assets/pictos/contactez-nous.png);"></div>
       </div>
       <p class="section-subtitle" style="max-width: 1100px;" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="500">
         Prenons contact si vous êtes intéressé par notre démarche,<br>
@@ -1094,7 +1101,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   <div class="image-row">
     <img src="assets/images/partenaires/logo-toulon.png" alt="Image 2" class="image-item" id="image-first">
 
-    <img src="assets/images/partenaires/LOGO TPM Métropole Signature CMJN.png" alt="Image 1" class="image-item">
+    <img src="assets/images/partenaires/LOGO TPM Métropole Signature CMJN.png" style="margin-top: 7px; width: fit-content;" alt="Image 1" class="image-item">
     <img src="assets/images/partenaires/logo-vectoriel-departement-du-var.png" alt="Image 3" class="image-item">
   </div>
   <hr class="separatored">
@@ -1106,7 +1113,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
   <div class="section-header">
     <div class="title-container">
       <h1 class="section-title"   >OU NOUS TROUVER ?</h1>
-      <div class="circle" data-icon="assets/pictos/lieux.png"></div>
+      <div class="circle active" data-icon="assets/pictos/lieux.png" style="background-image: url(assets/pictos/lieux.png);"></div>
     </div>
     <p class="section-subtitle" >Vous pouvez aussi nous rendre visite<br>dans les deux espaces que nous gérons.</p>
   </div>
@@ -1342,7 +1349,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 </div>
 
 
-<script src="script.js" defer></script>
+<script src="scripted.js" defer></script>
 
   <!-- Script Three.js -->
   <!-- Script Three.js et GSAP (scroll & animations) -->
