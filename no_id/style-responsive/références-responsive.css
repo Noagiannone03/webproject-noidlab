@@ -169,6 +169,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
+    display: block; /* évite les bugs d'affichage inline */
     display: flex;
     align-items: center;
     justify-content: center;
