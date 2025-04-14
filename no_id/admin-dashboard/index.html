@@ -409,6 +409,7 @@
           </div>
           <input type="text" id="news-title" placeholder="Titre">
           <input type="text" id="news-subtitle" placeholder="Sous-titre">
+          <input type="text" id="url"  placeholder="URL">
           <button id="add-news-btn">Ajouter</button>
         </div>
         <!-- Affichage des News publiées (max. 3) -->
@@ -446,6 +447,7 @@
       document.getElementById('media-upload').value = "";
       document.getElementById('news-title').value = "";
       document.getElementById('news-subtitle').value = "";
+      document.getElementById('url').value = "";
       const preview = document.getElementById('media-preview');
       preview.src = "#";
       preview.style.display = "none";
@@ -510,6 +512,8 @@
       const fileInput = document.getElementById('media-upload');
       const title = document.getElementById('news-title').value;
       const subtitle = document.getElementById('news-subtitle').value;
+      const url = document.getElementById('url').value;
+
       let imageData = "";
       if(fileInput.files[0]) {
         const reader = new FileReader();
@@ -520,6 +524,7 @@
               image: imageData,
               title: title,
               subtitle: subtitle,
+              url: url,
               createdAt: new Date()
             });
             Swal.fire({
@@ -544,6 +549,7 @@
             image: "",
             title: title,
             subtitle: subtitle,
+            url:url,
             createdAt: new Date()
           });
           Swal.fire({
@@ -621,7 +627,7 @@
   ================================ -->
   <script>
     const USERNAME = "admin";
-    const PASSWORD = "admin123";
+    const PASSWORD = "admin";
 
     document.getElementById('login-btn').addEventListener('click', function() {
       const username = document.getElementById('username').value;

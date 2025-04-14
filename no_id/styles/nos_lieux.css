@@ -15,7 +15,7 @@
 
 @font-face {
   font-family: 'bold-italic-montserrat';
-  src: url('../../assets/fonts/Montserrat-BoldItalic.ttf.ttf') format('truetype');
+  src: url('../../assets/fonts/Montserrat-BoldItalic.ttf') format('truetype');
 }
 
 @font-face {
@@ -51,7 +51,7 @@
   color: #333;
 }
 
-/* Petit sous-titre centré, limité à la largeur des cards */
+/* Sous-titre centré, limité à la largeur des cards */
 #slider-section .slider-subtitle {
   font-size: 1.2rem;
   color: #555;
@@ -68,11 +68,13 @@
   gap: 30px;
   flex-wrap: wrap;
 }
-#subtitle{
+
+#subtitle {
   display: flex;
-  min-width: 1200px
+  min-width: 1200px;
 }
 
+/* Style de la carte du slider */
 .slider-card {
   position: relative;
   background: #fff;
@@ -84,7 +86,7 @@
   cursor: pointer;
 }
 
-/* Conteneur du slider */
+/* Conteneur du slider (images) */
 .slider-card .slider-container {
   width: 100%;
   height: 100%;
@@ -105,50 +107,27 @@
   opacity: 1;
 }
 
-/* Overlay en bas de la carte */
-/* L'overlay est en Flex pour aligner le contenu (texte et bouton) sur la même ligne dans l'état normal */
+/* Overlay de la carte */
 .slider-card .overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
-  padding: 15px 15px 10px 15px; /* Réduction du padding inférieur */
+  padding: 15px;
+  box-sizing: border-box;
   transition: height 0.4s ease;
   overflow: hidden;
-  height: 70px;  /* Hauteur initiale ajustée */
-  box-sizing: border-box;
-  display: flex;
-  align-items: flex-end;
+  height: 70px;  /* Hauteur initiale */
 }
 
-/* Wrapper du contenu de l'overlay pour aligner le texte et le bouton sur la même ligne */
-.slider-card .overlay .content {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: transform 0.4s ease;
-  transform: translateY(0);
-}
-
-/* Au hover, l'overlay s'étend et le contenu se déplace vers le haut (translation réduite) */
-.slider-card:hover .overlay {
-  height: 220px; /* Hauteur dépliée suffisante pour afficher tout le contenu */
-}
-.slider-card:hover .overlay .content {
-  transform: translateY(-30px); /* Translation réduite pour éviter un décalage trop important */
-}
-
-/* Groupe texte de l'overlay */
+/* Le texte occupe toute la largeur */
 .slider-card .overlay .text {
+  width: 100%;
   text-align: left;
-  margin-right: 10px;
-}
-.slider-card .overlay .text h3 {
-  font-size: 1.5rem;
-  margin: 0;
+  /* On peut ajouter un padding à droite pour éviter que le texte ne soit masqué par le bouton */
+
 }
 
 #responsive-subtitle-lieux{
@@ -156,32 +135,40 @@
   display: none;
 }
 
-/* Contenu supplémentaire caché initialement */
+
+/* Contenu supplémentaire caché */
 .slider-card .overlay .extra-content {
   margin-top: 10px;
   opacity: 0;
   max-height: 0;
   transition: max-height 0.4s ease, opacity 0.4s ease;
 }
-/* Au hover, révéler le contenu supplémentaire */
+
+/* Au hover, l'overlay s'étend pour révéler le texte complet */
+.slider-card:hover .overlay {
+  height: 220px;
+}
 .slider-card:hover .overlay .extra-content {
   max-height: 100px;
   opacity: 1;
 }
 
-/* Bouton dans l'overlay (fait partie du flex container pour rester aligné avec le texte) */
+/* Bouton fixé en bas à droite, avec fond blanc plein */
 .slider-card .overlay button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
   padding: 8px 15px;
-  border: 1px solid #fff;
+  border: none;
   border-radius: 12px;
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-.slider-card .overlay button:hover {
-  transform: translateY(-5px);
   background: #fff;
   color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  /* On supprime la translation et la transition pour le bouton */
+  transition: none;
 }
+
+
+
+

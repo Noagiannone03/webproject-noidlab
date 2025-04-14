@@ -40,24 +40,20 @@ document.addEventListener("DOMContentLoaded", function() {
   
 
 
-// Gestion du flip via clic direct sur la carte
-document.querySelectorAll('.flip-card').forEach(card => {
-card.addEventListener('click', function(e) {
-  flipCard(card);
-});
+
+
+// Sur mobile (≤480px), le flip se fait uniquement via le bouton.
+document.querySelector('.prestation-slider-controls .prestation-flip')?.addEventListener('click', function(e) {
+  e.stopPropagation();
+  // Ici, on choisit par exemple la première carte dans le slider.
+  const currentCard = document.querySelector('.horizontal-slider .flip-card');
+  if (currentCard) {
+    flipCard(currentCard);
+  } else {
+    console.error("Aucune carte trouvée pour effectuer le flip.");
+  }
 });
 
-// Exemple d'appel depuis un bouton flip (pour mobile par exemple)
-document.querySelector('.prestation-slider-controls .prestation-flip')?.addEventListener('click', function(e) {
-e.stopPropagation();
-// Ici, vous pouvez choisir la carte à flipper, par exemple la première carte visible dans le slider
-const currentCard = document.querySelector('.horizontal-slider .flip-card');
-if (currentCard) {
-  flipCard(currentCard);
-} else {
-  console.error("Aucune carte trouvée pour effectuer le flip.");
-}
-});
 
 
 
@@ -1283,10 +1279,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
 document.addEventListener("DOMContentLoaded", function() {
-  // Exécuter uniquement en mobile (≤480px)
+  // Exécuter uniquement sur mobile (≤480px)
   if (window.innerWidth > 480) return;
   
   const sliderContainer = document.querySelector('.horizontal-slider');
@@ -1313,7 +1307,7 @@ document.addEventListener("DOMContentLoaded", function() {
     return bestCard;
   }
   
-  // Fonction flipCard qui retire le flip des autres avant d'appliquer sur la carte cible
+  // Fonction flipCard : bascule l'état "flipped" sur la carte ciblée et retire cet état sur les autres
   function flipCard(card) {
     if (!card.classList.contains('flipped')) {
       // Déflippe toutes les cartes
@@ -1325,13 +1319,10 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("Flip toggled on card:", card);
   }
   
-  // Gestion du clic sur chaque carte pour un flip direct
-  document.querySelectorAll('.flip-card').forEach(card => {
-    card.addEventListener('click', function(e) {
-      e.stopPropagation();
-      flipCard(card);
-    });
-  });
+  // Suppression de l'écouteur de clic sur la carte pour empêcher le flip direct au clic sur la carte
+  // sliderContainer.querySelectorAll('.flip-card').forEach(card => {
+  //   card.removeEventListener('click', ...); // On ne fait rien ici.
+  // });
   
   // Bouton flip : retourne la carte la plus visible dans le slider
   flipBtn.addEventListener('click', function(e) {
@@ -1348,36 +1339,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
-document.addEventListener("DOMContentLoaded", function() {
-  // Exécuter uniquement sur mobile (max-width: 480px)
-  if (window.innerWidth > 480) return;
-  
-  const cardsContainer = document.querySelector('.slider-cards');
-  if (!cardsContainer) return;
-  
-  // Utilisation de la délégation d'événements sur le conteneur des cartes
-  cardsContainer.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    const card = e.target.closest('.slider-card');
-    if (!card) return;
-    
-    // Si la carte n'est pas déjà active, fermer les autres et activer celle-ci
-    if (!card.classList.contains('active')) {
-      cardsContainer.querySelectorAll('.slider-card.active').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-    }
-    // Si la carte est déjà active, on ne fait rien.
-  });
-  
-  // Fermer les cartes actives si l'utilisateur clique en dehors
-  document.addEventListener('click', function() {
-    cardsContainer.querySelectorAll('.slider-card.active').forEach(card => {
-      card.classList.remove('active');
-    });
-  });
-});
+
 
 
 
