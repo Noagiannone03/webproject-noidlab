@@ -155,7 +155,7 @@
 }
 
 .unique-modal-prev {
-  left: 15%;
+  left: 11%;
 }
 
 /* Pour l'image, on retire le padding et la transition, et on lui fixe 90% de la taille du conteneur */
@@ -169,7 +169,7 @@
 
 
 .unique-modal-next {
-  right: 15%;
+  right: 11%;
 }
 
 /* Pour l'image, on retire le padding et la transition, et on lui fixe 90% de la taille du conteneur */
